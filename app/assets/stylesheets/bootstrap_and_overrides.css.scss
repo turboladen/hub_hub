@@ -62,5 +62,9 @@ body {
 
 .post {
   font-size: 24px;
-  margin-left: 20px;
+}
+
+.table tbody tr:hover td,
+.table tbody tr:hover th {
+  background-color: #dbf5a6;
 }
