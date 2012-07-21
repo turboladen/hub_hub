@@ -16,11 +16,12 @@
       %nav.navbar-inner
         .container
           = render 'layouts/navigation'
-    #main{:role => "main"}
-      .container
-        .content
-          .row
-            .span12
-              = render 'layouts/messages'
-              = yield
-          %footer
+
+    .container
+      .content
+        .row
+          .span12
+            = render 'layouts/messages'
+        = yield
+      %footer
+        %p.pull-right HubHub
