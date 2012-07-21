@@ -1,0 +1,2 @@
+rvm gemset create hubhub
+rvm gemset use hubhub
