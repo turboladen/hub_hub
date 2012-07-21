@@ -13,22 +13,22 @@
 
 ActiveRecord::Schema.define(:version => 20120721004447) do
 
-  create_table "hubs", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "posts", :force => true do |t|
     t.string   "name"
     t.string   "title"
     t.text     "content"
-    t.integer  "hub_id"
+    t.integer  "spoke_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "posts", ["hub_id"], :name => "index_posts_on_hub_id"
+  add_index "posts", ["spoke_id"], :name => "index_posts_on_spoke_id"
+
+  create_table "spokes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

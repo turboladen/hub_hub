@@ -10,9 +10,9 @@
           %td
             .post
               =link_to post.title, controller: 'posts', action: 'show', id: post.id,
-                hub_id: post.hub.id
+                spoke_id: post.spoke.id
               %br
               %p
-                SubHub:
-                =link_to post.hub.name, controller: 'hubs', action: 'show',
-                  id: post.hub.id
+                Spoke:
+                =link_to post.spoke.name, controller: 'spokes', action: 'show',
+                  id: post.spoke.id

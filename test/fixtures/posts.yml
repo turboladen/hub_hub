@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
-  title: MyString
-  content: MyText
-  hub: 
+  name: Roger Jones
+  title: Cool stuff!
+  content: There's cool stuff happening in Fresno.
+  spoke: Fresno
 
 two:
   name: MyString
   title: MyString
   content: MyText
-  hub: 
+  spoke: Fresno

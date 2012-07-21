@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class HubTest < ActiveSupport::TestCase
+class SpokeTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

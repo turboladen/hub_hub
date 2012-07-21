@@ -12,6 +12,6 @@
   %b Content:
   = @post.content
 
-= link_to 'Edit', edit_hub_post_path(@post.hub, @post)
+= link_to 'Edit', edit_spoke_post_path(@post.spoke, @post)
 |
-= link_to 'Back', hub_path(@post.hub)
+= link_to 'Back', spoke_path(@post.spoke)

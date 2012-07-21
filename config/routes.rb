@@ -1,7 +1,7 @@
 HubHub::Application.routes.draw do
   devise_for :users
 
-  resources :hubs do
+  resources :spokes do
     resources :posts
   end
 

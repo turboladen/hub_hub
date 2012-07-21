@@ -6,22 +6,22 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Hub.delete_all
+Spoke.delete_all
 Post.delete_all
 
-fresno = Hub.create(name: 'Fresno')
+fresno = Spoke.create(name: 'Fresno')
 fresno.posts.create(name: "Guy Smiley", title: "It's hot today",
   content: "Why don't you come swimming?")
 fresno.posts.create(name: "Bert Ernest", title: "Party on the Fulton",
   content: "Come get some Dusty Buns and beer.  MMmmmm aren't you thristy?")
 
-grizzlies = Hub.create(name: 'Grizzlies')
+grizzlies = Spoke.create(name: 'Grizzlies')
 grizzlies.posts.create(name: "Stephanie", title: "Taco Tuesday",
   content: "Come get some tacos.  They're really tasty and neat and good.")
 grizzlies.posts.create(name: "Riki Tiki Tavi", title: "Thirsty Thrusday",
   content: "Come get some beer.  It's good for you; it has vitamins in it.")
 
-art = Hub.create(name: 'Art')
+art = Spoke.create(name: 'Art')
 art.posts.create(name: 'Lisa', title: 'Call to artists',
   content: %q{"California Cityscapes" is the theme of the first Alliance of California Major
  Open Fine Art Show of 2012. This is a great opportunity to step outside of your
@@ -32,7 +32,7 @@ for show prospectus details- www.allianceofcaliforniaartists.com
 })
 
 
-music = Hub.create(name: 'Music')
+music = Spoke.create(name: 'Music')
 music.posts.create(name: 'Julie', title: 'Love! Chocolate! Music!',
   content: %q{Love Conquers All
 

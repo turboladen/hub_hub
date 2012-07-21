@@ -4,10 +4,10 @@ class CreatePosts < ActiveRecord::Migration
       t.string :name
       t.string :title
       t.text :content
-      t.references :hub
+      t.references :spoke
 
       t.timestamps
     end
-    add_index :posts, :hub_id
+    add_index :posts, :spoke_id
   end
 end

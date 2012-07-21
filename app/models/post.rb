@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  belongs_to :hub
+  belongs_to :spoke
   attr_accessible :content, :name, :title
 
   validates :name, presence: true

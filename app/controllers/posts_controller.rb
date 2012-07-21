@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   def create
-    @hub = Hub.find(params[:hub_id])
-    @post = @hub.posts.create(params[:post])
-    redirect_to hub_path(@hub)
+    @spoke = Spoke.find(params[:spoke_id])
+    @post = @spoke.posts.create(params[:post])
+    redirect_to spoke_path(@spoke)
   end
 
   def show

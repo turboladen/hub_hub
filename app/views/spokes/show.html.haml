@@ -1,8 +1,8 @@
 %p#notice= notice
 
 %p
-  %b Hub Name:
-  = @hub.name
+  %b Spoke Name:
+  = @spoke.name
 
 .row
   .span8
@@ -10,10 +10,10 @@
       %caption
         %h3 Recent Posts
       %tbody
-        = render partial: 'post', collection: @hub.posts
+        = render partial: 'post', collection: @spoke.posts
 
 %h2 Add a post:
-= form_for([@hub, @hub.posts.build]) do |f|
+= form_for([@spoke, @spoke.posts.build]) do |f|
   .field
     = f.label :name
     %br
@@ -29,6 +29,6 @@
   .actions
     = f.submit
 
-= link_to 'Edit', edit_hub_path(@hub)
+= link_to 'Edit', edit_spoke_path(@spoke)
 |
-= link_to 'Back', hubs_path
+= link_to 'Back', spokes_path
