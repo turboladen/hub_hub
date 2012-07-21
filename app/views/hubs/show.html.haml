@@ -4,13 +4,13 @@
   %b Hub Name:
   = @hub.name
 
-%h2 Posts
-- @hub.posts.each do |post|
-  %p
-    %b Title:
-    = post.title
-    = link_to post.title, controller: "posts", action: "show", id: post.id,
-      hub_id: @hub.id
+.row
+  .span8
+    %table.table.table-condensed
+      %caption
+        %h3 Recent Posts
+      %tbody
+        = render partial: 'post', collection: @hub.posts
 
 %h2 Add a post:
 = form_for([@hub, @hub.posts.build]) do |f|

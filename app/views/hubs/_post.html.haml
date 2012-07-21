@@ -1,0 +1,18 @@
+%tr
+  %td
+    %table.table
+      %tbody
+        %tr
+          %td
+            %i.icon-arrow-up
+            %br
+            %i.icon-arrow-down.pull-left
+          %td
+            .post
+              =link_to post.title, controller: 'posts', action: 'show', id: post.id,
+                hub_id: post.hub.id
+              %br
+              %p
+                SubHub:
+                =link_to post.hub.name, controller: 'hubs', action: 'show',
+                  id: post.hub.id
