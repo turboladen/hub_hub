@@ -14,7 +14,7 @@ gem 'pg'
 group :assets do
   gem 'haml-rails', '~> 0.3.4'
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+
   gem 'bootstrap-sass', '~> 2.0.4.0'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -23,6 +23,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'coffee-rails', '~> 3.2.1'
 gem 'jquery-rails'
 gem 'devise'
 
