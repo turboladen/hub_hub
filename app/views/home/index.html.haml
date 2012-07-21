@@ -3,7 +3,7 @@
   %p Connecting California's Central Valley
 .row
   .span8
-    %table.table.table-bordered
+    %table.table.table-condensed
       %thead
         %tr
         %th Post
@@ -11,7 +11,7 @@
         - @posts.each do |post|
           %tr
             %td
-              %table
+              %table.table
                 %tbody
                   %tr
                     %td
@@ -23,7 +23,7 @@
                         =link_to post.title, controller: 'posts', action: 'show', id: post.id,
                           hub_id: post.hub.id
                       %br
-                      %p{ style: "margin-left: 20px;" }
+                      %p
                         SubHub:
                         =link_to post.hub.name, controller: 'hubs', action: 'show',
                           id: post.hub.id
