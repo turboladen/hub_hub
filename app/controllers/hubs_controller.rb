@@ -5,7 +5,7 @@ class HubsController < ApplicationController
     @hubs = Hub.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.json { render json: @hubs }
     end
   end
