@@ -41,8 +41,14 @@
       - else
         .row
           .offset1
-            %a.btn.btn-large.btn-new-post.disabled.span4{ href: '#',
-              style: "color: white; " } Create Post
+            %script
+              $(function () {
+              $("#disabled-post-button").popover();
+              });
+            %a.btn.btn-large.btn-new-post.disabled.span4#disabled-post-button{ href: '#',
+              style: "color: white; ", rel: 'popover',
+              'data-content' => "Login to start posting in this spoke.",
+              'data-original-title' => 'Log in!' } Create Post
 
     %table.table.table-condensed
       %caption
