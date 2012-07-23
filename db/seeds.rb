@@ -50,9 +50,9 @@ art.posts.create(name: 'Tim A Fleming', title: 'Spectrum Gallery Show for July!'
      ArtHop Mini reception - Dick Haas and Madhu John
 
 Saturday, July 7    2:00 - 5:00 pm
-    Artists’ Reception: Dick Haas and Madhu John
+    Artists' Reception: Dick Haas and Madhu John
 
-Dick Haas “Out to Lunch””  July  5 - 29
+Dick Haas "Out to Lunch"  July  5 - 29
  These are images captured as transparencies and, more
 recently, digitally.All are photographs taken on the street of people engaged
 in reading books or newspapers. Most were taken  while
@@ -67,7 +67,7 @@ interest.
 
 Showing with Dack Haas is:
 
-Madhu John - “How to be Alone”
+Madhu John - "How to be Alone"
 BIO:   I spent my childhood, youth and young adulthood
 in the megalopolises of Mumbai and New York.  My first
 exposure to photography was through my father, a journalist
@@ -80,17 +80,17 @@ visages that provoked and enthralled;  shop windows, people
 in a hurry down on fifth avenue or in perfect repose in central park
 , Charlie Mingus outside the village vanguard
 or Paul Simon on a evening stroll and townhouses and
-skyscrapers.  what can a poor boy do if he can’t join a rock
+skyscrapers.  what can a poor boy do if he can't join a rock
 and roll band?  photograph, of course. But the more serious stuff -  decent cameras, a few
 workshops, acquiring photo books of winogrand and cartier-
 bresson, long hours at moma and the getty, dabbling in wet
 darkrooms - all that happened in the last 15 years or so, in
 Fresno.  Most often used a 35mm rangefinder and less often
 a slr with a long lens  and till 2011, it was analog film.   The
-‘breakdown’ happened last year,  it’s a digital rangefinder
+'breakdown' happened last year,  it's a digital rangefinder
 for me now, This is a different road, but exciting nevertheless.
 THEME:
-The original title I had in mind was ‘ you are quite alone’.
+The original title I had in mind was ' you are quite alone'.
 too absolute, too emphatic, a little arrogant or pompous, I
 thought. so you say, enough of this existential stuff.  Then you
  look around  you see it in magazine covers and
