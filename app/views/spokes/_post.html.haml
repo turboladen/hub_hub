@@ -3,12 +3,17 @@
     %i.icon-arrow-up
     %br
     %i.icon-arrow-down.pull-left
+    %br
+    %i.icon-star-empty
   %td
     .post
       =link_to post.title, controller: 'posts', action: 'show', id: post.id,
         spoke_id: post.spoke.id
-      %br
-      %p
-        Spoke:
-        =link_to post.spoke.name, controller: 'spokes', action: 'show',
-          id: post.spoke.id
+    %br
+    %p
+      Spoke:
+      =link_to post.spoke.name, controller: 'spokes', action: 'show',
+        id: post.spoke.id
+    %p
+      Updated:
+      = post.updated_at
