@@ -1,18 +1,14 @@
 %tr
   %td
-    %table.table
-      %tbody
-        %tr
-          %td
-            %i.icon-arrow-up
-            %br
-            %i.icon-arrow-down.pull-left
-          %td
-            .post
-              =link_to post.title, controller: 'posts', action: 'show', id: post.id,
-                spoke_id: post.spoke.id
-              %br
-              %p
-                Spoke:
-                =link_to post.spoke.name, controller: 'spokes', action: 'show',
-                  id: post.spoke.id
+    %i.icon-arrow-up
+    %br
+    %i.icon-arrow-down.pull-left
+  %td
+    .post
+      =link_to post.title, controller: 'posts', action: 'show', id: post.id,
+        spoke_id: post.spoke.id
+      %br
+      %p
+        Spoke:
+        =link_to post.spoke.name, controller: 'spokes', action: 'show',
+          id: post.spoke.id
