@@ -8,10 +8,28 @@
         %h3 Recent Posts
       %tbody
         = render partial: 'spokes/post', collection: @posts
-  .span3
+  .span4
     .well.sidebar-nav{ style: "height: 100%;" }
       %ul.nav.nav-list
         %li.nav-header Spokes
         - @spokes.each do |spoke|
           %li
             = link_to spoke.name, spoke
+    .well
+      %h4 Welcome
+      %hr
+      %p
+        The mission of MindHub is to create an (online) community that encourages and
+        supports creative professionals in the Central Valley.
+      %p
+        The goal is to have
+        subscribers of the MindHub email list, creative professionals in the Fresno and
+        surrounding areas, share information and help each other to find jobs, find
+        employees, compare notes on their respective trades, and learn from each other
+        in an unintimidating environment.
+      %p
+        Best of all, membership is FREE! If you would
+        like to join MindHub, all you need is an email address.
+      %p
+        If you have any
+        questions about MindHub, please email #{mail_to "mindhub-info@listmindhub.org" }.

@@ -11,9 +11,14 @@
         spoke_id: post.spoke.id
     %br
     %p
-      Spoke:
-      =link_to post.spoke.name, controller: 'spokes', action: 'show',
-        id: post.spoke.id
-    %p
-      Updated:
+      added
       = post.updated_at
+      in spoke
+      %script
+        $(function () {
+        $("#spoke-link-#{post.id}").popover();
+        });
+      = link_to(post.spoke.name, post.spoke,
+        class: 'label label-inverse', rel: 'popover', id: "spoke-link-#{post.id}",
+        'data-content' => post.spoke.description,
+        'data-original-title' => post.spoke.name)
