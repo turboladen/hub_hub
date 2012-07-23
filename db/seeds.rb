@@ -9,19 +9,20 @@
 Spoke.delete_all
 Post.delete_all
 
-fresno = Spoke.create(name: 'Fresno')
+fresno = Spoke.create(name: 'Fresno', description: %{General Fresno discussion})
 fresno.posts.create(name: "Guy Smiley", title: "It's hot today",
   content: "Why don't you come swimming?")
 fresno.posts.create(name: "Bert Ernest", title: "Party on the Fulton",
   content: "Come get some Dusty Buns and beer.  MMmmmm aren't you thristy?")
 
-grizzlies = Spoke.create(name: 'Grizzlies')
+grizzlies = Spoke.create(name: 'Grizzlies', description: %{All about the Fresno Grizzlies})
 grizzlies.posts.create(name: "Stephanie", title: "Taco Tuesday",
   content: "Come get some tacos.  They're really tasty and neat and good.")
 grizzlies.posts.create(name: "Riki Tiki Tavi", title: "Thirsty Thrusday",
   content: "Come get some beer.  It's good for you; it has vitamins in it.")
 
-art = Spoke.create(name: 'Art')
+art = Spoke.create(name: 'Art', description: %{Sub-community for Fresno artists to
+share about shows, gallery openings, and even inspiration})
 art.posts.create(name: 'Lisa', title: 'Call to artists',
   content: %q{"California Cityscapes" is the theme of the first Alliance of California Major
  Open Fine Art Show of 2012. This is a great opportunity to step outside of your
@@ -32,7 +33,8 @@ for show prospectus details- www.allianceofcaliforniaartists.com
 })
 
 
-music = Spoke.create(name: 'Music')
+music = Spoke.create(name: 'Music', description: %{Where to go to find out about
+Fresno's music scene})
 music.posts.create(name: 'Julie', title: 'Love! Chocolate! Music!',
   content: %q{Love Conquers All
 
