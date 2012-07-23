@@ -20,5 +20,5 @@
         });
       = link_to(post.spoke.name, post.spoke,
         class: 'label label-inverse', rel: 'popover', id: "spoke-link-#{post.id}",
-        'data-content' => post.spoke.description,
-        'data-original-title' => post.spoke.name)
+        'data-content' => "Description: #{post.spoke.description}",
+        'data-original-title' => "Spoke: #{post.spoke.name}")
