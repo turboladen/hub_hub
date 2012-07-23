@@ -8,28 +8,48 @@
 
 .row
   .span8
+    .well
+      - if user_signed_in?
+        .row
+          .offset1
+            %script
+              $(function () {
+              $(".collapse").collapse()
+              });
+            %a.btn.btn-large.btn-new-post.span4{ href: '#',
+              style: "color: white; ", "data-toggle" => "collapse",
+              "data-target" => '#create-post' } Create Post
+        .row
+          .collapse.in#create-post
+            %h2 Add a post:
+            = form_for([@spoke, Post.new], html: { class: 'form-horizontal' }) do |f|
+              %fieldset
+                .control-group
+                  %label.control-label= f.label :name
+                  .controls
+                    = f.text_field :name
+                .control-group
+                  %label.control-label= f.label :title
+                  .controls
+                    = f.text_field :title
+                .control-group
+                  %label.control-label= f.label :content
+                  .controls
+                    = f.text_area :content
+              .form-actions
+                = f.submit 'Post', class: 'btn btn-primary'
+      - else
+        .row
+          .offset1
+            %a.btn.btn-large.btn-new-post.disabled.span4{ href: '#',
+              style: "color: white; " } Create Post
+
     %table.table.table-condensed
       %caption
         %h3 Recent Posts
       %tbody
         = render partial: 'post', collection: @spoke.posts
 
-    %h2 Add a post:
-    = form_for([@spoke, @spoke.posts.build]) do |f|
-      .field
-        = f.label :name
-        %br
-        = f.text_field :name
-      .field
-        = f.label :title
-        %br
-        = f.text_field :title
-      .field
-        = f.label :content
-        %br
-        = f.text_area :content
-      .actions
-        = f.submit
   .span4
     .well
       %h2= @spoke.name

@@ -7,8 +7,7 @@
     %i.icon-star-empty
   %td
     .post
-      =link_to post.title, controller: 'posts', action: 'show', id: post.id,
-        spoke_id: post.spoke.id
+      =link_to post.title, spoke_post_url(post.spoke.id, post)
     %br
     %p
       added

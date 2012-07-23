@@ -68,3 +68,33 @@ body {
 .table tbody tr:hover th {
   background-color: #dbf5a6;
 }
+
+.btn-new-post{
+  background-color: #990594;
+  *background-color: #92058e;
+  background-image: -ms-linear-gradient(top, #92388e, #92058e);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#92388e), to(#92058e));
+  background-image: -webkit-linear-gradient(top, #92388e, #92058e);
+  background-image: -o-linear-gradient(top, #92388e, #92058e);
+  background-image: -moz-linear-gradient(top, #92388e, #92058e);
+  background-image: linear-gradient(top, #92388e, #92058e);
+  background-repeat: repeat-x;
+  border-color: #92058e #92058e #ad6704;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#92388e', endColorstr='#92058e', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+
+.btn-new-post:hover,
+.btn-new-post:active,
+.btn-new-post.active,
+.btn-new-post.disabled,
+.btn-new-post[disabled] {
+  background-color: #92058e;
+  *background-color: #92518e;
+}
+
+.btn-new-post:active,
+.btn-new-post.active {
+  background-color: #c67605 \9;
+}
