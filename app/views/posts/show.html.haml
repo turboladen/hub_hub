@@ -1,16 +1,27 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @post.name
+.page-header
+  %h1
+    %small
+      [
+      = @post.spoke.name
+      ]
+    = @post.title
 
-%p
-  %b Title:
-  = @post.title
-
-%p
-  %b Content:
-  = @post.content
+.row
+  .span4
+    %table.table.table-striped.table-bordered
+      %tbody
+        %tr
+          %th Posted by
+          %td= @post.name
+        %tr
+          %th Posted on
+          %td= @post.created_at
+  .span8
+    %b Content:
+    %blockquote
+      %p= @post.content
 
 = link_to 'Edit', edit_spoke_post_path(@post.spoke, @post)
 |
