@@ -19,6 +19,10 @@
             Edit account
   - else
     %li
-      = link_to('Login', new_user_session_path)
+      = link_to(new_user_session_path, class: 'btn btn-primary') do
+        %i.icon-user.icon-white
+        Login
     %li
-      = link_to('Sign up', new_user_registration_path)
+      = link_to(new_user_registration_path, class: 'btn btn-inverse') do
+        %i.icon-edit.icon-white
+        Sign up
