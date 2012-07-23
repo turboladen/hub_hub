@@ -8,6 +8,10 @@
         %h3 Recent Posts
       %tbody
         = render partial: 'spokes/post', collection: @posts
-
-
-= link_to "All Spokes", spokes_path
+  .span3
+    .well.sidebar-nav{ style: "height: 100%;" }
+      %ul.nav.nav-list
+        %li.nav-header Spokes
+        - @spokes.each do |spoke|
+          %li
+            = link_to spoke.name, spoke
