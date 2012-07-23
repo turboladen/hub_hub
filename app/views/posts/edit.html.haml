@@ -1,7 +1,6 @@
 %h1 Editing post
 
-= render 'form', @post
+.row
+  .span9
+    = render 'form'
 
-= link_to 'Show', spoke_post_path(@post.spoke, @post)
-|
-= link_to 'Back', spoke_post_path(@post.spoke, @post)
