@@ -14,7 +14,9 @@
         %li.nav-header Spokes
         - @spokes.each do |spoke|
           %li
-            = link_to spoke.name, spoke
+            %ul
+              %li
+                = link_to spoke.name, spoke
     .well
       %h4 Welcome
       %hr
