@@ -2,7 +2,9 @@ HubHub::Application.routes.draw do
   devise_for :users
 
   resources :spokes do
-    resources :posts
+    resources :posts do
+      resources :comments
+    end
   end
 
   get "home/index"

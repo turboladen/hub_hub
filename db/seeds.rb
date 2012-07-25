@@ -13,8 +13,49 @@ Post.delete_all
 # Fresno
 #-------------------------------------------------------------------------------
 fresno = Spoke.create(name: 'Fresno', description: %{General Fresno discussion})
-fresno.posts.create(name: "Guy Smiley", title: "It's hot today",
+
+p = fresno.posts.create(name: "Guy Smiley", title: "It's hot today",
   content: "Why don't you come swimming?")
+p.comments.create(commenter: "Merle", body: "I'm scared!")
+p.comments.create(commenter: "John", body: "I'd rather drink the water!")
+
+p = fresno.posts.create(name: "Pedro Urena", title: "WEDNESDAY - MARKET ON KERN STREET",
+  content: %[Hello Hubbers!
+
+Once again the Market on Kern Street is back! We hope you all had a great
+Independence Day. Mark your calendar for Wednesday 11, 2012. Every
+Wednesday you are welcome to attend from 10 am - 2 pm.
+
+Buy fresh produce, enjoy live music, purchase prepared foods, and support
+local artisans .
+
+WEDNESDAY is certainly the Best Day of the Week!
+
+For more information visit the office or give us a call.
+
+845 Fulton Mall
+Fresno, CA 93721
+559.490.9966
+www.downtownfresno.org])
+
+p.comments.create(commenter: "Pedro Urena", body: %[Hello Hubbers!
+
+Once again the Market on Kern Street is back! We hope you all had a great
+Independence Day. Mark your calendar for Wednesday 11, 2012. Every
+Wednesday you are welcome to attend from 10 am - 2 pm.
+
+Buy fresh produce, enjoy live music, purchase prepared foods, and support
+local artisans .
+
+WEDNESDAY is certainly the Best Day of the Week!
+
+For more information visit the office or give us a call.
+
+845 Fulton Mall
+Fresno, CA 93721
+559.490.9966
+www.downtownfresno.org])
+
 fresno.posts.create(name: "Bert Ernest", title: "Party on the Fulton",
   content: "Come get some Dusty Buns and beer.  MMmmmm aren't you thristy?")
 fresno.posts.create(name: "Don", title: "Blackstone is where it's at",
