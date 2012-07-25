@@ -1,0 +1,17 @@
+%tr
+  %td
+    %i.icon-arrow-up
+    %br
+    %i.icon-arrow-down.pull-left
+    %br
+    %i.icon-star-empty
+  %td
+    %p
+      added
+      = comment.created_at
+      by
+      %b= comment.commenter
+      %a.btn.btn-mini{ href: "#", title: "Reply to comment" }
+        %i.icon-share-alt
+
+    %p= comment.body

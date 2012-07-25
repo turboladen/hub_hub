@@ -45,22 +45,7 @@
       %caption
         %h2 Comments
       %tbody
-        - @post.comments.each do |comment|
-          %tr
-            %td
-              %i.icon-arrow-up
-              %br
-              %i.icon-arrow-down.pull-left
-              %br
-              %i.icon-star-empty
-            %td
-              %p
-                added
-                = comment.created_at
-                by
-                %b= comment.commenter
-
-              %p= comment.body
+        = render partial: 'comments/comment', collection: @post.comments
 
 
 = link_to 'Edit', edit_spoke_post_path(@post.spoke, @post)
