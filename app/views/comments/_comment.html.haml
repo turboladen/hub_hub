@@ -10,8 +10,16 @@
       added
       = comment.created_at
       by
-      %b= comment.commenter
-      %a.btn.btn-mini{ href: "#", title: "Reply to comment" }
-        %i.icon-share-alt
+      %b= comment.user.email
+      %a.btn.btn-mini{ href: "#", "data-target" => "#comment-#{comment.id}",
+        title: "Reply to comment", "data-toggle" => "collapse" }
+        reply
+      .collapse{ id: "comment-#{comment.id}" }
+        = render 'comments/new', parent_type: 'comment', parent_id: comment.id
 
     %p= comment.body
+
+    - if comment.has_children?
+      %table.table.table-condensed.table-striped
+        %tbody
+          = render partial: 'comments/comment', collection: comment.children

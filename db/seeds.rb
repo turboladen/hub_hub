@@ -9,6 +9,27 @@
 Spoke.delete_all
 Post.delete_all
 
+user_hashes = [
+  {
+    email: 'bob@bob-hope.com',
+    password: 'neverrrrrr',
+    password_confirmation: 'neverrrrrr',
+    remember_me: false,
+  }, {
+      email: 'ricky@ricky-martin.com',
+      password: 'neverrrrrr',
+      password_confirmation: 'neverrrrrr',
+      remember_me: false,
+  }, {
+    email: 'charlie@charlie-sheen.com',
+    password: 'neverrrrrr',
+    password_confirmation: 'neverrrrrr',
+    remember_me: false,
+  },
+]
+
+users = user_hashes.map { |u| User.create(u) }
+
 #-------------------------------------------------------------------------------
 # Fresno
 #-------------------------------------------------------------------------------
@@ -16,8 +37,9 @@ fresno = Spoke.create(name: 'Fresno', description: %{General Fresno discussion})
 
 p = fresno.posts.create(name: "Guy Smiley", title: "It's hot today",
   content: "Why don't you come swimming?")
-p.comments.create(commenter: "Merle", body: "I'm scared!")
-p.comments.create(commenter: "John", body: "I'd rather drink the water!")
+p.save!
+Comment.build_from(p, users.sample.id, "I'm scared!").save!
+Comment.build_from(p, users.sample.id, "I'd rather drink the water!").save!
 
 p = fresno.posts.create(name: "Pedro Urena", title: "WEDNESDAY - MARKET ON KERN STREET",
   content: %[Hello Hubbers!
@@ -38,7 +60,7 @@ Fresno, CA 93721
 559.490.9966
 www.downtownfresno.org])
 
-p.comments.create(commenter: "Pedro Urena", body: %[Hello Hubbers!
+Comment.build_from(p, users.sample, body: %[Hello Hubbers!
 
 Once again the Market on Kern Street is back! We hope you all had a great
 Independence Day. Mark your calendar for Wednesday 11, 2012. Every

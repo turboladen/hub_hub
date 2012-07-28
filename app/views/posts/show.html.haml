@@ -25,19 +25,7 @@
 .row
   .span8
     %h2 Comment:
-    = form_for([@post.spoke, @post, @post.comments.build],
-      html: { class: 'well form-horizontal' }) do |f|
-      %fieldset
-        .control-group
-          = f.label :commenter, class: 'control-label'
-          .controls
-            = f.text_field :commenter
-        .control-group
-          = f.label :body, class: 'control-label'
-          .controls
-            = f.text_area :body, class: 'input-xlarge'
-        .form-actions
-          = f.submit 'Save', class: 'btn btn-primary'
+    = render 'comments/new', parent_type: :post, parent_id: @post.id
 %hr
 .row
   .span8
@@ -45,7 +33,7 @@
       %caption
         %h2 Comments
       %tbody
-        = render partial: 'comments/comment', collection: @post.comments
+        = render partial: 'comments/comment', collection: @post.root_comments
 
 
 = link_to 'Edit', edit_spoke_post_path(@post.spoke, @post)
