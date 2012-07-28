@@ -20,7 +20,7 @@
               style: "color: white; ", "data-toggle" => "collapse",
               "data-target" => '#create-post' } Create Post
         .row
-          .collapse#create-post
+          .collapse.in#create-post
             %h2 Add a post:
             = form_for([@spoke, Post.new], html: { class: 'form-horizontal' }) do |f|
               - if @spoke.errors.any?
