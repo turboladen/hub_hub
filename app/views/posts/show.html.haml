@@ -1,4 +1,5 @@
-%p#notice= notice
+- if notice
+  %p#notice= notice
 
 %ul.breadcrumb
   %li
@@ -8,34 +9,34 @@
     = link_to @post.spoke.name, spoke_path(@post.spoke)
 
 .row
-  .span4
-    %table.table.table-striped.table-bordered
-      %tbody
-        %tr
-          %th Posted by
-          %td= @post.name
-        %tr
-          %th Posted on
-          %td= @post.created_at
   .span8
-    %h1= @post.title
-    %blockquote
+    .pull-left
+      %i.icon-arrow-up
+      %br
+      %i.icon-arrow-down.pull-left
+      %br
+      %i.icon-star-empty
+    %div
+      %h1= @post.title
+      %p
+        Posted on
+        %code= @post.created_at
+        by
+        %code= @post.name
+        = link_to 'Edit', edit_spoke_post_path(@post.spoke, @post),
+          class: 'btn btn-mini btn-warning'
+    .well
       %p= sanitize(@post.content)
+
+
 %hr
 .row
   .span8
-    %h2 Comment:
+    %h2 Comments
     = render 'comments/new', parent_type: :post, parent_id: @post.id
-%hr
-.row
-  .span8
     %table.table.table-condensed.table-striped
-      %caption
-        %h2 Comments
       %tbody
         = render partial: 'comments/comment', collection: @post.root_comments
 
 
-= link_to 'Edit', edit_spoke_post_path(@post.spoke, @post)
-|
 = link_to 'Back', spoke_path(@post.spoke)

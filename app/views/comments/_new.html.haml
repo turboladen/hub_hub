@@ -1,27 +1,30 @@
-= form_for([@post.spoke, @post, Comment.new],
-  html: { class: 'well form-horizontal' }) do |f|
+- @comment = Comment.new
+= form_for([@post.spoke, @post, @comment], html: { class: 'well' }) do |f|
+  - if @comment.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@comment.errors.count, "error")
+        prohibited this comment from being saved:
+
+      %ul
+        - @comment.errors.full_messages.each do |msg|
+          %li= msg
+
   %fieldset
     .control-group
-      = f.label :user, class: 'control-label'
       .controls
-        - if user_signed_in?
-          %p
-            = @current_user.email
-        - else
-          %p [not logged in]
-    .control-group
-      = f.label :body, class: 'control-label'
-      .controls
-        = f.text_area :body, class: 'input-xlarge'
+        = f.text_area :body, size: "100x10"
+
     = hidden_field_tag 'parent_type', parent_type
+
     = hidden_field_tag 'parent_id', parent_id
-    .form-actions
-      - if user_signed_in?
-        = f.submit 'Save', class: 'btn btn-primary'
-      - else
-        %script
-          $(function () {
-          $("#post-save-button").popover();
-          });
-        %button.btn.btn-primary.disabled#post-save-button{ rel: 'popover',
-          'data-content' => 'Login to post!', 'data-original-title' => 'Login' } Save
+
+    - if user_signed_in?
+      = f.submit 'Comment', class: 'btn btn-primary'
+    - else
+      %script
+        $(function () {
+        $("#post-save-button").popover();
+        });
+      %button.btn.btn-primary.disabled#post-save-button{ rel: 'popover',
+        'data-content' => 'Login to post!', 'data-original-title' => 'Login' } Comment
