@@ -7,6 +7,8 @@ class Post < ActiveRecord::Base
   validates :name, presence: true
   validates :title, presence: true
   validates :content, presence: true
+  validates_length_of :title, maximum: 100
+  validates_length_of :content, maximum: 4000
 
   acts_as_commentable
 
