@@ -3,12 +3,12 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @current_user = current_user
     @comment = Comment.build_from(@post, @current_user.id, params[:comment][:body])
-    @comment.save!
+    @comment.save
 
-    if params[:parent_type] == "comment"
+    if params[:parent_type] == "comment" && @comment.persisted?
       parent_comment = Comment.find(params[:parent_id])
       @comment.move_to_child_of(parent_comment)
-      @comment.save!
+      @comment.save
     end
 
     redirect_to spoke_post_path(@post.spoke, @post)
