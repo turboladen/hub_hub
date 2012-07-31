@@ -12,9 +12,9 @@
     = csrf_meta_tags
     = yield(:head)
   %body
-    %header.navbar.navbar-fixed-top
-      %nav.navbar-inner
-        .container
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container{ style: "height: 40px;" }
           = render 'layouts/navigation'
 
     .container
