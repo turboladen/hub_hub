@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class SpokeTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "spoke attributes must not be empty" do
+    spoke = Spoke.new
+    assert spoke.invalid?
+    assert spoke.errors[:name].any?
+  end
 end
