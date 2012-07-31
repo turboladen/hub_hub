@@ -18,6 +18,14 @@ a:link {
   color: $linkColor;
 }
 
+a:visited {
+  color: darken($linkColor, 15%);
+}
+
+a:hover {
+  color: lighten($linkColor, 15%);
+}
+
 .content {
   background-color: #fff;
   padding: 20px;
