@@ -22,15 +22,16 @@
         .row
           .collapse.in#create-post
             %h2 Add a post:
-            = form_for([@spoke, Post.new], html: { class: 'form-horizontal' }) do |f|
-              - if @spoke.errors.any?
+            - @post = Post.new
+            = form_for([@spoke, @post], html: { class: 'form-horizontal' }) do |f|
+              - if @post.errors.any?
                 #error_explanation
                   %h2
-                    = pluralize(@spoke.errors.count, "error")
+                    = pluralize(@post.errors.count, "error")
                     prohibited this post from being saved:
 
                   %ul
-                    - @spoke.errors.full_messages.each do |msg|
+                    - @post.errors.full_messages.each do |msg|
                       %li= msg
               %fieldset
                 .control-group
@@ -45,8 +46,8 @@
                   %label.control-label= f.label :content
                   .controls
                     = f.text_area :content, class: 'span5'
-              .form-actions
-                = f.submit 'Post', class: 'btn btn-primary'
+                .form-actions
+                  = f.submit 'Post', class: 'btn btn-primary'
       - else
         .row
           .offset1
