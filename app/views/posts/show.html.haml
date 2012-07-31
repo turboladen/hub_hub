@@ -20,7 +20,7 @@
   .span8
     %h1= @post.title
     %blockquote
-      %p= @post.content
+      %p= sanitize(@post.content)
 %hr
 .row
   .span8

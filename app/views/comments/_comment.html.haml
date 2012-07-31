@@ -17,7 +17,7 @@
       .collapse{ id: "comment-#{comment.id}" }
         = render 'comments/new', parent_type: 'comment', parent_id: comment.id
 
-    %p= comment.body
+    %p= sanitize(comment.body)
 
     - if comment.has_children?
       %table.table.table-condensed.table-striped
