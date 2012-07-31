@@ -1,23 +1,27 @@
 %tr
   %td
-    %i.icon-arrow-up
+    %i.icon-circle-arrow-up
     %br
-    %i.icon-arrow-down.pull-left
+    %i.icon-circle-arrow-down.pull-left
     %br
-    %i.icon-star-empty
+    %i.icon-heart
+
   %td
     .post
       =link_to post.title, spoke_post_url(post.spoke.id, post)
     %br
+
     %p
       added
       = post.updated_at
       in spoke
+
       %script
         $(function () {
         $("#spoke-link-#{post.id}").popover();
         });
+
       = link_to(post.spoke.name, post.spoke,
-        class: 'label label-inverse', rel: 'popover', id: "spoke-link-#{post.id}",
+        class: 'label', rel: 'popover', id: "spoke-link-#{post.id}",
         'data-content' => "Description: #{post.spoke.description}",
         'data-original-title' => "Spoke: #{post.spoke.name}")
