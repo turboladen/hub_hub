@@ -4,10 +4,10 @@ one:
   name: Roger Jones
   title: Cool stuff!
   content: There's cool stuff happening in Fresno.
-  spoke: Fresno
+  spoke: fresno
 
 two:
   name: MyString
   title: MyString
   content: MyText
-  spoke: Fresno
+  spoke: fresno
