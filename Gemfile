@@ -42,5 +42,7 @@ gem 'acts_as_commentable_with_threading'
 # gem 'debugger'
 
 group :development, :test do
+  gem 'redgreen'
+  gem 'test-unit', '1.2.3'
   gem 'sqlite3'
 end
