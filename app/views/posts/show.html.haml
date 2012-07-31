@@ -28,7 +28,6 @@
     .well
       %p= sanitize(@post.content)
 
-
 %hr
 .row
   .span8
@@ -37,6 +36,5 @@
     %table.table.table-condensed.table-striped
       %tbody
         = render partial: 'comments/comment', collection: @post.root_comments
-
 
 = link_to 'Back', spoke_path(@post.spoke)
