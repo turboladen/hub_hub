@@ -1,9 +1,8 @@
-class SpokeController < ApplicationController
+class SpokesController < ApplicationController
   # GET /spokes/1
   # GET /spokes/1.json
   def show
-    #@spoke = Spoke.find(params[:id])
-    @spoke = Spoke.find_by_name(params[:name])
+    @spoke = Spoke.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
