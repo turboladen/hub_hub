@@ -1,5 +1,6 @@
 HubHub::Application.routes.draw do
   root :to => 'home#index', as: 'home'
+  get "home/index"
 
   devise_for :users
 
@@ -8,8 +9,6 @@ HubHub::Application.routes.draw do
       resources :comments
     end
   end
-
-  get "home/index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
