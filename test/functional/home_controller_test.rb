@@ -4,6 +4,8 @@ class HomeControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
+    assert_select 'li .spoke', 2
+    assert_select 'td .post', 2
   end
 
 end
