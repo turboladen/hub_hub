@@ -3,7 +3,7 @@ HubHub::Application.routes.draw do
 
   devise_for :users
 
-  resources :spokes do
+  resources :spokes, except: :index do
     resources :posts do
       resources :comments
     end

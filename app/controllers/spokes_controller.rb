@@ -1,15 +1,4 @@
 class SpokesController < ApplicationController
-  # GET /spokes
-  # GET /spokes.json
-  def index
-    @spokes = Spoke.all
-
-    respond_to do |format|
-      format.html # index.html.haml
-      format.json { render json: @spokes }
-    end
-  end
-
   # GET /spokes/1
   # GET /spokes/1.json
   def show
