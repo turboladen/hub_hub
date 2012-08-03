@@ -41,8 +41,11 @@ gem 'unicorn'
 # To use debugger
 # gem 'debugger'
 
-group :development, :test do
+group :deploy do
   gem 'faker'
+end
+
+group :development, :test do
   gem 'redgreen'
   gem 'sqlite3'
   gem 'test-unit', '1.2.3'
