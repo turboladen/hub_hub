@@ -1,47 +1,29 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'faker'
+Faker::Config.locale = 'en-bork'
 
 Spoke.delete_all
 Post.delete_all
+Comment.delete_all
 
-user_hashes = [
-  {
-    email: 'bob@bob-hope.com',
-    password: 'neverrrrrr',
-    password_confirmation: 'neverrrrrr',
-    remember_me: false,
-  }, {
-      email: 'ricky@ricky-martin.com',
-      password: 'neverrrrrr',
-      password_confirmation: 'neverrrrrr',
-      remember_me: false,
-  }, {
-    email: 'charlie@charlie-sheen.com',
-    password: 'neverrrrrr',
-    password_confirmation: 'neverrrrrr',
-    remember_me: false,
-  },
-]
-
-users = user_hashes.map { |u| User.create(u) }
+users = []
+6.times do
+  users << User.create({
+    email: Faker::Internet.email,
+    password: 'password',
+    password_confirmation: 'password',
+    remember_me: false
+  })
+end
 
 #-------------------------------------------------------------------------------
 # Fresno
 #-------------------------------------------------------------------------------
 fresno = Spoke.create(name: 'Fresno', description: %{General Fresno discussion})
 
-p = fresno.posts.create(name: "Guy Smiley", title: "It's hot today",
-  content: "Why don't you come swimming?")
-p.save!
-Comment.build_from(p, users.sample.id, "I'm scared!").save!
-Comment.build_from(p, users.sample.id, "I'd rather drink the water!").save!
+f_posts = []
+f_posts << fresno.posts.build(title: "It's hot today", content: "Why don't you come swimming?")
 
-p = fresno.posts.create(name: "Pedro Urena", title: "WEDNESDAY - MARKET ON KERN STREET",
+f_posts << fresno.posts.build(title: "WEDNESDAY - MARKET ON KERN STREET",
   content: %[Hello Hubbers!
 
 Once again the Market on Kern Street is back! We hope you all had a great
@@ -60,47 +42,42 @@ Fresno, CA 93721
 559.490.9966
 www.downtownfresno.org])
 
-Comment.build_from(p, users.sample, body: %[Hello Hubbers!
-
-Once again the Market on Kern Street is back! We hope you all had a great
-Independence Day. Mark your calendar for Wednesday 11, 2012. Every
-Wednesday you are welcome to attend from 10 am - 2 pm.
-
-Buy fresh produce, enjoy live music, purchase prepared foods, and support
-local artisans .
-
-WEDNESDAY is certainly the Best Day of the Week!
-
-For more information visit the office or give us a call.
-
-845 Fulton Mall
-Fresno, CA 93721
-559.490.9966
-www.downtownfresno.org])
-
-fresno.posts.create(name: "Bert Ernest", title: "Party on the Fulton",
+f_posts << fresno.posts.build(title: "Party on the Fulton",
   content: "Come get some Dusty Buns and beer.  MMmmmm aren't you thristy?")
-fresno.posts.create(name: "Don", title: "Blackstone is where it's at",
+
+f_posts << fresno.posts.build(title: "Blackstone is where it's at",
   content: %{I've seen a lot of things in my life, but I've never seen anything
 quite like Blackstone avenue.})
+f_posts.each { |post| post.user = users.sample; post.save! }
+
+10.times do
+  Comment.build_from(f_posts.sample, users.sample.id, Faker::Lorem.paragraph).save!
+end
 
 #-------------------------------------------------------------------------------
 # Grizzlies
 #-------------------------------------------------------------------------------
 grizzlies = Spoke.create(name: 'Grizzlies', description: %{All about the Fresno Grizzlies})
-grizzlies.posts.create(name: "Stephanie", title: "Taco Tuesday",
+g_posts = []
+g_posts << grizzlies.posts.build(title: "Taco Tuesday",
   content: "Come get some tacos.  They're really tasty and neat and good.")
-grizzlies.posts.create(name: "Riki Tiki Tavi", title: "Thirsty Thrusday",
+g_posts << grizzlies.posts.build(title: "Thirsty Thrusday",
   content: "Come get some beer.  It's good for you; it has vitamins in it.")
-grizzlies.posts.create(name: "Guy Smiley", title: "Support your Grizzlies",
+g_posts << grizzlies.posts.build(title: "Support your Grizzlies",
   content: %{The Grizzlies play baseball like champions.  Come watch them win!})
+g_posts.each { |post| post.user = users.sample; post.save! }
+
+10.times do
+  Comment.build_from(g_posts.sample, users.sample.id, Faker::Lorem.paragraph).save!
+end
 
 #-------------------------------------------------------------------------------
 # Art
 #-------------------------------------------------------------------------------
 art = Spoke.create(name: 'Art', description: %{Sub-community for Fresno artists to
-share about shows, gallery openings, and even inspiration})
-art.posts.create(name: 'Lisa', title: 'Call to artists',
+  share about shows, gallery openings, and even inspiration})
+a_posts = []
+a_posts << art.posts.build(title: 'Call to artists',
   content: %q{"California Cityscapes" is the theme of the first Alliance of California Major
  Open Fine Art Show of 2012. This is a great opportunity to step outside of your
 comfort zone and recreate that special place. You select the City, Medium and Style!!!
@@ -108,7 +85,7 @@ Receiving is February 25th - 10am to 11:30am and the Artist Reception is March 2
 at the Arts Visalia Gallery - 214 Oak St., Visalia. Please visit the ACA website
 for show prospectus details- www.allianceofcaliforniaartists.com
 })
-art.posts.create(name: 'Tim A Fleming', title: 'Spectrum Gallery Show for July!',
+a_posts << art.posts.build(title: 'Spectrum Gallery Show for July!',
   content: %q{Thursday, July 5    5:00 - 8:00 PM
      ArtHop Mini reception - Dick Haas and Madhu John
 
@@ -164,13 +141,19 @@ hence the new title, so now you know.
 
 })
 
+a_posts.each { |post| post.user = users.sample; post.save! }
+
+10.times do
+  Comment.build_from(a_posts.sample, users.sample.id, Faker::Lorem.paragraph).save!
+end
 
 #-------------------------------------------------------------------------------
 # Music
 #-------------------------------------------------------------------------------
 music = Spoke.create(name: 'Music', description: %{Where to go to find out about
-Fresno's music scene})
-music.posts.create(name: 'Julie', title: 'Love! Chocolate! Music!',
+  Fresno's music scene})
+m_posts = []
+m_posts << music.posts.build(title: 'Love! Chocolate! Music!',
   content: %q{Love Conquers All
 
 Fundraising Concert/Dessert Auction Youth Orchestras of Fresno Sunday February 12, 2012,
@@ -190,6 +173,11 @@ Get your tickets now through brownpapertickets.com.
 
 Admission, as always, is FREE for under 18 and/or anyone with a school ID. For this special fundraiser adult tickets are \$25. Premium seats are \$35. Direct link: http://www.brownpapertickets.com/event/212490})
 
+m_posts.each { |post| post.user = users.sample; post.save! }
+
+10.times do
+  Comment.build_from(m_posts.sample, users.sample.id, Faker::Lorem.paragraph).save!
+end
 
 #-------------------------------------------------------------------------------
 # Politics

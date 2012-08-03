@@ -42,7 +42,8 @@ gem 'unicorn'
 # gem 'debugger'
 
 group :development, :test do
+  gem 'faker'
   gem 'redgreen'
-  gem 'test-unit', '1.2.3'
   gem 'sqlite3'
+  gem 'test-unit', '1.2.3'
 end

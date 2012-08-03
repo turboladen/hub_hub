@@ -1,7 +1,10 @@
 class PostsController < ApplicationController
   def create
     @spoke = Spoke.find(params[:spoke_id])
-    @post = @spoke.posts.create(params[:post])
+    @post = @spoke.posts.build(params[:post])
+    @post.user = current_user
+    @post.save
+
     redirect_to spoke_path(@spoke)
   end
 

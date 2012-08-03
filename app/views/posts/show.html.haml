@@ -22,7 +22,7 @@
         Posted on
         %code= @post.created_at
         by
-        %code= @post.name
+        %code= @post.user.email
         = link_to 'Edit', edit_spoke_post_path(@post.spoke, @post),
           class: 'btn btn-mini btn-warning'
     .well

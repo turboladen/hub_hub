@@ -2,9 +2,9 @@ class Post < ActiveRecord::Base
   attr_accessible :content, :name, :title
 
   belongs_to :spoke
+  belongs_to :user
   has_many :comments
 
-  validates :name, presence: true
   validates :title, presence: true
   validates :content, presence: true
   validates_length_of :title, maximum: 100
