@@ -1,5 +1,4 @@
 require 'faker'
-Faker::Config.locale = 'en-bork'
 
 Spoke.delete_all
 Post.delete_all
