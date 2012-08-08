@@ -10,10 +10,10 @@
 
 .row
   .span8
-    .pull-left
+    .pull-left.votable-item-area
       = render partial: 'shared/votable_item', locals: { votable_item: @post }
 
-    %div
+    %div{ style: "padding-left: 50px; padding-bottom: 10px;" }
       %h1.post-title
         = @post.title
       %p

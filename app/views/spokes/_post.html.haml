@@ -1,10 +1,11 @@
 %tr
   %td
-    = render partial: 'shared/votable_item', locals: { votable_item: post }
+    .votable-item-area
+      = render partial: 'shared/votable_item', locals: { votable_item: post }
 
   %td
     .post-title
-      =link_to post.title, spoke_post_path(post.spoke.id, post)
+      = link_to post.title, spoke_post_path(post.spoke.id, post)
     %br
 
     %p

@@ -1,5 +1,5 @@
 - if current_user
-  = form_tag(votes_upvote_path) do
+  = form_tag(votes_upvote_path, class: "form-horizontal") do
     = hidden_field_tag :item_id, votable_item.id
     = hidden_field_tag :item_type, votable_item.class.to_s.downcase
 
@@ -15,13 +15,11 @@
   %button.btn.disabled
     %i.icon-circle-arrow-up
 
-%br
-
-%p.votable-item
+%p.votable-item-count
   = votable_item.likes.size - votable_item.dislikes.size
 
 - if current_user
-  = form_tag(votes_downvote_path) do
+  = form_tag(votes_downvote_path, class: "form-horizontal") do
     = hidden_field_tag :item_id, votable_item.id
     = hidden_field_tag :item_type, votable_item.class.to_s.downcase
 
