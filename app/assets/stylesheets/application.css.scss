@@ -11,3 +11,11 @@
  *= require_self
  *= require_tree .
  */
+
+
+.background-image {
+  background-image: url('mindhub_logo_background.png');
+  background-repeat: no-repeat;
+  background-attachment:  fixed;
+  background-position: 75% 81px;
+}
