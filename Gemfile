@@ -24,7 +24,7 @@ gem 'haml-rails', '~> 0.3.4'
 gem 'jquery-rails'
 gem 'devise'
 
-gem 'acts_as_commentable_with_threading'
+gem 'acts_as_commentable_with_threading', '~> 1.1.2'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
