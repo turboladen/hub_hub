@@ -12,8 +12,9 @@
         %i.icon-circle-arrow-up
 
 - else
-  %button.btn.disabled
-    %i.icon-circle-arrow-up
+  %p{ style: "padding-bottom: 6px;" }
+    %button.btn.btn-mini.disabled
+      %i.icon-circle-arrow-up
 
 %p.votable-item-count
   = votable_item.likes.size - votable_item.dislikes.size
@@ -32,6 +33,7 @@
         %i.icon-circle-arrow-down.pull-left
 
 - else
-  %button.btn.disabled
-    %i.icon-circle-arrow-down.pull-left
+  %p{ style: "margin-top: 2px;" }
+    %button.btn.btn-mini.disabled
+      %i.icon-circle-arrow-down.pull-left
 
