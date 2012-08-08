@@ -1,5 +1,39 @@
-%i.icon-circle-arrow-up
+- if current_user
+  = form_tag(votes_upvote_path) do
+    = hidden_field_tag :item_id, votable_item.id
+    = hidden_field_tag :item_type, votable_item.class.to_s.downcase
+
+    - if current_user.voted_up_on?(votable_item)
+      = button_tag type: "submit", class: "btn btn-mini btn-success" do
+        %i.icon-circle-arrow-up
+
+    - else
+      = button_tag type: "submit", class: "btn btn-mini" do
+        %i.icon-circle-arrow-up
+
+- else
+  %button.btn.disabled
+    %i.icon-circle-arrow-up
+
 %br
+
 %p.votable-item
-  = votable_item.votes.size
-%i.icon-circle-arrow-down.pull-left
+  = votable_item.likes.size - votable_item.dislikes.size
+
+- if current_user
+  = form_tag(votes_downvote_path) do
+    = hidden_field_tag :item_id, votable_item.id
+    = hidden_field_tag :item_type, votable_item.class.to_s.downcase
+
+    - if current_user.voted_down_on?(votable_item)
+      = button_tag type: "submit", class: "btn btn-mini btn-danger" do
+        %i.icon-circle-arrow-down.pull-left
+
+    - else
+      = button_tag type: "submit", class: "btn btn-mini" do
+        %i.icon-circle-arrow-down.pull-left
+
+- else
+  %button.btn.disabled
+    %i.icon-circle-arrow-down.pull-left
+

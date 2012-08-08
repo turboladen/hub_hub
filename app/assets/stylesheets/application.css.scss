@@ -24,7 +24,10 @@
 .votable-item {
   font-size: 18px;
   font-weight: bold;
-  padding-left: 2px;
+  padding-left: 8px;
   margin-bottom: 5px;
   color: $linkColor;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 10px;
 }

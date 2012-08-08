@@ -10,6 +10,9 @@ HubHub::Application.routes.draw do
     end
   end
 
+  post "votes/upvote"
+  post "votes/downvote"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
