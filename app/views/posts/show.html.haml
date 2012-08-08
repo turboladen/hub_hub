@@ -16,6 +16,7 @@
       %i.icon-circle-arrow-down.pull-left
       %br
       %i.icon-heart
+
     %div
       %h1= @post.title
       %p
@@ -25,14 +26,17 @@
         %code= @post.user.email
         = link_to 'Edit', edit_spoke_post_path(@post.spoke, @post),
           class: 'btn btn-mini btn-warning'
+
     .well
       %p= sanitize(@post.content)
 
 %hr
+
 .row
   .span8
     %h2 Comments
     = render 'comments/new', parent_type: :post, parent_id: @post.id
+
     %table.table.table-condensed.table-striped
       %tbody
         = render partial: 'comments/comment', collection: @post.root_comments
