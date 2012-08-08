@@ -53,6 +53,14 @@ f_posts.each { |post| post.user = users.sample; post.save! }
   Comment.build_from(f_posts.sample, users.sample.id, Faker::Lorem.paragraph).save!
 end
 
+7.times do
+  f_posts.sample.liked_by users.sample
+end
+
+4.times do
+  f_posts.sample.disliked_by users.sample
+end
+
 #-------------------------------------------------------------------------------
 # Grizzlies
 #-------------------------------------------------------------------------------
@@ -68,6 +76,10 @@ g_posts.each { |post| post.user = users.sample; post.save! }
 
 10.times do
   Comment.build_from(g_posts.sample, users.sample.id, Faker::Lorem.paragraph).save!
+end
+
+5.times do
+  g_posts.sample.liked_by users.sample
 end
 
 #-------------------------------------------------------------------------------
