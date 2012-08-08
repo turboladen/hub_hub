@@ -1,16 +1,11 @@
 class Comment < ActiveRecord::Base
   acts_as_nested_set :scope => [:commentable_id, :commentable_type]
+  acts_as_votable
 
   validates_presence_of :body
   validates_presence_of :user
 
-  # NOTE: install the acts_as_votable plugin if you
-  # want user to vote on the quality of comments.
-  acts_as_votable
-
   belongs_to :commentable, :polymorphic => true
-
-  # NOTE: Comments belong to a user
   belongs_to :user
 
   # Helper class method that allows you to build a comment
