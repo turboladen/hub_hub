@@ -11,6 +11,7 @@ class Post < ActiveRecord::Base
   validates_length_of :content, maximum: 4000
 
   acts_as_commentable
+  acts_as_votable
 
   def root_comments
     self.comment_threads.where(parent_id: nil)

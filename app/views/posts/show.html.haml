@@ -11,14 +11,11 @@
 .row
   .span8
     .pull-left
-      %i.icon-circle-arrow-up
-      %br
-      %i.icon-circle-arrow-down.pull-left
-      %br
-      %i.icon-heart
+      = render partial: 'shared/votable_item', locals: { votable_item: @post }
 
     %div
-      %h1= @post.title
+      %h1.post-title
+        = @post.title
       %p
         Posted on
         %code= @post.created_at

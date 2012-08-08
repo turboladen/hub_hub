@@ -12,10 +12,19 @@
  *= require_tree .
  */
 
+@import "bootstrap_and_overrides.css.scss";
 
 .background-image {
   background-image: url('mindhub_logo_background.png');
   background-repeat: no-repeat;
   background-attachment:  fixed;
   background-position: 75% 81px;
+}
+
+.votable-item {
+  font-size: 18px;
+  font-weight: bold;
+  padding-left: 2px;
+  margin-bottom: 5px;
+  color: $linkColor;
 }

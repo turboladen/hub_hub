@@ -1,10 +1,6 @@
 %tr
   %td
-    %i.icon-circle-arrow-up
-    %br
-    %i.icon-circle-arrow-down.pull-left
-    %br
-    %i.icon-heart
+    = render partial: 'shared/votable_item', locals: { votable_item: @comment }
 
   %td.comment
     %p
