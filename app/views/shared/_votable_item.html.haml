@@ -5,16 +5,16 @@
 
     - if current_user.voted_up_on?(votable_item)
       = button_tag type: "submit", class: "btn btn-mini btn-success" do
-        %i.icon-circle-arrow-up
+        %i.icon-chevron-up
 
     - else
       = button_tag type: "submit", class: "btn btn-mini" do
-        %i.icon-circle-arrow-up
+        %i.icon-chevron-up
 
 - else
   %p{ style: "padding-bottom: 6px;" }
     %button.btn.btn-mini.disabled
-      %i.icon-circle-arrow-up
+      %i.icon-chevron-up
 
 %p.votable-item-count
   = votable_item.likes.size - votable_item.dislikes.size
@@ -26,14 +26,14 @@
 
     - if current_user.voted_down_on?(votable_item)
       = button_tag type: "submit", class: "btn btn-mini btn-danger" do
-        %i.icon-circle-arrow-down.pull-left
+        %i.icon-chevron-down.pull-left
 
     - else
       = button_tag type: "submit", class: "btn btn-mini" do
-        %i.icon-circle-arrow-down.pull-left
+        %i.icon-chevron-down.pull-left
 
 - else
   %p{ style: "margin-top: 2px;" }
     %button.btn.btn-mini.disabled
-      %i.icon-circle-arrow-down.pull-left
+      %i.icon-chevron-down.pull-left
 
