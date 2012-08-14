@@ -7,7 +7,7 @@
       added
       = comment.created_at
       by
-      %b= comment.user.email
+      %b= comment.user.name
       %a.btn.btn-mini{ href: "#", "data-target" => "#comment-#{comment.id}",
         title: "Reply to comment", "data-toggle" => "collapse" }
         reply
