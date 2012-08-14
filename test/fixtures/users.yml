@@ -7,7 +7,11 @@
 bob:
   email: bob@bobo.com
   encrypted_password: password
+  first_name: Bob
+  last_name: Uecker
 
 ricky:
   email: ricky.ricardo@gmail.com
   encrypted_password: password
+  first_name: Richard
+  last_name: Ricardo

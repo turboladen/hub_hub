@@ -11,9 +11,9 @@ class PostsControllerTest < ActionController::TestCase
     assert_select '.breadcrumb li', @post.spoke.name
     assert_select 'h1', @post.title
     assert_select '.span8 div p', /#{@post.created_at}/
-    assert_select '.span8 div p', /#{@post.user.email}/
+    assert_select '.span8 div p', /#{@post.user.name}/
     assert_select '.span8 div p a', 'Edit'
     assert_select '.span8 .well p', @post.content
-    assert_select 'td .comment', 1
+    assert_select 'td .comment', 3
   end
 end
