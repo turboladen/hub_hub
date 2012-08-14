@@ -3,4 +3,8 @@ class HomeController < ApplicationController
     @posts = Post.last(25)
     @spokes = Spoke.all
   end
+
+  def tos
+    #
+  end
 end

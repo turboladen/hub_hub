@@ -1,6 +1,7 @@
 HubHub::Application.routes.draw do
   root :to => 'home#index', as: 'home'
   get "home/index"
+  get "home/tos"
 
   devise_for :users
 
