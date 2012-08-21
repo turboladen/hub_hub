@@ -3,9 +3,9 @@
   %p Connecting California's Central Valley
 .row
   .span8
+    %ul.nav.nav-tabs
+      = render partial: 'posts/sort_options'
     %table.table.table-condensed
-      %caption
-        %h3 Recent Posts
       %tbody
         = render partial: 'spokes/post', collection: @posts
   .span4

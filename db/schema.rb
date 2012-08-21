@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120814040919) do
+ActiveRecord::Schema.define(:version => 20120821073545) do
 
   create_table "comments", :force => true do |t|
     t.integer  "commentable_id",   :default => 0
@@ -34,11 +34,17 @@ ActiveRecord::Schema.define(:version => 20120814040919) do
     t.string   "title"
     t.text     "content"
     t.integer  "spoke_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.integer  "user_id"
+    t.integer  "cached_votes_total", :default => 0
+    t.integer  "cached_votes_up",    :default => 0
+    t.integer  "cached_votes_down",  :default => 0
   end
 
+  add_index "posts", ["cached_votes_down"], :name => "index_posts_on_cached_votes_down"
+  add_index "posts", ["cached_votes_total"], :name => "index_posts_on_cached_votes_total"
+  add_index "posts", ["cached_votes_up"], :name => "index_posts_on_cached_votes_up"
   add_index "posts", ["spoke_id"], :name => "index_posts_on_spoke_id"
 
   create_table "spokes", :force => true do |t|

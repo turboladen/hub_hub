@@ -37,3 +37,9 @@
     %button.btn.btn-mini.disabled
       %i.icon-chevron-down.pull-left
 
+%p
+  %span.label.label-success
+    = "+#{votable_item.likes.size}"
+%p
+  %span.label.label-important
+    = "-#{votable_item.dislikes.size}"

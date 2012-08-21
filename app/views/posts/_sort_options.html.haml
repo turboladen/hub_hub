@@ -1,0 +1,7 @@
+- @sort_options.each do |option|
+  - if option == @sort
+    %li.active
+      = link_to option, home_index_path(sort: option)
+  - else
+    %li
+      = link_to option, home_index_path(sort: option)
