@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
   validates_presence_of :body
   validates_presence_of :user
 
-  belongs_to :commentable, :polymorphic => true
+  belongs_to :commentable, polymorphic: true, counter_cache: :commentable_count
   belongs_to :user
 
   # Helper class method that allows you to build a comment

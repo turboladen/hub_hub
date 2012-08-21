@@ -1,13 +1,16 @@
 .hero-unit.background-image
   %h1 MindHub
   %p Connecting California's Central Valley
+
 .row
   .span8
     %ul.nav.nav-tabs
-      = render partial: 'posts/sort_options'
+      = render partial: 'home/sort_options'
+
     %table.table.table-condensed
       %tbody
         = render partial: 'spokes/post', collection: @posts
+
   .span4
     .well.sidebar-nav{ style: "height: 100%;" }
       %ul.nav.nav-list
@@ -17,6 +20,7 @@
             %ul
               %li
                 = link_to spoke.name, spoke, class: 'spoke'
+
     .well
       %h4 Welcome
       %hr

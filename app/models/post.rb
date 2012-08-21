@@ -20,20 +20,18 @@ class Post < ActiveRecord::Base
   end
 
   def self.most_active
-    #Post.where('comment_threads > 0').last(LIMITER)
-    #Post.where('comments > 0').last(LIMITER)
-    most_voted
+    where('commentable_count > 0').order('commentable_count DESC').last(LIMITER)
   end
 
   def self.most_negative
-    Post.where('cached_votes_down > 0').order('cached_votes_down DESC').last(LIMITER)
+    where('cached_votes_down > 0').order('cached_votes_down DESC').last(LIMITER)
   end
 
   def self.most_positive
-    Post.where('cached_votes_up > 0').order('cached_votes_up DESC').last(LIMITER)
+    where('cached_votes_up > 0').order('cached_votes_up DESC').last(LIMITER)
   end
 
   def self.most_voted
-    Post.where('cached_votes_total > 0').order('cached_votes_total DESC').last(LIMITER)
+    where('cached_votes_total > 0').order('cached_votes_total DESC').last(LIMITER)
   end
 end

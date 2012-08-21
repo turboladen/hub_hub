@@ -39,7 +39,16 @@
 
 %p
   %span.label.label-success
-    = "+#{votable_item.likes.size}"
+    %i.icon-plus.icon-white
+    = votable_item.likes.size
+
 %p
   %span.label.label-important
-    = "-#{votable_item.dislikes.size}"
+    %i.icon-minus.icon-white
+    = votable_item.dislikes.size
+
+%p
+  %span.label.label-inverted
+    %i.icon-pencil.icon-white
+    = votable_item.commentable_count
+
