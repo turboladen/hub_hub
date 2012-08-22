@@ -6,7 +6,7 @@ class HomeController < ApplicationController
       :newest
     end
 
-    @posts = Post.sort_by @sorter
+    @posts = Post.send @sorter
     @sort_options = Post.sort_options
     @spokes = Spoke.all
   end

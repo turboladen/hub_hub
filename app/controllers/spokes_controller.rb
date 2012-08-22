@@ -2,15 +2,14 @@ class SpokesController < ApplicationController
   # GET /spokes/1
   # GET /spokes/1.json
   def show
-    @sort = if params[:sort]
+    @sorter = if params[:sort]
       params[:sort].to_sym
     else
       :newest
     end
 
     @spoke = Spoke.find(params[:id])
-    #@posts = sort_posts(@sort, @spoke)
-    @sort_options = sort_options
+    @sort_options = Post.sort_options
 
     respond_to do |format|
       format.html # show.html.erb

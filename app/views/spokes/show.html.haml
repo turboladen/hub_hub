@@ -61,7 +61,7 @@
 
     %table.table.table-condensed
       %tbody
-        = render partial: 'post', collection: @spoke.posts
+        = render partial: 'post', collection: @spoke.posts.send(@sorter)
 
   .span4
     .well
