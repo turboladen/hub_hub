@@ -1,13 +1,13 @@
 class HomeController < ApplicationController
   def index
-    @sort = if params[:sort]
+    @sorter = if params[:sort]
       params[:sort].to_sym
     else
       :newest
     end
 
-    @posts = sort_posts(@sort)
-    @sort_options = sort_options
+    @posts = Post.sort_by @sorter
+    @sort_options = Post.sort_options
     @spokes = Spoke.all
   end
 

@@ -1,5 +1,5 @@
 - @sort_options.each do |option|
-  - if option == @sort
+  - if option == @sorter
     %li.active
       = link_to option.to_s.humanize, home_index_path(sort: option)
   - else

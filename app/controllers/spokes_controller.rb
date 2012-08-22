@@ -9,7 +9,7 @@ class SpokesController < ApplicationController
     end
 
     @spoke = Spoke.find(params[:id])
-    @posts = sort_posts(@sort, @spoke)
+    #@posts = sort_posts(@sort, @spoke)
     @sort_options = sort_options
 
     respond_to do |format|

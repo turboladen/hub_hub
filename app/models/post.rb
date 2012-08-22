@@ -15,6 +15,31 @@ class Post < ActiveRecord::Base
 
   LIMITER = 25
 
+  def self.sort_options
+    [
+      :newest,
+      :most_active,
+      :most_positive,
+      :most_negative,
+      :most_voted
+    ]
+  end
+
+  def self.sort_by(sort_type)
+    case sort_type.to_sym
+    when :newest
+      Post.order('created_at').last(25)
+    when :most_active
+      Post.most_active
+    when :most_negative
+      Post.most_negative
+    when :most_positive
+      Post.most_positive
+    when :most_voted
+      Post.most_voted
+    end
+  end
+
   def root_comments
     self.comment_threads.where(parent_id: nil)
   end
