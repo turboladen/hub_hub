@@ -47,6 +47,7 @@ group :deploy do
 end
 
 group :development, :test do
+  gem 'mocha', require: false
   gem 'redgreen'
   gem 'simplecov', :require => false, :group => :test
   gem 'sqlite3'
