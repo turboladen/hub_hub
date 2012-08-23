@@ -48,6 +48,7 @@ end
 
 group :development, :test do
   gem 'redgreen'
+  gem 'simplecov', :require => false, :group => :test
   gem 'sqlite3'
   gem 'test-unit', '1.2.3'
 end
