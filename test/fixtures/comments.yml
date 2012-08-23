@@ -1,18 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+comment_one:
   user: bob
   body: First text.
-  commentable: one (Post)
+  commentable: post_one (Post)
 
-two:
+<% 10.times do |i| %>
+comment_two_#{i}:
   user: bob
   body: More text.
-  commentable: one (Post)
+  commentable: post_two (Post)
+<% end %>
 
-three:
+<% 2.times do |i| %>
+comment_three_#{i}:
   user: ricky
   body: MyText
-  commentable: one (Post)
-
+  commentable: post_three (Post)
+<% end %>
 

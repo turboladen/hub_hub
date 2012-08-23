@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CommentsControllerTest < ActionController::TestCase
   setup do
-    @post = posts(:one)
+    @post = posts(:post_one)
   end
 
   test "should create comment" do

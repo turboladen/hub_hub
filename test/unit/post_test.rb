@@ -2,11 +2,11 @@ require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
   setup do
-    @one = posts(:one)
-    @two = posts(:two)
-    @three = posts(:three)
-    @four = posts(:four)
-    @five = posts(:five)
+    @one = posts(:post_one)
+    @two = posts(:post_two)
+    @three = posts(:post_three)
+    @four = posts(:post_four)
+    @five = posts(:post_five)
   end
 
   test "post attributes must not be empty" do

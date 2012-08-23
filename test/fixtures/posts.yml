@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+post_one:
   user: bob
   title: Cool stuff!
   content: There's cool stuff happening in Fresno.
@@ -10,7 +10,7 @@ one:
   cached_votes_total: 4
   commentable_count: 1
 
-two:
+post_two:
   user: ricky
   title: It's a party...
   content:
@@ -21,7 +21,7 @@ two:
   cached_votes_total: 6
   commentable_count: 10
 
-three:
+post_three:
   user: johnny
   title: I like turtles.
   content: Like I said...
@@ -31,7 +31,7 @@ three:
   cached_votes_total: 5
   commentable_count: 2
 
-four:
+post_four:
   user: karl
   title: Going to town
   content: Orange Cove has lots of yummy oranges.
@@ -41,8 +41,8 @@ four:
   cached_votes_total: 2
   commentable_count: 0
 
-five:
-  user: bobby
+post_five:
+  user: bob
   title: Where should I go for food?
   content: I want to eat a burrito...
   spoke: fresno

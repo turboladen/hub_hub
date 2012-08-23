@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
   setup do
-    @post = posts(:one)
+    @post = posts(:post_one)
   end
 
   test "should show post" do
@@ -14,6 +14,6 @@ class PostsControllerTest < ActionController::TestCase
     assert_select '.span8 div p', /#{@post.user.name}/
     assert_select '.span8 div p a', 'Edit'
     assert_select '.span8 .well p', @post.content
-    assert_select 'td .comment', 3
+    assert_select 'td .comment', 1
   end
 end

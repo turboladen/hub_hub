@@ -17,6 +17,7 @@
               %blockquote.pull-right
                 %p
                   = truncate(post.content, length: 140)
+
                 %small
                   = "#{post.user.name},"
                   = post.updated_at

@@ -21,7 +21,7 @@ class SpokesControllerTest < ActionController::TestCase
   test "should show spoke" do
     get :show, id: @spoke
     assert_response :success
-    assert_select 'td .post-title', 2
+    assert_select 'td .post-title', 5
   end
 
   test "should get edit" do
