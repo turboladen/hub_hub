@@ -5,9 +5,49 @@ one:
   title: Cool stuff!
   content: There's cool stuff happening in Fresno.
   spoke: fresno
+  cached_votes_up: 4
+  cached_votes_down: 0
+  cached_votes_total: 4
+  commentable_count: 1
 
 two:
   user: ricky
-  title: MyString
-  content: MyText
+  title: It's a party...
+  content:
+    Come over to my house for this really neat party.  It's gonne be the best.
   spoke: fresno
+  cached_votes_up: 2
+  cached_votes_down: 4
+  cached_votes_total: 6
+  commentable_count: 10
+
+three:
+  user: johnny
+  title: I like turtles.
+  content: Like I said...
+  spoke: fresno
+  cached_votes_up: 0
+  cached_votes_down: 5
+  cached_votes_total: 5
+  commentable_count: 2
+
+four:
+  user: karl
+  title: Going to town
+  content: Orange Cove has lots of yummy oranges.
+  spoke: fresno
+  cached_votes_up: 1
+  cached_votes_down: 1
+  cached_votes_total: 2
+  commentable_count: 0
+
+five:
+  user: bobby
+  title: Where should I go for food?
+  content: I want to eat a burrito...
+  spoke: fresno
+  cached_votes_up: 0
+  cached_votes_down: 0
+  cached_votes_total: 0
+  commentable_count: 0
+
