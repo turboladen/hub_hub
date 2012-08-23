@@ -19,13 +19,16 @@
             %a.btn.btn-large.btn-new-post.span2{ href: '#postModal',
               style: "color: white; ", "data-toggle" => "modal",
               "role" => 'button' } Create Post
+
             .modal.hide.fade#postModal{ tabindex: "-1", role: "dialog", "aria-labelledby" => "myModalLabel",
               "aria-hidden" => true, style: "display: none;" }
+
               - @post = Post.new
               = form_for([@spoke, @post]) do |f|
                 .modal-header
                   %button.close{ type: "button", "data-dismiss" => "modal", "aria-hidden" => true } x
                   %h3 Add your post
+
                 .modal-body
                   - if @post.errors.any?
                     #error_explanation
@@ -36,10 +39,12 @@
                       %ul
                         - @post.errors.full_messages.each do |msg|
                           %li= msg
-                  = f.text_field :title, placeholder: "Post title"
+
+                  = f.text_field :title, placeholder: "Post title", class: "span4"
                   = f.text_area :content, class: 'span4', placeholder: "Post content"
 
                 .modal-footer
+                  %button.btn{ "data-dismiss" => "modal", "aria-hidden" => "true" } Cancel
                   = f.submit 'Post', class: 'btn btn-primary'
 
             %a.btn.btn-large.btn-new-post.span2{ href: '#linkModal',
