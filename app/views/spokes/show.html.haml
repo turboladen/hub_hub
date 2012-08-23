@@ -16,34 +16,35 @@
               $(function () {
               $(".collapse").collapse()
               });
-            %a.btn.btn-large.btn-new-post.span4{ href: '#',
-              style: "color: white; ", "data-toggle" => "collapse",
-              "data-target" => '#create-post' } Create Post
-        .row
-          .collapse.in#create-post
-            %h2 Add a post:
-            - @post = Post.new
-            = form_for([@spoke, @post], html: { class: 'form-horizontal' }) do |f|
-              - if @post.errors.any?
-                #error_explanation
-                  %h2
-                    = pluralize(@post.errors.count, "error")
-                    prohibited this post from being saved:
+            %a.btn.btn-large.btn-new-post.span2{ href: '#postModal',
+              style: "color: white; ", "data-toggle" => "modal",
+              "role" => 'button' } Create Post
+            .modal.hide.fade#postModal{ tabindex: "-1", role: "dialog", "aria-labelledby" => "myModalLabel",
+              "aria-hidden" => true, style: "display: none;" }
+              - @post = Post.new
+              = form_for([@spoke, @post]) do |f|
+                .modal-header
+                  %button.close{ type: "button", "data-dismiss" => "modal", "aria-hidden" => true } x
+                  %h3 Add your post
+                .modal-body
+                  - if @post.errors.any?
+                    #error_explanation
+                      %h2
+                        = pluralize(@post.errors.count, "error")
+                        prohibited this post from being saved:
 
-                  %ul
-                    - @post.errors.full_messages.each do |msg|
-                      %li= msg
-              %fieldset
-                .control-group
-                  %label.control-label= f.label :title
-                  .controls
-                    = f.text_field :title
-                .control-group
-                  %label.control-label= f.label :content
-                  .controls
-                    = f.text_area :content, class: 'span5'
-                .form-actions
+                      %ul
+                        - @post.errors.full_messages.each do |msg|
+                          %li= msg
+                  = f.text_field :title, placeholder: "Post title"
+                  = f.text_area :content, class: 'span4', placeholder: "Post content"
+
+                .modal-footer
                   = f.submit 'Post', class: 'btn btn-primary'
+
+            %a.btn.btn-large.btn-new-post.span2{ href: '#linkModal',
+              style: "color: white; ", "data-toggle" => "modal",
+              "role" => 'button' } Add Link
       - else
         .row
           .offset1
