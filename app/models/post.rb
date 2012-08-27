@@ -1,3 +1,5 @@
+require 'uri'
+
 class Post < ActiveRecord::Base
   attr_accessible :content, :name, :title
 
@@ -27,6 +29,12 @@ class Post < ActiveRecord::Base
 
   def root_comments
     self.comment_threads.where(parent_id: nil)
+  end
+
+  def is_link?
+    return false if self.content.include? ' '
+    #self.content.match /^https?:\/\/\w+\.\w\w\w?[^\s]+$/
+    self.content.match(URI.regexp(%w[http https]))
   end
 
   scope :newest, order('created_at')
