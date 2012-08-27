@@ -19,12 +19,14 @@ end
 #-------------------------------------------------------------------------------
 # Fresno
 #-------------------------------------------------------------------------------
-fresno = Spoke.create(name: 'Fresno', description: %{General Fresno discussion})
+event = Spoke.create(name: 'Event', description: %{for making any announcement
+  of activities or events in the community. Please include just the announcement
+  with no lengthy discussion attached.})
 
 f_posts = []
-f_posts << fresno.posts.build(title: "It's hot today", content: "Why don't you come swimming?")
+f_posts << event.posts.build(title: "It's hot today", content: "Why don't you come swimming?")
 
-f_posts << fresno.posts.build(title: "WEDNESDAY - MARKET ON KERN STREET",
+f_posts << event.posts.build(title: "WEDNESDAY - MARKET ON KERN STREET",
   content: %[Hello Hubbers!
 
 Once again the Market on Kern Street is back! We hope you all had a great
@@ -43,10 +45,10 @@ Fresno, CA 93721
 559.490.9966
 www.downtownfresno.org])
 
-f_posts << fresno.posts.build(title: "Party on the Fulton",
+f_posts << event.posts.build(title: "Party on the Fulton",
   content: "Come get some Dusty Buns and beer.  MMmmmm aren't you thristy?")
 
-f_posts << fresno.posts.build(title: "Blackstone is where it's at",
+f_posts << event.posts.build(title: "Blackstone is where it's at",
   content: %{I've seen a lot of things in my life, but I've never seen anything
 quite like Blackstone avenue.})
 f_posts.each { |post| post.user = users.sample; post.save! }
@@ -64,15 +66,16 @@ end
 end
 
 #-------------------------------------------------------------------------------
-# Grizzlies
+# Intro
 #-------------------------------------------------------------------------------
-grizzlies = Spoke.create(name: 'Grizzlies', description: %{All about the Fresno Grizzlies})
+intro = Spoke.create(name: 'Intro', description: %{for self-introductions to the newsgroup.})
+
 g_posts = []
-g_posts << grizzlies.posts.build(title: "Taco Tuesday",
+g_posts << intro.posts.build(title: "Taco Tuesday",
   content: "Come get some tacos.  They're really tasty and neat and good.")
-g_posts << grizzlies.posts.build(title: "Thirsty Thrusday",
+g_posts << intro.posts.build(title: "Thirsty Thrusday",
   content: "Come get some beer.  It's good for you; it has vitamins in it.")
-g_posts << grizzlies.posts.build(title: "Support your Grizzlies",
+g_posts << intro.posts.build(title: "Support your Grizzlies",
   content: %{The Grizzlies play baseball like champions.  Come watch them win!})
 g_posts.each { |post| post.user = users.sample; post.save! }
 
@@ -87,10 +90,9 @@ end
 #-------------------------------------------------------------------------------
 # Art
 #-------------------------------------------------------------------------------
-art = Spoke.create(name: 'Art', description: %{Sub-community for Fresno artists to
-  share about shows, gallery openings, and even inspiration})
+job_postings = Spoke.create(name: 'Job', description: %{for job postings})
 a_posts = []
-a_posts << art.posts.build(title: 'Call to artists',
+a_posts << job_postings.posts.build(title: 'Call to artists',
   content: %q{"California Cityscapes" is the theme of the first Alliance of California Major
  Open Fine Art Show of 2012. This is a great opportunity to step outside of your
 comfort zone and recreate that special place. You select the City, Medium and Style!!!
@@ -98,7 +100,7 @@ Receiving is February 25th - 10am to 11:30am and the Artist Reception is March 2
 at the Arts Visalia Gallery - 214 Oak St., Visalia. Please visit the ACA website
 for show prospectus details- www.allianceofcaliforniaartists.com
 })
-a_posts << art.posts.build(title: 'Spectrum Gallery Show for July!',
+a_posts << job_postings.posts.build(title: 'Spectrum Gallery Show for July!',
   content: %q{Thursday, July 5    5:00 - 8:00 PM
      ArtHop Mini reception - Dick Haas and Madhu John
 
@@ -161,10 +163,11 @@ a_posts.each { |post| post.user = users.sample; post.save! }
 end
 
 #-------------------------------------------------------------------------------
-# Music
+# OT
 #-------------------------------------------------------------------------------
-music = Spoke.create(name: 'Music', description: %{Where to go to find out about
-  Fresno's music scene})
+music = Spoke.create(name: 'OT', description: %{for miscellaneous subjects that
+are not related to any of the defined subjects})
+
 m_posts = []
 m_posts << music.posts.build(title: 'Love! Chocolate! Music!',
   content: %q{Love Conquers All
@@ -195,5 +198,5 @@ end
 #-------------------------------------------------------------------------------
 # Politics
 #-------------------------------------------------------------------------------
-politics = Spoke.create(name: 'Fresno', description: %{General Fresno discussion})
+politics = Spoke.create(name: 'Politics', description: %{Political discussions of various sorts.})
 
