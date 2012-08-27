@@ -17,7 +17,17 @@ users = []
 end
 
 #-------------------------------------------------------------------------------
-# Fresno
+# Admin
+#-------------------------------------------------------------------------------
+admin = Spoke.create(name: 'Admin', description: %{used by administrators only
+  for announcements pertaining to MindHub administration. Please always read
+  these messages.})
+
+a_posts = []
+a_posts << admin.posts.build(title: "Rule #1", content: "Don't do stupid stuff.")
+
+#-------------------------------------------------------------------------------
+# Event
 #-------------------------------------------------------------------------------
 event = Spoke.create(name: 'Event', description: %{for making any announcement
   of activities or events in the community. Please include just the announcement
@@ -25,6 +35,8 @@ event = Spoke.create(name: 'Event', description: %{for making any announcement
 
 f_posts = []
 f_posts << event.posts.build(title: "It's hot today", content: "Why don't you come swimming?")
+f_posts << event.posts.build(title: "September Blender: Shepherd's Inn",
+  content: "http://creativefresno.ning.com/events/september-blender-shepherds")
 
 f_posts << event.posts.build(title: "WEDNESDAY - MARKET ON KERN STREET",
   content: %[Hello Hubbers!
@@ -195,8 +207,34 @@ m_posts.each { |post| post.user = users.sample; post.save! }
   Comment.build_from(m_posts.sample, users.sample.id, Faker::Lorem.paragraph).save!
 end
 
+2.times do
+  m_posts.sample.liked_by users.sample
+end
+
+2.times do
+  m_posts.sample.disliked_by users.sample
+end
+
 #-------------------------------------------------------------------------------
 # Politics
 #-------------------------------------------------------------------------------
 politics = Spoke.create(name: 'Politics', description: %{Political discussions of various sorts.})
+
+p_posts = []
+p_posts << politics.posts.build(title: "This is a cool house", content: "http://whitehouse.gov")
+p_posts << politics.posts.build(title: "Mitt Romney", content: "is a guy.")
+
+p_posts.each { |post| post.user = users.sample; post.save! }
+
+50.times do
+  Comment.build_from(p_posts.sample, users.sample.id, Faker::Lorem.paragraph).save!
+end
+
+71.times do
+  p_posts.sample.liked_by users.sample
+end
+
+49.times do
+  p_posts.sample.disliked_by users.sample
+end
 
