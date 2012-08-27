@@ -38,4 +38,9 @@
                       class: 'label', rel: 'popover', id: "spoke-link-#{post.id}",
                       'data-content' => "Description: #{post.spoke.description}",
                       'data-original-title' => "Spoke: #{post.spoke.name}")
+            %tr
+              %td
+                .pull-right
+                  = link_to '&raquo;'.html_safe, spoke_post_path(post.spoke.id, post),
+                    class: 'lead'
 
