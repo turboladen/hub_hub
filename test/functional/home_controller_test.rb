@@ -6,6 +6,6 @@ class HomeControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_select 'li .spoke', 2
-    assert_select 'td .post-title', 5
+    assert_select 'td .post-title', 6
   end
 end

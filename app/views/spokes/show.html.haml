@@ -50,6 +50,34 @@
             %a.btn.btn-large.btn-new-post.span2{ href: '#linkModal',
               style: "color: white; ", "data-toggle" => "modal",
               "role" => 'button' } Add Link
+
+            .modal.hide.fade#linkModal{ tabindex: "-1", role: "dialog", "aria-labelledby" => "myModalLabel",
+              "aria-hidden" => true, style: "display: none;" }
+
+              - @post = Post.new
+              = form_for([@spoke, @post]) do |f|
+                .modal-header
+                  %button.close{ type: "button", "data-dismiss" => "modal", "aria-hidden" => true } x
+                  %h3 Add your link
+
+                .modal-body
+                  - if @post.errors.any?
+                    #error_explanation
+                      %h2
+                        = pluralize(@post.errors.count, "error")
+                        prohibited this post from being saved:
+
+                      %ul
+                        - @post.errors.full_messages.each do |msg|
+                          %li= msg
+
+                  = f.text_field :title, placeholder: "Link title", class: "span4"
+                  = f.text_field :content, class: 'span4',
+                    placeholder: "http://"
+
+                .modal-footer
+                  %button.btn{ "data-dismiss" => "modal", "aria-hidden" => "true" } Cancel
+                  = f.submit 'Post', class: 'btn btn-primary'
       - else
         .row
           .offset1

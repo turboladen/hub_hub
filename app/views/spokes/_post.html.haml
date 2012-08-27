@@ -4,35 +4,38 @@
       = render partial: 'shared/votable_item', locals: { votable_item: post }
 
     %td
-      .well
+      %div{ class: post.is_link? ? "post-type-link" : "post-type-text" }
         %table{ style: "width: 100%;" }
           %tr
             %td
               .post-title
-                = link_to post.title, spoke_post_path(post.spoke.id, post)
-              %br
+                - if post.is_link?
+                  = link_to post.title, post.content
+                - else
+                  = link_to post.title, spoke_post_path(post.spoke.id, post)
+                %br
 
-          %tr
-            %td
-              %blockquote.pull-right
-                %p
-                  = truncate(post.content, length: 140)
+            %tr
+              %td
+                %blockquote.pull-right
+                  %p
+                    = truncate(post.content, length: 140)
 
-                %small
-                  - if post.user.first_name
-                    = "#{post.user.name},"
-                  - else
-                    = "#{post.user.email},"
-                  = post.updated_at
-                  in spoke
+                  %small
+                    - if post.user.first_name
+                      = "#{post.user.name},"
+                    - else
+                      = "#{post.user.email},"
+                    = post.updated_at
+                    in spoke
 
-                  %script
-                    $(function () {
-                    $("#spoke-link-#{post.id}").popover();
-                    });
+                    %script
+                      $(function () {
+                      $("#spoke-link-#{post.id}").popover();
+                      });
 
-                  = link_to(post.spoke.name, post.spoke,
-                    class: 'label', rel: 'popover', id: "spoke-link-#{post.id}",
-                    'data-content' => "Description: #{post.spoke.description}",
-                    'data-original-title' => "Spoke: #{post.spoke.name}")
+                    = link_to(post.spoke.name, post.spoke,
+                      class: 'label', rel: 'popover', id: "spoke-link-#{post.id}",
+                      'data-content' => "Description: #{post.spoke.description}",
+                      'data-original-title' => "Spoke: #{post.spoke.name}")
 

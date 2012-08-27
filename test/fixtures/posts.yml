@@ -45,9 +45,20 @@ post_five:
   user: bob
   title: Where should I go for food?
   content: I want to eat a burrito...
+  spoke: clovis
+  cached_votes_up: 0
+  cached_votes_down: 0
+  cached_votes_total: 0
+  commentable_count: 0
+
+link_post_one:
+  user: ricky
+  title: Google is noogle
+  content: http://google.com
   spoke: fresno
   cached_votes_up: 0
   cached_votes_down: 0
   cached_votes_total: 0
   commentable_count: 0
+
 
