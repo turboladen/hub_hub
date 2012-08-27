@@ -19,7 +19,10 @@
                   = truncate(post.content, length: 140)
 
                 %small
-                  = "#{post.user.name},"
+                  - if post.user.first_name
+                    = "#{post.user.name},"
+                  - else
+                    = "#{post.user.email},"
                   = post.updated_at
                   in spoke
 
