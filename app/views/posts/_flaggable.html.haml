@@ -1,0 +1,17 @@
+- if user_signed_in?
+  = form_tag(spoke_post_flag_path(flaggable.spoke.id, flaggable.id), class: "form-horizontal") do
+    = hidden_field_tag :id, flaggable.id
+    = hidden_field_tag :flag_type, :favorite
+
+    - if current_user.flagged?(flaggable, :favorite)
+      = button_tag type: "submit", class: "btn btn-mini" do
+        %i.icon-star.icon-white.pull-left{ style: "background-color: yellow;" }
+
+    - else
+      = button_tag type: "submit", class: "btn btn-mini" do
+        %i.icon-star.pull-left
+
+- else
+  %p
+    %span.label
+      %i.icon-star.icon-white{ style: "width: 23px;" }

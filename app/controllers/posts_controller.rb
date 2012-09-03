@@ -21,4 +21,11 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
   end
+
+  def flag
+    @post = Post.find(params[:id])
+    current_user.toggle_flag(@post, params[:flag_type])
+
+    redirect_to :back
+  end
 end

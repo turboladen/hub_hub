@@ -7,6 +7,7 @@ HubHub::Application.routes.draw do
 
   resources :spokes, except: :index do
     resources :posts do
+      post :flag, as: :flag
       resources :comments
     end
   end

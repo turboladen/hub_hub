@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   acts_as_voter
+  make_flagger
 
   has_many :comments
   has_many :posts

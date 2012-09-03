@@ -1,4 +1,4 @@
-- if current_user
+- if user_signed_in?
   = form_tag(votes_upvote_path, class: "form-horizontal") do
     = hidden_field_tag :item_id, votable_item.id
     = hidden_field_tag :item_type, votable_item.class.to_s.downcase
@@ -19,7 +19,7 @@
 %p.votable-item-count
   = votable_item.likes.size - votable_item.dislikes.size
 
-- if current_user
+- if user_signed_in?
   = form_tag(votes_downvote_path, class: "form-horizontal") do
     = hidden_field_tag :item_id, votable_item.id
     = hidden_field_tag :item_type, votable_item.class.to_s.downcase
@@ -51,4 +51,3 @@
   %span.label.label-inverted
     %i.icon-comment.icon-white
     = votable_item.commentable_count
-

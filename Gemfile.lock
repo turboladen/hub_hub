@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/cavneb/make_flaggable.git
+  revision: d1bafce95567797786c1c3b03b7f5b34624e4e1e
+  specs:
+    make_flaggable (0.0.5)
+      activerecord (>= 3.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -156,6 +163,7 @@ DEPENDENCIES
   faker
   haml-rails (~> 0.3.4)
   jquery-rails
+  make_flaggable!
   mocha
   pg
   rails (= 3.2.8)

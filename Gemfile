@@ -2,9 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 # Database
 gem 'pg'
 
@@ -23,10 +20,12 @@ end
 
 gem 'haml-rails', '~> 0.3.4'
 gem 'jquery-rails'
-gem 'devise'
 
+# Plugins
+gem 'devise'
 gem 'acts_as_commentable_with_threading', '~> 1.1.2'
 gem 'acts_as_votable', '~> 0.3.1'
+gem 'make_flaggable', git: 'git://github.com/cavneb/make_flaggable.git'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
