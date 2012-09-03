@@ -1,17 +1,29 @@
 - if user_signed_in?
-  = form_tag(spoke_post_flag_path(favorite_post.spoke.id, favorite_post.id), class: "form-horizontal") do
-    = hidden_field_tag :id, favorite_post.id
-    = hidden_field_tag :flag_type, :favorite
+  = form_tag(spoke_post_flag_path(inappropriate_post.spoke.id, inappropriate_post.id), class: "form-horizontal") do
+    = hidden_field_tag :id, inappropriate_post.id
+    = hidden_field_tag :flag_type, :inappropriate
 
-    - if current_user.flagged?(favorite_post, :favorite)
-      = button_tag type: "submit", class: "btn btn-mini btn-success" do
-        %i.icon-star.pull-left
+    - if current_user.flagged?(inappropriate_post, :inappropriate)
+      = button_tag type: "submit", class: "btn btn-mini btn-danger",
+        title: "You have flagged this post as inappropriate." do
+        %i.icon-warning-sign.pull-left
+
+    - elsif inappropriate_post.flagged?(:inappropriate)
+      = button_tag type: "submit", class: "btn btn-mini btn-warning",
+        title: "Someone else has flagged this post as inappropriate." do
+        %i.icon-warning-sign.pull-left
 
     - else
       = button_tag type: "submit", class: "btn btn-mini" do
-        %i.icon-star.pull-left
+        %i.icon-warning-sign.pull-left
 
 - else
-  %p
-    %span.label
-      %i.icon-star{ style: "width: 23px;" }
+  - if inappropriate_post.flagged?(:inappropriate)
+    = button_tag type: "submit", class: "btn btn-mini btn-warning",
+      title: "Someone has flagged this post as inappropriate." do
+      %i.icon-warning-sign.pull-left
+
+  - else
+    %p
+      %span.label
+        %i.icon-warning-sign{ style: "width: 23px;" }

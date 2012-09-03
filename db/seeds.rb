@@ -77,6 +77,11 @@ end
   f_posts.sample.disliked_by users.sample
 end
 
+3.times do
+  users.sample.toggle_flag(f_posts.sample, :inappropriate)
+  users.sample.toggle_flag(f_posts.sample, :favorite)
+end
+
 #-------------------------------------------------------------------------------
 # Intro
 #-------------------------------------------------------------------------------
@@ -97,6 +102,11 @@ end
 
 5.times do
   g_posts.sample.liked_by users.sample
+end
+
+1.times do
+  users.sample.toggle_flag(g_posts.sample, :inappropriate)
+  users.sample.toggle_flag(g_posts.sample, :favorite)
 end
 
 #-------------------------------------------------------------------------------
@@ -174,6 +184,11 @@ a_posts.each { |post| post.user = users.sample; post.save! }
   Comment.build_from(a_posts.sample, users.sample.id, Faker::Lorem.paragraph).save!
 end
 
+1.times do
+  users.sample.toggle_flag(a_posts.sample, :inappropriate)
+  users.sample.toggle_flag(a_posts.sample, :favorite)
+end
+
 #-------------------------------------------------------------------------------
 # OT
 #-------------------------------------------------------------------------------
@@ -215,6 +230,11 @@ end
   m_posts.sample.disliked_by users.sample
 end
 
+1.times do
+  users.sample.toggle_flag(m_posts.sample, :inappropriate)
+  users.sample.toggle_flag(m_posts.sample, :favorite)
+end
+
 #-------------------------------------------------------------------------------
 # Politics
 #-------------------------------------------------------------------------------
@@ -236,5 +256,10 @@ end
 
 49.times do
   p_posts.sample.disliked_by users.sample
+end
+
+1.times do
+  users.sample.toggle_flag(p_posts.sample, :inappropriate)
+  users.sample.toggle_flag(p_posts.sample, :favorite)
 end
 

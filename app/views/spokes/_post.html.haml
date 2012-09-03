@@ -3,6 +3,7 @@
     .votable-item-area
       = render partial: 'shared/votable_item', locals: { votable_item: post }
       = render partial: 'posts/favorite_post', locals: { favorite_post: post }
+      = render partial: 'posts/inappropriate_post', locals: { inappropriate_post: post }
 
     %td
       %div{ class: post.is_link? ? "post-type-link" : "post-type-text" }
@@ -43,6 +44,5 @@
             %tr
               %td
                 .pull-right
-                  = link_to '&raquo;'.html_safe, spoke_post_path(post.spoke.id, post),
-                    class: 'lead'
+                  = link_to 'read &raquo;'.html_safe, spoke_post_path(post.spoke.id, post)
 
