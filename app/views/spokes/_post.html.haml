@@ -2,7 +2,7 @@
   %td
     .votable-item-area
       = render partial: 'shared/votable_item', locals: { votable_item: post }
-      = render partial: 'posts/favoritable', locals: { favoritable: post }
+      = render partial: 'posts/favorite_post', locals: { favorite_post: post }
 
     %td
       %div{ class: post.is_link? ? "post-type-link" : "post-type-text" }
