@@ -29,7 +29,7 @@ a_posts << admin.posts.build(title: "Rule #1", content: "Don't do stupid stuff."
 #-------------------------------------------------------------------------------
 # Event
 #-------------------------------------------------------------------------------
-event = Spoke.create(name: 'Event', description: %{for making any announcement
+event = Spoke.create(name: 'Events', description: %{for making any announcement
   of activities or events in the community. Please include just the announcement
   with no lengthy discussion attached.})
 
@@ -80,7 +80,7 @@ end
 #-------------------------------------------------------------------------------
 # Intro
 #-------------------------------------------------------------------------------
-intro = Spoke.create(name: 'Intro', description: %{for self-introductions to the newsgroup.})
+intro = Spoke.create(name: 'Intros', description: %{for self-introductions to the newsgroup.})
 
 g_posts = []
 g_posts << intro.posts.build(title: "Taco Tuesday",
@@ -102,7 +102,7 @@ end
 #-------------------------------------------------------------------------------
 # Art
 #-------------------------------------------------------------------------------
-job_postings = Spoke.create(name: 'Job', description: %{for job postings})
+job_postings = Spoke.create(name: 'Jobs', description: %{for job postings})
 a_posts = []
 a_posts << job_postings.posts.build(title: 'Call to artists',
   content: %q{"California Cityscapes" is the theme of the first Alliance of California Major
