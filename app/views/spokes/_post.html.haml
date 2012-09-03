@@ -2,7 +2,7 @@
   %td
     .votable-item-area
       = render partial: 'shared/votable_item', locals: { votable_item: post }
-      = render partial: 'posts/flaggable', locals: { flaggable: post }
+      = render partial: 'posts/favoritable', locals: { favoritable: post }
 
     %td
       %div{ class: post.is_link? ? "post-type-link" : "post-type-text" }
@@ -39,6 +39,7 @@
                       class: 'label', rel: 'popover', id: "spoke-link-#{post.id}",
                       'data-content' => "Description: #{post.spoke.description}",
                       'data-original-title' => "Spoke: #{post.spoke.name}")
+
             %tr
               %td
                 .pull-right
