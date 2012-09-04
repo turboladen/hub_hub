@@ -1,6 +1,7 @@
 %tr
   %td
     = render partial: 'shared/votable_item', locals: { votable_item: comment }
+    = render partial: 'comments/inappropriate_comment', locals: { inappropriate_comment: comment }
 
   %td.comment
     %p

@@ -13,4 +13,11 @@ class CommentsController < ApplicationController
 
     redirect_to spoke_post_path(@post.spoke, @post)
   end
+
+  def flag
+    @comment = Comment.find(params[:id])
+    current_user.toggle_flag(@comment, params[:flag_type])
+
+    redirect_to :back
+  end
 end

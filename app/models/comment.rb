@@ -8,6 +8,8 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, polymorphic: true, counter_cache: :commentable_count
   belongs_to :user
 
+  make_flaggable :inappropriate
+
   # Helper class method that allows you to build a comment
   # by passing a commentable object, a user_id, and comment text
   # example in readme
@@ -18,6 +20,10 @@ class Comment < ActiveRecord::Base
     c.body = comment
     c.user_id = user_id
     c
+  end
+
+  def post
+    Post.find(self.commentable_id)
   end
 
   #helper method to check if a comment has children
