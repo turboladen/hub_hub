@@ -5,7 +5,6 @@ class Post < ActiveRecord::Base
 
   belongs_to :spoke
   belongs_to :user
-  has_many :comments
 
   validates :title, presence: true
   validates :content, presence: true
@@ -26,10 +25,6 @@ class Post < ActiveRecord::Base
       :most_negative,
       :most_voted
     ]
-  end
-
-  def root_comments
-    self.comment_threads.where(parent_id: nil)
   end
 
   def is_link?
