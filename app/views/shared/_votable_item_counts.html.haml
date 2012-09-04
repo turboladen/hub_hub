@@ -1,0 +1,14 @@
+%p
+  %span.label.label-success{ title: "MindHub members have upvoted this #{votable_item.likes.size} times." }
+    %i.icon-plus.icon-white
+    = votable_item.likes.size
+
+  %span.label.label-important{ style: "margin-left: 5px;",
+    title: "MindHub members have downvoted this #{votable_item.dislikes.size} times." }
+    %i.icon-minus.icon-white
+    = votable_item.dislikes.size
+
+  %span.label.label-inverted{ style: "margin-left: 5px;",
+   title: "MindHub members have commented on this #{votable_item.dislikes.size} times." }
+    %i.icon-comment.icon-white
+    = votable_item.commentable_count

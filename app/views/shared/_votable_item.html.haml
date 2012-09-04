@@ -36,18 +36,3 @@
   %p{ style: "margin-top: 2px;" }
     %button.btn.btn-mini.disabled
       %i.icon-chevron-down.pull-left
-
-%p
-  %span.label.label-success
-    %i.icon-plus.icon-white
-    = votable_item.likes.size
-
-%p
-  %span.label.label-important
-    %i.icon-minus.icon-white
-    = votable_item.dislikes.size
-
-%p
-  %span.label.label-inverted
-    %i.icon-comment.icon-white
-    = votable_item.commentable_count

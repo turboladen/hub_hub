@@ -7,6 +7,9 @@
 
     %td
       %div{ class: post.is_link? ? "post-type-link" : "post-type-text" }
+        .pull-right{ style: "margin-top: -30px;" }
+          = render partial: 'shared/votable_item_counts',
+            locals: { votable_item: post }
         %table{ style: "width: 100%;" }
           %tr
             %td
@@ -40,6 +43,7 @@
                       class: 'label', rel: 'popover', id: "spoke-link-#{post.id}",
                       'data-content' => "Description: #{post.spoke.description}",
                       'data-original-title' => "Spoke: #{post.spoke.name}")
+
 
             %tr
               %td
