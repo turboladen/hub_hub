@@ -13,20 +13,26 @@
     .pull-left.votable-item-area
       = render partial: 'shared/votable_item', locals: { votable_item: @post }
       = render partial: 'favorite_post', locals: { favorite_post: @post }
+      = render partial: 'inappropriate_post', locals: { inappropriate_post: @post }
 
     %div{ style: "padding-left: 50px; padding-bottom: 10px;" }
-      %h1.post-title
-        = @post.title
-      %p
-        Posted on
-        %code= @post.created_at
-        by
-        %code= @post.user.name
-        = link_to 'Edit', edit_spoke_post_path(@post.spoke, @post),
-          class: 'btn btn-mini btn-warning'
+      %div{ class: @post.is_link? ? "post-type-link" : "post-type-text",
+         }
+        .pull-right{ style: "margin-top: -30px;" }
+          = render partial: 'shared/votable_item_counts',
+            locals: { votable_item: @post }
+        %h1.post-title
+          = @post.title
+        %p
+          Posted on
+          %code= @post.created_at
+          by
+          %code= @post.user.name
+          = link_to 'Edit', edit_spoke_post_path(@post.spoke, @post),
+            class: 'btn btn-mini btn-warning'
 
-      .well
-        %p= sanitize(@post.content)
+        .well
+          %p= sanitize(@post.content)
 
 %hr
 
