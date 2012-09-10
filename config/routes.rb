@@ -2,6 +2,7 @@ HubHub::Application.routes.draw do
   root :to => 'home#index', as: 'home'
   get "home/index"
   get "home/tos"
+  get "admin" => 'admin#index', as: 'admin'
 
   devise_for :users
 

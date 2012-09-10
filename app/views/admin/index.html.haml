@@ -1,0 +1,19 @@
+%table.table
+  %thead
+    %tr
+      %th Title
+      %th Author
+      %th Flagger
+      %th Flagged On
+  %tbody
+  - @flags_and_posts.each do |fp|
+    %tr
+      %td
+        = fp[:title]
+      %td
+        = fp[:poster]
+      %td
+        = fp[:flagger]
+      %td
+        = fp[:flag_date]
+
