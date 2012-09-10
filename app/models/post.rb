@@ -38,4 +38,8 @@ class Post < ActiveRecord::Base
   scope :most_negative, where('cached_votes_down > 0').order('cached_votes_down DESC')
   scope :most_positive, where('cached_votes_up > 0').order('cached_votes_up DESC')
   scope :most_voted, where('cached_votes_total > 0').order('cached_votes_total DESC')
+
+  def item_type
+    self.class.to_s.downcase
+  end
 end

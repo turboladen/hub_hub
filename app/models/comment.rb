@@ -48,4 +48,8 @@ class Comment < ActiveRecord::Base
   def self.find_commentable(commentable_str, commentable_id)
     commentable_str.constantize.find(commentable_id)
   end
+
+  def item_type
+    self.class.to_s.downcase
+  end
 end

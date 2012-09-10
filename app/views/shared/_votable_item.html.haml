@@ -1,14 +1,15 @@
 - if user_signed_in?
-  = form_tag(votes_upvote_path, class: "form-horizontal") do
-    = hidden_field_tag :item_id, votable_item.id
-    = hidden_field_tag :item_type, votable_item.class.to_s.downcase
+  = form_tag(votes_upvote_path(item_id: votable_item.id, item_type: votable_item.item_type),
+    class: "form-horizontal", remote: true) do
 
     - if current_user.voted_up_on?(votable_item)
-      = button_tag type: "submit", class: "btn btn-mini btn-success" do
+      = button_tag type: "submit", class: "btn btn-mini btn-success up-arrow #{votable_item.item_type}",
+        id: votable_item.id do
         %i.icon-chevron-up
 
     - else
-      = button_tag type: "submit", class: "btn btn-mini" do
+      = button_tag type: "submit", class: "btn btn-mini up-arrow #{votable_item.item_type}",
+        id: votable_item.id do
         %i.icon-chevron-up
 
 - else
@@ -16,20 +17,21 @@
     %button.btn.btn-mini.disabled
       %i.icon-chevron-up
 
-%p.votable-item-count
+%p.votable-item-count{ id: votable_item.id, class: votable_item.item_type }
   = votable_item.likes.size - votable_item.dislikes.size
 
 - if user_signed_in?
-  = form_tag(votes_downvote_path, class: "form-horizontal") do
-    = hidden_field_tag :item_id, votable_item.id
-    = hidden_field_tag :item_type, votable_item.class.to_s.downcase
+  = form_tag(votes_downvote_path(item_id: votable_item.id, item_type: votable_item.item_type),
+    class: "form-horizontal", remote: true) do
 
     - if current_user.voted_down_on?(votable_item)
-      = button_tag type: "submit", class: "btn btn-mini btn-danger" do
+      = button_tag type: "submit", class: "btn btn-mini btn-danger down-arrow #{votable_item.item_type}",
+        id: votable_item.id do
         %i.icon-chevron-down.pull-left
 
     - else
-      = button_tag type: "submit", class: "btn btn-mini" do
+      = button_tag type: "submit", class: "btn btn-mini down-arrow #{votable_item.item_type}",
+        id: votable_item.id do
         %i.icon-chevron-down.pull-left
 
 - else
