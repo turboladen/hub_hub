@@ -8,6 +8,7 @@ class PostTest < ActiveSupport::TestCase
     @four = posts(:post_four)
     @five = posts(:post_five)
     @link_post_one = posts(:link_post_one)
+    @fresno_spoke = spokes(:fresno)
   end
 
   test "post attributes must not be empty" do
@@ -19,20 +20,24 @@ class PostTest < ActiveSupport::TestCase
 
   test "title can't be longer than 100 chars" do
     post = Post.new(content: "content", title: "1" * 100)
+    post.spoke = @fresno_spoke
     assert post.save
     assert post.errors[:title].empty?
 
     post = Post.new(content: "content", title: "1" * 101)
+    post.spoke = @fresno_spoke
     assert !post.save
     assert_equal "is too long (maximum is 100 characters)", post.errors[:title].join('; ')
   end
 
   test "title can't be shorter than 2 chars" do
     post = Post.new(content: "content", title: "12")
+    post.spoke = @fresno_spoke
     assert post.save
     assert post.errors[:title].empty?
 
     post = Post.new(content: "content", title: "1")
+    post.spoke = @fresno_spoke
     assert !post.save
     assert_equal "is too short (minimum is 2 characters)", post.errors[:title].join('; ')
   end
@@ -40,12 +45,25 @@ class PostTest < ActiveSupport::TestCase
 
   test "content can't be longer than 4000 chars" do
     post = Post.new(content: "c" * 4000, title: "123")
+    post.spoke = @fresno_spoke
     assert post.save
     assert post.errors[:content].empty?
 
     post = Post.new(content: "c" * 4001, title: "123")
+    post.spoke = @fresno_spoke
     assert !post.save
     assert_equal "is too long (maximum is 4000 characters)", post.errors[:content].join('; ')
+  end
+
+  test "must belong to a spoke" do
+    post = Post.new(content: "c", title: "123")
+    post.spoke = @fresno_spoke
+    assert post.save
+    assert post.errors[:spoke_id].empty?
+
+    post = Post.new(content: "c", title: "123")
+    assert !post.save
+    assert_equal "can't be blank", post.errors[:spoke_id].join('; ')
   end
 
   test "#most_active returns only posts with comments" do

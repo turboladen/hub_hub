@@ -1,5 +1,6 @@
 - if user_signed_in?
-  = form_tag(spoke_post_flag_path(favorite_post.spoke.id, favorite_post.id), class: "form-horizontal") do
+  - logger.debug "post: #{favorite_post.inspect}"
+  = form_tag(spoke_post_flag_path(favorite_post.spoke_id, favorite_post.id), class: "form-horizontal") do
     = hidden_field_tag :id, favorite_post.id
     = hidden_field_tag :flag_type, :favorite
 

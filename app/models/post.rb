@@ -8,6 +8,7 @@ class Post < ActiveRecord::Base
 
   validates :title, presence: true
   validates :content, presence: true
+  validates :spoke_id, presence: true
   validates_length_of :title, in: 2..100
   validates_length_of :content, maximum: 4000
 
