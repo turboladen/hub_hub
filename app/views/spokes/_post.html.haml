@@ -6,7 +6,7 @@
       = render partial: 'posts/inappropriate_post', locals: { inappropriate_post: post }
 
     %td
-      %div{ class: post.is_link? ? "post-type-link" : "post-type-text" }
+      %div{ class: post.link? ? "post-type-link" : "post-type-text" }
         .pull-right{ style: "margin-top: -30px;" }
           = render partial: 'shared/votable_item_counts',
             locals: { votable_item: post }
@@ -14,7 +14,7 @@
           %tr
             %td
               .post-title
-                - if post.is_link?
+                - if post.link?
                   = link_to post.title, post.content
                 - else
                   = link_to post.title, spoke_post_path(post.spoke.id, post)

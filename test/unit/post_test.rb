@@ -7,6 +7,7 @@ class PostTest < ActiveSupport::TestCase
     @three = posts(:post_three)
     @four = posts(:post_four)
     @five = posts(:post_five)
+    @link_post_one = posts(:link_post_one)
   end
 
   test "post attributes must not be empty" do
@@ -80,5 +81,14 @@ class PostTest < ActiveSupport::TestCase
 
   test "#most_voted returns posts ordered by total votes" do
     assert_equal Post.most_voted, [@two, @three, @one, @four]
+  end
+
+  test "#link? returns true for valid links" do
+    assert_equal @link_post_one.link?, true
+    assert_equal @one.link?, false
+  end
+
+  test "#item_type equals 'post'" do
+    assert_equal @one.item_type, 'post'
   end
 end
