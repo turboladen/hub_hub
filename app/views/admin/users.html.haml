@@ -14,5 +14,11 @@
         %td= u.first_name
         %td= u.last_name
         %td
-          = form_tag()
-          = check_box_tag 'is_admin', u.admin?, u.admin?
+          - if u.email == "admin@mindhub.org"
+            = check_box_tag 'is_admin', !u.admin?, u.admin?, id: u.id,
+              disabled: true
+
+          - else
+            = form_tag(user_path(u), method: :put, remote: true) do
+              = check_box_tag 'is_admin', !u.admin?, u.admin?, id: u.id,
+                class: "confirm-selection checkable"

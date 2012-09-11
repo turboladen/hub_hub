@@ -5,6 +5,7 @@ HubHub::Application.routes.draw do
   get "admin" => 'admin#index', as: 'admin'
   get "admin/users", as: 'admin_users'
   get "admin/inappropriate_items", as: 'admin_inappropriate_items'
+  put "users/:id" => 'users#update', as: :user
 
   devise_for :users
 
