@@ -1,12 +1,12 @@
 <% if current_user.voted_down_on? @item %>
-$('button.up-arrow.<%= "#{@item_type}" %>#<%= "#{@item_id}" %>').removeClass("btn-success");
-$('button.down-arrow.<%= "#{@item_type}" %>#<%= "#{@item_id}" %>').addClass("btn-danger");
+$('button.up-arrow.<%= @item_type %>#<%= @item_id %>').removeClass("btn-success");
+$('button.down-arrow.<%= @item_type %>#<%= @item_id %>').addClass("btn-danger");
 
 <% else %>
-$('button.down-arrow.<%= "#{@item_type}" %>#<%= "#{@item_id}" %>').removeClass("btn-danger");
+$('button.down-arrow.<%= @item_type %>#<%= @item_id %>').removeClass("btn-danger");
 
 <% end %>
 
-$('span.downvote-count.<%= "#{@item_type}" %>#<%= "#{@item_id}" %>').
+$('span.downvote-count.<%= @item_type %>#<%= @item_id %>').
         html('<i class="icon-minus icon-white"></i> <%= @downvote_count %> ');
-$('p.votable-item-count#<%= "#{@item_id}" %>.<%= "#{@item_type}" %>').html("<%=j @total_vote_count %>");
+$('p.votable-item-count#<%= @item_id %>.<%= @item_type %>').html("<%=j @total_vote_count %>");
