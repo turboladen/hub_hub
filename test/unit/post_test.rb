@@ -26,6 +26,17 @@ class PostTest < ActiveSupport::TestCase
     assert_equal "is too long (maximum is 100 characters)", post.errors[:title].join('; ')
   end
 
+  test "title can't be shorter than 2 chars" do
+    post = Post.new(content: "content", title: "12")
+    assert post.save
+    assert post.errors[:title].empty?
+
+    post = Post.new(content: "content", title: "1")
+    assert !post.save
+    assert_equal "is too short (minimum is 2 characters)", post.errors[:title].join('; ')
+  end
+
+
   test "content can't be longer than 4000 chars" do
     post = Post.new(content: "c" * 4000, title: "123")
     assert post.save
