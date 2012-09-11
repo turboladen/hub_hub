@@ -1,0 +1,13 @@
+= content_for(:container) do
+  .container-fluid{ style: "background-color: red;" }
+    .content
+      .row-fluid
+        .span3
+          = render 'layouts/admin_sidebar'
+
+        .span9
+          = yield
+
+    = render 'layouts/footer'
+
+= render template: 'layouts/application'

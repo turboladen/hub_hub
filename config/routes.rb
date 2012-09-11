@@ -3,6 +3,8 @@ HubHub::Application.routes.draw do
   get "home/index"
   get "home/tos"
   get "admin" => 'admin#index', as: 'admin'
+  get "admin/users", as: 'admin_users'
+  get "admin/inappropriate_items", as: 'admin_inappropriate_items'
 
   devise_for :users
 

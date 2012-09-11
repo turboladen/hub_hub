@@ -1,0 +1,18 @@
+%table.table.table-condensed.table-striped
+  %thead
+    %caption
+      %h3 Users
+    %tr
+      %th Email
+      %th First
+      %th Last
+      %th Admin?
+  %tbody
+    - @users.each do |u|
+      %tr
+        %td= u.email
+        %td= u.first_name
+        %td= u.last_name
+        %td
+          = form_tag()
+          = check_box_tag 'is_admin', u.admin?, u.admin?

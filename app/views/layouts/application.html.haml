@@ -11,26 +11,13 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
     = yield(:head)
+
   %body
     .navbar.navbar-fixed-top
       .navbar-inner
         .container{ style: "height: 40px;" }
           = render 'layouts/navigation'
 
-    .container
-      .content
-        .row
-          .span12
-            = render 'layouts/messages'
-        = yield
+    = content_for?(:container) ? yield(:container) : render('layouts/container')
 
-      %footer.description-bottom
-        .row
-          .offset1.span3
-            %ul.unstyled
-              %li
-                A project of
-                = link_to 'Creative Fresno', "http://creativefresno.ning.com/"
-              %li
-                = link_to 'Terms of Service', home_tos_path
 

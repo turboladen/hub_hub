@@ -1,5 +1,12 @@
 class AdminController < ApplicationController
+  layout "admin"
+  before_filter :ensure_admin
+
   def index
+
+  end
+
+  def inappropriate_items
     flagged = MakeFlaggable::Flagging.where(flaggable_type: "Post", flag: "inappropriate")
 
     @flags_and_posts = flagged.map do |flag|
@@ -13,7 +20,16 @@ class AdminController < ApplicationController
     end
   end
 
-  def update
+  def users
+    @users = User.all
+  end
 
+  private
+
+  def ensure_admin
+    unless user_signed_in? && current_user.admin?
+      message = "No route matches [#{env['REQUEST_METHOD']}] \"#{env['PATH_INFO']}\""
+      raise ActionController::RoutingError, message
+    end
   end
 end

@@ -16,6 +16,16 @@ users = []
   })
 end
 
+admin_user = User.create({
+  email: 'admin@mindhub.org',
+  first_name: 'Admin',
+  last_name: 'the Administrator',
+  password: 'creativefresno',
+  password_confirmation: 'creativefresno',
+  remember_me: false
+})
+admin_user.update_attribute :admin, true
+
 #-------------------------------------------------------------------------------
 # Admin
 #-------------------------------------------------------------------------------
