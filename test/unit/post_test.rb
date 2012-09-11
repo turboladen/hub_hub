@@ -27,11 +27,11 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "content can't be longer than 4000 chars" do
-    post = Post.new(content: "c" * 4000, title: "1")
+    post = Post.new(content: "c" * 4000, title: "123")
     assert post.save
     assert post.errors[:content].empty?
 
-    post = Post.new(content: "c" * 4001, title: "1")
+    post = Post.new(content: "c" * 4001, title: "123")
     assert !post.save
     assert_equal "is too long (maximum is 4000 characters)", post.errors[:content].join('; ')
   end
