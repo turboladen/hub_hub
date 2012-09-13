@@ -1,12 +1,20 @@
+// Adjust button colors
 <% if current_user.voted_up_on? @item %>
-$('button.down-arrow.<%= @item_type %>#<%= @item_id %>').removeClass("btn-danger");
-$('button.up-arrow.<%= @item_type %>#<%= @item_id %>').addClass("btn-success");
-
+    $('button#<%= "#{@item_type}-down-#{@item.id}" %>').removeClass("btn-danger");
+    $('button#<%= "#{@item_type}-up-#{@item.id}" %>').addClass("btn-success");
 <% else %>
-$('button.up-arrow.<%= @item_type %>#<%= @item_id %>').removeClass("btn-success");
-
+    $('button#<%= "#{@item_type}-up-#{@item.id}" %>').removeClass("btn-success");
 <% end %>
 
-$('span.upvote-count.<%= @item_type %>#<%= @item_id %>').
-        html('<i class="icon-plus icon-white"></i> <%= @upvote_count %> ');
-$('p.votable-item-count#<%= @item_id %>.<%= @item_type %>').html("<%=j @total_vote_count %>");
+// Adjust net vote count
+$('p.votable-item-count#<%= "#{@item_type}-count-#{@item.id}" %>').
+        html("<%=j @total_vote_count %>");
+
+// Adjust upvote count
+$('span#<%= "#{@item_type}-upvote-count-#{@item.id}" %>').
+        html('<i class="icon-plus icon-white"></i> <%= @upvote_count.strip %> ');
+
+// Adjust upvote count
+$('span#<%= "#{@item_type}-downvote-count-#{@item.id}" %>').
+        html('<i class="icon-plus icon-white"></i> <%= @downvote_count.strip %> ');
+

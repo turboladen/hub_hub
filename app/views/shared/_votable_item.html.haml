@@ -3,13 +3,13 @@
     class: "form-horizontal", remote: true) do
 
     - if current_user.voted_up_on?(votable_item)
-      = button_tag type: "submit", class: "btn btn-mini btn-success up-arrow #{votable_item.item_type}",
-        id: votable_item.id do
+      = button_tag type: "submit", class: "btn btn-mini btn-success",
+        id: "#{votable_item.item_type}-up-#{votable_item.id}" do
         %i.icon-chevron-up
 
     - else
-      = button_tag type: "submit", class: "btn btn-mini up-arrow #{votable_item.item_type}",
-        id: votable_item.id do
+      = button_tag type: "submit", class: "btn btn-mini",
+        id: "#{votable_item.item_type}-up-#{votable_item.id}" do
         %i.icon-chevron-up
 
 - else
@@ -17,7 +17,7 @@
     %button.btn.btn-mini.disabled
       %i.icon-chevron-up
 
-%p.votable-item-count{ id: votable_item.id, class: votable_item.item_type }
+%p.votable-item-count{ id: "#{votable_item.item_type}-count-#{votable_item.id}" }
   = votable_item.likes.size - votable_item.dislikes.size
 
 - if user_signed_in?
@@ -25,13 +25,13 @@
     class: "form-horizontal", remote: true) do
 
     - if current_user.voted_down_on?(votable_item)
-      = button_tag type: "submit", class: "btn btn-mini btn-danger down-arrow #{votable_item.item_type}",
-        id: votable_item.id do
+      = button_tag type: "submit", class: "btn btn-mini btn-danger",
+        id: "#{votable_item.item_type}-down-#{votable_item.id}" do
         %i.icon-chevron-down.pull-left
 
     - else
-      = button_tag type: "submit", class: "btn btn-mini down-arrow #{votable_item.item_type}",
-        id: votable_item.id do
+      = button_tag type: "submit", class: "btn btn-mini down-arrow",
+        id: "#{votable_item.item_type}-down-#{votable_item.id}" do
         %i.icon-chevron-down.pull-left
 
 - else

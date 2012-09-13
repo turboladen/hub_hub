@@ -1,11 +1,11 @@
 %p
   %span.label.label-success{ title: "MindHub members have upvoted this #{votable_item.likes.size} times.",
-    id: votable_item.id, class: "upvote-count #{votable_item.item_type}" }
+    id: "#{votable_item.item_type}-upvote-count-#{votable_item.id}" }
     %i.icon-plus.icon-white
     = votable_item.likes.size
 
   %span.label.label-important{ style: "margin-left: 5px;", title: "MindHub members have downvoted this #{votable_item.dislikes.size} times.",
-    id: votable_item.id, class: "downvote-count #{votable_item.item_type}" }
+    id: "#{votable_item.item_type}-downvote-count-#{votable_item.id}" }
     %i.icon-minus.icon-white
     = votable_item.dislikes.size
 
