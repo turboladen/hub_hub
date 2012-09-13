@@ -3,6 +3,7 @@ require 'faker'
 Spoke.delete_all
 Post.delete_all
 Comment.delete_all
+MakeFlaggable::Flagging.delete_all
 
 def create_default_admin
   admin_user = User.create({
