@@ -4,27 +4,36 @@ Spoke.delete_all
 Post.delete_all
 Comment.delete_all
 
-users = []
-6.times do
-  users << User.create({
-    email: Faker::Internet.email,
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    password: 'password',
-    password_confirmation: 'password',
+def create_default_admin
+  admin_user = User.create({
+    email: 'admin@mindhub.org',
+    first_name: 'Admin',
+    last_name: 'the Administrator',
+    password: 'creativefresno',
+    password_confirmation: 'creativefresno',
     remember_me: false
   })
+  admin_user.update_attribute :admin, true
 end
 
-admin_user = User.create({
-  email: 'admin@mindhub.org',
-  first_name: 'Admin',
-  last_name: 'the Administrator',
-  password: 'creativefresno',
-  password_confirmation: 'creativefresno',
-  remember_me: false
-})
-admin_user.update_attribute :admin, true
+if User.count.zero?
+  create_default_admin
+
+  6.times do
+    users << User.create({
+      email: Faker::Internet.email,
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      password: 'password',
+      password_confirmation: 'password',
+      remember_me: false
+    })
+  end
+else
+  create_default_admin unless User.find_by_email("admin@mindhub.org")
+end
+
+users = User.all
 
 #-------------------------------------------------------------------------------
 # Admin
@@ -43,12 +52,12 @@ event = Spoke.create(name: 'Events', description: %{for making any announcement
   of activities or events in the community. Please include just the announcement
   with no lengthy discussion attached.})
 
-f_posts = []
-f_posts << event.posts.build(title: "It's hot today", content: "Why don't you come swimming?")
-f_posts << event.posts.build(title: "September Blender: Shepherd's Inn",
+e_posts = []
+e_posts << event.posts.build(title: "It's hot today", content: "Why don't you come swimming?")
+e_posts << event.posts.build(title: "September Blender: Shepherd's Inn",
   content: "http://creativefresno.ning.com/events/september-blender-shepherds")
 
-f_posts << event.posts.build(title: "WEDNESDAY - MARKET ON KERN STREET",
+e_posts << event.posts.build(title: "WEDNESDAY - MARKET ON KERN STREET",
   content: %[Hello Hubbers!
 
 Once again the Market on Kern Street is back! We hope you all had a great
@@ -67,29 +76,41 @@ Fresno, CA 93721
 559.490.9966
 www.downtownfresno.org])
 
-f_posts << event.posts.build(title: "Party on the Fulton",
+e_posts << event.posts.build(title: "Party on the Fulton",
   content: "Come get some Dusty Buns and beer.  MMmmmm aren't you thristy?")
 
-f_posts << event.posts.build(title: "Blackstone is where it's at",
+e_posts << event.posts.build(title: "Blackstone is where it's at",
   content: %{I've seen a lot of things in my life, but I've never seen anything
 quite like Blackstone avenue.})
-f_posts.each { |post| post.user = users.sample; post.save! }
+e_posts.each { |post| post.user = users.sample; post.save! }
 
-10.times do
-  Comment.build_from(f_posts.sample, users.sample.id, Faker::Lorem.paragraph).save!
+10.times do |i|
+  tmp_post = e_posts.sample
+  parent_comment = Comment.build_from(tmp_post, users.sample.id, Faker::Lorem.paragraph)
+  parent_comment.save!
+
+  nested_comment = Comment.build_from(tmp_post, users.sample.id, Faker::Lorem.paragraph)
+  nested_comment.save!
+  nested_comment.move_to_child_of(parent_comment)
+
+  if i % 4
+    nested_comment2 = Comment.build_from(tmp_post, users.sample.id, Faker::Lorem.paragraph)
+    nested_comment2.save!
+    nested_comment2.move_to_child_of(nested_comment)
+  end
 end
 
 7.times do
-  f_posts.sample.liked_by users.sample
+  e_posts.sample.liked_by users.sample
 end
 
 4.times do
-  f_posts.sample.disliked_by users.sample
+  e_posts.sample.disliked_by users.sample
 end
 
 3.times do
-  users.sample.toggle_flag(f_posts.sample, :inappropriate)
-  users.sample.toggle_flag(f_posts.sample, :favorite)
+  users.sample.toggle_flag(e_posts.sample, :inappropriate)
+  users.sample.toggle_flag(e_posts.sample, :favorite)
 end
 
 #-------------------------------------------------------------------------------
@@ -97,26 +118,42 @@ end
 #-------------------------------------------------------------------------------
 intro = Spoke.create(name: 'Intros', description: %{for self-introductions to the newsgroup.})
 
-g_posts = []
-g_posts << intro.posts.build(title: "Taco Tuesday",
+i_posts = []
+i_posts << intro.posts.build(title: "Taco Tuesday",
   content: "Come get some tacos.  They're really tasty and neat and good.")
-g_posts << intro.posts.build(title: "Thirsty Thrusday",
+i_posts << intro.posts.build(title: "Thirsty Thrusday",
   content: "Come get some beer.  It's good for you; it has vitamins in it.")
-g_posts << intro.posts.build(title: "Support your Grizzlies",
+i_posts << intro.posts.build(title: "Support your Grizzlies",
   content: %{The Grizzlies play baseball like champions.  Come watch them win!})
-g_posts.each { |post| post.user = users.sample; post.save! }
+i_posts.each { |post| post.user = users.sample; post.save! }
 
-10.times do
-  Comment.build_from(g_posts.sample, users.sample.id, Faker::Lorem.paragraph).save!
+12.times do |i|
+  tmp_post = i_posts.sample
+  parent_comment = Comment.build_from(tmp_post, users.sample.id, Faker::Lorem.paragraph)
+  parent_comment.save!
+
+  nested_comment = Comment.build_from(tmp_post, users.sample.id, Faker::Lorem.paragraph)
+  nested_comment.save!
+  nested_comment.move_to_child_of(parent_comment)
+
+  if i % 5
+    nested_comment = Comment.build_from(tmp_post, users.sample.id, Faker::Lorem.paragraph)
+    nested_comment.save!
+    nested_comment.move_to_child_of(parent_comment)
+  elsif
+    nested_comment2 = Comment.build_from(tmp_post, users.sample.id, Faker::Lorem.paragraph)
+    nested_comment2.save!
+    nested_comment2.move_to_child_of(nested_comment)
+  end
 end
 
 5.times do
-  g_posts.sample.liked_by users.sample
+  i_posts.sample.liked_by users.sample
 end
 
 1.times do
-  users.sample.toggle_flag(g_posts.sample, :inappropriate)
-  users.sample.toggle_flag(g_posts.sample, :favorite)
+  users.sample.toggle_flag(i_posts.sample, :inappropriate)
+  users.sample.toggle_flag(i_posts.sample, :favorite)
 end
 
 #-------------------------------------------------------------------------------
@@ -202,11 +239,11 @@ end
 #-------------------------------------------------------------------------------
 # OT
 #-------------------------------------------------------------------------------
-music = Spoke.create(name: 'OT', description: %{for miscellaneous subjects that
+ot = Spoke.create(name: 'OT', description: %{for miscellaneous subjects that
 are not related to any of the defined subjects})
 
-m_posts = []
-m_posts << music.posts.build(title: 'Love! Chocolate! Music!',
+o_posts = []
+o_posts << ot.posts.build(title: 'Love! Chocolate! Music!',
   content: %q{Love Conquers All
 
 Fundraising Concert/Dessert Auction Youth Orchestras of Fresno Sunday February 12, 2012,
@@ -226,23 +263,23 @@ Get your tickets now through brownpapertickets.com.
 
 Admission, as always, is FREE for under 18 and/or anyone with a school ID. For this special fundraiser adult tickets are \$25. Premium seats are \$35. Direct link: http://www.brownpapertickets.com/event/212490})
 
-m_posts.each { |post| post.user = users.sample; post.save! }
+o_posts.each { |post| post.user = users.sample; post.save! }
 
 10.times do
-  Comment.build_from(m_posts.sample, users.sample.id, Faker::Lorem.paragraph).save!
+  Comment.build_from(o_posts.sample, users.sample.id, Faker::Lorem.paragraph).save!
 end
 
 2.times do
-  m_posts.sample.liked_by users.sample
+  o_posts.sample.liked_by users.sample
 end
 
 2.times do
-  m_posts.sample.disliked_by users.sample
+  o_posts.sample.disliked_by users.sample
 end
 
 1.times do
-  users.sample.toggle_flag(m_posts.sample, :inappropriate)
-  users.sample.toggle_flag(m_posts.sample, :favorite)
+  users.sample.toggle_flag(o_posts.sample, :inappropriate)
+  users.sample.toggle_flag(o_posts.sample, :favorite)
 end
 
 #-------------------------------------------------------------------------------
