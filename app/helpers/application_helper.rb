@@ -1,4 +1,7 @@
 module ApplicationHelper
+  # Allows for setting the background-color on the given tag in a view/layout.
+  #
+  # @param [Symbol] tag
   def tag_with_color(tag)
     capture_haml do
       if @background_color.nil?
