@@ -1,5 +1,5 @@
-@import "bootstrap";
-@import "bootstrap-responsive";
+//@import "bootstrap";
+//@import "bootstrap-responsive";
 
 
 $mindhubGreen: #99cc33;
@@ -170,7 +170,6 @@ a:hover {
   -moz-border-radius: 4px 0 4px 0;
   border-radius: 4px 0 4px 0;
 }
-
 
 .post-type-text::after {
   content: "Text";

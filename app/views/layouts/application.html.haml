@@ -18,6 +18,10 @@
         .container{ style: "height: 40px;" }
           = render 'layouts/navigation'
 
-    = content_for?(:container) ? yield(:container) : render('layouts/container')
+    #main
+      = content_for?(:container) ? yield(:container) : render('layouts/container')
+      .push
 
+    #footer
+      = render 'layouts/footer'
 

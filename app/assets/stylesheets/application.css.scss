@@ -8,6 +8,8 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require _bootstrap
+ *= require _bootstrap-responsive
  *= require_self
  *= require_tree .
  */
@@ -47,4 +49,25 @@
   -webkit-box-shadow: 0 0 2px rgba(0,0,0,.15);
   -moz-box-shadow: 0 0 2px rgba(0,0,0,.15);
   box-shadow: 0 0 2px rgba(0,0,0,.15);
+}
+
+html, body {
+  height: 100%;
+}
+#main {
+  min-height: 100%;
+  height: auto !important;
+  height: 97%;
+  margin: 0 auto -100px;
+}
+.push {
+  height: 85px;
+}
+/* not required for sticky footer; just pushes hero down a bit */
+#main > .container {
+  padding-top: 20px;
+}
+
+#footer, .container {
+  margin-bottom: 40px;
 }
