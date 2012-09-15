@@ -10,7 +10,7 @@
   %tbody
     - @users.each do |u|
       %tr
-        %td= u.email
+        %td= link_to u.email, admin_user_path(u.id)
         %td= u.first_name
         %td= u.last_name
         %td

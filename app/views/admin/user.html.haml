@@ -1,0 +1,39 @@
+.page-title
+  %h1
+    = @user.email
+
+%table.table.table-striped.table-bordered
+  %thead
+  %tbody
+    %tr
+      %td
+        First Name
+      %td
+        = @user.first_name
+    %tr
+      %td
+        Last Name
+      %td
+        = @user.last_name
+    %tr
+      %td
+        Sign-in Count
+      %td
+        = @user.sign_in_count
+    %tr
+      %td
+        Last sign-in at
+      %td
+        = @user.last_sign_in_at
+    %tr
+      %td
+        Last sign-in IP
+      %td
+        = @user.last_sign_in_ip
+
+%p
+  = link_to :back do
+    %button.btn
+      %i.icon-backward
+      Back
+

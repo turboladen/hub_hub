@@ -24,6 +24,10 @@ class AdminController < ApplicationController
     @users = User.all
   end
 
+  def user
+    @user = User.find(params[:id])
+  end
+
   private
 
   def ensure_admin
