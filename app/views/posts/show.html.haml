@@ -1,49 +1,49 @@
-- if notice
-  %p#notice= notice
+= content_for(:page_title) do
+  %ul.breadcrumb
+    %li
+      = link_to 'Home', home_index_path
+      %span.divider> /
+    %li.active
+      = link_to @post.spoke.name, spoke_path(@post.spoke)
 
-%ul.breadcrumb
-  %li
-    = link_to 'Home', home_index_path
-    %span.divider> /
-  %li.active
-    = link_to @post.spoke.name, spoke_path(@post.spoke)
+.pull-left.votable-item-area
+  = render partial: 'shared/votable_item', locals: { votable_item: @post }
+  = render partial: 'favorite_post', locals: { favorite_post: @post }
+  = render partial: 'inappropriate_post', locals: { inappropriate_post: @post }
 
-.row
-  .span8
-    .pull-left.votable-item-area
-      = render partial: 'shared/votable_item', locals: { votable_item: @post }
-      = render partial: 'favorite_post', locals: { favorite_post: @post }
-      = render partial: 'inappropriate_post', locals: { inappropriate_post: @post }
+%div{ style: "padding-left: 50px; padding-bottom: 10px;" }
+  %div{ class: @post.link? ? "post-type-link" : "post-type-text" }
+    .pull-right{ style: "margin-top: -30px;" }
+      = render partial: 'shared/votable_item_counts',
+        locals: { votable_item: @post }
 
-    %div{ style: "padding-left: 50px; padding-bottom: 10px;" }
-      %div{ class: @post.link? ? "post-type-link" : "post-type-text" }
-        .pull-right{ style: "margin-top: -30px;" }
-          = render partial: 'shared/votable_item_counts',
-            locals: { votable_item: @post }
+    %h1.post-title
+      = @post.title
 
-        %h1.post-title
-          = @post.title
+    %p
+      Posted on
+      %code= time_tag @post.created_at
+      by
+      %code= @post.user.name
+      = link_to 'Edit', edit_spoke_post_path(@post.spoke, @post),
+        class: 'btn btn-mini btn-warning'
 
-        %p
-          Posted on
-          %code= time_tag @post.created_at
-          by
-          %code= @post.user.name
-          = link_to 'Edit', edit_spoke_post_path(@post.spoke, @post),
-            class: 'btn btn-mini btn-warning'
-
-        .well
-          %p= sanitize(@post.content)
+    .well
+      %p= sanitize(@post.content)
 
 %hr
 
-.row
-  .span8
-    %h2 Responses
-    = render 'comments/new', parent_type: :post, parent_id: @post.id
+%h2 Responses
+= render 'comments/new', parent_type: :post, parent_id: @post.id
 
-    %table.table.table-condensed.table-striped
-      %tbody
-        = render partial: 'comments/comment', collection: @post.root_comments
+%table.table.table-condensed.table-striped
+  %tbody
+    = render partial: 'comments/comment', collection: @post.root_comments
 
-= link_to 'Back', spoke_path(@post.spoke)
+= link_to :back do
+  %button.btn
+    %i.icon-backward
+    Back
+
+= content_for(:right_sidebar) do
+  = render partial: 'spokes/spoke_info', locals: { spoke: @post.spoke }

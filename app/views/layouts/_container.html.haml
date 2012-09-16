@@ -4,5 +4,15 @@
       .span12
         = render 'layouts/messages'
 
-    = yield
+    = content_for?(:page_title) ? yield(:page_title) : nil
+
+    .row
+      - if content_for?(:right_sidebar)
+        .span8
+          = yield
+        .span4
+          = yield(:right_sidebar)
+
+      - else
+        = yield
 

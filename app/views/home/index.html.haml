@@ -1,47 +1,46 @@
-.hero-unit.background-image
-  %h1 MindHub
-  %p Connecting California's Central Valley
+= content_for(:page_title) do
+  .hero-unit.background-image
+    %h1 MindHub
+    %p Connecting California's Central Valley
 
-.row
-  .span8
-    %ul.nav.nav-tabs
-      = render partial: 'home/sort_options'
+%ul.nav.nav-tabs
+  = render partial: 'home/sort_options'
 
-    %table.table.table-condensed
-      %tbody
-        = render partial: 'spokes/post', collection: @posts
+%table.table.table-condensed
+  %tbody
+    = render partial: 'spokes/post', collection: @posts
 
-  .span4
-    .well.sidebar-nav{ style: "height: 100%;" }
-      %ul.nav.nav-list
-        %li.nav-header Spokes
-        - @spokes.each do |spoke|
-          %li
-            %ul
-              %li
-                = link_to spoke.name, spoke, class: 'spoke'
+= content_for(:right_sidebar) do
+  .well.sidebar-nav{ style: "height: 100%;" }
+    %ul.nav.nav-list
+      %li.nav-header Spokes
+      - @spokes.each do |spoke|
+        %li
+          %ul
+            %li
+              = link_to spoke.name, spoke, class: 'spoke'
 
-    .well
-      %h4 Welcome
-      %hr
-      %p
-        The mission of MindHub is to create an (online) community that encourages and
-        supports creative professionals in the Central Valley.
-      %p
-        The goal is to have
-        subscribers of the MindHub email list, creative professionals in the Fresno and
-        surrounding areas, share information and help each other to find jobs, find
-        employees, compare notes on their respective trades, and learn from each other
-        in an unintimidating environment.
-      %p
-        Best of all, membership is FREE! If you would
-        like to join MindHub, all you need is an email address.
-      %p
-        If you have any
-        questions about MindHub, please email #{mail_to "mindhub-info@listmindhub.org" }.
+  .well
+    %h4 Welcome
+    %hr
+    %p
+      The mission of MindHub is to create an (online) community that encourages and
+      supports creative professionals in the Central Valley.
+    %p
+      The goal is to have
+      subscribers of the MindHub email list, creative professionals in the Fresno and
+      surrounding areas, share information and help each other to find jobs, find
+      employees, compare notes on their respective trades, and learn from each other
+      in an unintimidating environment.
+    %p
+      Best of all, membership is FREE! If you would
+      like to join MindHub, all you need is an email address.
+    %p
+      If you have any
+      questions about MindHub, please email #{mail_to "mindhub-info@listmindhub.org" }.
 
-      %hr
+    %hr
 
-      = link_to "Follow @mindhub", "https://twitter.com/mindhub", class: "twitter-follow-button",
-        "data-show-count" => false
+    = link_to "Follow @mindhub", "https://twitter.com/mindhub", class: "twitter-follow-button",
+      "data-show-count" => false
 
