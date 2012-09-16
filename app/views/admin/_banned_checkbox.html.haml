@@ -5,4 +5,4 @@
   = form_tag(admin_user_path(user), method: :put, remote: true) do
     = hidden_field_tag "#{user.id}-is-banned", nil
     = check_box_tag "#{user.id}-is-banned", !user.banned?, user.banned?, id: "ban-#{user.id}",
-      class: "confirm-selection checkable"
+      class: "checkable"
