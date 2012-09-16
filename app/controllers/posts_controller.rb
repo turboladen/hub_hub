@@ -29,6 +29,8 @@ class PostsController < ApplicationController
       current_user.toggle_flag(@post, params[:flag_type])
     end
 
-    redirect_to :back
+    respond_to do |format|
+      format.js
+    end
   end
 end

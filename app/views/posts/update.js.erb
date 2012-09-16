@@ -1,0 +1,11 @@
+<% if current_user.flagged?(@post, :inappropriate) %>
+$('#inappropriate-post-<%= @post.id %>').addClass('btn-danger')
+$('#inappropriate-post-<%= @post.id %>').removeClass('btn-warning')
+<% elsif @post.flagged?(:inappropriate) %>
+$('#inappropriate-post-<%= @post.id %>').removeClass('btn-danger')
+$('#inappropriate-post-<%= @post.id %>').addClass('btn-warning')
+<% else %>
+$('#inappropriate-post-<%= @post.id %>').removeClass('btn-danger')
+$('#inappropriate-post-<%= @post.id %>').removeClass('btn-warning')
+<% end %>
+

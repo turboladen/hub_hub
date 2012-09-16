@@ -1,21 +1,24 @@
 - if user_signed_in?
   = form_tag(spoke_post_path(inappropriate_post.spoke.id, inappropriate_post.id),
-    class: "form-horizontal", method: :put) do
+    class: "form-horizontal", method: :put, remote: true) do
     = hidden_field_tag :id, inappropriate_post.id
     = hidden_field_tag :flag_type, :inappropriate
 
     - if current_user.flagged?(inappropriate_post, :inappropriate)
       = button_tag type: "submit", class: "btn btn-mini btn-danger",
-        title: "You have flagged this post as inappropriate." do
+        title: "You have flagged this post as inappropriate.",
+        id: "inappropriate-post-#{inappropriate_post.id}" do
         %i.icon-warning-sign.pull-left
 
     - elsif inappropriate_post.flagged?(:inappropriate)
       = button_tag type: "submit", class: "btn btn-mini btn-warning",
-        title: "Someone else has flagged this post as inappropriate." do
+        title: "Someone else has flagged this post as inappropriate.",
+        id: "inappropriate-post-#{inappropriate_post.id}" do
         %i.icon-warning-sign.pull-left
 
     - else
-      = button_tag type: "submit", class: "btn btn-mini" do
+      = button_tag type: "submit",
+        id: "inappropriate-post-#{inappropriate_post.id}", class: "btn btn-mini" do
         %i.icon-warning-sign.pull-left
 
 - else
@@ -28,3 +31,4 @@
     %p
       %span.label
         %i.icon-warning-sign{ style: "width: 23px;" }
+
