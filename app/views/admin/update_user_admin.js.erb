@@ -1,0 +1,5 @@
+//$('input[name=is_banned].confirm_selection#ban-<%= @user.id %>').toggleClass('glow');
+
+$('#admin-<%= @user.id %>').attr('checked', <%= @make_admin %>)
+$('#admin-<%= @user.id %>').attr('value', <%= !@make_admin %>)
+

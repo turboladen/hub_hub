@@ -10,26 +10,54 @@
         %strong First Name
       %td
         = @user.first_name
+
     %tr
       %td
         %strong Last Name
       %td
         = @user.last_name
+
     %tr
       %td
         %strong Sign-in Count
       %td
         = @user.sign_in_count
+
     %tr
       %td
         %strong Last sign-in at
       %td
-        = time_tag @user.last_sign_in_at
+        - if @user.last_sign_in_at
+          = time_tag @user.last_sign_in_at
+        - else
+          \-
+
     %tr
       %td
         %strong Last sign-in IP
       %td
-        = @user.last_sign_in_ip
+        - if @user.last_sign_in_ip
+          = @user.last_sign_in_ip
+        - else
+          \-
+
+    %tr
+      %td
+        %strong Admin?
+      %td
+        = render partial: 'admin/admin_checkbox', locals: { user: @user }
+
+    %tr
+      %td
+        %strong Banned?
+      %td
+        - if @user.email == "admin@mindhub.org"
+          = check_box_tag 'is_banned', !@user.banned?, @user.banned?, disabled: true
+
+        - else
+          = form_tag(admin_user_path(@user), method: :put, remote: true) do
+            = check_box_tag 'is_banned', !@user.banned?, @user.banned?, id: @user.id,
+              class: "confirm-selection checkable"
 
 %p
   = link_to :back do

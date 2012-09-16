@@ -1,18 +1,20 @@
 HubHub::Application.routes.draw do
   root :to => 'home#index', as: 'home'
+
+  devise_for :users
+
   get "home/index"
   get "home/tos"
 
   namespace :admin do
     get "/",          action: :index
+
     get "users",      action: :users, as: 'users'
-    get "user/:id",   action: :user, as: 'user'
+    get "users/:id",   action: :user, as: 'user'
+    put "users/:id",  action: :update_user
+
     get "inappropriate_items", action: :inappropriate_items, as: 'inappropriate_items'
-
   end
-  put "users/:id" => 'users#update', as: :user
-
-  devise_for :users
 
   resources :spokes, except: :index do
     resources :posts do

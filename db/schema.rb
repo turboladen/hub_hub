@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120904022039) do
+ActiveRecord::Schema.define(:version => 20120916021459) do
 
   create_table "comments", :force => true do |t|
     t.integer  "commentable_id",    :default => 0
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20120904022039) do
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "admin"
+    t.boolean  "banned"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,0 +1,8 @@
+- if user.email == "admin@mindhub.org"
+  = check_box_tag 'is_admin', !user.admin?, user.admin?, disabled: true
+
+- else
+  = form_tag(admin_user_path(user), method: :put, remote: true) do
+    = hidden_field_tag "#{user.id}-is-admin", nil
+    = check_box_tag "#{user.id}-is-admin", !user.admin?, user.admin?, id: "admin-#{user.id}",
+      class: "confirm-selection checkable"

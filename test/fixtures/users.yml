@@ -9,22 +9,26 @@ bob:
   encrypted_password: password
   first_name: Bob
   last_name: Uecker
+  banned: false
 
 ricky:
   email: ricky.ricardo@gmail.com
   encrypted_password: password
   first_name: Richard
   last_name: Ricardo
+  banned: false
 
 johnny:
   email: john.jacob.jingleheimer-schmidt@gmail.com
   encrypted_password: password
   first_name: John Jacob
   last_name: Jingleheimer-Schmidt
+  banned: false
 
 karl:
   email: karl.winslow@winslow.com
   encrypted_password: password
   first_name: Kärl
   last_name: Winsløw
+  banned: false
 

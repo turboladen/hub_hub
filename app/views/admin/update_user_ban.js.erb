@@ -1,0 +1,5 @@
+//$('input[name=is_banned].confirm_selection#ban-<%= @user.id %>').toggleClass('glow');
+
+$('#ban-<%= @user.id %>').attr('checked', <%= @ban_user %>)
+$('#ban-<%= @user.id %>').attr('value', <%= !@ban_user %>)
+
