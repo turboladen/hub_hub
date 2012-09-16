@@ -22,9 +22,12 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def flag
+  def update
     @post = Post.find(params[:id])
-    current_user.toggle_flag(@post, params[:flag_type])
+
+    if params[:flag_type]
+      current_user.toggle_flag(@post, params[:flag_type])
+    end
 
     redirect_to :back
   end

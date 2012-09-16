@@ -1,5 +1,6 @@
 - if user_signed_in?
-  = form_tag(spoke_post_flag_path(inappropriate_post.spoke.id, inappropriate_post.id), class: "form-horizontal") do
+  = form_tag(spoke_post_path(inappropriate_post.spoke.id, inappropriate_post.id),
+    class: "form-horizontal", method: :put) do
     = hidden_field_tag :id, inappropriate_post.id
     = hidden_field_tag :flag_type, :inappropriate
 
