@@ -18,6 +18,8 @@ class AdminController < ApplicationController
         title: post.title
       }
     end
+
+    render 'flaggings/index'
   end
 
   def users
