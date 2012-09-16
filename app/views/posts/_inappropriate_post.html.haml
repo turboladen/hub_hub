@@ -23,7 +23,7 @@
 
 - else
   - if inappropriate_post.flagged?(:inappropriate)
-    = button_tag type: "submit", class: "btn btn-mini btn-warning",
+    = button_tag class: "btn btn-mini btn-warning disabled",
       title: "Someone has flagged this post as inappropriate." do
       %i.icon-warning-sign.pull-left
 
