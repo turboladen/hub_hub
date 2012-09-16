@@ -1,13 +1,15 @@
 - @background_color = "#980000"
 
 = content_for(:container) do
-  .container-fluid{ style: "background-color: red;" }
-    .content
-      .row-fluid
-        .span3
-          = render 'layouts/admin_sidebar'
+  .container-fluid
+    .row
+      .span3
+        %br
+        = render 'layouts/admin_sidebar'
 
-        .span9
-          = yield
+      .span9
+        .container#main-panel
+          .content
+            = yield
 
 = render template: 'layouts/application'
