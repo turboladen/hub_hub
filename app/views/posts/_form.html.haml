@@ -11,12 +11,12 @@
 
   %fieldset
     .control-group
-      %label.control-label= f.label :title
+      = f.label :title, class: 'control-label'
       .controls
         = f.text_field :title
 
     .control-group
-      %label.control-label= f.label :content
+      = f.label :content, class: 'control-label'
       .controls
         = f.text_area :content, class: 'span5'
 

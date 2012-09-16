@@ -1,7 +1,7 @@
-%h1 Editing spoke
+= content_for(:page_title) do
+  %h1
+    Editing spoke:
+    = @spoke.name
 
-= render 'form'
-
-= link_to 'Show', @spoke
-|
-= link_to 'Back', spokes_path
+.span6
+  = render 'form'
