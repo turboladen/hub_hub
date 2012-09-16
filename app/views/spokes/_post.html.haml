@@ -10,6 +10,7 @@
         .pull-right{ style: "margin-top: -30px;" }
           = render partial: 'shared/votable_item_counts',
             locals: { votable_item: post }
+
         %table{ style: "width: 100%;" }
           %tr
             %td
@@ -31,7 +32,7 @@
                       = "#{post.user.name},"
                     - else
                       = "#{post.user.email},"
-                    = post.updated_at
+                    = time_tag post.updated_at
                     in spoke
 
                     %script
