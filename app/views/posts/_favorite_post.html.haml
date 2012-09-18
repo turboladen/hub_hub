@@ -1,15 +1,21 @@
 - if user_signed_in?
   = form_tag(spoke_post_path(favorite_post.spoke_id, favorite_post.id),
-    class: "form-horizontal", method: :put) do
+    class: "form-horizontal", method: :put, remote: true) do
     = hidden_field_tag :id, favorite_post.id
     = hidden_field_tag :flag_type, :favorite
 
     - if current_user.flagged?(favorite_post, :favorite)
-      = button_tag type: "submit", class: "btn btn-mini btn-success" do
+      = button_tag type: "submit",
+        class: "btn btn-mini btn-success",
+        id: "favorite-#{favorite_post.id}",
+        title: favorited_title do
         %i.icon-star.pull-left
 
     - else
-      = button_tag type: "submit", class: "btn btn-mini" do
+      = button_tag type: "submit",
+        class: "btn btn-mini",
+        id: "favorite-#{favorite_post.id}",
+        title: unfavorited_title do
         %i.icon-star.pull-left
 
 - else

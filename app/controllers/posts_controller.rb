@@ -26,7 +26,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if params[:flag_type]
-      current_user.toggle_flag(@post, params[:flag_type])
+      @flag_type = params[:flag_type]
+      current_user.toggle_flag(@post, @flag_type)
     end
 
     respond_to do |format|
