@@ -21,7 +21,7 @@ if User.count.zero?
   create_default_admin
 
   6.times do
-    users << User.create({
+    User.create({
       email: Faker::Internet.email,
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
