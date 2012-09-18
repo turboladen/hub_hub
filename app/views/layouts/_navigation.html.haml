@@ -22,6 +22,14 @@
               %i.icon-cog
               Edit account
 
+          - if current_user.admin?
+            %li.divider
+
+            %li
+              = link_to admin_path do
+                %i.icon-tasks
+                Site Administration
+
       - else
         %a.btn.btn-primary.dropdown-toggle{ href: '#', 'data-toggle' => 'dropdown' }
           %i.icon-user
