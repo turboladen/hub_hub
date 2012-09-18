@@ -1,26 +1,36 @@
 - if user_signed_in?
-  = form_tag(spoke_post_comment_flag_path(inappropriate_comment.post.spoke_id,
-    inappropriate_comment.post.id, inappropriate_comment.id), class: "form-horizontal") do
+  = form_tag(spoke_post_comment_path(inappropriate_comment.post.spoke_id,
+    inappropriate_comment.post.id, inappropriate_comment.id),
+    class: "form-horizontal", method: :put, remote: true) do
     = hidden_field_tag :id, inappropriate_comment.id
     = hidden_field_tag :flag_type, :inappropriate
 
     - if current_user.flagged?(inappropriate_comment, :inappropriate)
       = button_tag type: "submit", class: "btn btn-mini btn-danger",
+      = button_tag type: "submit",
+        class: "btn btn-mini btn-danger",
+        id: "inappropriate-comment-#{inappropriate_comment.id}",
         title: "You have flagged this comment as inappropriate." do
         %i.icon-warning-sign.pull-left
 
     - elsif inappropriate_comment.flagged?(:inappropriate)
-      = button_tag type: "submit", class: "btn btn-mini btn-warning",
+      = button_tag type: "submit",
+        class: "btn btn-mini btn-warning",
+        id: "inappropriate-comment-#{inappropriate_comment.id}",
         title: "Someone else has flagged this comment as inappropriate." do
         %i.icon-warning-sign.pull-left
 
     - else
       = button_tag type: "submit", class: "btn btn-mini" do
+      = button_tag type: "submit",
+        class: "btn btn-mini",
+        id: "inappropriate-comment-#{inappropriate_comment.id}" do
         %i.icon-warning-sign.pull-left
 
 - else
   - if inappropriate_comment.flagged?(:inappropriate)
-    = button_tag type: "submit", class: "btn btn-mini btn-warning",
+    = button_tag type: "submit",
+      class: "btn btn-mini btn-warning",
       title: "Someone else has flagged this comment as inappropriate." do
       %i.icon-warning-sign.pull-left
 
