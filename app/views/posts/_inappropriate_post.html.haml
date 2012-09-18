@@ -5,20 +5,23 @@
     = hidden_field_tag :flag_type, :inappropriate
 
     - if current_user.flagged?(inappropriate_post, :inappropriate)
-      = button_tag type: "submit", class: "btn btn-mini btn-danger",
-        title: "You have flagged this post as inappropriate.",
-        id: "inappropriate-post-#{inappropriate_post.id}" do
+      = button_tag type: "submit",
+        class: "btn btn-mini btn-danger",
+        id: "inappropriate-post-#{inappropriate_post.id}",
+        title: "You have flagged this post as inappropriate." do
         %i.icon-warning-sign.pull-left
 
     - elsif inappropriate_post.flagged?(:inappropriate)
-      = button_tag type: "submit", class: "btn btn-mini btn-warning",
-        title: "Someone else has flagged this post as inappropriate.",
-        id: "inappropriate-post-#{inappropriate_post.id}" do
+      = button_tag type: "submit",
+        class: "btn btn-mini btn-warning",
+        id: "inappropriate-post-#{inappropriate_post.id}",
+        title: "Someone else has flagged this post as inappropriate." do
         %i.icon-warning-sign.pull-left
 
     - else
       = button_tag type: "submit",
-        id: "inappropriate-post-#{inappropriate_post.id}", class: "btn btn-mini" do
+        class: "btn btn-mini",
+        id: "inappropriate-post-#{inappropriate_post.id}" do
         %i.icon-warning-sign.pull-left
 
 - else

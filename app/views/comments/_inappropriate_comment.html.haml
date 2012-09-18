@@ -6,7 +6,6 @@
     = hidden_field_tag :flag_type, :inappropriate
 
     - if current_user.flagged?(inappropriate_comment, :inappropriate)
-      = button_tag type: "submit", class: "btn btn-mini btn-danger",
       = button_tag type: "submit",
         class: "btn btn-mini btn-danger",
         id: "inappropriate-comment-#{inappropriate_comment.id}",
@@ -21,7 +20,6 @@
         %i.icon-warning-sign.pull-left
 
     - else
-      = button_tag type: "submit", class: "btn btn-mini" do
       = button_tag type: "submit",
         class: "btn btn-mini",
         id: "inappropriate-comment-#{inappropriate_comment.id}" do

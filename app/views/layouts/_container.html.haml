@@ -1,8 +1,10 @@
 .container
   .content
     .row
-      .span12
+      .span12#flash-area
         = render 'layouts/messages'
+
+        = render partial: 'layouts/inappropriate_modal'
 
     = content_for?(:page_title) ? yield(:page_title) : nil
 
