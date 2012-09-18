@@ -1,9 +1,13 @@
-%tr
+%tr{ id: "comment-#{comment.id}" }
   %td
     = render partial: 'shared/votable_item', locals: { votable_item: comment }
     = render partial: 'comments/inappropriate_comment', locals: { inappropriate_comment: comment }
 
   %td.comment
+    .pull-right
+      = link_to spoke_post_path(comment.post.spoke_id, comment.post.id,
+        anchor: "comment-#{comment.id}") do
+        %i.icon-magnet
     %p
       added
       = time_tag comment.created_at
@@ -15,10 +19,10 @@
           edit_spoke_post_comment_path(comment.post.spoke_id, comment.post.id, comment),
           class: 'btn btn-mini btn-warning'
 
-      %a.btn.btn-mini{ href: "#", "data-target" => "#comment-#{comment.id}",
+      %a.btn.btn-mini{ href: "#", "data-target" => "#comment-reply-#{comment.id}",
         title: "Reply to comment", "data-toggle" => "collapse" }
         reply
-      .collapse{ id: "comment-#{comment.id}" }
+      .collapse{ id: "comment-reply-#{comment.id}" }
         = render 'comments/new', parent_type: 'comment', parent_id: comment.id
 
     %p= sanitize(comment.body)
