@@ -25,8 +25,10 @@
       %code= time_tag @post.created_at
       by
       %code= @post.user.name
-      = link_to 'Edit', edit_spoke_post_path(@post.spoke, @post),
-        class: 'btn btn-mini btn-warning'
+
+      - if @post.user == current_user
+        = link_to 'Edit', edit_spoke_post_path(@post.spoke, @post),
+          class: 'btn btn-mini btn-warning'
 
     .well
       %p= sanitize(@post.content)

@@ -14,15 +14,24 @@ class CommentsController < ApplicationController
     redirect_to spoke_post_path(@post.spoke, @post)
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+  end
+
   def update
     @comment = Comment.find(params[:id])
 
-    if params[:flag_type]
-      current_user.toggle_flag(@comment, params[:flag_type])
-    end
-
     respond_to do |format|
-      format.js
+      if params[:flag_type]
+        current_user.toggle_flag(@comment, params[:flag_type])
+        format.js
+      end
+
+      if @comment.update_attributes(params[:comment])
+        format.html { redirect_to spoke_post_path(@comment.post.spoke, @comment.post) }
+      else
+        format.html { render action: "edit" }
+      end
     end
   end
 end

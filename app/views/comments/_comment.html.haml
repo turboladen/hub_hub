@@ -9,6 +9,12 @@
       = time_tag comment.created_at
       by
       %b= comment.user.name
+
+      - if comment.user == current_user
+        = link_to 'Edit',
+          edit_spoke_post_comment_path(comment.post.spoke_id, comment.post.id, comment),
+          class: 'btn btn-mini btn-warning'
+
       %a.btn.btn-mini{ href: "#", "data-target" => "#comment-#{comment.id}",
         title: "Reply to comment", "data-toggle" => "collapse" }
         reply
