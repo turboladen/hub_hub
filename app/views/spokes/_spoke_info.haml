@@ -3,4 +3,5 @@
 
   %p= spoke.description
 
-  = link_to 'Edit', edit_spoke_path(spoke), class: 'btn btn-mini btn-warning'
+  - if user_signed_in? && current_user.admin?
+    = link_to 'Edit', edit_spoke_path(spoke), class: 'btn btn-mini btn-warning'
