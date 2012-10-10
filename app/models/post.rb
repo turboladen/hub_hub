@@ -20,7 +20,8 @@ class Post < ActiveRecord::Base
 
   scope :newest, order('created_at')
   scope :most_active, where('commentable_count > 0').order('commentable_count DESC')
-  scope :most_negative, where('cached_votes_down > 0').order('cached_votes_down DESC')
+  scope :most_negative,
+    where('cached_votes_down > 0').order('cached_votes_down DESC')
   scope :most_positive, where('cached_votes_up > 0').order('cached_votes_up DESC')
   scope :most_voted, where('cached_votes_total > 0').order('cached_votes_total DESC')
 

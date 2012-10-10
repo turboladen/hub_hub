@@ -51,5 +51,6 @@ group :development, :test do
   gem 'mocha', require: false
   gem 'simplecov', require: false, group: :test
   gem 'sqlite3'
+  gem 'tailor'
   gem 'test-unit'
 end
