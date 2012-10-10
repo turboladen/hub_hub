@@ -49,8 +49,7 @@ end
 
 group :development, :test do
   gem 'mocha', require: false
-  gem 'redgreen'
-  gem 'simplecov', :require => false, :group => :test
+  gem 'simplecov', require: false, group: :test
   gem 'sqlite3'
-  gem 'test-unit', '1.2.3'
+  gem 'test-unit'
 end
