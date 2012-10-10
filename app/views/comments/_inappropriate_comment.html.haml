@@ -28,11 +28,11 @@
 - else
   - if inappropriate_comment.flagged?(:inappropriate)
     = button_tag type: "submit",
-      class: "btn btn-mini btn-warning",
+      class: "btn btn-mini btn-warning disabled",
       title: "Someone else has flagged this comment as inappropriate." do
       %i.icon-warning-sign.pull-left
 
   - else
     %p
-      %span.label
+      %button.btn.btn-mini.disabled
         %i.icon-warning-sign{ style: "width: 23px;" }
