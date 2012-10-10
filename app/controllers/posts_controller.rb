@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  # Devise filter
+  before_filter :authenticate_user!, only: [:create, :edit, :update]
+
   def create
     @spoke = Spoke.find(params[:spoke_id])
     @post = @spoke.posts.build(params[:post])
@@ -20,8 +23,22 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+
+    if current_user == @post.user
+      respond_to do |format|
+        format.html
+      end
+    else
+      respond_to do |format|
+        format.html {
+          redirect_to spoke_post_url(@post.spoke, @post),
+            notice: "You must have created the post to be able to edit it."
+        }
+      end
+    end
   end
 
+  # @todo Rename to #flag since this should behave differently than a regular update.
   def update
     @post = Post.find(params[:id])
 
