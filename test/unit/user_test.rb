@@ -20,4 +20,20 @@ class UserTest < ActiveSupport::TestCase
     @bob.save!
     assert_equal @bob.banned?, true
   end
+
+  test "can vote" do
+    assert @bob.vote_up_for posts(:post_one)
+    assert @bob.vote_down_for comments(:comment_one)
+  end
+
+  test "can flag" do
+    comment = comments(:comment_one)
+    assert !@bob.flagged?(comment)
+
+    assert_difference 'comment.flaggings.count' do
+      @bob.flag comment, :inappropriate
+    end
+
+    assert @bob.flagged? comment
+  end
 end
