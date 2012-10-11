@@ -17,7 +17,9 @@ HubHub::Application.routes.draw do
   end
 
   resources :spokes, except: :index do
-    resources :posts do
+    resources :posts, except: [:index, :new, :update] do
+      put "flag", action: :flag, as: :flag
+
       resources :comments, except: [:index, :new]
     end
   end

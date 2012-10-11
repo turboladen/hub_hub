@@ -44,7 +44,7 @@ class PostsControllerTest < ActionController::TestCase
     assert_select '.span8 div p time'
     assert_select '.span8 div p', /#{@post.user.name}/
     assert_select '.span8 .well p', @post.content
-    assert_select 'td .comment', 1
+    assert_select 'td.comment', @post.comment_threads.count
   end
 
   test "shows post with no link to edit when not logged in" do
@@ -89,36 +89,36 @@ class PostsControllerTest < ActionController::TestCase
     assert_response 200
   end
 
-  test "does not allow update via JS when not logged in" do
-    put :update, id: @post.id, spoke_id: @post.spoke.id, format: :js
+  test "does not allow flag via JS when not logged in" do
+    put :flag, post_id: @post.id, spoke_id: @post.spoke.id, format: :js
 
     assert_response 401
   end
 
-  test "does not allow update via HTML when not logged in" do
-    put :update, id: @post.id, spoke_id: @post.spoke.id, format: :html
+  test "does not allow flag via HTML when not logged in" do
+    put :flag, post_id: @post.id, spoke_id: @post.spoke.id, format: :html
 
     assert_response 302
     assert_redirected_to new_user_session_url
   end
 
-  test "allows update when not logged in as post owner" do
+  test "allows flag when not logged in as post owner" do
     sign_in users(:ricky)
-    put :update, id: @post.id, spoke_id: @post.spoke.id, flag_type: :inappropriate,
+    put :flag, post_id: @post.id, spoke_id: @post.spoke.id, flag_type: :inappropriate,
       format: :js
 
     assert_equal assigns(:flag_type), :inappropriate
     assert_response 200
-    assert_template 'posts/update'
+    assert_template 'posts/flag'
   end
 
-  test "allows update when logged in as post owner" do
+  test "allows flag when logged in as post owner" do
     sign_in users(:bob)
-    put :update, id: @post.id, spoke_id: @post.spoke.id, flag_type: :inappropriate,
+    put :flag, post_id: @post.id, spoke_id: @post.spoke.id, flag_type: :inappropriate,
       format: :js
 
     assert_equal assigns(:flag_type), :inappropriate
     assert_response 200
-    assert_template 'posts/update'
+    assert_template 'posts/flag'
   end
 end

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   # Devise filter
-  before_filter :authenticate_user!, only: [:create, :edit, :update]
+  before_filter :authenticate_user!, except: [:show]
 
   def create
     @spoke = Spoke.find(params[:spoke_id])
@@ -38,9 +38,8 @@ class PostsController < ApplicationController
     end
   end
 
-  # @todo Rename to #flag since this should behave differently than a regular update.
-  def update
-    @post = Post.find(params[:id])
+  def flag
+    @post = Post.find(params[:post_id])
 
     if params[:flag_type]
       @flag_type = params[:flag_type]
