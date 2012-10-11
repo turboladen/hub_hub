@@ -21,6 +21,7 @@ class Comment < ActiveRecord::Base
     c.commentable_type = obj.class.base_class.name
     c.body = comment
     c.user_id = user_id
+
     c
   end
 
@@ -47,7 +48,7 @@ class Comment < ActiveRecord::Base
   }
 
   # Helper class method to look up a commentable object
-  # given the commentable class name and id
+  # given the commentable class name and id.
   def self.find_commentable(commentable_str, commentable_id)
     commentable_str.constantize.find(commentable_id)
   end
