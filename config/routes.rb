@@ -10,7 +10,7 @@ HubHub::Application.routes.draw do
     get "/",          action: :index
 
     get "users",      action: :users, as: 'users'
-    get "users/:id",   action: :user, as: 'user'
+    get "users/:id",  action: :user, as: 'user'
     put "users/:id",  action: :update_user
 
     get "inappropriate_items", action: :inappropriate_items, as: 'inappropriate_items'

@@ -37,7 +37,7 @@ class AdminController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.email == "admin@mindhub.org"
-      redirect_to :back, notice: "Can't update super-user."
+      redirect_to admin_url, notice: "Can't update super-user."
       return
     end
 
