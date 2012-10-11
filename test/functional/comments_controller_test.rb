@@ -5,10 +5,21 @@ class CommentsControllerTest < ActionController::TestCase
     @post = posts(:post_one)
     @comment = comments(:comment_one)
     @bob = users(:bob)
-    sign_in @bob
   end
 
-  test "should create comment on a post" do
+  test "doesn't allow commenting if not logged in" do
+    assert_no_difference('Comment.count') do
+      post :create, { post_id: @post.id, spoke_id: @post.spoke_id,
+        comment: { body: "stuff" } }
+    end
+
+    assert_response 302
+    assert_redirected_to new_user_session_url
+  end
+
+  test "creates comment on a post if logged in" do
+    sign_in @bob
+
     assert_difference('Comment.count') do
       post :create, { post_id: @post.id, spoke_id: @post.spoke_id,
         comment: { body: "stuff" } }
@@ -21,7 +32,9 @@ class CommentsControllerTest < ActionController::TestCase
     assert_redirected_to spoke_post_path(@post.spoke, @post)
   end
 
-  test "should create comment on a comment" do
+  test "creates comment on a comment if logged in" do
+    sign_in @bob
+
     parent_comment = Comment.build_from(@post, @bob.id, "sup")
     parent_comment.save!
 
@@ -44,32 +57,51 @@ class CommentsControllerTest < ActionController::TestCase
     assert_redirected_to spoke_post_path(@post.spoke, @post)
   end
 
-  test "provides an edit page" do
+  test "doesn't provide an edit page if not logged in as comment owner" do
+    sign_in users(:ricky)
     get :edit, spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id
-    assert_equal assigns(:comment), @comment
+
+    assert_response 302
+    assert_redirected_to spoke_post_comment_path(@comment.post.spoke, @comment.post, @comment)
+    assert_equal "You must have created the comment to be able to edit it.",
+      flash[:notice]
   end
 
-  test "allows updating" do
-    put :update, { spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id },
+  test "provides an edit page if logged in as comment owner" do
+    sign_in @bob
+    get :edit, spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id
+
+    assert_equal assigns(:comment), @comment
+    assert_response 200
+  end
+
+  test "doesn't allow updating if logged in as not comment owner" do
+    sign_in users(:karl)
+    put :update, spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id,
       comment: { body: 'some new stuff' }
 
-    assert_equal assigns(:comment), @comment
-    assert_redirected_to spoke_post_path(@post.spoke, @post)
+    assert_redirected_to spoke_post_path(@comment.post.spoke, @comment.post)
   end
 
-  test "denies updating non-existent params" do
-    put :update, { spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id },
-      comment: { pants: 'this should not work' }
+  test "allows updating if logged in as comment owner" do
+    sign_in @bob
+    put :update, spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id,
+      comment: { body: 'some new stuff' }
 
+    assert_redirected_to spoke_post_path(@post.spoke, @post)
     assert_equal assigns(:comment), @comment
-    assert_template action: 'edit'
   end
 
   test "allows toggling flags on comments not flagged by other users" do
+    sign_in @bob
     assert !@comment.flagged?
 
-    xhr :put, :update, { spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id,
-      flag_type: :inappropriate }
+    xhr :put, :flag, {
+      spoke_id: @post.spoke_id,
+      post_id: @post.id,
+      comment_id: @comment.id,
+      flag_type: :inappropriate
+    }
     assert @comment.flagged?
     assert @bob.flagged?(@comment, :inappropriate)
     assert_equal assigns(:comment), @comment
@@ -81,8 +113,12 @@ $('#inappropriate-comment-369018563').removeClass('btn-warning')
 $('#inappropriateFlag').modal('show')
     BODY
 
-    xhr :put, :update, { spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id,
-      flag_type: :inappropriate }
+    xhr :put, :flag, {
+      spoke_id: @post.spoke_id,
+      post_id: @post.id,
+      comment_id: @comment.id,
+      flag_type: :inappropriate
+    }
     assert !@comment.flagged?
     assert !@bob.flagged?(@comment, :inappropriate)
     assert_response :success
@@ -101,8 +137,12 @@ $('#inappropriate-comment-369018563').removeClass('btn-warning')
 
     assert !@bob.flagged?(@comment,:inappropriate)
 
-    xhr :put, :update, { spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id,
-      flag_type: :inappropriate }
+    xhr :put, :flag, {
+      spoke_id: @post.spoke_id,
+      post_id: @post.id,
+      comment_id: @comment.id,
+      flag_type: :inappropriate
+    }
     assert @comment.flagged?
     assert @bob.flagged?(@comment, :inappropriate)
     assert_equal assigns(:comment), @comment
@@ -114,8 +154,12 @@ $('#inappropriate-comment-369018563').removeClass('btn-warning')
 $('#inappropriateFlag').modal('show')
     BODY
 
-    xhr :put, :update, { spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id,
-      flag_type: :inappropriate }
+    xhr :put, :flag, {
+      spoke_id: @post.spoke_id,
+      post_id: @post.id,
+      comment_id: @comment.id,
+      flag_type: :inappropriate
+    }
     assert !@bob.flagged?(@comment, :inappropriate)
     assert_response :success
 
