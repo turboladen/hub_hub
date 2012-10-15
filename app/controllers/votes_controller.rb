@@ -3,7 +3,7 @@ class VotesController < ApplicationController
 
   def upvote
     @item_type = params[:item_type]
-    @item = instance_eval "#{@item_type.capitalize}.find #{params[:item_id]}"
+    @item = @item_type.capitalize.constantize.find params[:item_id]
 
     if current_user.voted_up_on? @item
       current_user.unvote_for @item
@@ -22,7 +22,7 @@ class VotesController < ApplicationController
 
   def downvote
     @item_type = params[:item_type]
-    @item = instance_eval "#{@item_type.capitalize}.find #{params[:item_id]}"
+    @item = @item_type.capitalize.constantize.find params[:item_id]
 
     if current_user.voted_down_on? @item
       current_user.unvote_for @item
