@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class HomeControllerTest < ActionController::TestCase
+  fixtures :posts
+
   test "gets index" do
     get :index
 
@@ -14,12 +16,12 @@ class HomeControllerTest < ActionController::TestCase
   end
 
   test "gets index with sorter" do
-    Post.expects(:newest)
     get :index, sort: :newest
 
     assert_response :success
+    assert_equal assigns(:posts).size, 6
     assert_select 'li .spoke', 2
-    assert_select 'td .post-title', 6
+    assert_select 'div .post-title', 6
   end
 
   test "gets terms of service" do
