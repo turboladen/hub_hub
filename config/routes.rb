@@ -9,8 +9,8 @@ HubHub::Application.routes.draw do
   namespace :admin do
     get "/",          action: :index
 
-    get "users",      action: :users, as: 'users'
-    get "users/:id",  action: :user, as: 'user'
+    get "users",      action: :index_users, as: 'users'
+    get "users/:id",  action: :show_user, as: 'user'
     put "users/:id",  action: :update_user
 
     get "inappropriate_items", action: :inappropriate_items, as: 'inappropriate_items'

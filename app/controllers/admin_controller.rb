@@ -23,12 +23,12 @@ class AdminController < ApplicationController
     render 'flaggings/index'
   end
 
-  def users
+  def index_users
     @users = User.all
     render 'users/index'
   end
 
-  def user
+  def show_user
     @user = User.find(params[:id])
     render 'users/show'
   end
