@@ -1,4 +1,6 @@
 class VotesController < ApplicationController
+  before_filter :authenticate_user!
+
   def upvote
     @item_type = params[:item_type]
     @item = instance_eval "#{@item_type.capitalize}.find #{params[:item_id]}"
