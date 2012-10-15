@@ -1,5 +1,6 @@
-//$('input[name=is_banned].confirm_selection#ban-<%= @user.id %>').toggleClass('glow');
-
-$('#admin-<%= @user.id %>').attr('checked', <%= @make_admin %>)
-$('#admin-<%= @user.id %>').attr('value', <%= !@make_admin %>)
+$('#admin-<%= @user.id %>').parent().css({'backgroundColor':'#99cc33'}).
+  animate({'backgroundColor':'#fff'}, 1500, "linear", function()
+    {
+          $('#admin-<%= @user.id %>').parent().css({'backgroundColor':''})
+    });
 
