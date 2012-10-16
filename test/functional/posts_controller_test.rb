@@ -34,6 +34,18 @@ class PostsControllerTest < ActionController::TestCase
     assert_redirected_to spoke_path(@post.spoke)
   end
 
+  test "tweets after successfully creating post" do
+    Post.any_instance.expects(:tweet)
+    sign_in users(:ricky)
+
+    post :create, spoke_id: @post.spoke.id, post: {
+      title: "I'm logged in",
+      content: "So this should work."
+    }
+
+    assert_equal "Your post was created.", flash[:notice]
+  end
+
   test "shows post" do
     get :show, id: @post, spoke_id: @post.spoke.id
 

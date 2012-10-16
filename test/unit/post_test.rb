@@ -109,4 +109,9 @@ class PostTest < ActiveSupport::TestCase
   test "#item_type equals 'post'" do
     assert_equal @one.item_type, 'post'
   end
+
+  test "allows tweeting post" do
+    Twitter.expects(:update).with %Q{New post: "#{@one.title}" test_url}
+    @one.tweet('test_url')
+  end
 end

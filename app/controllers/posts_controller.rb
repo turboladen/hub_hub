@@ -6,9 +6,14 @@ class PostsController < ApplicationController
     @spoke = Spoke.find(params[:spoke_id])
     @post = @spoke.posts.build(params[:post])
     @post.user = current_user
-    @post.save
 
-    redirect_to spoke_path(@spoke)
+    if @post.save
+      @post.tweet(spoke_post_url(@spoke.id, @post))
+      redirect_to @spoke, notice: "Your post was created."
+    else
+      logger.debug @post.errors.inspect
+      redirect_to @spoke, alert: @post.errors.full_messages.join("; ")
+    end
   end
 
   def show

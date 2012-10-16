@@ -1,6 +1,8 @@
 require 'uri'
 
 class Post < ActiveRecord::Base
+  include ActionView::Helpers::TextHelper
+
   attr_accessible :content, :name, :title
 
   belongs_to :spoke
@@ -50,5 +52,11 @@ class Post < ActiveRecord::Base
   # @return [String] 'post'
   def item_type
     self.class.to_s.downcase
+  end
+
+  def tweet(url)
+    msg = %Q{New post: "#{truncate(self.title, length: 121, omission: "...")}" }
+    msg << url
+    Twitter.update msg
   end
 end
