@@ -6,7 +6,7 @@
 #
 bob:
   email: bob@bobo.com
-  encrypted_password: password
+  encrypted_password: <%= User.new.send(:password_digest, "password") %>
   first_name: Bob
   last_name: Uecker
   banned: false
@@ -14,7 +14,7 @@ bob:
 
 ricky:
   email: ricky.ricardo@gmail.com
-  encrypted_password: password
+  encrypted_password: <%= User.new.send(:password_digest, "password") %>
   first_name: Richard
   last_name: Ricardo
   banned: false
@@ -22,7 +22,7 @@ ricky:
 
 johnny:
   email: john.jacob.jingleheimer-schmidt@gmail.com
-  encrypted_password: password
+  encrypted_password: <%= User.new.send(:password_digest, "password") %>
   first_name: John Jacob
   last_name: Jingleheimer-Schmidt
   banned: false
@@ -30,7 +30,7 @@ johnny:
 
 karl:
   email: karl.winslow@winslow.com
-  encrypted_password: password
+  encrypted_password: <%= User.new.send(:password_digest, "password") %>
   first_name: Kärl
   last_name: Winsløw
   banned: false
@@ -38,7 +38,7 @@ karl:
 
 admin:
   email: admin@INTERNETZ.com
-  encrypted_password: password
+  encrypted_password: <%= User.new.send(:password_digest, "password") %>
   first_name: Admin
   last_name: The Administrator
   banned: false
@@ -46,7 +46,7 @@ admin:
 
 super_user:
   email: admin@mindhub.org
-  encrypted_password: password
+  encrypted_password: <%= User.new.send(:password_digest, "password") %>
   first_name: The Real
   last_name: Deal
   banned: false
