@@ -25,12 +25,10 @@ class AdminController < ApplicationController
 
   def index_users
     @users = User.all
-    render 'users/index'
   end
 
   def show_user
     @user = User.find(params[:id])
-    render 'users/show'
   end
 
   def update_user
