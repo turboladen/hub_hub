@@ -124,4 +124,44 @@ class PostTest < ActiveSupport::TestCase
     assert_equal posts(:post_two), sorted_posts[4]
     assert_equal posts(:post_one), sorted_posts[5]
   end
+
+  test "allows sorting by most active" do
+    sorted_posts = Post.most_active
+    assert_equal posts(:post_two), sorted_posts[0]
+    assert_equal posts(:post_three), sorted_posts[1]
+    assert_equal posts(:post_one), sorted_posts[2]
+    assert_nil sorted_posts[3]
+    assert_nil sorted_posts[4]
+    assert_nil sorted_posts[5]
+  end
+
+  test "allows sorting by most negative" do
+    sorted_posts = Post.most_negative
+    assert_equal posts(:post_three), sorted_posts[0]
+    assert_equal posts(:post_two), sorted_posts[1]
+    assert_equal posts(:post_four), sorted_posts[2]
+    assert_nil sorted_posts[3]
+    assert_nil sorted_posts[4]
+    assert_nil sorted_posts[5]
+  end
+
+  test "allows sorting by most positive" do
+    sorted_posts = Post.most_positive
+    assert_equal posts(:post_one), sorted_posts[0]
+    assert_equal posts(:post_two), sorted_posts[1]
+    assert_equal posts(:post_four), sorted_posts[2]
+    assert_nil sorted_posts[3]
+    assert_nil sorted_posts[4]
+    assert_nil sorted_posts[5]
+  end
+
+  test "allows sorting by most voted" do
+    sorted_posts = Post.most_voted
+    assert_equal posts(:post_two), sorted_posts[0]
+    assert_equal posts(:post_three), sorted_posts[1]
+    assert_equal posts(:post_one), sorted_posts[2]
+    assert_equal posts(:post_four), sorted_posts[3]
+    assert_nil sorted_posts[4]
+    assert_nil sorted_posts[5]
+  end
 end
