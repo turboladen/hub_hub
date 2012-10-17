@@ -19,6 +19,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test "creates post when logged in" do
     sign_in users(:ricky)
+    Post.any_instance.expects(:tweet)
 
     assert_difference('Post.count') do
       post :create, spoke_id: @post.spoke.id, post: {
