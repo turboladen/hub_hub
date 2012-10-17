@@ -20,7 +20,7 @@ class Post < ActiveRecord::Base
 
   LIMITER = 25
 
-  scope :newest, order('created_at')
+  scope :newest, order('created_at DESC')
   scope :most_active, where('commentable_count > 0').order('commentable_count DESC')
   scope :most_negative,
     where('cached_votes_down > 0').order('cached_votes_down DESC')

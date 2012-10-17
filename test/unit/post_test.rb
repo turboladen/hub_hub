@@ -114,4 +114,14 @@ class PostTest < ActiveSupport::TestCase
     Twitter.expects(:update).with %Q{New post: "#{@one.title}" test_url}
     @one.tweet('test_url')
   end
+
+  test "allows sorting by newest" do
+    sorted_posts = Post.newest
+    assert_equal posts(:link_post_one), sorted_posts[0]
+    assert_equal posts(:post_five), sorted_posts[1]
+    assert_equal posts(:post_four), sorted_posts[2]
+    assert_equal posts(:post_three), sorted_posts[3]
+    assert_equal posts(:post_two), sorted_posts[4]
+    assert_equal posts(:post_one), sorted_posts[5]
+  end
 end

@@ -9,6 +9,7 @@ post_one:
   cached_votes_down: 0
   cached_votes_total: 4
   commentable_count: 1
+  created_at: <%= Time.now - 123456 %>
 
 post_two:
   user: ricky
@@ -20,6 +21,7 @@ post_two:
   cached_votes_down: 4
   cached_votes_total: 6
   commentable_count: 10
+  created_at: <%= Time.now - 12345 %>
 
 post_three:
   user: johnny
@@ -30,6 +32,7 @@ post_three:
   cached_votes_down: 5
   cached_votes_total: 5
   commentable_count: 2
+  created_at: <%= Time.now - 1234 %>
 
 post_four:
   user: karl
@@ -40,6 +43,7 @@ post_four:
   cached_votes_down: 1
   cached_votes_total: 2
   commentable_count: 0
+  created_at: <%= Time.now - 123 %>
 
 post_five:
   user: bob
@@ -50,6 +54,7 @@ post_five:
   cached_votes_down: 0
   cached_votes_total: 0
   commentable_count: 0
+  created_at: <%= Time.now - 12 %>
 
 link_post_one:
   user: ricky
