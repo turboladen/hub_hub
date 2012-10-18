@@ -36,4 +36,11 @@ class UserTest < ActiveSupport::TestCase
 
     assert @bob.flagged? comment
   end
+
+  test "digest email is false by default" do
+    user = User.create(email: 'test@test.com', password: 'password',
+      password_confirmation: 'password')
+
+    assert_equal "false", user.digest_email
+  end
 end

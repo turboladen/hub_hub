@@ -11,6 +11,7 @@ bob:
   last_name: Uecker
   banned: false
   admin: false
+  digest_email: html
 
 ricky:
   email: ricky.ricardo@gmail.com
@@ -19,6 +20,7 @@ ricky:
   last_name: Ricardo
   banned: false
   admin: false
+  digest_email: html
 
 johnny:
   email: john.jacob.jingleheimer-schmidt@gmail.com
@@ -27,6 +29,7 @@ johnny:
   last_name: Jingleheimer-Schmidt
   banned: false
   admin: false
+  digest_email: text
 
 karl:
   email: karl.winslow@winslow.com
@@ -35,6 +38,7 @@ karl:
   last_name: Winsløw
   banned: false
   admin: false
+  digest_email: false
 
 admin:
   email: admin@INTERNETZ.com
@@ -43,6 +47,7 @@ admin:
   last_name: The Administrator
   banned: false
   admin: true
+  digest_email: html
 
 super_user:
   email: admin@mindhub.org
@@ -51,4 +56,5 @@ super_user:
   last_name: Deal
   banned: false
   admin: true
+  digest_email: text
 

@@ -7,12 +7,12 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-    :first_name, :last_name
-  # attr_accessible :title, :body
+    :first_name, :last_name, :digest_email
 
   acts_as_voter
   make_flagger
 
+  # @todo Make sure migrations exist for adding relations
   has_many :comments
   has_many :posts
 

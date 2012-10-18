@@ -1,0 +1,71 @@
+.page-title
+  %h2
+    Edit #{resource_name.to_s.humanize} Settings
+
+%hr
+
+= form_for(resource, as: resource_name, url: registration_path(resource_name),
+  html: { method: :put, class: 'form-horizontal' }) do |f|
+  = devise_error_messages!
+
+  %fieldset.control-group
+    = f.label :first_name, class: 'control-label'
+    .controls
+      = f.text_field :first_name
+
+  %fieldset.control-group
+    = f.label :last_name, class: 'control-label'
+    .controls
+      = f.text_field :last_name
+
+  %fieldset.control-group
+    = f.label :email, class: 'control-label'
+    .controls
+      = f.email_field :email
+
+  %hr
+
+  %fieldset.control-group
+    = f.label :password, class: 'control-label'
+    .controls
+      = f.password_field :password, autocomplete: "off"
+      %i (leave blank if you don't want to change it)
+
+  %fieldset.control-group
+    = f.label :password_confirmation, class: 'control-label'
+    .controls
+      = f.password_field :password_confirmation
+
+  %hr
+
+  %fieldset.control-group
+    = f.label :digest_email, class: 'control-label'
+    .controls
+      = label_tag(:digest_email_html, class: 'radio') do
+        = f.radio_button :digest_email, 'html'
+        HTML
+      = label_tag(:digest_email_text, class: 'radio') do
+        = f.radio_button :digest_email, 'Text'
+        Text
+      = label_tag(:digest_email_false, class: 'radio') do
+        = f.radio_button :digest_email, 'false'
+        I'll read the site when I damn well please.  Thank you.
+
+  %hr
+
+  %fieldset.control-group
+    = f.label :current_password, class: 'control-label'
+    .controls
+      = f.password_field :current_password
+      %i (we need your current password to confirm your changes)
+
+  .form-actions{ style: 'margin-left: -20px; margin-right: -20px;' }
+    = f.submit "Update", class: 'btn'
+    = link_to 'Cancel', :back, class: 'btn btn-danger'
+
+
+  %fieldset.control-group
+    .controls
+      %h3 Cancel my account
+      %p
+        Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete}.
