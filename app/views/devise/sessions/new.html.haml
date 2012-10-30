@@ -20,7 +20,7 @@
       .controls
         = f.check_box :remember_me
 
-  .form-actions{ style: 'margin-left: -20px; margin-right: -20px;' }
+  .form-actions.devise-form-button
     = f.submit "Sign in", class: 'btn btn-success'
 
 = render "devise/shared/links"
