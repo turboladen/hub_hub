@@ -8,6 +8,8 @@
   html: { method: :put, class: 'form-horizontal' }) do |f|
   = devise_error_messages!
 
+  %h3 Basic Info
+
   %fieldset.control-group
     = f.label :first_name, class: 'control-label'
     .controls
@@ -25,6 +27,8 @@
 
   %hr
 
+  %h3 Change your password
+
   %fieldset.control-group
     = f.label :password, class: 'control-label'
     .controls
@@ -37,6 +41,8 @@
       = f.password_field :password_confirmation
 
   %hr
+
+  %h3 Digest email
 
   %fieldset.control-group
     = f.label :digest_email, class: 'control-label'
@@ -53,11 +59,16 @@
 
   %hr
 
+  %h3 Confirm your changes
+
+  %p
+    If you made any changes, enter your password here.  We ask for your password
+    just to make sure it's you making changes to your profile.
+
   %fieldset.control-group
     = f.label :current_password, class: 'control-label'
     .controls
       = f.password_field :current_password
-      %i (we need your current password to confirm your changes)
 
   .form-actions.devise-form-button
     = f.submit "Update", class: 'btn'
