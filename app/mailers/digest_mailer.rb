@@ -7,7 +7,7 @@ class DigestMailer < ActionMailer::Base
   # @param [User] user The User to email.
   def nightly_email(user)
     @posts_from_yesterday = Post.last_24_hours
-    return if @posts_from_yesterday.count.zero?
+    @comments_from_yesterday = Comment.last_24_hours
 
     @user = user
     subject = "Your mindhub.org digest for #{Date.today.to_formatted_s(:long)}"

@@ -1,9 +1,33 @@
 = nightly_intro
 
-- @posts_from_yesterday.each do |post|
-  = "* #{post.title}"
-  = link_to post.title, url_for(spoke_post_url(post.spoke.id, post.id))
-  - body = post.content ? post.content[0..450] : "<Post body was empty.>"
-  = raw body
+\---- Posts from past 24 hours ----
+= "\n"
+
+- if @posts_from_yesterday.count.zero?
+  = "No posts from yesterday."
+
+- else
+  - @posts_from_yesterday.each do |post|
+    = "* #{post.title}, #{spoke_post_url(post.spoke.id, post.id)}:"
+    - body = post.content ? post.content[0..450] : "<Post body was empty.>"
+    = raw body
+    = "\n"
+
+\----------------------------------
+
+\---- Responses from past 24 hours ----
+= "\n"
+
+- if @comments_from_yesterday.count.zero?
+  = "No responses from yesterday."
+
+- else
+  - @comments_from_yesterday.each do |comment|
+    = "* From post #{comment.post.title}, #{spoke_post_url(comment.post.spoke.id, comment.post.id)}:"
+    - body = comment.body ? comment.body[0..450] : "<Response body was empty.>"
+    = raw body
+    = "\n"
+
+\----------------------------------
 
 = raw(unsubscribe_message)

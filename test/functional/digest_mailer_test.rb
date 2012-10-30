@@ -1,17 +1,34 @@
 require 'test_helper'
 
 class DigestMailerTest < ActionMailer::TestCase
-  test "nightly email" do
-    user = users(:bob)
+  setup do
+    @bob = users(:bob)
+  end
 
+  test "nightly email can send" do
     # Send the email, then test that it got queued
-    email = DigestMailer.nightly_email(user).deliver
+    email = DigestMailer.nightly_email(@bob).deliver
     assert !ActionMailer::Base.deliveries.empty?
 
     # Test the body of the sent email contains what we expect it to
-    assert_equal [user.email], email.bcc
+    assert_equal [@bob.email], email.bcc
     assert_equal "Your mindhub.org digest for #{Date.today.to_formatted_s(:long)}",
       email.subject
-    assert_match(/Hi #{user.first_name},/, email.encoded)
+    assert_match(/Hi #{@bob.first_name},/, email.encoded)
+
+    email
+  end
+
+  test "nightly email with no posts or comments" do
+    # Not sure why posts and comments are loaded...
+    Post.all.each(&:destroy)
+    Comment.all.each(&:destroy)
+    assert_equal 0, Post.count
+    assert_equal 0, Comment.count
+
+    email = test_nightly_email_can_send
+
+    assert_match(/No posts from yesterday\./, email.encoded)
+    assert_match(/No comments from yesterday\./, email.encoded)
   end
 end
