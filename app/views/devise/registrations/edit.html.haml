@@ -50,11 +50,13 @@
       = label_tag(:digest_email_html, class: 'radio') do
         = f.radio_button :digest_email, 'html'
         HTML
+
       = label_tag(:digest_email_text, class: 'radio') do
-        = f.radio_button :digest_email, 'Text'
+        = f.radio_button :digest_email, 'text'
         Text
+
       = label_tag(:digest_email_false, class: 'radio') do
-        = f.radio_button :digest_email, 'false'
+        = f.radio_button :digest_email, false
         I'll read the site when I damn well please.  Thank you.
 
   %hr
@@ -71,7 +73,7 @@
       = f.password_field :current_password
 
   .form-actions.devise-form-button
-    = f.submit "Update", class: 'btn'
+    = f.submit "Update", class: 'btn btn-primary'
     = link_to 'Cancel', :back, class: 'btn btn-danger'
 
 
