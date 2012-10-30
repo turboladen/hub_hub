@@ -16,6 +16,17 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :posts
 
+  # Gets a list of all email addresses and digest_email settings for users that
+  # have subscribed to the digest.
+  #
+  # @return [Array]
+  def self.digest_list
+    where('digest_email != ?', false).select([:email, :digest_email])
+  end
+
+  # The full name of the user.
+  #
+  # @return [String] The full name like 'Joe Blow'.
   def name
     "#{self.first_name} #{self.last_name}"
   end
