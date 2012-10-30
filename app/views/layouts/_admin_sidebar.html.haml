@@ -1,13 +1,17 @@
 .well
   %ul.nav.nav-list
-    %li{ class: active_li? { request.original_url.match admin_users_path } }
+    %li{ class: active_li? { current_page?(admin_users_path) } }
       = link_to admin_users_path do
         %i.icon-user
         Users
 
-    %li{ class: active_li? { request.original_url.match admin_inappropriate_items_path } }
+    %li{ class: active_li? { current_page?(admin_inappropriate_items_path) } }
       = link_to admin_inappropriate_items_path do
         %i.icon-warning-sign
         Inappropriate items
 
+    %li{ class: active_li? { current_page?(admin_digest_email_options_path) } }
+      = link_to admin_digest_email_options_path do
+        %i.icon-envelope
+        Digest Email Options
 
