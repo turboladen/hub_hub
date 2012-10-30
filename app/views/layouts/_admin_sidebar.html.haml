@@ -1,23 +1,13 @@
 .well
   %ul.nav.nav-list
-    - if request.original_url.match admin_users_path
-      %li.active
-        = link_to admin_users_path do
-          %i.icon-user
-          Users
-    - else
-      %li
-        = link_to admin_users_path do
-          %i.icon-user
-          Users
+    %li{ class: active_li? { request.original_url.match admin_users_path } }
+      = link_to admin_users_path do
+        %i.icon-user
+        Users
 
-    - if request.original_url.match admin_inappropriate_items_path
-      %li.active
-        = link_to admin_inappropriate_items_path do
-          %i.icon-warning-sign
-          Inappropriate items
-    - else
-      %li
-        = link_to admin_inappropriate_items_path do
-          %i.icon-warning-sign
-          Inappropriate items
+    %li{ class: active_li? { request.original_url.match admin_inappropriate_items_path } }
+      = link_to admin_inappropriate_items_path do
+        %i.icon-warning-sign
+        Inappropriate items
+
+

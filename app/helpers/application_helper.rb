@@ -27,4 +27,14 @@ to banning from the site.
 
     msg.gsub("\n", ' ')
   end
+
+  # If the called block returns true, return "active".  Useful for doing away
+  # with conditionals in views.
+  #
+  # @return [String] "active" if true; nil if false.
+  def active_li?(&blk)
+    if blk.call
+      "active"
+    end
+  end
 end
