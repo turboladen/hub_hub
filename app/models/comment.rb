@@ -12,6 +12,9 @@ class Comment < ActiveRecord::Base
 
   make_flaggable :inappropriate
 
+  scope :last_24_hours, where('created_at >= :twenty_four_hours_ago AND created_at < :now',
+    twenty_four_hours_ago: (Time.now - 86400), now: Time.now)
+
   # Helper class method that allows you to build a comment
   # by passing a commentable object, a user_id, and comment text
   # example in readme

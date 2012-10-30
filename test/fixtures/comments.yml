@@ -4,12 +4,14 @@ comment_one:
   user: bob
   body: First text.
   commentable: post_one (Post)
+  created_at: <%= Time.now - 123456 %>
 
 <% 10.times do |i| %>
 comment_two_#{i}:
   user: bob
   body: More text.
   commentable: post_two (Post)
+  created_at: <%= Time.now - 12345 + i %>
 <% end %>
 
 <% 2.times do |i| %>
@@ -17,5 +19,6 @@ comment_three_#{i}:
   user: ricky
   body: MyText
   commentable: post_three (Post)
+  created_at: <%= Time.now - 1234 + i %>
 <% end %>
 

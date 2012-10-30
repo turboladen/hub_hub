@@ -75,4 +75,9 @@ class CommentTest < ActiveSupport::TestCase
   test "is related to a Post" do
     assert_equal posts(:post_one), comments(:comment_one).post
   end
+
+  test "get comments from last 24 hours" do
+    assert_equal 2, Comment.last_24_hours.count
+    assert_not_include Comment.last_24_hours, @comment
+  end
 end
