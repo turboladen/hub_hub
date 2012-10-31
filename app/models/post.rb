@@ -57,7 +57,7 @@ class Post < ActiveRecord::Base
   end
 
   def tweet(url)
-    msg = %Q{New post: "#{truncate(self.title, length: 121, omission: "...")}" }
+    msg = %Q{#{self.spoke.name}: #{truncate(self.title, length: 121, omission: "...")} }
     msg << url
     Twitter.update msg
   end
