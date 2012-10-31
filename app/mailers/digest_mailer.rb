@@ -1,5 +1,12 @@
 class DigestMailer < ActionMailer::Base
-  default from: "digest@mindhub.org", bcc: User.digest_list
+  default from: "digest@mindhub.org"
+
+  # Emails the nightly email to each digest subscriber.
+  def nightly_email_everyone
+    User.digest_list.each do |user|
+      nightly_email(user).deliver
+    end
+  end
 
   # Gets the posts from the last 24 hours and emails the User with a light
   # breakdown of those posts.
@@ -12,6 +19,6 @@ class DigestMailer < ActionMailer::Base
     @user = user
     subject = "Your mindhub.org digest for #{Date.today.to_formatted_s(:long)}"
 
-    mail(bcc: user.email, subject: subject)
+    mail(to: user.email, subject: subject)
   end
 end

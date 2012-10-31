@@ -21,13 +21,15 @@ end
 gem 'haml-rails', '~> 0.3.4'
 gem 'jquery-rails'
 
-# Plugins
+# Model Plugins
 gem 'devise'
 gem 'acts_as_commentable_with_threading', '~> 1.1.2'
 gem 'acts_as_votable', '~> 0.3.1'
 gem 'make_flaggable', git: 'git://github.com/cavneb/make_flaggable.git'
 
+# Other Plugins
 gem 'twitter', '~> 4.1.0'
+gem 'whenever', '~> 0.7.3', require: false
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
