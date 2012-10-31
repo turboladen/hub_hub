@@ -45,7 +45,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "can get a list of all users that want digest emails" do
-    assert_equal 5, User.digest_list.size
+    assert_equal 3, User.digest_list.size
     assert User.digest_list.none? { |u| u.email == users(:karl).email }
     assert User.digest_list.any? { |u| u.email == @bob.email }
   end

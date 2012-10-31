@@ -47,17 +47,13 @@
   %fieldset.control-group
     = f.label :digest_email, class: 'control-label'
     .controls
-      = label_tag(:digest_email_html, class: 'radio') do
-        = f.radio_button :digest_email, 'html'
-        HTML
-
-      = label_tag(:digest_email_text, class: 'radio') do
-        = f.radio_button :digest_email, 'text'
-        Text
+      = label_tag(:digest_email_true, class: 'radio') do
+        = f.radio_button :digest_email, true
+        Yes, please!
 
       = label_tag(:digest_email_false, class: 'radio') do
         = f.radio_button :digest_email, false
-        I'll read the site when I damn well please.  Thank you.
+        I'll read the site when I damn well please, thank you.
 
   %hr
 

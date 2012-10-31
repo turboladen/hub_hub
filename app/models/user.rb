@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   #
   # @return [Array]
   def self.digest_list
-    where('digest_email != ?', false).select([:email, :digest_email])
+    where('digest_email = ?', true).select([:email, :digest_email])
   end
 
   # The full name of the user.
