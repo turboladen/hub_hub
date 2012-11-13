@@ -1,8 +1,23 @@
-set :application, "mindhub"
-set :repository,  "git://github.com/turboladen/hub_hub.git"
-set :scp, :git
-set :deploy_to, "/var/www"
+require 'bundler/capistrano'
+
 set :user, "deploy"
+set :domain, 'chat.mindhub.org'
+set :application, "mindhub"
+
+require 'rvm/capistrano'
+set :rvm_ruby_string, '1.9.3'
+set :rvm_type, :user
+
+set :repository,  "git://github.com/turboladen/hub_hub.git"
+set :deploy_to, "/var/www/#{domain}"
+
+set :deploy_via, :remote_cache
+set :scm, :git
+set :scm_verbose, true
+set :use_sudo, false
+set :rails_env, :production
+
+#default_run_options[:pty] = true
 
 server "chat.mindhub.org", :app, :web, :db, primary: true
 
@@ -17,3 +32,15 @@ server "chat.mindhub.org", :app, :web, :db, primary: true
 #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
 #   end
 # end
+def remote_file_exists?(full_path)
+  'true' ==  capture("if [ -e #{full_path} ]; then echo 'true'; fi").strip
+end
+
+task :setup_deploy_to do
+  unless remote_file_exists?(deploy_to)
+    sudo "mkdir #{deploy_to}", pty: true
+    sudo "chown deploy:deploy #{deploy_to}", pty: true
+  end
+end
+
+before "deploy:setup", :setup_deploy_to
