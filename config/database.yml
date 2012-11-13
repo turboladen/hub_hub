@@ -19,9 +19,9 @@ test:
   timeout: 5000
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: hub_hub_production
+  adapter: mysql2
+  encoding: utf-8
+  database: mindhub_production
   pool: 5
-  username: hub_hub
-  password:
+  username: deploy
+  password: <%= IO.read("/home/deploy/.db") rescue nil %>
