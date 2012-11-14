@@ -7,6 +7,7 @@ gem 'ledermann-rails-settings', require: 'rails-settings'
 
 group :production do
   gem 'mysql2'
+  gem 'passenger'
 end
 
 # Gems used only for assets and not required
@@ -40,10 +41,6 @@ gem 'whenever', '~> 0.8.0', require: false
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
-
-# Use unicorn as the app server
-#gem 'unicorn'
-gem 'passenger'
 
 # Deploy with Capistrano
 gem 'capistrano'
