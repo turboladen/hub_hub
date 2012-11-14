@@ -44,3 +44,22 @@ task :setup_deploy_to do
 end
 
 before "deploy:setup", :setup_deploy_to
+
+#------------------------------------------------------
+#	Passenger
+namespace :passenger do
+  desc "Restart Application"
+  task :restart do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+end
+
+after :deploy, "passenger:restart"
+
+desc "Tail logs"
+task :tail, :roles => :app do
+  run "tail -f #{shared_path}/log/*.log" do |channel, stream, data|
+    puts "#{channel[:host]}: #{data}"
+    break if stream == :err
+  end
+end
