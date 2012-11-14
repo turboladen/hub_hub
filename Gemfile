@@ -42,7 +42,8 @@ gem 'whenever', '~> 0.8.0', require: false
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-gem 'unicorn'
+#gem 'unicorn'
+gem 'passenger'
 
 # Deploy with Capistrano
 gem 'capistrano'
