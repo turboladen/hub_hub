@@ -9,6 +9,18 @@ class UserTest < ActiveSupport::TestCase
     assert_equal(@bob.name, "Bob Uecker")
   end
 
+  test "first_name must not be empty" do
+    user = User.new
+    assert user.invalid?
+    assert user.errors[:first_name].any?
+  end
+
+  test "last_name must not be empty" do
+    user = User.new
+    assert user.invalid?
+    assert user.errors[:last_name].any?
+  end
+
   test "user is not admin by default" do
     assert_equal(@bob.admin?, false)
   end

@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me,
     :first_name, :last_name, :digest_email
 
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+
   acts_as_voter
   make_flagger
 

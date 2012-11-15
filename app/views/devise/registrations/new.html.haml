@@ -6,6 +6,16 @@
   = devise_error_messages!
 
   %fieldset.control-group
+    = f.label :first_name, class: 'control-label'
+    .controls
+      = f.text_field :first_name
+
+  %fieldset.control-group
+    = f.label :last_name, class: 'control-label'
+    .controls
+      = f.text_field :last_name
+
+  %fieldset.control-group
     = f.label :email, class: 'control-label'
     .controls
       = f.email_field :email
