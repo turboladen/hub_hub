@@ -111,7 +111,7 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "allows tweeting post" do
-    Twitter.expects(:update).with %Q{New post: "#{@one.title}" test_url}
+    Twitter.expects(:update).with %Q{#{@one.spoke.name}: #{@one.title} test_url}
     @one.tweet('test_url')
   end
 
