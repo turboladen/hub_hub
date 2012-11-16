@@ -7,7 +7,7 @@ gem 'ledermann-rails-settings', require: 'rails-settings'
 
 group :production do
   gem 'mysql2'
-  gem 'pg'  # for heroku
+  #gem 'pg'  # for heroku
   gem 'passenger'
 end
 
