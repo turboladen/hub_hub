@@ -1,0 +1,10 @@
+= form_tag(admin_update_digest_email_settings_path(setting: :send_time),
+  method: :put, class: 'form-horizontal') do
+  %fieldset.control-group
+    = label_tag :send_time, "Daily send time", class: 'control-label'
+    .controls
+      = text_field_tag :send_time, @settings[:send_time]
+
+  .form-actions.devise-form-button
+    = submit_tag "Update", class: 'btn btn-primary'
+

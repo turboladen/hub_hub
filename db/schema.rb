@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121018043755) do
+ActiveRecord::Schema.define(:version => 20121018060150) do
 
   create_table "comments", :force => true do |t|
     t.integer  "commentable_id",    :default => 0
@@ -61,6 +61,17 @@ ActiveRecord::Schema.define(:version => 20121018043755) do
   add_index "posts", ["cached_votes_total"], :name => "index_posts_on_cached_votes_total"
   add_index "posts", ["cached_votes_up"], :name => "index_posts_on_cached_votes_up"
   add_index "posts", ["spoke_id"], :name => "index_posts_on_spoke_id"
+
+  create_table "settings", :force => true do |t|
+    t.string   "var",                       :null => false
+    t.text     "value"
+    t.integer  "target_id"
+    t.string   "target_type", :limit => 30
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "settings", ["target_type", "target_id", "var"], :name => "index_settings_on_target_type_and_target_id_and_var", :unique => true
 
   create_table "spokes", :force => true do |t|
     t.string   "name"

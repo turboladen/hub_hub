@@ -74,6 +74,14 @@ class AdminController < ApplicationController
     render nothing: true
   end
 
+  def edit_digest_email_settings
+    @settings = Settings.digest_email
+  end
+
+  def update_digest_email_settings
+    Settings.digest_email[:send_time] = params[:send_time]
+  end
+
   private
 
   def ensure_admin

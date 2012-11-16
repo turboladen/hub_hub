@@ -13,15 +13,19 @@ HubHub::Application.routes.draw do
     get "users/:id",  action: :show_user, as: 'user'
     put "users/:id",  action: :update_user
 
-    get "inappropriate_items", action: :inappropriate_items, as: 'inappropriate_items'
+    get :inappropriate_items
+    get :digest_email_settings, action: :edit_digest_email_settings,
+      as: :edit_digest_email_settings
+    put :digest_email_settings, action: :update_digest_email_settings,
+      as: :update_digest_email_settings
   end
 
   resources :spokes, except: :index do
     resources :posts, except: [:index, :new, :update] do
-      put "flag", action: :flag, as: :flag
+      put :flag
 
       resources :comments, except: [:index, :new] do
-        put "flag", action: :flag, as: :flag
+        put :flag
       end
     end
   end
