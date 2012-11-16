@@ -3,3 +3,5 @@ rvm:
   - "1.9.3"
 services:
   - sqlite3
+script:
+  - RAILS_ENV=test bundle exec rake --trace db:migrate test
