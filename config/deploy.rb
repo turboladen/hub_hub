@@ -15,7 +15,7 @@ set :deploy_via, :remote_cache
 set :scm, :git
 set :scm_verbose, true
 set :use_sudo, false
-set :rails_env, :production
+set :rails_env, 'production'
 
 #default_run_options[:pty] = true
 
