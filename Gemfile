@@ -36,6 +36,7 @@ gem 'make_flaggable', git: 'git://github.com/cavneb/make_flaggable.git'
 # Other Plugins
 gem 'twitter', '~> 4.2.0'
 gem 'whenever', '~> 0.8.0', require: false
+#gem 'kaminari'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
