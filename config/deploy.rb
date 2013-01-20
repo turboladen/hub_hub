@@ -4,10 +4,6 @@ set :user, "deploy"
 set :domain, 'chat.mindhub.org'
 set :application, "mindhub"
 
-require 'rvm/capistrano'
-set :rvm_ruby_string, '1.9.3'
-set :rvm_type, :user
-
 set :repository,  "git://github.com/turboladen/hub_hub.git"
 set :deploy_to, "/var/www/#{domain}"
 
@@ -16,6 +12,11 @@ set :scm, :git
 set :scm_verbose, true
 set :use_sudo, false
 set :rails_env, 'production'
+
+# For rbenv
+set :default_environment, {
+  'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+}
 
 #default_run_options[:pty] = true
 
