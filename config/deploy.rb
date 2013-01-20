@@ -14,6 +14,7 @@ set :use_sudo, false
 set :rails_env, 'production'
 
 # For rbenv
+set :bundle_flags, "--deployment --quiet --binstubs"
 set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 }
