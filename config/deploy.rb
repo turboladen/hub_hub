@@ -14,9 +14,9 @@ set :use_sudo, false
 set :rails_env, 'production'
 
 # For rbenv
-set :bundle_flags, "--deployment --quiet --binstubs"
+set :bundle_flags, "--deployment --binstubs --shebang ruby-local-exec""
 set :default_environment, {
-  'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+  'PATH' => "/home/#{user}/.rbenv/shims:/home/#{user}/.rbenv/bin:$PATH"
 }
 
 #default_run_options[:pty] = true
