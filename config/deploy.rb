@@ -14,7 +14,7 @@ set :use_sudo, false
 set :rails_env, 'production'
 
 # For rbenv
-set :bundle_flags, "--deployment --binstubs --shebang ruby-local-exec"
+set :bundle_flags, "--deployment --binstubs"
 set :default_environment, {
   'PATH' => "/home/#{user}/.rbenv/shims:/home/#{user}/.rbenv/bin:$PATH"
 }
