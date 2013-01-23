@@ -60,4 +60,6 @@ group :development, :test do
   gem 'sqlite3'
   gem 'tailor'
   gem 'test-unit'
+  gem 'vagrant', '>= 1.0.0'
+  gem 'vagrant-ansible'
 end

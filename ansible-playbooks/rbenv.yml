@@ -1,0 +1,27 @@
+---
+- name: create user $user
+  action: user name=$user
+
+- name: download rbenv-installer for $user
+  action: get_url url=https://raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer dest=/tmp/rbenv-installer mode=0755
+
+- name: run rbenv-installer
+  action: raw HOME=/home/$user /tmp/rbenv-installer
+
+- name: copy rbenv environment setup
+  action: copy src=files/bashrc dest=/home/$user/rbenvbashrc mode=0644
+
+- name: append contents from rbenvbashrc to bashrc
+  action: raw grep rbenv /home/$user/.bashrc || (echo "" >> /home/$user/.bashrc && cat /home/$user/rbenvbashrc >> /home/$user/.bashrc)
+
+- name: copy gem environment setup
+  action: copy src=files/gemrc dest=/home/$user/.gemrc mode=0644
+
+- name: bootstrap gem environment
+  action: copy src=files/rbenv-bootstrap dest=/tmp/rbenv-bootstrap mode=0755
+
+- name: install ruby
+  action: raw HOME=/home/$user PATH=/home/$user/.rbenv/bin:$PATH rbenv install 1.9.3-p194
+
+- name: run bootstrap environment
+  action: raw HOME=/home/$user PATH=/home/$user/.rbenv/bin:$PATH rbenv bootstrap

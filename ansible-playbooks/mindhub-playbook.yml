@@ -1,0 +1,18 @@
+---
+- hosts: mindhub-testers
+  user: vagrant
+  sudo: True
+
+  tasks:
+    - name: update yum
+      action: command /usr/bin/yum update
+
+    - name: install web server packages
+      action: yum pkg=$item state=installed
+      with_items:
+        - mysql-server
+        - git
+        - httpd
+
+    - name: write httpd.conf
+      action: template src=templates/httpd.conf dest=/etc/httpd/conf/httpd.conf
