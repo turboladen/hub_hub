@@ -50,7 +50,7 @@ before "deploy:setup", :setup_deploy_to
 task :set_log_permissions do
   production_log = "#{shared_path}/log/production.log"
 
-  unless remote_file_exists? production_log
+  if remote_file_exists? production_log
     run "chmod 0666 #{production_log}"
   end
 end
