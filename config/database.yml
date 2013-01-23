@@ -25,3 +25,4 @@ production:
   pool: 5
   username: deploy
   password: <%= IO.read("/home/deploy/.db") rescue nil %>
+  socket: /var/lib/mysql/mysql.sock
