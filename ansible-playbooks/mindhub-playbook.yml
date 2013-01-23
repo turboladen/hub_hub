@@ -2,6 +2,8 @@
 - hosts: mindhub-testers
   user: vagrant
   sudo: True
+  vars:
+    password: $1$pHvFX74N$fWbZdxyb1zxIXTQcVn7Kp0
 
   tasks:
     - name: update yum
@@ -16,3 +18,9 @@
 
     - name: write httpd.conf
       action: template src=templates/httpd.conf dest=/etc/httpd/conf/httpd.conf
+
+    - name: make deploy group
+      group: name=deploy state=present
+
+    - name: make deploy user
+      user: name=deploy generate_ssh_key=yes group=deploy password=$password
