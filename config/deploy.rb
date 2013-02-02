@@ -49,15 +49,6 @@ end
 
 after "deploy", :set_log_permissions
 
-#------------------------------------------------------
-#	Passenger
-#namespace :passenger do
-#  desc "Restart Application"
-#  task :restart do
-#    run "touch #{current_path}/tmp/restart.txt"
-#  end
-#end
-# If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
   task :start do ; end
   task :stop do ; end
@@ -65,9 +56,6 @@ namespace :deploy do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 end
-
-
-after :deploy, "passenger:restart"
 
 desc "Tail logs"
 task :tail, :roles => :app do
