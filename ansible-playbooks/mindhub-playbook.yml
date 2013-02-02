@@ -7,7 +7,7 @@
 
   tasks:
     - name: update yum
-      action: command /usr/bin/yum update
+      action: command /usr/bin/yum -y update
 
     - name: install web server packages
       action: yum pkg=$item state=installed
