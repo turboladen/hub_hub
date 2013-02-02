@@ -26,14 +26,6 @@ server "chat.mindhub.org", :app, :web, :db, primary: true
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
 
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
 def remote_file_exists?(full_path)
   'true' ==  capture("if [ -e #{full_path} ]; then echo 'true'; fi").strip
 end
@@ -59,12 +51,21 @@ after "deploy", :set_log_permissions
 
 #------------------------------------------------------
 #	Passenger
-namespace :passenger do
-  desc "Restart Application"
-  task :restart do
-    run "touch #{current_path}/tmp/restart.txt"
+#namespace :passenger do
+#  desc "Restart Application"
+#  task :restart do
+#    run "touch #{current_path}/tmp/restart.txt"
+#  end
+#end
+# If you are using Passenger mod_rails uncomment this:
+namespace :deploy do
+  task :start do ; end
+  task :stop do ; end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 end
+
 
 after :deploy, "passenger:restart"
 
