@@ -5,7 +5,6 @@ require 'vagrant-ansible'
 # $ cd /usr/src
 # $ sudo wget http://dl.fedoraproject.org/pub/epel/5Server/x86_64/epel-release-5-4.noarch.rpm
 # $ sudo rpm -ivh epel-release-5-4.noarch.rpm
-# $ sudo yum update
 # $ sudo yum install python26 python26-PyYAML python26-paramiko python26-jinja2 python-simplejson
 Vagrant::Config.run do |config|
   config.vm.box     = "centos58-x86_64"
