@@ -18,7 +18,7 @@ class PostMailer < ActionMailer::Base
     end
 
     logger.debug "Spoke name: #{spoke.name}"
-    content = email.multipart? ? email.text_part : email.body
+    content = email.multipart? ? email.text_part.body.raw_source: email.body.raw_source
     post = spoke.posts.build(title: match_data[:post_title], content: content)
     post.user = user
 

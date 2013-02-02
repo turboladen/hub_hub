@@ -6,71 +6,75 @@ class PostMailerTest < ActionMailer::TestCase
     spokes(:fresno)
     users(:bob)
     Post.any_instance.stubs(:tweet).returns(true)
-  end
 
-  test "non-multipart email posts" do
-    mail = Mail.new do
+    @content = <<-BODY
+This is a post
+Hi everyone.
+    BODY
+
+    @mail = Mail.new do
       from    'bob@bobo.com'
       to      'poster@test.net'
       subject 'Fresno: This is a test email'
-      body    'Simple body'
     end
+  end
+
+  test "non-multipart email posts" do
+    @mail.body = @content
 
     assert_difference('Post.count') do
-      assert PostMailer.receive(mail.to_s)
+      assert PostMailer.receive(@mail.to_s)
+    end
+
+    @content.each_line do |original_line|
+      Post.last.content do |new_line|
+        assert_match /#{new_line}/, original_line.strip
+      end
     end
   end
 
   test "multipart email posts text part" do
-    mail = Mail.new do
-      from    'bob@bobo.com'
-      to      'poster@test.net'
-      subject 'Fresno: This is a test email'
-      text_part do
-        'Simple body'
-      end
-
-      html_part do
-        "<h1>Sup!</h1>"
-      end
+    text_part = Mail::Part.new
+    text_part.body = @content
+    @mail.text_part = text_part
+    @mail.html_part = Mail::Part.new do
+      content_type 'text/html; charset=UTF-8'
+      body '<h1>Sup!</h1>'
     end
 
     assert_difference('Post.count') do
-      assert PostMailer.receive(mail.to_s)
+      assert PostMailer.receive(@mail.to_s)
+    end
+
+    @content.each_line do |original_line|
+      Post.last.content do |new_line|
+        assert_match /#{new_line}/, original_line.strip
+      end
     end
   end
 
   test "email with unknown spoke name doesn't post and doesn't raise" do
-    mail = Mail.new do
-      from    'bob@bobo.com'
-      to      'poster@test.net'
-      subject 'Some Spoke: This is a test email'
-      body    'Simple body'
-    end
+    @mail.subject = 'Some Spoke: This is a test email'
 
     assert_no_difference('Post.count') do
-      PostMailer.receive(mail.to_s)
+      PostMailer.receive(@mail.to_s)
     end
 
     assert_nothing_raised do
-      PostMailer.receive(mail.to_s)
+      PostMailer.receive(@mail.to_s)
     end
   end
 
   test "email from unknown user doesn't post and doesn't raise" do
-    mail = Mail.new do
-      from    'someguy@anonymous.com'
-      to      'poster@test.net'
-      subject 'Fresno: This is a test email'
-      body    'Simple body'
-    end
+    @mail.body = @content
+    @mail.from = 'someguy@anonymous.com'
 
     assert_no_difference('Post.count') do
-      PostMailer.receive(mail.to_s)
+      PostMailer.receive(@mail.to_s)
     end
 
     assert_nothing_raised do
-      PostMailer.receive(mail.to_s)
+      PostMailer.receive(@mail.to_s)
     end
   end
 end
