@@ -1,11 +1,8 @@
 require 'vagrant-ansible'
 
 
-# Need to ssh in and do:
-# $ cd /usr/src
-# $ sudo wget http://dl.fedoraproject.org/pub/epel/5Server/x86_64/epel-release-5-4.noarch.rpm
-# $ sudo rpm -ivh epel-release-5-4.noarch.rpm
-# $ sudo yum -y install python26 python26-PyYAML python26-paramiko python26-jinja2 python-simplejson
+# Before vagrant can provision, you need to ssh in, copy contents of setup.sh
+# and run it.
 Vagrant::Config.run do |config|
   config.vm.box     = "centos58-x86_64"
   config.vm.box_url = "https://dl.dropbox.com/u/17738575/CentOS-5.8-x86_64.box"
