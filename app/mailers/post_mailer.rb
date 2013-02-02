@@ -14,7 +14,7 @@ class PostMailer < ActionMailer::Base
     post.user = user
 
     if post.save
-      post.tweet(spoke_post_url(spoke.id), post)
+      post.tweet(spoke_post_url(spoke.id, post))
     else
       logger.debug post.errors.inspect
       # Send out response email saying why the post creation failed
