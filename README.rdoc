@@ -1,3 +1,9 @@
 = hub_hub
 
 A Rails site for connecting subcommunities within a community.
+
+== Developers
+
+# Copy <tt>config/database.yml.sample</tt> to <tt>config/database.yml</tt> and
+  set appropriate options.
+# Run <tt>bundle install</tt>
