@@ -8,9 +8,11 @@ class PostMailer < ActionMailer::Base
     end
 
     logger.info "Received email from user: #{email.from}"
-    match_data = email.subject.match(/(?<spoke_name>[\w+]):\s+(?<post_title>)/)
-    spoke = Spoke.find_by_name(match_data[:spoke_name])
-    post = spoke.posts.build(title: match_data[:post_title], content: email.body)
+    match_data = email.subject.match(/(?<spoke_name>\w+):\s*(?<post_title>.+)/)
+
+    spoke = Spoke.find_by_name(match_data[:spoke_name].downcase)
+    logger.debug "Spoke name: #{spoke.name}"
+    post = spoke.posts.build(title: match_data[:post_title], content: email.text_part)
     post.user = user
 
     if post.save
