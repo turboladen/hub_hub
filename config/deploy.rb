@@ -47,7 +47,19 @@ task :set_log_permissions do
   end
 end
 
+task :database_file_to_shared do
+  database_file = "#{shared_path}/database.yml"
+
+  if remote_file_exists? database_file
+    run "ln -s #{database_file} #{current_path}/config/database.yml"
+  else
+    run "cp #{current_path}/config/database.yml.sample #{database_file}"
+    run "ln -s #{database_file} #{current_path}/config/database.yml"
+  end
+end
+
 after "deploy", :set_log_permissions
+after "deploy", :database_file_to_shared
 
 namespace :deploy do
   task :start do ; end
