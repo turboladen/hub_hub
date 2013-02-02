@@ -5,7 +5,7 @@ require 'vagrant-ansible'
 # $ cd /usr/src
 # $ sudo wget http://dl.fedoraproject.org/pub/epel/5Server/x86_64/epel-release-5-4.noarch.rpm
 # $ sudo rpm -ivh epel-release-5-4.noarch.rpm
-# $ sudo yum install python26 python26-PyYAML python26-paramiko python26-jinja2 python-simplejson
+# $ sudo yum -y install python26 python26-PyYAML python26-paramiko python26-jinja2 python-simplejson
 Vagrant::Config.run do |config|
   config.vm.box     = "centos58-x86_64"
   config.vm.box_url = "https://dl.dropbox.com/u/17738575/CentOS-5.8-x86_64.box"
@@ -19,7 +19,7 @@ Vagrant::Config.run do |config|
   # You can adjust this to the amount of CPUs your system has available
   #config.vm.customize ["modifyvm", :id, "--cpus", "1"]
 
-  config.vm.host_name = "chat.mindhub.org"
+  config.vm.host_name = "chat-test.mindhub.org"
   config.vm.network :bridged
   config.vm.network :hostonly, "192.168.33.10"
   config.vm.forward_port 80, 8080
