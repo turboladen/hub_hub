@@ -1,6 +1,6 @@
 class PostMailer < ActionMailer::Base
   def receive(email)
-    user = User.find_by_address(email.from)
+    user = User.find_by_email(email.from)
 
     if user.nil?
       logger.info "Received email from an unknown address: #{email.from}"
