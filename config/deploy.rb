@@ -1,5 +1,9 @@
 require 'bundler/capistrano'
 
+set :stages, %w(production staging)
+set :default_stage, "staging"
+require 'capistrano/ext/multistage'
+
 set :user, "deploy"
 set :domain, 'chat.mindhub.org'
 set :application, "mindhub"
@@ -20,8 +24,6 @@ set :default_environment, {
 }
 
 #default_run_options[:pty] = true
-
-server "chat.mindhub.org", :app, :web, :db, primary: true
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
