@@ -81,6 +81,8 @@ class AdminController < ApplicationController
   def update_digest_email_settings
     @send_time = params[:send_time]
     Settings.digest_email[:send_time] = @send_time
+
+    render :edit_digest_email_settings
   end
 
   private

@@ -89,18 +89,18 @@ class AdminControllerTest < ActionController::TestCase
 
   test "must be logged in as an admin to set digest options" do
     assert_raise ActionController::RoutingError do
-      get :digest_email_settings, send_time: "10:30"
+      get :edit_digest_email_settings, send_time: "10:30"
     end
 
     sign_in @bob
     assert_raise ActionController::RoutingError do
-      get :digest_email_settings, send_time: "10:30"
+      get :edit_digest_email_settings, send_time: "10:30"
     end
     sign_out @bob
 
     sign_in users(:admin)
     assert_nothing_raised do
-      get :digest_email_settings, send_time: "10:30"
+      get :edit_digest_email_settings, send_time: "10:30"
     end
   end
 
