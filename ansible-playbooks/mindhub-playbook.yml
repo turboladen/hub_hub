@@ -4,6 +4,7 @@
   sudo: True
   vars:
     password: $1$pHvFX74N$fWbZdxyb1zxIXTQcVn7Kp0
+    is_test: "'$ansible_hostname' == 'chat-test.mindhub.org'"
 
   tasks:
     - name: update yum
@@ -24,3 +25,6 @@
 
     - name: make deploy user
       user: name=deploy generate_ssh_key=yes group=deploy password=$password
+
+    - name: set sudoers
+      template: src=templates/sudoers dest=/etc/sudoers mode=0440 owner=root group=root
