@@ -28,5 +28,7 @@ Vagrant::Config.run do |config|
     # the Vagrant VM will be put in this host group change this should
     # match the host group in your playbook you want to test
     ansible.hosts = "mindhub-testers"
+
+    ansible.options = '-vvv'
   end
 end
