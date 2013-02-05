@@ -166,6 +166,7 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "get posts from last 24 hours" do
+    sleep 0.5
     assert_equal 5, Post.last_24_hours.count
     assert_not_include Post.last_24_hours, @one
   end
