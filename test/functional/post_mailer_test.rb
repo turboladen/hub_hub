@@ -76,5 +76,9 @@ Hi everyone.
     assert_nothing_raised do
       PostMailer.receive(@mail.to_s)
     end
+
+    assert_difference('ActionMailer::Base.deliveries.size') do
+      PostMailer.receive(@mail.to_s)
+    end
   end
 end
