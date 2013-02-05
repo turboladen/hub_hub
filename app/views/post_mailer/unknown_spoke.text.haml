@@ -1,4 +1,7 @@
-= unknown_spoke_message(:text)
+= unknown_spoke_message
+
+- @spokes.each do |spoke|
+  = "* #{spoke.name}"
 
 Sincerely,
 

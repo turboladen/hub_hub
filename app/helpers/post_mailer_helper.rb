@@ -28,43 +28,20 @@ part in the MindHub community, please sign up
   # Builds the message/body to send back to the user that tried posting to a
   # spoke that doesn't exist.
   #
-  # @param [Symbol] format The email format.
   # @return [String] The message.
-  def unknown_spoke_message(format)
-    msg = <<-MSG
+  def unknown_spoke_message
+    <<-MSG
 Hi #{@user.first_name},
 
-It looks like you tried emailing a post to a MindHub spoke called
-'#{@spoke_name}'--MindHub doesn't have a spoke for that right now, but perhaps
-you meant to post to a different spoke?  The spokes MindHub has available right
-now are:
-    MSG
-
-    msg << case format
-    when :html
-      capture_haml do
-        haml_tag :ul do
-          Spoke.pluck(:name).each do |name|
-            haml_tag :li do
-              link_to name, spoke_url(Spoke.find_by_name(name))
-            end
-          end
-        end
-      end
-    when :text
-      Spoke.pluck(:name).map { |name| " * #{name}" }.join("\n")
-    end
-
-    msg << <<-MSG
-You might also check to make sure you're using the correct format in your Subject
-line:
+It looks like you tried emailing a post to a MindHub spoke called '#{@spoke_name}'
+--MindHub doesn't have a spoke for that right now, but perhaps you meant to post
+to a different spoke?  Or maybe you mistyped?  The subject of your email should
+look like this:
 
   [spoke name]: [post title]
 
-Hope that helps...
+The spokes MindHub has available right now are:
     MSG
-
-    msg
   end
 
   # Message for when an unexpected error occurs.

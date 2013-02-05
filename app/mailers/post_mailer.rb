@@ -58,6 +58,7 @@ class PostMailer < ActionMailer::Base
   def email_about_bad_spoke(user, spoke_name)
     @user = user
     @spoke_name = spoke_name
+    @spokes = Spoke.all
 
     mail(
       subject: "Hmm... there's no MindHub spoke called '#{truncate(@spoke_name, length: 40)}'",
