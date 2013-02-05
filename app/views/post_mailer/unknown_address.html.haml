@@ -1,7 +1,7 @@
 !!!
-%p= unknown_mailer_message(:html).html_safe
+%p= unknown_mailer_message(:html).gsub(/\n/, '<br/>').html_safe
 
 %p
   Sincerely,
-
+  %br
   The MindHub Folks

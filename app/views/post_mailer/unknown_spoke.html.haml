@@ -1,5 +1,5 @@
 !!!
-%p= unknown_spoke_message.html_safe
+%p= unknown_spoke_message.gsub(/\n/, '<br/>').html_safe
 
 %ul
   - @spokes.each do |spoke|
@@ -8,5 +8,5 @@
 
 %p
   Sincerely,
-
+  %br
   The MindHub Folks

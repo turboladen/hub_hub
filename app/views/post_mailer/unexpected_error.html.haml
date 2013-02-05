@@ -1,6 +1,6 @@
 !!!
 %p
-  = unexpected_error.html_safe
+  = unexpected_error.gsub(/\n/, '<br/>').html_safe
 
 %hr
 
@@ -27,5 +27,5 @@
 
 %p
   Sincerely,
-
+  %br
   The MindHub Folks
