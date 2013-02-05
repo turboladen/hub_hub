@@ -5,14 +5,6 @@ GIT
     make_flaggable (0.1.0)
       activerecord (>= 3.0.0)
 
-PATH
-  remote: ../sprinkle
-  specs:
-    sprinkle (0.4.2)
-      activesupport (>= 2.0.2)
-      capistrano (>= 2.5.5)
-      highline (>= 1.4.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -234,7 +226,6 @@ DEPENDENCIES
   rails (= 3.2.11)
   sass-rails (~> 3.2.3)
   simplecov
-  sprinkle!
   sqlite3
   tailor
   test-unit

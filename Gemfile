@@ -63,5 +63,5 @@ group :development, :test do
   gem 'vagrant', '>= 1.0.0'
   gem 'vagrant-ansible'
 
-  gem 'sprinkle', path: '../sprinkle'
+  #gem 'sprinkle', path: '../sprinkle'
 end
