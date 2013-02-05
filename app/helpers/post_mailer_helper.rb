@@ -36,11 +36,11 @@ Hi #{@user.first_name},
 It looks like you tried emailing a post to a MindHub spoke called '#{@spoke_name}'
 --MindHub doesn't have a spoke for that right now, but perhaps you meant to post
 to a different spoke?  Or maybe you mistyped?  The subject of your email should
-look like this:
-
-  [spoke name]: [post title]
-
-The spokes MindHub has available right now are:
+look like this:\n
+\n
+  [spoke name]: [post title]\n
+\n
+The spokes MindHub has available right now are:\n
     MSG
   end
 
