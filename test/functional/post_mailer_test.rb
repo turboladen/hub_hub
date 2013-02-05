@@ -63,6 +63,10 @@ Hi everyone.
     assert_nothing_raised do
       PostMailer.receive(@mail.to_s)
     end
+
+    assert_difference('ActionMailer::Base.deliveries.size') do
+      PostMailer.receive(@mail.to_s)
+    end
   end
 
   test "email from unknown user doesn't post and doesn't raise" do

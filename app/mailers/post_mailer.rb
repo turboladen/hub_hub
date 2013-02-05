@@ -1,10 +1,11 @@
 class PostMailer < ActionMailer::Base
+  include ActionView::Helpers::TextHelper
+
   def receive(email)
     user = User.find_by_email(email.from)
 
     if user.nil?
       logger.info "Received email from an unknown address: #{email.from}"
-      # Respond back to email.from saying they need to register
       email_unknown_user(email.from)
       return
     end
@@ -15,6 +16,7 @@ class PostMailer < ActionMailer::Base
 
     if spoke.nil?
       logger.info "Received email to post to unknown spoke: #{match_data[:spoke_name]}; returning."
+      email_about_bad_spoke(user, match_data[:spoke_name])
       return
     end
 
@@ -44,6 +46,21 @@ class PostMailer < ActionMailer::Base
       subject: 'You should sign up for MindHub!',
       to: @to_address,
       template_name: 'unknown_address'
+    ).deliver
+  end
+
+  # Sends an email to the user that tried posting to a bad spoke name.
+  #
+  # @param [User] user The user doing the posting.
+  # @param [String] spoke_name The spoke they tried posting to.
+  def email_about_bad_spoke(user, spoke_name)
+    @user = user
+    @spoke_name = spoke_name
+
+    mail(
+      subject: "Hmm... there's no MindHub spoke called '#{truncate(@spoke_name, length: 40)}'",
+      to: @user.email,
+      template_name: 'unknown_spoke'
     ).deliver
   end
 end
