@@ -7,8 +7,8 @@
     is_test: "'$ansible_hostname' == 'chat-test.mindhub.org'"
 
   tasks:
-    - name: update yum
-      action: command /usr/bin/yum -y update
+    #- name: update yum
+    #  action: command /usr/bin/yum -y update
 
     - name: install web server packages
       action: yum pkg=$item state=installed
@@ -28,3 +28,14 @@
 
     - name: set sudoers
       template: src=templates/sudoers dest=/etc/sudoers mode=0440 owner=root group=root
+
+    - name: create web dir
+      file: path=/var/www/chat.mindhub.org state=directory owner=deploy group=deploy mode=0774
+
+    # Only for chat-test (the VM)
+    #- name: setup path
+    #  command: source /usr/local/rvm/environments/ruby-1.9.2-p320
+      #only_if: '$is_test'
+
+    - name: install passenger
+      shell: /usr/local/rvm/rubies/ruby-1.9.2-p320/bin/gem install passenger --no-ri --no-rdoc
