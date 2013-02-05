@@ -77,7 +77,7 @@ class CommentTest < ActiveSupport::TestCase
   end
 
   test "get comments from last 24 hours" do
-    assert_equal 2, Comment.last_24_hours.count
-    assert_not_include Comment.last_24_hours, @comment
+    assert_equal 2, Comment.last_24_hours.all.count
+    assert_not_include Comment.last_24_hours.all, @comment
   end
 end
