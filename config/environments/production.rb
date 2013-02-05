@@ -56,10 +56,6 @@ HubHub::Application.configure do
   #   :location => '/usr/sbin/sendmail',
   #   :arguments => '-i -t'
   # }
-  config.action_mailer.sendmail_settings = {
-    :location => '/usr/lib/sendmail',
-    :arguments => '-i -t'
-  }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 
