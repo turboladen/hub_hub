@@ -66,4 +66,20 @@ Hope that helps...
 
     msg
   end
+
+  # Message for when an unexpected error occurs.
+  #
+  # @return [String] The first part of the message.
+  def unexpected_error
+    <<-MSG
+Hi #{@user.first_name},
+
+Something weird and unexpected happened when you tried posting to MindHub via an
+email.  The site is automatically sending this email out to let you know, and it's
+CCing the site Admins so they can look into what happened.
+
+We're sorry this happened and will try to fix this ASAP!  In the meantime, here's
+what you tried posting:
+    MSG
+  end
 end

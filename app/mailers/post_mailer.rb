@@ -29,7 +29,7 @@ class PostMailer < ActionMailer::Base
       post.tweet(spoke_post_url(spoke.id, post))
     else
       logger.debug post.errors.full_messages
-      # Send out response email saying why the post creation failed
+      email_unexpected_error(user, post)
     end
   end
 
@@ -62,5 +62,18 @@ class PostMailer < ActionMailer::Base
       to: @user.email,
       template_name: 'unknown_spoke'
     ).deliver
+  end
+
+  def email_unexpected_error(user, post)
+    @user = user
+    @post = post
+
+    mail(
+      subject: 'Hmm... Looks like there was a problem posting your post...',
+      to: @user.email,
+      cc: User.admin_emails,
+      template_name: 'unexpected_error'
+    ).deliver
+
   end
 end

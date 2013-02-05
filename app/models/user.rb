@@ -27,6 +27,11 @@ class User < ActiveRecord::Base
     where('digest_email = ?', true).select([:email, :digest_email])
   end
 
+  # @return [Array]
+  def self.admin_emails
+    where(admin: true).pluck(:email)
+  end
+
   # The full name of the user.
   #
   # @return [String] The full name like 'Joe Blow'.

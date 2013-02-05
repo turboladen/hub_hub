@@ -85,4 +85,21 @@ Hi everyone.
       PostMailer.receive(@mail.to_s)
     end
   end
+
+  test "email fails to save" do
+    Post.any_instance.expects(:save).times(3).returns(false)
+    @mail.body = @content
+
+    assert_no_difference('Post.count') do
+      PostMailer.receive(@mail.to_s)
+    end
+
+    assert_nothing_raised do
+      PostMailer.receive(@mail.to_s)
+    end
+
+    assert_difference('ActionMailer::Base.deliveries.size') do
+      PostMailer.receive(@mail.to_s)
+    end
+  end
 end
