@@ -74,18 +74,34 @@ class AdminControllerTest < ActionController::TestCase
     end
 
     sign_in @bob
-
     assert_raise ActionController::RoutingError do
       xhr :put, :update_user, id: @bob.id, "#{@bob.id}-is-admin" => "true"
     end
-
     sign_out @bob
+
     sign_in users(:admin)
     assert_nothing_raised do
       xhr :put, :update_user, id: @bob.id, "#{@bob.id}-is-admin" => "true"
     end
 
     assert_response 200
+  end
+
+  test "must be logged in as an admin to set digest options" do
+    assert_raise ActionController::RoutingError do
+      get :digest_email_settings, send_time: "10:30"
+    end
+
+    sign_in @bob
+    assert_raise ActionController::RoutingError do
+      get :digest_email_settings, send_time: "10:30"
+    end
+    sign_out @bob
+
+    sign_in users(:admin)
+    assert_nothing_raised do
+      get :digest_email_settings, send_time: "10:30"
+    end
   end
 
   test "can make user an admin" do
@@ -148,5 +164,11 @@ class AdminControllerTest < ActionController::TestCase
     assert_response 302
     assert_redirected_to admin_url
     assert_equal "Can't update super-user.", flash[:notice]
+  end
+
+  test "can update digest email setting" do
+    sign_in users(:admin)
+    put :update_digest_email_settings, send_time: "10:30"
+    assert_equal "10:30", assigns(:send_time)
   end
 end

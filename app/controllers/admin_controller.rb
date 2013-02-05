@@ -79,7 +79,8 @@ class AdminController < ApplicationController
   end
 
   def update_digest_email_settings
-    Settings.digest_email[:send_time] = params[:send_time]
+    @send_time = params[:send_time]
+    Settings.digest_email[:send_time] = @send_time
   end
 
   private

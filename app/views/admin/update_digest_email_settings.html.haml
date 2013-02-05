@@ -3,7 +3,7 @@
   %fieldset.control-group
     = label_tag :send_time, "Daily send time", class: 'control-label'
     .controls
-      = text_field_tag :send_time, @settings[:send_time]
+      = text_field_tag :send_time, @send_time
 
   .form-actions.devise-form-button
     = submit_tag "Update", class: 'btn btn-primary'
