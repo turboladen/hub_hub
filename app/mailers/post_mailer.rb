@@ -1,6 +1,8 @@
 class PostMailer < ActionMailer::Base
   include ActionView::Helpers::TextHelper
 
+  default from: "poster@chat.mindhub.org"
+
   def receive(email)
     user = User.find_by_email(email.from)
 
