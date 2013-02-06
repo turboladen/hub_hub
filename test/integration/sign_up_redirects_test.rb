@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SignUpRedirectTest< ActionDispatch::IntegrationTest
+class SignUpRedirectTest < ActionDispatch::IntegrationTest
   test "user sign up redirects to the user's preference page" do
     get "/users/sign_up"
     assert_response :success
