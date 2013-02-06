@@ -1,8 +1,7 @@
 HubHub::Application.routes.draw do
   root :to => 'home#index', as: 'home'
 
-  devise_for :users
-
+  devise_for :users, :controllers => { :registrations => "registrations" }
   get "home/index"
   get "home/tos"
 
