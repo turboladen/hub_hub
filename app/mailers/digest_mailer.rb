@@ -3,6 +3,8 @@ class DigestMailer < ActionMailer::Base
 
   # Emails the nightly email to each digest subscriber.
   def nightly_email_everyone
+    logger.info "Starting nightly email to digest users..."
+
     User.digest_list.each do |user|
       nightly_email(user).deliver
     end
