@@ -21,6 +21,6 @@ class DigestMailer < ActionMailer::Base
     @user = user
     subject = "Your mindhub.org digest for #{Date.today.to_formatted_s(:long)}"
 
-    mail(to: user.email, subject: subject)
+    mail(to: @user.email, subject: subject, template_name: 'nightly_email')
   end
 end
