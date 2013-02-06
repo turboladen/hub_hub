@@ -6,8 +6,8 @@ module PostMailerHelper
   # @return [String] The message.
   def unknown_mailer_message(format)
     msg = <<-MSG
-Hi #{@to_address},
-
+Hi #{@to_address},<br>
+<br>
 It looks like you're trying to post an email to #{home_url}, but you don't have
 an account there (not with this email address, at least).  If you'd like to take
 part in the MindHub community, please sign up
@@ -15,7 +15,7 @@ part in the MindHub community, please sign up
 
     msg << case format
     when :html
-      "#{link_to('here', new_user_registration_url)}."
+      "#{link_to('here', new_user_registration_url)}.<br>"
     when :text
       "here: #{new_user_registration_url}."
     else
@@ -31,16 +31,16 @@ part in the MindHub community, please sign up
   # @return [String] The message.
   def unknown_spoke_message
     <<-MSG
-Hi #{@user.first_name},
-
+Hi #{@user.first_name}<br>
+<br>
 It looks like you tried emailing a post to a MindHub spoke called '#{@spoke_name}'
 --MindHub doesn't have a spoke for that right now, but perhaps you meant to post
 to a different spoke?  Or maybe you mistyped?  The subject of your email should
-look like this:\n
-\n
-  [spoke name]: [post title]\n
-\n
-The spokes MindHub has available right now are:\n
+look like this:<br>
+<br>
+  [spoke name]: [post title]<br>
+<br>
+The spokes MindHub has available right now are:<br>
     MSG
   end
 
@@ -49,14 +49,14 @@ The spokes MindHub has available right now are:\n
   # @return [String] The first part of the message.
   def unexpected_error
     <<-MSG
-Hi #{@user.first_name},
-
+Hi #{@user.first_name},<br>
+<br>
 Something weird and unexpected happened when you tried posting to MindHub via an
 email.  The site is automatically sending this email out to let you know, and it's
-CCing the site Admins so they can look into what happened.
-
+CCing the site Admins so they can look into what happened.<br>
+<br>
 We're sorry this happened and will try to fix this ASAP!  In the meantime, here's
-what you tried posting:
+what you tried posting:<br>
     MSG
   end
 end

@@ -1,10 +1,12 @@
 !!!
-%p= unknown_spoke_message.gsub(/\n/, '<br/>').html_safe
+%p= unknown_spoke_message.html_safe
 
 %ul
   - @spokes.each do |spoke|
     %li
       = link_to spoke.name, spoke_url(spoke)
+
+%br
 
 %p
   Sincerely,
