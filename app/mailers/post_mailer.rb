@@ -8,7 +8,7 @@ class PostMailer < ActionMailer::Base
 
     if user.nil?
       logger.info "Received email from an unknown address: #{email.from}"
-      email_unknown_user(email.from)
+      email_unknown_user(email.from.first)
       return
     end
 
