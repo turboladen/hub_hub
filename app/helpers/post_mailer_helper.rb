@@ -15,7 +15,7 @@ part in the MindHub community, please sign up
 
     msg << case format
     when :html
-      "#{link_to('here', new_user_registration_url)}.<br>"
+      "#{link_to('here', new_user_registration_url)}."
     when :text
       "here: #{new_user_registration_url}."
     else
@@ -31,7 +31,7 @@ part in the MindHub community, please sign up
   # @return [String] The message.
   def unknown_spoke_message
     <<-MSG
-Hi #{@user.first_name}<br>
+Hi #{@user.first_name},<br>
 <br>
 It looks like you tried emailing a post to a MindHub spoke called '#{@spoke_name}'
 --MindHub doesn't have a spoke for that right now, but perhaps you meant to post
@@ -40,7 +40,7 @@ look like this:<br>
 <br>
   [spoke name]: [post title]<br>
 <br>
-The spokes MindHub has available right now are:<br>
+The spokes MindHub has available right now are:
     MSG
   end
 
@@ -56,7 +56,7 @@ email.  The site is automatically sending this email out to let you know, and it
 CCing the site Admins so they can look into what happened.<br>
 <br>
 We're sorry this happened and will try to fix this ASAP!  In the meantime, here's
-what you tried posting:<br>
+what you tried posting:
     MSG
   end
 end
