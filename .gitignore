@@ -25,3 +25,7 @@ atlassian-ide-plugin.xml
 # Project test generated files
 coverage
 .vagrant
+
+# Ignore SublimeText project files
+*.sublime-project
+*.sublime-workspace
