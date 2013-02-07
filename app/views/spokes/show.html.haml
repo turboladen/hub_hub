@@ -87,6 +87,9 @@
           'data-content' => "Login to start posting in this spoke.",
           'data-original-title' => 'Log in!' } Create Post
 
+#page_navigation
+  = paginate @posts
+
 %ul.nav.nav-tabs
   = render partial: 'spokes/sort_options'
 
