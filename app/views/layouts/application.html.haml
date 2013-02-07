@@ -8,7 +8,6 @@
     %meta{ content: "", name: "description" }
     %meta{ content: "", name: "author" }
     = stylesheet_link_tag    "application", media: "all"
-    = javascript_include_tag "application"
     = csrf_meta_tags
     = auto_discovery_link_tag(:rss, "http://chat.mindhub.org")
     = yield(:head)
@@ -16,7 +15,7 @@
   = tag_with_color(:body) do
     .navbar.navbar-fixed-top
       .navbar-inner
-        .container{ style: "height: 40px;" }
+        .container
           = render 'layouts/navigation'
 
     #main
@@ -26,3 +25,5 @@
     #footer
       = render 'layouts/footer'
 
+
+    = javascript_include_tag "application"
