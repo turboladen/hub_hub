@@ -1,41 +1,40 @@
-.nav-collapse.collapse
-  %a{ href: home_path }
-    = image_tag('mindhub_logo.png', class: 'pull-left',
-      style: 'width: 20px; padding-top: 7px; padding-right: 5px; ')
-    %p.pull-right.brand MindHub
 
-  .btn-group.pull-right
-    - if user_signed_in?
-      %ul.nav
-        %a.btn.dropdown-toggle{ 'data-target' => '#', 'data-toggle' => 'dropdown' }
-          %i.icon-user
-          = current_user.email
-          %span.caret
+%a.home_link{ href: home_path }
+  = image_tag('mindhub_logo.png', class: 'pull-left')
+  %p MindHub
 
-        %ul.dropdown-menu
-          %li
-            = link_to(destroy_user_session_path, method: 'delete') do
-              %i.icon-off
-              Logout
-
-          %li
-            = link_to(edit_user_registration_path) do
-              %i.icon-cog
-              Edit account
-
-          - if current_user.admin?
-            %li.divider
-
-            %li
-              = link_to admin_path do
-                %i.icon-tasks
-                Site Administration
-
-    - else
-      = link_to(new_user_session_path, class: 'btn btn-primary') do
+.btn-group.pull-right
+  - if user_signed_in?
+    %ul.nav
+      %a.btn.dropdown-toggle{ 'data-target' => '#', 'data-toggle' => 'dropdown' }
         %i.icon-user
-        Login
+        = current_user.email
+        %span.caret
 
-      = link_to(new_user_registration_path, class: 'btn') do
-        %i.icon-edit
-        Sign up
+      %ul.dropdown-menu
+        %li
+          = link_to(destroy_user_session_path, method: 'delete') do
+            %i.icon-off
+            Logout
+
+        %li
+          = link_to(edit_user_registration_path) do
+            %i.icon-cog
+            Edit account
+
+        - if current_user.admin?
+          %li.divider
+
+          %li
+            = link_to admin_path do
+              %i.icon-tasks
+              Site Administration
+
+  - else
+    = link_to(new_user_session_path, class: 'btn btn-primary login') do
+      %i.icon-user
+      Login
+
+    = link_to(new_user_registration_path, class: 'btn sign-up') do
+      %i.icon-edit
+      Sign up
