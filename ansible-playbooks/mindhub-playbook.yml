@@ -10,15 +10,16 @@
     #- name: update yum
     #  action: command /usr/bin/yum -y update
 
-    - name: install web server packages
+    - name: install dependency packages
       action: yum pkg=$item state=installed
       with_items:
         - mysql-server
         - git
         - httpd
+        - postfix
 
-    - name: write httpd.conf
-      action: template src=templates/httpd.conf dest=/etc/httpd/conf/httpd.conf
+    - name: create web dir
+      file: path=/var/www/chat.mindhub.org state=directory owner=deploy group=deploy mode=0774
 
     - name: make deploy group
       group: name=deploy state=present
@@ -29,13 +30,18 @@
     - name: set sudoers
       template: src=templates/sudoers dest=/etc/sudoers mode=0440 owner=root group=root
 
-    - name: create web dir
-      file: path=/var/www/chat.mindhub.org state=directory owner=deploy group=deploy mode=0774
+    - name: write httpd.conf
+      action: template src=templates/httpd-unicorn.conf dest=/etc/httpd/conf/httpd.conf
 
+    - name: write postfix aliases
+      action: template src=templates/postfix-aliases dest=/etc/aliases
+
+    - name: update postfix aliases
+      shell: /usr/bin/newaliases
     # Only for chat-test (the VM)
     #- name: setup path
     #  command: source /usr/local/rvm/environments/ruby-1.9.2-p320
       #only_if: '$is_test'
 
-    - name: install passenger
-      shell: /usr/local/rvm/rubies/ruby-1.9.2-p320/bin/gem install passenger --no-ri --no-rdoc
+    #- name: install passenger
+    #  shell: /usr/local/rvm/rubies/ruby-1.9.2-p320/bin/gem install passenger --no-ri --no-rdoc
