@@ -20,6 +20,7 @@
 # Learn more: http://github.com/javan/whenever
 
 #every 1.day, at: Settings.digest_email[:send_time] do
-every 1.day, at: '9:20 pm' do
+every :day, at: '9:20 pm' do
+  path "/var/www/chat.mindhub.org/current"
   runner "DigestMailer.nightly_email_everyone"
 end

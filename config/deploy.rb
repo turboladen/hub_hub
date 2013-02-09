@@ -4,6 +4,10 @@ set :stages, %w(production staging)
 set :default_stage, "staging"
 require 'capistrano/ext/multistage'
 
+set :whenever_command, "bundle exec whenever"
+#set :whenever_environment, defer { stage }
+require 'whenever/capistrano'
+
 set :user, "deploy"
 set :domain, 'chat.mindhub.org'
 set :application, "mindhub"
