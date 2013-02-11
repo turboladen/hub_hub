@@ -1,6 +1,6 @@
 = "Hi #{@user.first_name},"
 
-= nightly_intro
+= raw(nightly_intro)
 
 \---- Posts from past 24 hours ----
 = "\n"
@@ -21,7 +21,7 @@
 = "\n"
 
 - if @comments_from_yesterday.count.zero?
-  = "No responses from yesterday."
+  = 'No responses from yesterday.'
 
 - else
   - @comments_from_yesterday.each do |comment|

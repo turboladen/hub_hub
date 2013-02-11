@@ -16,7 +16,7 @@
       = link_to post.title, url_for(spoke_post_url(post.spoke.id, post.id))
 
       %br
-      - body = post.content ? post.content[0..450] : "<Post body was empty.>"
+      - body = post.content ? post.content[0..450] : '<Post body was empty.>'
       = raw body
       %br
 
@@ -25,7 +25,7 @@
 %h3 Responses from past 24 hours
 
 - if @comments_from_yesterday.count.zero?
-  %p No comments from yesterday.
+  %p No responses from yesterday.
 
 - else
   - @comments_from_yesterday.each do |comment|
