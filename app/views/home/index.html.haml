@@ -10,6 +10,9 @@
   %tbody
     = render partial: 'spokes/post', collection: @posts
 
+#page_navigation
+  = paginate @posts
+
 = content_for(:right_sidebar) do
   .well.sidebar-nav{ style: "height: 100%;" }
     %ul.nav.nav-list

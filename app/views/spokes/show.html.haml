@@ -87,15 +87,15 @@
           'data-content' => "Login to start posting in this spoke.",
           'data-original-title' => 'Log in!' } Create Post
 
-#page_navigation
-  = paginate @posts
-
 %ul.nav.nav-tabs
   = render partial: 'spokes/sort_options'
 
 %table.table.table-condensed
   %tbody
     = render partial: 'post', collection: @spoke.posts.send(@sorter)
+
+#page_navigation
+  = paginate @posts
 
 = content_for(:right_sidebar) do
   = render partial: 'spoke_info', locals: { spoke: @spoke }
