@@ -5,7 +5,7 @@ class DigestEmailingTest < ActionDispatch::IntegrationTest
   include HubHelpers
 
   test 'changing user preference updates the user in the db' do
-    pend 'turning the settings back on'
+    pending 'turning the settings back on'
   end
 
   test 'sign up for and receive digest email' do
