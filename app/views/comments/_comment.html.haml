@@ -21,13 +21,13 @@
 
       - if user_signed_in?
         %a.btn.btn-mini{ href: "#", "data-target" => "#comment-reply-#{comment.id}",
-          title: "Reply to comment", "data-toggle" => "collapse" }
+          title: "Reply to response", "data-toggle" => "collapse" }
           reply
         .collapse{ id: "comment-reply-#{comment.id}" }
           = render 'comments/new', parent_type: 'comment', parent_id: comment.id
 
       - else
-        %a.btn.btn-mini.disabled{ href: "#", title: "Reply to comment" }
+        %a.btn.btn-mini.disabled{ href: "#", title: "Reply to response" }
           reply
 
     %p= sanitize(comment.body)

@@ -29,7 +29,7 @@ class DigestMailerTest < ActionMailer::TestCase
     email = test_nightly_email_can_send
 
     assert_match(/No posts from yesterday\./, email.encoded)
-    assert_match(/No comments from yesterday\./, email.encoded)
+    assert_match(/No responses from yesterday\./, email.encoded)
   end
 
   test "can send to all subscribers" do
