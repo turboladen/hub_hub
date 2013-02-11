@@ -1,5 +1,9 @@
 !!!
+%p= "Hi #{@user.first_name},"
+
 %p= nightly_intro.html_safe
+
+%hr
 
 %h3 Posts from past 24 hours
 
@@ -14,6 +18,7 @@
       %br
       - body = post.content ? post.content[0..450] : "<Post body was empty.>"
       = raw body
+      %br
 
 %hr
 

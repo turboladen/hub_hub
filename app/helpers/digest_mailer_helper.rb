@@ -9,10 +9,8 @@ edit the 'Digest email' option.
 
   def nightly_intro
     <<-MSG
-Hi #{@user.first_name},
-
 Here's your digest email of all of the posts from the past 24 hours (as of
-#{Time.now.to_formatted_s(:long)}.
+#{Time.now.to_formatted_s(:long)}).
     MSG
   end
 end
