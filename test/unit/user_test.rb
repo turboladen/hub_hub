@@ -53,7 +53,7 @@ class UserTest < ActiveSupport::TestCase
     user = User.create(email: 'test@test.com', password: 'password',
       password_confirmation: 'password')
 
-    assert_equal "false", user.digest_email
+    assert_equal false, user.digest_email
   end
 
   test "can get a list of all users that want digest emails" do
