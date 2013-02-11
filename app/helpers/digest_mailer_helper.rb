@@ -1,7 +1,7 @@
 module DigestMailerHelper
   def unsubscribe_message
     <<-MSG
-***NOTE: If you'd like to stop receiving digest emails, login to mindhub.org,
+***NOTE: If you'd like to stop receiving digest emails, login to chat.mindhub.org,
 go to your user account's profile page, click 'Edit profile', then
 edit the 'Digest email' option.
     MSG
