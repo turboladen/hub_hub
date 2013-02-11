@@ -20,6 +20,6 @@
 # Learn more: http://github.com/javan/whenever
 
 #every 1.day, at: Settings.digest_email[:send_time] do
-every :day, at: '11:10 pm' do
+every :day, at: '11:15 pm' do
   runner "DigestMailer.nightly_email_everyone"
 end
