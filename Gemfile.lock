@@ -97,6 +97,9 @@ GEM
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    kaminari-bootstrap (0.1.3)
+      kaminari (>= 0.13.0)
+      rails
     ledermann-rails-settings (1.2.1)
       activerecord (>= 2.3)
     libv8 (3.11.8.13)
@@ -226,6 +229,7 @@ DEPENDENCIES
   haml-rails (~> 0.3.4)
   jquery-rails
   kaminari (~> 0.14.1)
+  kaminari-bootstrap
   ledermann-rails-settings
   make_flaggable!
   mocha (= 0.12.1)
