@@ -1,5 +1,3 @@
-require 'faker'
-
 def create_default_admin
   admin_user = User.create({
     email: 'admin@mindhub.org',
