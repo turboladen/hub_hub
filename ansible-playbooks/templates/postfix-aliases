@@ -97,7 +97,7 @@ decode:		root
 root:   robert@inreachtech.net
 {% else %}
 root:   steve.loveless@gmail.com
-{% end %}
+{% endif %}
 
 
 # MindHub site mail receiver
