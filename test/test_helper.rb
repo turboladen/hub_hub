@@ -21,3 +21,21 @@ end
 
 require 'mocha'
 
+module HubHelpers
+  def login(user)
+    open_session do |sess|
+      u = users(user)
+
+      sess.post new_user_session_path, {
+        user: {
+          email: u.email,
+          password: 'password'
+        }
+      }
+
+      assert_nil sess.flash[:alert], sess.flash[:alert]
+      assert_equal "Signed in successfully.", sess.flash[:notice]
+      sess.assert_response 302
+    end
+  end
+end

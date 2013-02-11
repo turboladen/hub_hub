@@ -1,7 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
   def update
-    user = User.find_by_email(params[:user][:email])
-    user.digest_email = params[:user][:digest] == "true" ? true : false
+    user = current_user
+    user.digest_email = params[:user][:digest_email] == "true" ? true : false
+    user.save
     super
   end
   protected
