@@ -52,10 +52,10 @@ gem 'capistrano'
 # gem 'debugger'
 
 group :deploy do
-  gem 'faker'
 end
 
 group :development, :test do
+  gem 'ffaker'
   gem 'mocha', '0.12.1', require: false
   gem 'simplecov', require: false, group: :test
   gem 'sqlite3'
