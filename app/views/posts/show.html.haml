@@ -31,7 +31,7 @@
           class: 'btn btn-mini btn-warning'
 
     .well
-      %p= sanitize(@post.content)
+      %p= Sanitize.clean(@post.content, Sanitize::Config::BASIC)
 
 %hr
 

@@ -9,6 +9,7 @@ group :production do
   gem 'mysql2'
   #gem 'pg'  # for heroku
   gem 'passenger'
+  #gem 'unicorn'
 end
 
 # Gems used only for assets and not required
@@ -38,6 +39,7 @@ gem 'twitter', '~> 4.2.0'
 gem 'whenever', '~> 0.8.0', require: false
 gem 'kaminari', '~> 0.14.1'
 gem 'kaminari-bootstrap'
+gem 'sanitize'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

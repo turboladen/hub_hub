@@ -30,7 +30,7 @@
         %a.btn.btn-mini.disabled{ href: "#", title: "Reply to response" }
           reply
 
-    %p= sanitize(comment.body)
+    %p= Sanitize.clean(comment.body, Sanitize::Config::BASIC)
 
     - if comment.has_children?
       %table.table.table-condensed.table-striped
