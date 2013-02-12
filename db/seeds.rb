@@ -13,6 +13,7 @@ end
 
 def create_default_spokes
   default_spokes = {
+    'Chat' => %{for anything that doesn't fit elsewhere.},
     'Admin' => %{used by administrators only
 for announcements pertaining to MindHub administration. Please always read
 these messages.},

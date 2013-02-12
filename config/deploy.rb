@@ -45,35 +45,41 @@ end
 
 before "deploy:setup", :setup_deploy_to
 
-task :set_log_permissions do
-  production_log = "#{shared_path}/log/production.log"
-
-  if remote_file_exists? production_log
-    run "chmod 0666 #{production_log}"
-  end
-end
-
-task :database_file_to_shared do
-  database_file = "#{shared_path}/database.yml"
-
-  if remote_file_exists? database_file
-    run "ln -s #{database_file} #{current_path}/config/database.yml"
-  else
-    run "cp #{current_path}/config/database.yml.sample #{database_file}"
-    run "ln -s #{database_file} #{current_path}/config/database.yml"
-  end
-end
-
-after "deploy", :set_log_permissions
-after "deploy", :database_file_to_shared
-
 namespace :deploy do
   task :start do ; end
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
+
+  task :set_log_permissions do
+    production_log = "#{shared_path}/log/production.log"
+
+    if remote_file_exists? production_log
+      run "chmod 0666 #{production_log}"
+    end
+  end
+
+  task :database_file_to_shared do
+    database_file = "#{shared_path}/database.yml"
+
+    if remote_file_exists? database_file
+      run "ln -s #{database_file} #{current_path}/config/database.yml"
+    else
+      run "cp #{current_path}/config/database.yml.sample #{database_file}"
+      run "ln -s #{database_file} #{current_path}/config/database.yml"
+    end
+  end
+
+  task :seed_defaults do
+    run("cd #{deploy_to}/current && RAILS_ENV=production bundle exec rake db:seed")
+  end
 end
+
+after "deploy", 'deploy:set_log_permissions'
+after "deploy", 'deploy:database_file_to_shared'
+after "deploy", 'deploy:seed_defaults'
+
 
 desc "Tail logs"
 task :tail, :roles => :app do
