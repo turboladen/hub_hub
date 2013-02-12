@@ -43,6 +43,32 @@ class PostsController < ApplicationController
     end
   end
 
+  def update
+    @post = Post.find(params[:id])
+
+    unless current_user == @post.user
+      respond_to do |format|
+        format.html {
+          redirect_to spoke_post_url(@comment.post.spoke, @comment.post),
+            notice: "You must have created the post to be able to update it."
+        }
+      end
+
+      return
+    end
+
+    respond_to do |format|
+      if @post.update_attributes(params[:content])
+        format.html {
+          redirect_to spoke_post_path(@post.spoke, @post),
+            notice: 'Post was successfully updated.'
+        }
+      else
+        format.html { render action: "edit" }
+      end
+    end
+  end
+
   def flag
     @post = Post.find(params[:post_id])
 
