@@ -19,7 +19,7 @@ these messages.},
     'Events' => %{for making any announcement of activities or events in the
 community. Please include just the announcement with no lengthy discussion
 attached.},
-    'Intro' => %{for self-introductions to the newsgroup.},
+    'Intros' => %{for self-introductions to the newsgroup.},
     'Jobs' =>  %{for job postings},
     'OT' => %{for miscellaneous subjects that are not related to any of the
 defined subjects},
