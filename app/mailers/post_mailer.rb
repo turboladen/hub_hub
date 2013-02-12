@@ -13,7 +13,7 @@ class PostMailer < ActionMailer::Base
     end
 
     logger.info "Received email from user: #{email.from}"
-    match_data = email.subject.match(/(?<spoke_name>[^:]+):\s*(?<post_title>.+)/)
+    match_data = email.subject.match(/(?<spoke_name>[^:]+)\s*:\s*(?<post_title>.+)/)
     spoke = Spoke.find_by_name(match_data[:spoke_name])
 
     if spoke.nil?
