@@ -17,6 +17,8 @@
         - git
         - httpd
         - postfix
+        - libxml2-devel
+        - libxslt-devel
 
     - name: create web dir
       file: path=/var/www/chat.mindhub.org state=directory owner=deploy group=deploy mode=0774
