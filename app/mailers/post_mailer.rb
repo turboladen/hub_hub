@@ -14,13 +14,7 @@ class PostMailer < ActionMailer::Base
 
     logger.info "Received email from user: #{email.from}"
     match_data = email.subject.match(/(?<spoke_name>[^:]+)\s*:\s*(?<post_title>.+)/)
-    spoke = Spoke.find_by_name(match_data[:spoke_name])
-
-    if spoke.nil?
-      logger.info "Received email to post to unknown spoke: #{match_data[:spoke_name]}; returning."
-      email_about_bad_spoke(user, match_data[:spoke_name])
-      return
-    end
+    spoke = Spoke.find_by_name(match_data[:spoke_name]) || Spoke.find_by_name('Chat')
 
     logger.debug "Spoke name: #{spoke.name}"
     content = email.multipart? ? email.text_part.body.raw_source: email.body.raw_source
@@ -36,20 +30,6 @@ class PostMailer < ActionMailer::Base
   end
 
   private
-
-  # Sends an email to the +from_address+ saying that that person needs to sign
-  # up to be able to post via email.
-  #
-  # @param [String] to_address The
-  def email_unknown_user(to_address)
-    @to_address = to_address
-
-    mail(
-      subject: 'You should sign up for MindHub!',
-      to: @to_address,
-      template_name: 'unknown_address'
-    ).deliver
-  end
 
   # Sends an email to the user that tried posting to a bad spoke name.
   #

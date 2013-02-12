@@ -53,18 +53,17 @@ Hi everyone.
     end
   end
 
-  test "email with unknown spoke name doesn't post and doesn't raise" do
+  test "email with unknown spoke posts to the Chat spoke" do
+    Spoke.create(name: 'Chat')
     @mail.subject = 'Some Spoke: This is a test email'
+    @mail.body = 'Some stuff'
 
-    assert_no_difference('Post.count') do
-      PostMailer.receive(@mail.to_s)
+    chat_change = lambda do
+      chat = Spoke.find_by_name('Chat')
+      chat.posts.count
     end
 
-    assert_nothing_raised do
-      PostMailer.receive(@mail.to_s)
-    end
-
-    assert_difference('ActionMailer::Base.deliveries.size') do
+    assert_difference(chat_change) do
       PostMailer.receive(@mail.to_s)
     end
   end
