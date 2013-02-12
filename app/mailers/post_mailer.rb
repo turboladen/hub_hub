@@ -45,6 +45,8 @@ class PostMailer < ActionMailer::Base
     ).deliver
   end
 
+  # @param [User] user
+  # @param [Post] post
   def email_unexpected_error(user, post)
     @user = user
     @post = post
