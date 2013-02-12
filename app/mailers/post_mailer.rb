@@ -31,19 +31,17 @@ class PostMailer < ActionMailer::Base
 
   private
 
-  # Sends an email to the user that tried posting to a bad spoke name.
+  # Sends an email to the +from_address+ saying that that person needs to sign
+  # up to be able to post via email.
   #
-  # @param [User] user The user doing the posting.
-  # @param [String] spoke_name The spoke they tried posting to.
-  def email_about_bad_spoke(user, spoke_name)
-    @user = user
-    @spoke_name = spoke_name
-    @spokes = Spoke.all
+  # @param [String] to_address The
+  def email_unknown_user(to_address)
+    @to_address = to_address
 
     mail(
-      subject: "Hmm... there's no MindHub spoke called '#{truncate(@spoke_name, length: 40)}'",
-      to: @user.email,
-      template_name: 'unknown_spoke'
+      subject: 'You should sign up for MindHub!',
+      to: @to_address,
+      template_name: 'unknown_address'
     ).deliver
   end
 
@@ -57,6 +55,5 @@ class PostMailer < ActionMailer::Base
       cc: User.admin_emails,
       template_name: 'unexpected_error'
     ).deliver
-
   end
 end
