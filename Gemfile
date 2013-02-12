@@ -38,7 +38,6 @@ gem 'twitter', '~> 4.2.0'
 gem 'whenever', '~> 0.8.0', require: false
 gem 'kaminari', '~> 0.14.1'
 gem 'kaminari-bootstrap'
-#gem 'kaminari'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -56,6 +55,7 @@ group :deploy do
 end
 
 group :development, :test do
+  gem 'brakeman'
   gem 'ffaker'
   gem 'mocha', '0.12.1', require: false
   gem 'simplecov', require: false, group: :test
