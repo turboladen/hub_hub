@@ -17,7 +17,16 @@ class PostMailer < ActionMailer::Base
     spoke = Spoke.find_by_name(match_data[:spoke_name]) || Spoke.find_by_name('Chat')
 
     logger.debug "Spoke name: #{spoke.name}"
-    content = email.multipart? ? email.text_part.body.raw_source: email.body.raw_source
+    content = if email.multipart?
+      if email.html_part
+        email.html_part.body.decoded
+      else
+        email.text_part.body.decoded
+      end
+    else
+      email.body.decoded
+    end
+
     post = spoke.posts.build(title: match_data[:post_title], content: content)
     post.user = user
 
