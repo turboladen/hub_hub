@@ -101,4 +101,7 @@ root:   steve.loveless@gmail.com
 
 
 # MindHub site mail receiver
-poster: "| RAILS_ENV=production /var/www/chat.mindhub.org/current/script/rails runner 'PostMailer.receive(STDIN.read)'"
+poster:     "| RAILS_ENV=production /var/www/chat.mindhub.org/current/script/rails runner 'PostMailer.receive(STDIN.read)'"
+
+# MindHub admin
+admin:      "| RAILS_ENV=production /var/www/chat.mindhub.org/current/script/rails runner 'AdminMailer.receive(STDIN.read)'"
