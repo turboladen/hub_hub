@@ -14,6 +14,7 @@ class AdminUserFlowsTest < ActionDispatch::IntegrationTest
       "#{users(:bob).id}-is-admin" => "true"
 
     admin.assert_response :success
+    assert User.find(users(:bob).id).admin?
 
     bob = login :bob
     assert_nothing_raised do

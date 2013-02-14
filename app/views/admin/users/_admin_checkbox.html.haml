@@ -6,4 +6,4 @@
     = hidden_field_tag "#{user.id}-is-admin", nil
     %div
       = check_box_tag "#{user.id}-is-admin", !user.admin?, user.admin?, id: "admin-#{user.id}",
-	    class: "checkable"
+        class: "checkable"
