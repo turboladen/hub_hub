@@ -45,13 +45,13 @@
       %td
         %strong Admin?
       %td
-        = render partial: 'admin/admin_checkbox', locals: { user: @user }
+        = render partial: 'admin/users/admin_checkbox', locals: { user: @user }
 
     %tr
       %td
         %strong Banned?
       %td
-        = render partial: 'admin/banned_checkbox', locals: { user: @user }
+        = render partial: 'admin/users/banned_checkbox', locals: { user: @user }
 
 %p
   = link_to :back do

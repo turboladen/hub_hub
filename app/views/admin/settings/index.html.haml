@@ -1,5 +1,4 @@
-= form_tag(admin_update_digest_email_settings_path(setting: :send_time),
-  method: :put, class: 'form-horizontal') do
+= form_tag(admin_settings_path(name: :send_time), class: 'form-horizontal') do
   %fieldset.control-group
     = label_tag :send_time, "Daily send time", class: 'control-label'
     .controls

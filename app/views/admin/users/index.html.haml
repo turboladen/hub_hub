@@ -13,11 +13,11 @@
   %tbody
     - @users.each do |u|
       %tr
-        %td= link_to u.email, admin_user_path(u.id)
+        %td= link_to u.email, edit_admin_user_path(u.id)
         %td= u.first_name
         %td= u.last_name
         %td
-          = render partial: 'admin/admin_checkbox', locals: { user: u }
+          = render partial: 'admin/users/admin_checkbox', locals: { user: u }
         %td
-          = render partial: 'admin/banned_checkbox', locals: { user: u }
+          = render partial: 'admin/users/banned_checkbox', locals: { user: u }
 

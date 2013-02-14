@@ -10,4 +10,11 @@ class ApplicationController < ActionController::Base
       redirect_to home_path, alert: "You are banned from this site."
     end
   end
+
+  def ensure_admin
+    unless user_signed_in? && current_user.admin?
+      message = "No route matches [#{env['REQUEST_METHOD']}] \"#{env['PATH_INFO']}\""
+      raise ActionController::RoutingError, message
+    end
+  end
 end

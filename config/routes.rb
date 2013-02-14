@@ -7,16 +7,10 @@ HubHub::Application.routes.draw do
 
   namespace :admin do
     get "/",          action: :index
-
-    get "users",      action: :index_users, as: 'users'
-    get "users/:id",  action: :show_user, as: 'user'
-    put "users/:id",  action: :update_user
+    resources :users, only: [:index, :edit, :update]
+    resources :settings, only: [:index, :create]
 
     get :inappropriate_items
-    get :digest_email_settings, action: :edit_digest_email_settings,
-      as: :edit_digest_email_settings
-    put :digest_email_settings, action: :update_digest_email_settings,
-      as: :update_digest_email_settings
   end
 
   resources :spokes, except: :index do
