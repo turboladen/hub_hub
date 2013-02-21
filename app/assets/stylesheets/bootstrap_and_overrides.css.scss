@@ -129,12 +129,10 @@ a:hover {
 
 .post-type-text {
   @extend .post-type;
-  //background-color: $postBackgroundGreen;
 }
 
 .post-type-link {
   @extend .post-type;
-  background-color: $postBackgroundBlue
 }
 
 .post-type::after {
@@ -172,11 +170,9 @@ a:hover {
 }
 
 .post-type-text::after {
-  content: "Text";
   @extend .post-type::after;
 }
 
 .post-type-link::after {
-  content: "Link";
   @extend .post-type::after;
 }
