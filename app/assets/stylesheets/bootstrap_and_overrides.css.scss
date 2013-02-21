@@ -134,7 +134,7 @@ a:hover {
 
 .post-type-link {
   @extend .post-type;
-  //background-color: $postBackgroundBlue
+  background-color: $postBackgroundBlue
 }
 
 .post-type::after {
