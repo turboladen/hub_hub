@@ -6,6 +6,8 @@ class AdminController < ApplicationController
 
   end
 
+
+
   def inappropriate_items
     flagged =
       MakeFlaggable::Flagging.where(flaggable_type: "Post", flag: "inappropriate")

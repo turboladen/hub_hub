@@ -20,13 +20,6 @@ html, body {
   height: 100%;
 }
 
-#main {
-  min-height: 100%;
-  height: auto !important;
-  height: 97%;
-  margin: 0 auto -100px;
-}
-
 .navbar .container {
   height: 40px;
 
@@ -61,6 +54,14 @@ html, body {
   }
 }
 
+#main {
+  min-height: 100%;
+  height: auto !important;
+  height: 97%;
+  margin: 0 auto -100px;
+  margin-bottom: 0 !important;
+}
+
 .hero-unit {
   padding: 20px 60px;
 }
@@ -70,7 +71,7 @@ html, body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 80% 20px;
-  background-size: 15%
+  background-size: 15%;
 }
 
 .votable-item-count {
@@ -101,10 +102,20 @@ html, body {
   box-shadow: 0 0 2px rgba(0,0,0,.15);
 }
 
-.push {
-  height: 85px;
+.nav-list {
+  margin-bottom: 1em;
+  h4 {
+    margin-left: -.5em;
+    font-size: 150%; font-weight: bold;
+  }
 }
 
-#footer, .container {
-  margin-bottom: 40px;
+.push {
+  height: 20px;
+}
+
+#footer {
+  .container {
+    margin-bottom: 0 !important;
+  }
 }

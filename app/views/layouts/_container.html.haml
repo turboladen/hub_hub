@@ -10,9 +10,9 @@
 
     .row
       - if content_for?(:right_sidebar)
-        .span8
+        .span9
           = yield
-        .span4
+        .span3
           = yield(:right_sidebar)
 
       - else
