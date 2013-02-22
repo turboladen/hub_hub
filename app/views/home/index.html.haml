@@ -14,16 +14,27 @@
   = paginate @posts
 
 = content_for(:right_sidebar) do
-  .well.sidebar-nav{ style: "height: 100%;" }
-    %ul.nav.nav-list
-      %li.nav-header Spokes
+  -# .sidebar-nav{ style: "height: 100%;" } -- I took this out from .well.well-small below
+  -# as it seemed to have no effect.
+  -#  <ul class="nav nav-list">
+  -#  <li class="nav-header">List header</li>
+  -#  <li class="active"><a href="#">Home</a></li>
+  -#  <li><a href="#">Library</a></li>
+  -#  ...
+  -#  </ul>
+
+  .nav.nav-list
+    %li.nav-header
+      %h4 Spokes
+      %li.active
+        %a{:href => 'home'} Home
       - @spokes.each do |spoke|
         %li
-          %ul
-            %li
-              = link_to spoke.name, spoke, class: 'spoke'
+          = link_to spoke.name, spoke, class: 'spoke'
 
-  .well
+  -#.well.well-small.side-nav
+
+  .well.well-small
     %h4 Welcome
     %hr
     %p

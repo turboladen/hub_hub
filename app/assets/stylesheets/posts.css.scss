@@ -2,6 +2,14 @@
 // They will automatically be included in application.css.scss.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.post-type-text, .post-type-link {
+	margin-top: 10px;
+	table {width: 100%;}
+	.vote-counts {margin-top: -20px;}
+
+}
+
 .post-title {
   font-size: 24px;
 }
+
