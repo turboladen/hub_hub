@@ -1,11 +1,12 @@
 require 'test_helper'
 
+
 class Admin::UsersControllerTest < ActionController::TestCase
   setup do
     @bob = users(:bob)
   end
 
-  test "must be logged in as an admin to view users" do
+  test 'must be logged in as an admin to view users' do
     assert_raise ActionController::RoutingError do
       get :index
     end
@@ -23,7 +24,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     end
   end
 
-  test "must be logged in as an admin to view user" do
+  test 'must be logged in as an admin to view user' do
     assert_raise ActionController::RoutingError do
       get :edit, id: @bob.id
     end
@@ -41,30 +42,30 @@ class Admin::UsersControllerTest < ActionController::TestCase
     end
   end
 
-  test "must be logged in as an admin to update user" do
+  test 'must be logged in as an admin to update user' do
     assert_raise ActionController::RoutingError do
-      xhr :put, :update, id: @bob.id, "#{@bob.id}-is-admin" => "true"
+      xhr :put, :update, id: @bob.id, "#{@bob.id}-is-admin" => 'true'
     end
 
     sign_in @bob
     assert_raise ActionController::RoutingError do
-      xhr :put, :update, id: @bob.id, "#{@bob.id}-is-admin" => "true"
+      xhr :put, :update, id: @bob.id, "#{@bob.id}-is-admin" => 'true'
     end
     sign_out @bob
 
     sign_in users(:admin)
     assert_nothing_raised do
-      xhr :put, :update, id: @bob.id, "#{@bob.id}-is-admin" => "true"
+      xhr :put, :update, id: @bob.id, "#{@bob.id}-is-admin" => 'true'
     end
 
     assert_response 200
   end
 
-  test "can make user an admin" do
+  test 'can make user an admin' do
     sign_in users(:admin)
     assert !@bob.admin?
 
-    xhr :put, :update, id: @bob.id, "#{@bob.id}-is-admin" => "true"
+    xhr :put, :update, id: @bob.id, "#{@bob.id}-is-admin" => 'true'
 
     assert assigns(:make_admin)
     assert_response 200
@@ -73,12 +74,12 @@ class Admin::UsersControllerTest < ActionController::TestCase
     assert updated_bob.admin?
   end
 
-  test "can make an admin a regular user" do
+  test 'can make an admin a regular user' do
     sign_in users(:admin)
     assert !@bob.admin?
     @bob.update_attribute :admin, true
 
-    xhr :put, :update, id: @bob.id, "#{@bob.id}-is-admin" => "false"
+    xhr :put, :update, id: @bob.id, "#{@bob.id}-is-admin" => 'false'
 
     assert !assigns(:make_admin)
     assert_response 200
@@ -86,11 +87,11 @@ class Admin::UsersControllerTest < ActionController::TestCase
     assert !updated_bob.admin?
   end
 
-  test "can ban user" do
+  test 'can ban user' do
     sign_in users(:admin)
     assert !@bob.banned?
 
-    xhr :put, :update, id: @bob.id, "#{@bob.id}-is-banned" => "true"
+    xhr :put, :update, id: @bob.id, "#{@bob.id}-is-banned" => 'true'
 
     assert assigns(:ban_user)
     assert_response 200
@@ -98,12 +99,12 @@ class Admin::UsersControllerTest < ActionController::TestCase
     assert updated_bob.banned?
   end
 
-  test "can unban a banned user" do
+  test 'can unban a banned user' do
     sign_in users(:admin)
     assert !@bob.banned?
     @bob.update_attribute :banned, true
 
-    xhr :put, :update, id: @bob.id, "#{@bob.id}-is-banned" => "false"
+    xhr :put, :update, id: @bob.id, "#{@bob.id}-is-banned" => 'false'
 
     assert !assigns(:ban_user)
     assert_response 200
@@ -111,7 +112,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     assert !updated_bob.banned?
   end
 
-  test "doesn't allow updating admin@mindhub.org" do
+  test 'does not allow updating admin@mindhub.org' do
     sign_in users(:admin)
 
     su = users(:super_user)

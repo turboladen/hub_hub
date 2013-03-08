@@ -1,4 +1,4 @@
-<% if @flag_type == "inappropriate" %>
+<% if @flag_type == 'inappropriate' %>
     <% if current_user.flagged?(@post, :inappropriate) %>
     $('#inappropriate-post-<%= @post.id %>').addClass('btn-danger')
     $('#inappropriate-post-<%= @post.id %>').removeClass('btn-warning')
@@ -12,7 +12,7 @@
     <% end %>
 <% end %>
 
-<% if @flag_type == "favorite" %>
+<% if @flag_type == 'favorite' %>
     <% if current_user.flagged?(@post, :favorite) %>
     $('#favorite-<%= @post.id %>').addClass('btn-success')
     $('#favorite-<%= @post.id %>').attr('title', '<%= favorited_title %>')

@@ -1,9 +1,10 @@
 require 'test_helper'
 
+
 class HomeControllerTest < ActionController::TestCase
   fixtures :posts
 
-  test "gets index" do
+  test 'gets index' do
     get :index
 
     assert_not_nil assigns(:posts)
@@ -15,7 +16,7 @@ class HomeControllerTest < ActionController::TestCase
     assert_select 'td .post-title', 6
   end
 
-  test "gets index with sorter" do
+  test 'gets index with sorter' do
     get :index, sort: :newest
 
     assert_response :success
@@ -24,7 +25,7 @@ class HomeControllerTest < ActionController::TestCase
     assert_select 'div .post-title', 6
   end
 
-  test "gets terms of service" do
+  test 'gets terms of service' do
     get :tos
 
     assert_response :success

@@ -14,66 +14,66 @@
           $(".collapse").collapse()
           });
         %a.btn.btn-large.btn-new-post.span2{ href: '#postModal',
-          style: "color: white; ", "data-toggle" => "modal",
-          "role" => 'button' } Create Post
+          style: 'color: white; ', 'data-toggle' => 'modal',
+          'role' => 'button' } Create Post
 
-        .modal.hide.fade#postModal{ tabindex: "-1", role: "dialog", "aria-labelledby" => "myModalLabel",
-          "aria-hidden" => true, style: "display: none;" }
+        .modal.hide.fade#postModal{ tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'myModalLabel',
+          'aria-hidden' => true, style: 'display: none;' }
 
           - @post = Post.new
           = form_for([@spoke, @post]) do |f|
             .modal-header
-              %button.close{ type: "button", "data-dismiss" => "modal", "aria-hidden" => true } x
+              %button.close{ type: 'button', 'data-dismiss' => 'modal', 'aria-hidden' => true } x
               %h3 Add your post
 
             .modal-body
               - if @post.errors.any?
                 #error_explanation
                   %h2
-                    = pluralize(@post.errors.count, "error")
+                    = pluralize(@post.errors.count, 'error')
                     prohibited this post from being saved:
 
                   %ul
                     - @post.errors.full_messages.each do |msg|
                       %li= msg
 
-              = f.text_field :title, placeholder: "Post title", class: "span4"
-              = f.text_area :content, class: 'span4', placeholder: "Post content"
+              = f.text_field :title, placeholder: 'Post title', class: 'span'
+              = f.text_area :content, class: 'span4', placeholder: 'Post content'
 
             .modal-footer
-              %button.btn{ "data-dismiss" => "modal", "aria-hidden" => "true" } Cancel
+              %button.btn{ 'data-dismiss' => 'modal', 'aria-hidden' => 'true' } Cancel
               = f.submit 'Post', class: 'btn btn-primary'
 
         %a.btn.btn-large.btn-new-post.span2{ href: '#linkModal',
-          style: "color: white; ", "data-toggle" => "modal",
-          "role" => 'button' } Add Link
+          style: 'color: white; ', 'data-toggle' => 'modal',
+          'role' => 'button' } Add Link
 
-        .modal.hide.fade#linkModal{ tabindex: "-1", role: "dialog", "aria-labelledby" => "myModalLabel",
-          "aria-hidden" => true, style: "display: none;" }
+        .modal.hide.fade#linkModal{ tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'myModalLabel',
+          'aria-hidden' => true, style: 'display: none;' }
 
           - @post = Post.new
           = form_for([@spoke, @post]) do |f|
             .modal-header
-              %button.close{ type: "button", "data-dismiss" => "modal", "aria-hidden" => true } x
+              %button.close{ type: 'button', 'data-dismiss' => 'modal', 'aria-hidden' => true } x
               %h3 Add your link
 
             .modal-body
               - if @post.errors.any?
                 #error_explanation
                   %h2
-                    = pluralize(@post.errors.count, "error")
+                    = pluralize(@post.errors.count, 'error')
                     prohibited this post from being saved:
 
                   %ul
                     - @post.errors.full_messages.each do |msg|
                       %li= msg
 
-              = f.text_field :title, placeholder: "Post title", class: "span4"
+              = f.text_field :title, placeholder: 'Post title', class: 'span4'
               = f.text_field :content, class: 'span4',
-                placeholder: "http://"
+                placeholder: 'http://'
 
             .modal-footer
-              %button.btn{ "data-dismiss" => "modal", "aria-hidden" => "true" } Cancel
+              %button.btn{ 'data-dismiss' => 'modal', 'aria-hidden' => 'true' } Cancel
               = f.submit 'Post', class: 'btn btn-primary'
   - else
     .row
@@ -83,8 +83,8 @@
           $("#disabled-post-button").popover();
           });
         %a.btn.btn-large.btn-new-post.disabled.span4#disabled-post-button{ href: '#',
-          style: "color: white; ", rel: 'popover',
-          'data-content' => "Login to start posting in this spoke.",
+          style: 'color: white; ', rel: 'popover',
+          'data-content' => 'Login to start posting in this spoke.',
           'data-original-title' => 'Log in!' } Create Post
 
 %ul.nav.nav-tabs

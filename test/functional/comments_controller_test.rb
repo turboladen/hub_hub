@@ -1,5 +1,6 @@
 require 'test_helper'
 
+
 class CommentsControllerTest < ActionController::TestCase
   setup do
     @post = posts(:post_one)
@@ -7,22 +8,22 @@ class CommentsControllerTest < ActionController::TestCase
     @bob = users(:bob)
   end
 
-  test "doesn't allow commenting if not logged in" do
+  test 'does not allow commenting if not logged in' do
     assert_no_difference('Comment.count') do
       post :create, { post_id: @post.id, spoke_id: @post.spoke_id,
-        comment: { body: "stuff" } }
+        comment: { body: 'stuff' } }
     end
 
     assert_response 302
     assert_redirected_to new_user_session_url
   end
 
-  test "creates comment on a post if logged in" do
+  test 'creates comment on a post if logged in' do
     sign_in @bob
 
     assert_difference('Comment.count') do
       post :create, { post_id: @post.id, spoke_id: @post.spoke_id,
-        comment: { body: "stuff" } }
+        comment: { body: 'stuff' } }
     end
 
     assert_equal assigns(:post), @post
@@ -32,17 +33,17 @@ class CommentsControllerTest < ActionController::TestCase
     assert_redirected_to spoke_post_path(@post.spoke, @post)
   end
 
-  test "creates comment on a comment if logged in" do
+  test 'creates comment on a comment if logged in' do
     sign_in @bob
 
-    parent_comment = Comment.build_from(@post, @bob.id, "sup")
+    parent_comment = Comment.build_from(@post, @bob.id, 'sup')
     parent_comment.save!
 
     assert_difference('Comment.count') do
       post :create, {
         post_id: @post.id,
         spoke_id: @post.spoke_id,
-        comment: { body: "stuff" },
+        comment: { body: 'stuff' },
         parent_type: :comment,
         parent_id: parent_comment.id
       }
@@ -57,17 +58,17 @@ class CommentsControllerTest < ActionController::TestCase
     assert_redirected_to spoke_post_path(@post.spoke, @post)
   end
 
-  test "doesn't provide an edit page if not logged in as comment owner" do
+  test 'does not provide an edit page if not logged in as comment owner' do
     sign_in users(:ricky)
     get :edit, spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id
 
     assert_response 302
     assert_redirected_to spoke_post_comment_path(@comment.post.spoke, @comment.post, @comment)
-    assert_equal "You must have created the comment to be able to edit it.",
+    assert_equal 'You must have created the comment to be able to edit it.',
       flash[:notice]
   end
 
-  test "provides an edit page if logged in as comment owner" do
+  test 'provides an edit page if logged in as comment owner' do
     sign_in @bob
     get :edit, spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id
 
@@ -75,7 +76,7 @@ class CommentsControllerTest < ActionController::TestCase
     assert_response 200
   end
 
-  test "doesn't allow updating if logged in as not comment owner" do
+  test 'does not allow updating if logged in as not comment owner' do
     sign_in users(:karl)
     put :update, spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id,
       comment: { body: 'some new stuff' }
@@ -83,7 +84,7 @@ class CommentsControllerTest < ActionController::TestCase
     assert_redirected_to spoke_post_path(@comment.post.spoke, @comment.post)
   end
 
-  test "allows updating if logged in as comment owner" do
+  test 'allows updating if logged in as comment owner' do
     sign_in @bob
     put :update, spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id,
       comment: { body: 'some new stuff' }
@@ -92,7 +93,7 @@ class CommentsControllerTest < ActionController::TestCase
     assert_equal assigns(:comment), @comment
   end
 
-  test "allows toggling flags on comments not flagged by other users" do
+  test 'allows toggling flags on comments not flagged by other users' do
     sign_in @bob
     assert !@comment.flagged?
 
@@ -129,7 +130,7 @@ $('#inappropriate-comment-369018563').removeClass('btn-warning')
     BODY
   end
 
-  test "allows toggling flags on comments flagged by other users" do
+  test 'allows toggling flags on comments flagged by other users' do
     sign_out @bob
     ricky = users(:ricky)
     ricky.toggle_flag(@comment, :inappropriate)

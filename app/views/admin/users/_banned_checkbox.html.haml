@@ -1,4 +1,4 @@
-- if user.email == "admin@mindhub.org"
+- if user.email == 'admin@mindhub.org'
   = check_box_tag 'is_banned', !user.banned?, user.banned?, disabled: true
 
 - else
@@ -6,4 +6,4 @@
     = hidden_field_tag "#{user.id}-is-banned", nil
     %div
       = check_box_tag "#{user.id}-is-banned", !user.banned?, user.banned?, id: "ban-#{user.id}",
-        class: "checkable"
+        class: 'checkable'

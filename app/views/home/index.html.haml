@@ -14,7 +14,7 @@
   = paginate @posts
 
 = content_for(:right_sidebar) do
-  .well.sidebar-nav{ style: "height: 100%;" }
+  .well.sidebar-nav{ style: 'height: 100%;' }
     %ul.nav.nav-list
       %li.nav-header Spokes
       - @spokes.each do |spoke|
@@ -40,10 +40,10 @@
       like to join MindHub, all you need is an email address.
     %p
       If you have any
-      questions about MindHub, please email #{mail_to "mindhub-info@listmindhub.org" }.
+      questions about MindHub, please email #{mail_to 'admin@chat.mindhub.org' }.
 
     %hr
 
-    = link_to "Follow @mindhubfresno", "https://twitter.com/mindhubfresno", class: "twitter-follow-button",
-      "data-show-count" => false
+    = link_to 'Follow @mindhubfresno', 'https://twitter.com/mindhubfresno', class: 'twitter-follow-button',
+      'data-show-count' => false
 

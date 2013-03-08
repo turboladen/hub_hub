@@ -1,5 +1,6 @@
 require 'test_helper'
 
+
 class DigestEmailingTest < ActionDispatch::IntegrationTest
   fixtures :all
   include HubHelpers

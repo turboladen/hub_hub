@@ -1,12 +1,13 @@
 require 'test_helper'
 
+
 class VotesControllerTest < ActionController::TestCase
   setup do
     @comment = comments(:comment_one)
     @bob = users(:bob)
   end
 
-  test "does not allow upvote if not logged in" do
+  test 'does not allow upvote if not logged in' do
     xhr :post, :upvote, {
       item_type: :comment,
       item_id: @comment.id
@@ -15,7 +16,7 @@ class VotesControllerTest < ActionController::TestCase
     assert_response 401
   end
 
-  test "upvote adds vote when item not already voted on" do
+  test 'upvote adds vote when item not already voted on' do
     sign_in @bob
 
     assert_difference('@comment.votes.count') do
@@ -31,7 +32,7 @@ class VotesControllerTest < ActionController::TestCase
     assert_template 'votes/upvote'
   end
 
-  test "upvote removes vote when item already upvoted on by current user" do
+  test 'upvote removes vote when item already upvoted on by current user' do
     sign_in @bob
 
     @comment.liked_by @bob
@@ -46,7 +47,7 @@ class VotesControllerTest < ActionController::TestCase
     assert_response 200
   end
 
-  test "upvote adds vote when item already downvoted on by current user" do
+  test 'upvote adds vote when item already downvoted on by current user' do
     sign_in @bob
 
     @comment.downvote_from @bob
@@ -65,7 +66,7 @@ class VotesControllerTest < ActionController::TestCase
     assert_response 200
   end
 
-  test "does not allow downvote if not logged in" do
+  test 'does not allow downvote if not logged in' do
     xhr :post, :downvote, {
       item_type: :comment,
       item_id: @comment.id
@@ -74,7 +75,7 @@ class VotesControllerTest < ActionController::TestCase
     assert_response 401
   end
 
-  test "downvote adds vote when item not already voted on" do
+  test 'downvote adds vote when item not already voted on' do
     sign_in @bob
 
     assert_difference('@comment.votes.count') do
@@ -90,7 +91,7 @@ class VotesControllerTest < ActionController::TestCase
     assert_template 'votes/downvote'
   end
 
-  test "downvote removes vote when item already downvoted on by current user" do
+  test 'downvote removes vote when item already downvoted on by current user' do
     sign_in @bob
 
     @comment.downvote_from @bob
@@ -105,7 +106,7 @@ class VotesControllerTest < ActionController::TestCase
     assert_response 200
   end
 
-  test "downvote adds vote when item already upvoted on by current user" do
+  test 'downvote adds vote when item already upvoted on by current user' do
     sign_in @bob
 
     @comment.upvote_from @bob

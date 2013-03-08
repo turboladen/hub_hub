@@ -1,11 +1,12 @@
 require 'test_helper'
 
+
 class AdminControllerTest < ActionController::TestCase
   setup do
     @bob = users(:bob)
   end
 
-  test "must be logged in as an admin to view index" do
+  test 'must be logged in as an admin to view index' do
     assert_raise ActionController::RoutingError do
       get :index
     end
@@ -24,7 +25,7 @@ class AdminControllerTest < ActionController::TestCase
     end
   end
 
-  test "shows posts flagged as inappropriate" do
+  test 'shows posts flagged as inappropriate' do
     @bob.flag posts(:post_one), :inappropriate
     sign_in users(:admin)
     get :inappropriate_items

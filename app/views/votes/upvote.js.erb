@@ -1,9 +1,9 @@
 // Adjust button colors
 <% if current_user.voted_up_on? @item %>
-    $('button#<%= "#{@item_type}-down-#{@item.id}" %>').removeClass("btn-danger");
-    $('button#<%= "#{@item_type}-up-#{@item.id}" %>').addClass("btn-success");
+    $('button#<%= "#{@item_type}-down-#{@item.id}" %>').removeClass('btn-danger');
+    $('button#<%= "#{@item_type}-up-#{@item.id}" %>').addClass('btn-success');
 <% else %>
-    $('button#<%= "#{@item_type}-up-#{@item.id}" %>').removeClass("btn-success");
+    $('button#<%= "#{@item_type}-up-#{@item.id}" %>').removeClass('btn-success');
 <% end %>
 
 // Adjust net vote count

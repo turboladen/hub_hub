@@ -20,14 +20,14 @@
           class: 'btn btn-mini btn-warning'
 
       - if user_signed_in?
-        %a.btn.btn-mini{ href: "#", "data-target" => "#comment-reply-#{comment.id}",
-          title: "Reply to response", "data-toggle" => "collapse" }
+        %a.btn.btn-mini{ href: '#', 'data-target' => "#comment-reply-#{comment.id}",
+          title: 'Reply to response', 'data-toggle' => 'collapse' }
           reply
         .collapse{ id: "comment-reply-#{comment.id}" }
           = render 'comments/new', parent_type: 'comment', parent_id: comment.id
 
       - else
-        %a.btn.btn-mini.disabled{ href: "#", title: "Reply to response" }
+        %a.btn.btn-mini.disabled{ href: '#', title: 'Reply to response' }
           reply
 
     %p= Sanitize.clean(comment.body, Sanitize::Config::BASIC)

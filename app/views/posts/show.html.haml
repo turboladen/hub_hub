@@ -11,9 +11,9 @@
   = render partial: 'favorite_post', locals: { favorite_post: @post }
   = render partial: 'inappropriate_post', locals: { inappropriate_post: @post }
 
-%div{ style: "padding-left: 50px; padding-bottom: 10px;" }
-  %div{ class: @post.link? ? "post-type-link" : "post-type-text" }
-    .pull-right{ style: "margin-top: -30px;" }
+%div{ style: 'padding-left: 50px; padding-bottom: 10px;' }
+  %div{ class: @post.link? ? 'post-type-link' : 'post-type-text' }
+    .pull-right{ style: 'margin-top: -30px;' }
       = render partial: 'shared/votable_item_counts',
         locals: { votable_item: @post }
 

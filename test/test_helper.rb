@@ -1,7 +1,7 @@
 require 'simplecov'
 SimpleCov.start 'rails'
 
-ENV["RAILS_ENV"] = "test"
+ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
@@ -34,7 +34,7 @@ module HubHelpers
       }
 
       assert_nil sess.flash[:alert], sess.flash[:alert]
-      assert_equal "Signed in successfully.", sess.flash[:notice]
+      assert_equal 'Signed in successfully.', sess.flash[:notice]
       sess.assert_response 302
     end
   end

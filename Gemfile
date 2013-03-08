@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.12'
 
 # Database
-gem 'ledermann-rails-settings', require: 'rails-settings'
+gem 'ledermann-rails-settings', '~> 1.2.1', require: 'rails-settings'
 
 group :production do
   gem 'mysql2'

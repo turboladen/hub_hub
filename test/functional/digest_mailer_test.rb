@@ -1,11 +1,12 @@
 require 'test_helper'
 
+
 class DigestMailerTest < ActionMailer::TestCase
   setup do
     @bob = users(:bob)
   end
 
-  test "nightly email can send" do
+  test 'nightly email can send' do
     # Send the email, then test that it got queued
     email = DigestMailer.nightly_email(@bob).deliver
     assert !ActionMailer::Base.deliveries.empty?
@@ -19,7 +20,7 @@ class DigestMailerTest < ActionMailer::TestCase
     email
   end
 
-  test "nightly email with no posts or comments" do
+  test 'nightly email with no posts or comments' do
     # Not sure why posts and comments are loaded...
     Post.all.each(&:destroy)
     Comment.all.each(&:destroy)
@@ -32,8 +33,8 @@ class DigestMailerTest < ActionMailer::TestCase
     assert_match(/No responses from yesterday\./, email.encoded)
   end
 
-  test "can send to all subscribers" do
-    assert_difference("ActionMailer::Base.deliveries.count", 3) do
+  test 'can send to all subscribers' do
+    assert_difference('ActionMailer::Base.deliveries.count', 3) do
       DigestMailer.nightly_email_everyone
     end
   end

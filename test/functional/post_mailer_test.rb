@@ -19,7 +19,7 @@ Hi everyone.
     end
   end
 
-  test "non-multipart email posts" do
+  test 'non-multipart email posts' do
     @mail.body = @content
 
     assert_difference('Post.count') do
@@ -33,7 +33,7 @@ Hi everyone.
     end
   end
 
-  test "multipart email posts text part" do
+  test 'multipart email posts text part' do
     text_part = Mail::Part.new
     text_part.body = @content
     @mail.text_part = text_part
@@ -53,7 +53,7 @@ Hi everyone.
     end
   end
 
-  test "email with unknown spoke posts to the Chat spoke" do
+  test 'email with unknown spoke posts to the Chat spoke' do
     Spoke.create(name: 'Chat')
     @mail.subject = 'Some Spoke: This is a test email'
     @mail.body = 'Some stuff'
@@ -68,7 +68,7 @@ Hi everyone.
     end
   end
 
-  test "email from unknown user doesn't post and doesn't raise" do
+  test 'email from unknown user does not post and does not raise' do
     @mail.body = @content
     @mail.from = 'someguy@anonymous.com'
 
@@ -85,7 +85,7 @@ Hi everyone.
     end
   end
 
-  test "email fails to save" do
+  test 'email fails to save' do
     Post.any_instance.expects(:save).times(3).returns(false)
     @mail.body = @content
 
