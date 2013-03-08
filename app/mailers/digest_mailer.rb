@@ -1,5 +1,5 @@
 class DigestMailer < ActionMailer::Base
-  default from: "digest@chat.mindhub.org"
+  default from: 'digest@chat.mindhub.org'
 
   # Emails the nightly email to each digest subscriber.
   def nightly_email_everyone
