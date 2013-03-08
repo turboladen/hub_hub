@@ -168,7 +168,12 @@ class PostTest < ActiveSupport::TestCase
 
   test 'get posts from last 24 hours' do
     all_recent_posts = Post.last_24_hours
-    assert_equal 5, all_recent_posts.count
     assert_not_include all_recent_posts, @one
+    assert_include all_recent_posts, @two
+    assert_include all_recent_posts, @three
+    assert_include all_recent_posts, @four
+    assert_include all_recent_posts, @five
+    assert_include all_recent_posts, @link_post_one
+    assert_equal 5, all_recent_posts.count
   end
 end
