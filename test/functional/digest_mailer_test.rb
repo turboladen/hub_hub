@@ -4,18 +4,22 @@ require 'test_helper'
 class DigestMailerTest < ActionMailer::TestCase
   setup do
     @bob = users(:bob)
+    @admin = users(:admin)
   end
 
   test 'nightly email can send' do
     # Send the email, then test that it got queued
-    email = DigestMailer.nightly_email(@bob).deliver
+    test_subject = 'This is the subject'
+    posts = []
+    comments = []
+    email = DigestMailer.nightly_email(@bob, test_subject, posts, comments).deliver
     assert !ActionMailer::Base.deliveries.empty?
 
     # Test the body of the sent email contains what we expect it to
     assert_equal [@bob.email], email.to
-    assert_equal "Your mindhub.org digest for #{Date.today.to_formatted_s(:long)}",
-      email.subject
+    assert_equal test_subject, email.subject
     assert_match(/Hi #{@bob.first_name},/, email.encoded)
+    assert_not_match(/Hi #{@admin.first_name},/, email.encoded)
 
     email
   end
