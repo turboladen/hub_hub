@@ -25,7 +25,7 @@ class PostsControllerTest < ActionController::TestCase
     assert_difference('Post.count') do
       post :create, spoke_id: @post.spoke.id, post: {
         title: "I'm logged in",
-        content: "So this should work."
+        content: 'So this should work.'
       }
     end
 
@@ -53,6 +53,7 @@ class PostsControllerTest < ActionController::TestCase
 
     assert_equal assigns(:post), @post
     assert_response :success
+    assert_select 'title', "MindHub Post: #{@post.title}"
     assert_select '.breadcrumb li', @post.spoke.name
     assert_select 'h1', @post.title
     assert_select '.span8 div p time'

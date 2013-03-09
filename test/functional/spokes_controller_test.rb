@@ -22,6 +22,7 @@ class SpokesControllerTest < ActionController::TestCase
   test 'should show spoke' do
     get :show, id: @spoke
     assert_response :success
+    assert_select 'title', "MindHub Spoke: #{@spoke.name}"
     assert_select 'td .post-title', 5
   end
 

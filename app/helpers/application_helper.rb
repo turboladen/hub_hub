@@ -34,7 +34,12 @@ to banning from the site.
   # @return [String] "active" if true; nil if false.
   def active_li?(&blk)
     if blk.call
-      "active"
+      'active'
     end
+  end
+
+  # @param [String] title The title of the page.
+  def page_title(title)
+    content_for(:title, truncate(title, length: 100))
   end
 end

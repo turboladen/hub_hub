@@ -6,7 +6,7 @@
 
         = render partial: 'layouts/inappropriate_modal'
 
-    = content_for?(:page_title) ? yield(:page_title) : nil
+    = content_for?(:page_heading) ? yield(:page_heading) : nil
 
     .row
       - if content_for?(:right_sidebar)
