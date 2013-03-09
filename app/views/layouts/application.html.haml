@@ -7,6 +7,7 @@
     %title= content_for?(:title) ? yield(:title) : 'MindHub'
     %meta{ content: '', name: 'description' }
     %meta{ content: '', name: 'author' }
+    = javascript_include_tag 'application'
     = stylesheet_link_tag    'application', media: 'all'
     = csrf_meta_tags
     = auto_discovery_link_tag(:rss, 'http://chat.mindhub.org')
@@ -24,5 +25,3 @@
 
     #footer
       = render 'layouts/footer'
-
-    = javascript_include_tag 'application'
