@@ -1,0 +1,37 @@
+.modal.hide.fade#postModal{ tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'myModalLabel',
+  'aria-hidden' => true, style: 'display: none;' }
+
+  - @post = Post.new
+  = form_for([@spoke, @post]) do |f|
+    .modal-header
+      %button.close{ type: 'button', 'data-dismiss' => 'modal', 'aria-hidden' => true } x
+      %h3 Add your post
+
+    .modal-body
+      - if @post.errors.any?
+        #error_explanation
+          %h2
+            = pluralize(@post.errors.count, 'error')
+            prohibited this post from being saved:
+
+          %ul
+            - @post.errors.full_messages.each do |msg|
+              %li= msg
+
+      = f.text_field :title, placeholder: 'Post title', class: 'span6'
+      %br
+      = f.text_area :content, class: 'span6', placeholder: 'Post content'
+      %script
+        $(function () {
+        $("#post-help").popover();
+        });
+
+      %a#post-help{ href: '#', rel: 'popover',
+        'data-original-title' => 'stuff',
+        'data-content' => html_rules_for_posting,
+        'data-placement' => 'right' }
+        %i.icon-question-sign
+
+    .modal-footer
+      %button.btn{ 'data-dismiss' => 'modal', 'aria-hidden' => 'true' } Cancel
+      = f.submit 'Post', class: 'btn btn-primary'

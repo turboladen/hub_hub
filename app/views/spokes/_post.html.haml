@@ -25,7 +25,7 @@
               %td
                 %blockquote.pull-right
                   %p
-                    = truncate(post.content, length: 140)
+                    = truncate(raw(Sanitize.clean(post.content, Sanitize::Config::BASIC)), length: 140)
 
                   %small
                     - if post.user.first_name
