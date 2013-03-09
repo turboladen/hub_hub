@@ -62,6 +62,13 @@ class PostsControllerTest < ActionController::TestCase
     assert_select 'td.comment', @post.comment_threads.count
   end
 
+  test 'shows post with http:// reference and linkifies it' do
+    post = posts(:post_three)
+    get :show, id: post, spoke_id: post.spoke.id
+
+    assert_match '<a href="http://turtles.com"', @response.body
+  end
+
   test 'shows post with no link to edit when not logged in' do
     test_shows_post
     assert_select '.span8 div p a', false

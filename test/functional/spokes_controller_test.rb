@@ -26,6 +26,13 @@ class SpokesControllerTest < ActionController::TestCase
     assert_select 'td .post-title', 5
   end
 
+  test 'shows a spoke with a post with http:// reference and linkifies it' do
+    post = posts(:post_three)
+    get :show, id: post.spoke.id
+
+    assert_match '<a href="http://turtles.com"', @response.body
+  end
+
   test 'should get edit' do
     get :edit, id: @spoke
     assert_response :success

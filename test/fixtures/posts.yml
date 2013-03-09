@@ -26,7 +26,7 @@ post_two:
 post_three:
   user: johnny
   title: I like turtles.
-  content: Like I said...
+  content: Like I said...  http://turtles.com!
   spoke: fresno
   cached_votes_up: 0
   cached_votes_down: 5

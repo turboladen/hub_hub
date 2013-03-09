@@ -40,6 +40,7 @@ gem 'whenever', '~> 0.8.0', require: false
 gem 'kaminari', '~> 0.14.1'
 gem 'kaminari-bootstrap'
 gem 'sanitize'
+gem 'rails_autolink', '~> 1.0.9'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

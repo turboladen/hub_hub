@@ -33,7 +33,7 @@
 
     .well
       %p
-        = raw Sanitize.clean(@post.content, Sanitize::Config::BASIC)
+        = raw Sanitize.clean(auto_link(@post.content), Sanitize::Config::BASIC)
 
 %hr
 
