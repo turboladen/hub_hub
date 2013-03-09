@@ -1,7 +1,7 @@
 class PostMailer < ActionMailer::Base
   include ActionView::Helpers::TextHelper
 
-  default from: "poster@chat.mindhub.org"
+  default from: 'MindHub Poster <poster@chat.mindhub.org>'
 
   def receive(email)
     user = User.find_by_email(email.from)
@@ -62,7 +62,7 @@ class PostMailer < ActionMailer::Base
 
     mail(
       subject: 'Hmm... Looks like there was a problem posting your post...',
-      to: @user.email,
+      to: "#{@user.name} <#{@user.email}>",
       cc: User.admin_emails,
       template_name: 'unexpected_error'
     ).deliver
