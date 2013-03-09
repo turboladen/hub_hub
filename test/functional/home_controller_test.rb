@@ -31,4 +31,11 @@ class HomeControllerTest < ActionController::TestCase
     assert_response :success
     assert_template 'home/tos'
   end
+
+  test 'gets the faq' do
+    get :faq
+
+    assert_response :success
+    assert_template 'home/faq'
+  end
 end

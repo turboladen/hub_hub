@@ -1,17 +1,11 @@
 HubHub::Application.routes.draw do
   root :to => 'home#index', as: 'home'
 
-  devise_for :users, :controllers => { :registrations => "registrations" }
-  get "home/index"
-  get "home/tos"
+  devise_for :users, :controllers => { :registrations => 'registrations' }
+  get 'home/index'
 
-  namespace :admin do
-    get "/",          action: :index
-    resources :users, only: [:index, :edit, :update]
-    resources :settings, only: [:index, :create]
-
-    get :inappropriate_items
-  end
+  post 'votes/upvote'
+  post 'votes/downvote'
 
   resources :spokes, except: :index do
     resources :posts, except: [:index, :new] do
@@ -23,8 +17,16 @@ HubHub::Application.routes.draw do
     end
   end
 
-  post "votes/upvote"
-  post "votes/downvote"
+  get 'tos' => 'home#tos'
+  get 'faq' => 'home#faq'
+
+  namespace :admin do
+    get '/',          action: :index
+    resources :users, only: [:index, :edit, :update]
+    resources :settings, only: [:index, :create]
+
+    get :inappropriate_items
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
