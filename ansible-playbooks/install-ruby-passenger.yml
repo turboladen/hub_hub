@@ -1,0 +1,41 @@
+---
+- hosts: web-servers
+  user: dev
+  sudo: false
+  gather_facts: false
+
+  vars:
+    #user: "dev"
+    home: /home/$user
+    ruby_version: "1.9.3-p374"
+    ruby_path: /usr/local/rbenv/versions/$ruby_version/bin/
+
+  tasks:
+    - name: checkout ruby-build
+      action: git repo=git://github.com/sstephenson/ruby-build.git dest=/home/$user/ruby-build
+
+    - name: build ruby-build
+      action: shell chdir=/home/$user/ruby-build creates=/usr/local/bin/ruby-build sudo ./install.sh
+
+    # - name: remove ruby
+    #   action: shell sudo rm -rf /usr/local/ruby-1.9.3-p194/
+    #   action: shell sudo rm -rf /usr/local/ruby/$ruby_version
+    #   action: shell rm -rf $home/local/ruby/$ruby_version
+
+    - name: install ruby
+      action: shell creates=$home/local/ruby/$ruby_version /usr/local/bin/ruby-build $ruby_version $home/local/ruby/$ruby_version
+
+    - name: hack the path
+      action: template src=templates/bash_profile.tmpl dest=$home/.bash_profile
+
+    - name: set the source
+      action: shell source $home/.bash_profile
+
+    - name: install bundler
+      action: command $ruby_path/gem install bundler --no-rdoc --no-ri
+
+    - name: install passenger
+      action: command $ruby_path/gem install passenger --no-rdoc --no-ri
+
+    - name: install bundler
+      action: command $ruby_path/gem install rails --no-rdoc --no-ri
