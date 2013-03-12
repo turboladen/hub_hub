@@ -41,5 +41,16 @@ class DigestMailerTest < ActionMailer::TestCase
     assert_difference('ActionMailer::Base.deliveries.count', 3) do
       DigestMailer.nightly_email_everyone
     end
+
+    ActionMailer::Base.deliveries.each do |delivery|
+      /Hi (?<name>[^,]+),/m =~ delivery.to_s
+      assert_match(/#{name}/, delivery.to_s)
+      wrong_names = User.digest_list.all.map(&:first_name) - [name]
+
+      wrong_names.each do |wrong_name|
+        assert_not_match(/#{wrong_name}/, delivery.to_s,
+          "Found #{wrong_name} instead of #{wrong_name}")
+      end
+    end
   end
 end
