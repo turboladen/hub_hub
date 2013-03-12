@@ -10,37 +10,5 @@
     answered here, please
     = link_to 'let the admins know.'
 
-#email-posting
-  %h2 Can I post to MindHub via sending an email?
-
-  %p
-    Yes!  ...but you have to follow some rules:
-    %ol
-      %li You must be MindHub member.
-      %li
-        You must send the email from the address that's tied to your MindHub
-        account.
-      %li No attachments.  If you send one, it will be discarded.
-      %li
-        You must follow
-        %a{ href: '#email_subject_guidelines' } the subject line guidelines
-        below.
-
-    If you send an email, then don't see it on the site, it may be because you
-    didn't follow the rules.
-
-  %p
-    %a{ name: 'email_subject_guidelines' }
-    %strong Email Subject Line Guidelines
-
-  %p
-    In order to tell MindHub which spoke you want to post your post in, you need
-    to format the subject of your email like this:
-
-    %tt [Spoke name]: [Post title]
-
-    \.  For example:
-
-    %tt Events: Farmer's Market
-    %br
-
+= render partial: 'faq_email_posting'
+= render partial: 'faq_check_spam'
