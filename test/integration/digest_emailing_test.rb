@@ -18,7 +18,7 @@ class DigestEmailingTest < ActionDispatch::IntegrationTest
     assert !user.digest_email
 
     ricky.put user_registration_path, user: { digest_email: true }
-    ricky.assert_response :success
+    ricky.assert_redirected_to home_path
 
     user = User.find(users(:ricky))
     assert user.digest_email
@@ -41,7 +41,7 @@ class DigestEmailingTest < ActionDispatch::IntegrationTest
     assert user.digest_email
 
     bob.put user_registration_path, user: { digest_email: false }
-    bob.assert_response :success
+    bob.assert_redirected_to home_path
 
     user = User.find(users(:bob))
     assert !user.digest_email

@@ -61,17 +61,6 @@
 
   %hr
 
-  %h3 Confirm your changes
-
-  %p.muted
-    If you made any changes, enter your password here.  We ask for your password
-    just to make sure it's you making changes to your profile.
-
-  %fieldset.control-group
-    = f.label :current_password, class: 'control-label'
-    .controls
-      = f.password_field :current_password
-
   .form-actions.devise-form-button
     = f.submit 'Update', class: 'btn btn-primary'
     = link_to 'Cancel', :back, class: 'btn btn-danger'
