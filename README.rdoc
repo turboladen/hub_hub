@@ -7,3 +7,7 @@ A Rails site for connecting subcommunities within a community.
 # Copy <tt>config/database.yml.sample</tt> to <tt>config/database.yml</tt> and
   set appropriate options.
 # Run <tt>bundle install</tt>
+
+== Notes
+
+* Comments should be viewed by users as "Responses".
