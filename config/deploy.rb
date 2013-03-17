@@ -1,18 +1,18 @@
 require 'bundler/capistrano'
 
 set :stages, %w(production staging)
-set :default_stage, "staging"
+set :default_stage, 'staging'
 require 'capistrano/ext/multistage'
 
-set :whenever_command, "bundle exec whenever"
+set :whenever_command, 'bundle exec whenever'
 #set :whenever_environment, defer { stage }
 require 'whenever/capistrano'
 
-set :user, "deploy"
+set :user, 'deploy'
 set :domain, 'chat.mindhub.org'
-set :application, "mindhub"
+set :application, 'mindhub'
 
-set :repository,  "git://github.com/turboladen/hub_hub.git"
+set :repository,  'git://github.com/turboladen/hub_hub.git'
 set :deploy_to, "/var/www/#{domain}"
 
 set :deploy_via, :remote_cache
@@ -22,7 +22,7 @@ set :use_sudo, false
 set :rails_env, 'production'
 
 # For rbenv
-set :bundle_flags, "--deployment --binstubs"
+set :bundle_flags, '--deployment --binstubs'
 set :default_environment, {
   'PATH' => "/home/#{user}/.rbenv/shims:/home/#{user}/.rbenv/bin:$PATH"
 }
@@ -43,7 +43,7 @@ task :setup_deploy_to do
   end
 end
 
-before "deploy:setup", :setup_deploy_to
+before 'deploy:setup', :setup_deploy_to
 
 namespace :deploy do
   task :start do ; end
@@ -76,12 +76,12 @@ namespace :deploy do
   end
 end
 
-after "deploy", 'deploy:set_log_permissions'
-after "deploy", 'deploy:database_file_to_shared'
-after "deploy", 'deploy:seed_defaults'
+after 'deploy', 'deploy:set_log_permissions'
+after 'deploy', 'deploy:database_file_to_shared'
+after 'deploy', 'deploy:seed_defaults'
 
 
-desc "Tail logs"
+desc 'Tail logs'
 task :tail, :roles => :app do
   run "tail -f #{shared_path}/log/*.log" do |channel, stream, data|
     puts "#{channel[:host]}: #{data}"
