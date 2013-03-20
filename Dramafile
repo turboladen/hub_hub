@@ -1,0 +1,60 @@
+require 'drama/parts'
+
+
+class OSSetup < Drama::Part
+  def play
+    host.play_part Epel, os_version: 5
+    host.play_part RbEnv, user: 'vagrant'
+    host.yum package: 'httpd', sudo: true
+  end
+end
+
+
+class Drama
+  class Default
+    include Drama::Stage
+
+    def initialize
+      @host_group = {
+        web: Host.new('192.168.33.10', :web, user: 'vagrant'),
+        db: Host.new('192.168.10.3', :db)
+      }
+
+      @user = 'deploy'
+      @domain = 'chat.mindhub.org'
+      @repository = 'git://github.com/turboladen/hub_hub.git'
+      @deploy_to = "/var/www/#{@domain}"
+      @current_path = %[#{@deploy_to}/current]
+      @shared_path = %[#{@deploy_to}/shared]
+      @release_directory = Time.now.strftime '%Y%m%d%H%M%S'
+      @release_path = %[#{@deploy_to}/releases/#{@release_directory}]
+    end
+
+    def setup_os
+      @host_group[:web].play_part OSSetup
+    end
+
+    def setup_directories
+      @host_group[:web].directory path: @deploy_to,              owner: "#{@user}:admin",
+        sudo: true
+      @host_group[:web].directory path: @shared_path,            owner: "#{@user}:admin",
+        sudo: true
+      @host_group[:web].directory path: %[#{@shared_path}/log],  owner: "#{@user}:admin",
+        mode: '0666', sudo: true
+      @host_group[:web].directory path: @release_path,           owner: "#{@user}:admin",
+        mode: '0764', sudo: true
+    end
+
+    def setup_repo
+      @host_group[:web].git repository: @repository, destination: @release_path, depth: 1
+      @host_group[:web].link source: @release_path, target: @current_path
+    end
+
+    def build_commands
+      setup_os
+      setup_directories
+      setup_repo
+    end
+  end
+end
+
