@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.13'
 
 # Database
 gem 'ledermann-rails-settings', '~> 1.2.1', require: 'rails-settings'
@@ -61,13 +61,11 @@ group :development, :test do
   gem 'brakeman'
   gem 'ffaker'
   gem 'mailcatcher'
-  gem 'mocha', '0.12.1', require: false
+  gem 'mocha', '~> 0.13.3', require: false
   gem 'simplecov', require: false, group: :test
   gem 'sqlite3'
   gem 'tailor'
   gem 'test-unit'
   gem 'vagrant', '>= 1.0.0'
   gem 'vagrant-ansible'
-
-  #gem 'sprinkle', path: '../sprinkle'
 end
