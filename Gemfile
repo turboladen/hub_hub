@@ -50,6 +50,8 @@ gem 'rails_autolink', '~> 1.0.9'
 
 # Deploy with Capistrano
 gem 'capistrano'
+#gem 'drama', path: '../drama'
+#gem 'drama-parts', path: '../drama-parts'
 
 # To use debugger
 # gem 'debugger'
