@@ -14,7 +14,7 @@
 
 %div{ style: 'padding-left: 50px; padding-bottom: 10px;' }
   %div{ class: @post.link? ? 'post-type-link' : 'post-type-text' }
-    .pull-right{ style: 'margin-top: -30px;' }
+    .pull-right
       = render partial: 'shared/votable_item_counts',
         locals: { votable_item: @post }
 
@@ -50,4 +50,5 @@
     Back
 
 = content_for(:right_sidebar) do
+  = render partial: 'shared/spoke_list'
   = render partial: 'spokes/spoke_info', locals: { spoke: @post.spoke }

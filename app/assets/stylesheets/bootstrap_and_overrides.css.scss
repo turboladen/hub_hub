@@ -13,7 +13,7 @@ html, body {
   background-color: $mindhubGreen;
 }
 body {
-  padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+  padding-top: 40px;
 }
 
 a:link {
@@ -96,8 +96,7 @@ a:hover {
   margin-right: 0px;
   margin-bottom: 15px;
   margin-left: 0px;
-  padding: 39px 19px 14px;
-  padding-top: 39px;
+  padding-top: 19px;
   padding-right: 19px;
   padding-bottom: 14px;
   padding-left: 19px;
@@ -137,7 +136,7 @@ a:hover {
   background-color: $postBackgroundBlue
 }
 
-.post-type::after {
+.post-type:after {
   position: absolute;
   top: -1px;
   left: -1px;
@@ -169,14 +168,4 @@ a:hover {
   -webkit-border-radius: 4px 0 4px 0;
   -moz-border-radius: 4px 0 4px 0;
   border-radius: 4px 0 4px 0;
-}
-
-.post-type-text::after {
-  content: "Text";
-  @extend .post-type::after;
-}
-
-.post-type-link::after {
-  content: "Link";
-  @extend .post-type::after;
 }

@@ -1,0 +1,18 @@
+%ul.nav.nav-list
+  %li.nav-header
+    %h4 Spokes
+  - if current_page? home_path
+    %li.active.spoke
+      = link_to 'Home', home_path
+
+  - else
+    %li
+      = link_to 'Home', home_path
+
+  - @spokes.each do |spoke|
+    - if request.fullpath =~ %r[/spokes/#{spoke.id}]
+      %li.active.spoke
+        = link_to spoke.name, spoke
+    - else
+      %li
+        = link_to spoke.name, spoke

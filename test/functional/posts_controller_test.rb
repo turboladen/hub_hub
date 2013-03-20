@@ -56,10 +56,20 @@ class PostsControllerTest < ActionController::TestCase
     assert_select 'title', "MindHub Post: #{@post.title}"
     assert_select '.breadcrumb li', @post.spoke.name
     assert_select 'h1', @post.title
-    assert_select '.span8 div p time'
-    assert_select '.span8 div p', /#{@post.user.name}/
-    assert_select '.span8 .well p', @post.content
+    assert_select '.span9 div p time'
+    assert_select '.span9 div p', /#{@post.user.name}/
+    assert_select '.span9 .well p', @post.content
     assert_select 'td.comment', @post.comment_threads.count
+
+    assert_select 'ul.nav.nav-list', 1 do
+      assert_select 'li.active.spoke', 1 do
+        assert_select 'a', 1
+      end
+
+      assert_select 'li.spoke', 1 do
+        assert_select 'a', 1
+      end
+    end
   end
 
   test 'shows post with http:// reference and linkifies it' do
@@ -71,19 +81,19 @@ class PostsControllerTest < ActionController::TestCase
 
   test 'shows post with no link to edit when not logged in' do
     test_shows_post
-    assert_select '.span8 div p a', false
+    assert_select '.span9 div p a', false
   end
 
   test 'shows post with no link to edit when logged in as not post creator' do
     sign_in users(:ricky)
     test_shows_post
-    assert_select '.span8 div p a', false
+    assert_select '.span9 div p a', false
   end
 
   test 'shows post with link to edit when logged in as post creator' do
     sign_in users(:bob)
     test_shows_post
-    assert_select '.span8 div p a', 'Edit'
+    assert_select '.span9 div p a', 'Edit'
   end
 
   test 'does not show edit page when not logged in' do

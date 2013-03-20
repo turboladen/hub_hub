@@ -7,6 +7,7 @@ class SpokesController < ApplicationController
       :newest
     end
 
+    @spokes = Spoke.all
     @spoke = Spoke.find(params[:id])
     @posts = @spoke.posts.send(@sorter).page(params[:page]).per(20)
     @sort_options = Post.sort_options

@@ -51,4 +51,5 @@
   = paginate @posts
 
 = content_for(:right_sidebar) do
+  = render partial: 'shared/spoke_list'
   = render partial: 'spoke_info', locals: { spoke: @spoke }

@@ -13,17 +13,10 @@
 #page_navigation
   = paginate @posts
 
-= content_for(:right_sidebar) do
-  .well.sidebar-nav{ style: 'height: 100%;' }
-    %ul.nav.nav-list
-      %li.nav-header Spokes
-      - @spokes.each do |spoke|
-        %li
-          %ul
-            %li
-              = link_to spoke.name, spoke, class: 'spoke'
+= content_for :right_sidebar do
+  = render partial: 'shared/spoke_list'
 
-  .well
+  .well.well-small
     %h4 Welcome
     %hr
     %p
