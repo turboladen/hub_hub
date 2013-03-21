@@ -14,7 +14,14 @@ class PostMailer < ActionMailer::Base
 
     logger.info "Received email from user: #{email.from}"
     match_data = email.subject.match(/(?<spoke_name>[^:]+)\s*:\s*(?<post_title>.+)/)
-    spoke = Spoke.find_by_name(match_data[:spoke_name]) || Spoke.find_by_name('Chat')
+    post_title = match_data[:post_title]
+
+    spoke = Spoke.find_by_name(match_data[:spoke_name])
+
+    if spoke.nil?
+      spoke = Spoke.find_by_name('Chat')
+      post_title = email.subject
+    end
 
     logger.debug "Spoke name: #{spoke.name}"
     content = if email.multipart?
@@ -27,7 +34,7 @@ class PostMailer < ActionMailer::Base
       email.body.decoded
     end
 
-    post = spoke.posts.build(title: match_data[:post_title], content: content)
+    post = spoke.posts.build(title: post_title, content: content)
     post.user = user
 
     if post.save

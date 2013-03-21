@@ -66,6 +66,8 @@ Hi everyone.
     assert_difference(chat_change) do
       PostMailer.receive(@mail.to_s)
     end
+
+    assert_equal @mail.subject, Post.last.title
   end
 
   test 'email from unknown user does not post and does not raise' do
