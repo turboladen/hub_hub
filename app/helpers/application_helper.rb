@@ -52,7 +52,7 @@ to banning from the site.
       'icon-list'
     when 'Events'
       'icon-calendar'
-    when 'Intro'
+    when 'Intros'
       'icon-glass'
     when 'Jobs'
       'icon-briefcase'
@@ -60,6 +60,8 @@ to banning from the site.
       'icon-random'
     when 'Politics'
       'icon-globe'
+    when 'Chat'
+      'icon-volume-up'
     else
       ''
     end
