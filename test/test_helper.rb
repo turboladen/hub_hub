@@ -19,7 +19,8 @@ class ActionController::TestCase
   include Devise::TestHelpers
 end
 
-require 'mocha'
+require 'test-unit'
+require 'mocha/setup'
 
 module HubHelpers
   def login(user)
