@@ -1,5 +1,5 @@
 #require 'vagrant-ansible'
-require 'drama/vagrant'
+require 'screenplay/vagrant'
 
 
 # Before vagrant can provision, you need to ssh in, copy contents of setup.sh
@@ -35,7 +35,7 @@ Vagrant::Config.run do |config|
   end
 =end
 
-  config.vm.provision :drama do |drama|
-    drama.stage = :default
+  config.vm.provision :screenplay do |screenplay|
+    screenplay.stage = :default
   end
 end

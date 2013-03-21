@@ -1,7 +1,7 @@
-require 'drama/parts'
+require 'screenplay/parts'
 
 
-class OSSetup < Drama::Part
+class OSSetup < Screenplay::Part
   def play
     host.play_part Epel, os_version: 5
     host.play_part RbEnv, user: 'vagrant'
@@ -10,9 +10,9 @@ class OSSetup < Drama::Part
 end
 
 
-class Drama
+class Screenplay
   class Default
-    include Drama::Stage
+    include Screenplay::Stage
 
     def initialize
       @host_group = {
