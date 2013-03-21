@@ -42,4 +42,30 @@ to banning from the site.
   def page_title(title)
     content_for(:title, truncate(title, length: 100))
   end
+
+  # @param [String] spoke_name Name of the spoke to get the icon for.
+  # @param [Boolean] white Do a white icon?
+  # @return HAML tag.
+  def spoke_icon(spoke_name, white=false)
+    icon_class = case spoke_name
+    when 'Admin'
+      'icon-list'
+    when 'Events'
+      'icon-calendar'
+    when 'Intro'
+      'icon-glass'
+    when 'Jobs'
+      'icon-briefcase'
+    when 'OT'
+      'icon-random'
+    when 'Politics'
+      'icon-globe'
+    else
+      ''
+    end
+
+    icon_class << ' icon-white' if white
+
+    haml_tag :i, class: icon_class
+  end
 end
