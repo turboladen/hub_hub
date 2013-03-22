@@ -1,5 +1,5 @@
 def create_default_admin
-  admin_user = User.create({
+  admin_user = User.create!({
     email: 'admin@mindhub.org',
     first_name: 'Admin',
     last_name: 'the Administrator',
@@ -29,11 +29,11 @@ defined subjects},
 
   default_spokes.each do |name, description|
     unless Spoke.find_by_name(name)
-      Spoke.create(name: name, description: description)
+      Spoke.create!(name: name, description: description)
     end
   end
 end
 
-create_default_admin unless User.find_by_email("admin@mindhub.org")
+create_default_admin unless User.find_by_email('admin@mindhub.org')
 create_default_spokes
 
