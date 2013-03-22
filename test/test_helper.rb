@@ -20,7 +20,18 @@ class ActionController::TestCase
 end
 
 require 'test-unit'
-require 'mocha/setup'
+require 'rspec/mocks'
+
+
+class Test::Unit::TestCase
+  def setup
+    RSpec::Mocks::setup(self)
+  end
+
+  def teardown
+    RSpec::Mocks.teardown
+  end
+end
 
 module HubHelpers
   def login(user)

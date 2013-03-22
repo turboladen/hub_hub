@@ -61,9 +61,9 @@ class CommentsControllerTest < ActionController::TestCase
   test 'redirects back to the post if failed to save' do
     sign_in @bob
 
-    comment = mock 'Comment'
-    comment.stubs(:save).returns false
-    Comment.expects(:build_from).returns comment
+    comment = double 'Comment'
+    comment.stub(:save).and_return false
+    Comment.should_receive(:build_from).and_return comment
 
     post :create, { post_id: @post.id, spoke_id: @post.spoke_id,
       comment: { body: 'stuff' } }

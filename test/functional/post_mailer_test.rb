@@ -5,7 +5,7 @@ class PostMailerTest < ActionMailer::TestCase
   setup do
     spokes(:fresno)
     users(:bob)
-    Post.any_instance.stubs(:tweet).returns(true)
+    Post.any_instance.stub(:tweet).and_return(true)
 
     @content = <<-BODY
 This is a post
@@ -88,7 +88,7 @@ Hi everyone.
   end
 
   test 'email fails to save' do
-    Post.any_instance.expects(:save).times(3).returns(false)
+    Post.any_instance.stub(:save).and_return(false)
     @mail.body = @content
 
     assert_no_difference('Post.count') do

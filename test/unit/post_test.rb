@@ -112,8 +112,8 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test 'allows tweeting post' do
-    Rails.expects(:env).returns 'production'
-    Twitter.expects(:update).with %Q{#{@one.spoke.name}: #{@one.title} test_url}
+    Rails.should_receive(:env).and_return 'production'
+    Twitter.should_receive(:update).with %Q{#{@one.spoke.name}: #{@one.title} test_url}
     @one.tweet('test_url')
   end
 

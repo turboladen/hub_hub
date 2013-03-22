@@ -20,7 +20,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test 'creates post when logged in' do
     sign_in users(:ricky)
-    Post.any_instance.expects(:tweet)
+    Post.any_instance.should_receive(:tweet)
 
     assert_difference('Post.count') do
       post :create, spoke_id: @post.spoke.id, post: {
@@ -37,7 +37,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test 'tweets after successfully creating post' do
-    Post.any_instance.expects(:tweet)
+    Post.any_instance.should_receive(:tweet)
     sign_in users(:ricky)
 
     post :create, spoke_id: @post.spoke.id, post: {
