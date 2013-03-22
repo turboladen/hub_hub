@@ -5,11 +5,11 @@ require_relative '../config/environment'
 
 
 #Rake::Task["db:reset"].invoke
-Rake::Task["db:setup"].invoke
-Rake::Task["db:seed"].invoke
+Rake::Task['db:setup'].invoke
+Rake::Task['db:seed'].invoke
 
 20.times do
-  User.create({
+  User.create!({
     email: Faker::Internet.email,
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
