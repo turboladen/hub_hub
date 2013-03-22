@@ -1,15 +1,12 @@
 !!!
 %p
-  = simple_format(no_email)
+  = simple_format(no_email(:html))
 
 %hr
 
-%table
-  %tr
-    %td
-      %b Email body
-    %td
-      = @body
+= @body
+
+%hr
 
 %p
   Sincerely,

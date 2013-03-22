@@ -5,13 +5,10 @@ module PostMailerHelper
   # @param [Symbol] format The email format.
   # @return [String] The message.
   def unknown_mailer_message(format)
-    msg = <<-MSG
-Hi #{@to_address},<br>
-<br>
-It looks like you're trying to post an email to #{home_url}, but you don't have
-an account there (not with this email address, at least).  If you'd like to take
-part in the MindHub community, please sign up
-    MSG
+    msg = %[Hi #{@to_address},\n\n]
+    msg << %[It looks like you're trying to post an email to #{link_to('MindHub',home_url)}, but you don't have ]
+    msg << "an account there (not with this email address, at least).  If you'd like to take "
+    msg << 'part in the MindHub community, please sign up '
 
     msg << case format
     when :html
@@ -27,30 +24,47 @@ part in the MindHub community, please sign up
 
   # Message for when an unexpected error occurs.
   #
+  # @param [Symbol] format The email format.
   # @return [String] The first part of the message.
-  def unexpected_error
-    <<-MSG
-Hi #{@user.first_name},<br>
-<br>
-Something weird and unexpected happened when you tried posting to MindHub via an
-email.  The site is automatically sending this email out to let you know, and it's
-CCing the site Admins so they can look into what happened.<br>
-<br>
-We're sorry this happened and will try to fix this ASAP!  In the meantime, here's
-what you tried posting:
+  def unexpected_error(format)
+    msg = "Hi #{@user.first_name},"
+    msg << "\n\n"
+    msg << 'Something weird and unexpected happened when you tried posting to MindHub via an '
+    msg << "email.  The site is automatically sending this email out to let you know, and it's "
+    msg << 'CCing the site Admins so they can look into what happened.  In the meantime, '
+    msg << "take a look at the #{faq_link_for(format)} and make sure you follow the rules "
+    msg << 'for posting via email.'
+    msg << "\n\n"
+    msg << "We're sorry this happened and if this is our fault, will try to fix this ASAP!  "
+    msg << "Here's what you tried posting:"
+    msg << "\n"
 
-  def no_email
-    <<-MSG
-Hi #{@user.first_name},
+    msg
+  end
 
-We got an email from you, trying to post to MindHub, but the subject of your email
-was empty.  We'd love to post it for you, but can't without the subject line,
-as that's what becomes your post's title on the website.  Can you please resend
-the email, but with a subject line that represents your post?  You can take a
-look at the rules for posting via email over at the #{link_to('FAQ', faq_url)}.
+  # @param [Symbol] format The email format.
+  # @return [String] The first part of the message.
+  def no_email(format)
+    msg = "Hi #{@user.first_name},"
+    msg << "\n\n"
+    msg << 'We got an email from you, trying to post to MindHub, but the subject of your email '
+    msg << "was empty.  We'd love to post it for you, but can't without the subject line, "
+    msg << "as that's what becomes your post's title on the website.  Can you please resend "
+    msg << 'the email, but with a subject line that represents your post?  You can take a '
+    msg << "look at the rules for posting via email over at the #{faq_link_for(format)}."
+    msg << "\n\n"
+    msg << "Here's the body of your email, in case you want to copy that and paste it into a "
+    msg << 'new email:'
+    msg << "\n\n"
 
-Here's the body of your email, in case you want to copy that and paste it into a
-new email:
-    MSG
+    msg
+  end
+
+  def faq_link_for(format)
+    if format == :html
+      "#{link_to('FAQ', faq_url)}"
+    else
+      "FAQ (#{faq_url})"
+    end
   end
 end
