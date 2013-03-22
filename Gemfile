@@ -64,6 +64,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'mailcatcher'
   gem 'mocha', '~> 0.13.3', require: false
+  gem 'rails_best_practices'
   gem 'simplecov', require: false, group: :test
   gem 'sqlite3'
   gem 'tailor'

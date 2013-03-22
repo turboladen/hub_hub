@@ -45,6 +45,7 @@ GEM
     arel (3.0.2)
     awesome_nested_set (2.1.6)
       activerecord (>= 3.0.0)
+    awesome_print (1.1.0)
     bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
     bootstrap-sass (2.0.4.2)
@@ -69,6 +70,8 @@ GEM
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.9.1)
+    code_analyzer (0.3.1)
+      sexp_processor
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -76,6 +79,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    colored (1.2)
     daemon_controller (1.1.2)
     daemons (1.1.9)
     devise (2.2.3)
@@ -93,8 +97,8 @@ GEM
     fastercsv (1.5.5)
     fastthread (1.0.7)
     ffaker (1.15.0)
-    ffi (1.4.0)
-    ffi (1.4.0-x86-mingw32)
+    ffi (1.5.0)
+    ffi (1.5.0-x86-mingw32)
     haml (3.1.8)
     haml-rails (0.3.5)
       actionpack (>= 3.1, < 4.1)
@@ -117,7 +121,7 @@ GEM
       rails
     ledermann-rails-settings (1.2.1)
       activerecord (>= 2.3)
-    libv8 (3.11.8.13)
+    libv8 (3.11.8.17)
     log4r (1.1.10)
     log_switch (0.4.0)
     mail (2.5.3)
@@ -137,7 +141,7 @@ GEM
     mime-types (1.21)
     mocha (0.13.3)
       metaclass (~> 0.0.1)
-    multi_json (1.7.1)
+    multi_json (1.7.2)
     multipart-post (1.2.0)
     mysql2 (0.3.11)
     mysql2 (0.3.11-x86-mingw32)
@@ -148,8 +152,8 @@ GEM
     net-ssh (2.2.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
-    nokogiri (1.5.8)
-    nokogiri (1.5.8-x86-mingw32)
+    nokogiri (1.5.9)
+    nokogiri (1.5.9-x86-mingw32)
     orm_adapter (0.4.0)
     passenger (3.0.19)
       daemon_controller (>= 1.0.0)
@@ -176,6 +180,14 @@ GEM
       railties (= 3.2.13)
     rails_autolink (1.0.9)
       rails (~> 3.1)
+    rails_best_practices (1.13.4)
+      activesupport
+      awesome_print
+      code_analyzer
+      colored
+      erubis
+      i18n
+      ruby-progressbar
     railties (3.2.13)
       actionpack (= 3.2.13)
       activesupport (= 3.2.13)
@@ -186,7 +198,8 @@ GEM
     rake (10.0.3)
     rdoc (3.12.2)
       json (~> 1.4)
-    ref (1.0.3)
+    ref (1.0.4)
+    ruby-progressbar (1.0.2)
     ruby2ruby (2.0.3)
       ruby_parser (~> 3.1)
       sexp_processor (~> 4.0)
@@ -293,6 +306,7 @@ DEPENDENCIES
   passenger
   rails (= 3.2.13)
   rails_autolink (~> 1.0.9)
+  rails_best_practices
   sanitize
   sass-rails (~> 3.2.3)
   simplecov
