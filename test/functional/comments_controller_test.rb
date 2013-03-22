@@ -72,6 +72,26 @@ class CommentsControllerTest < ActionController::TestCase
     assert_equal 'Unable to post comment', flash[:error]
   end
 
+  test 'redirects back to the post if failed to save after making it nested' do
+    sign_in @bob
+
+    parent_comment = double 'Comment', id: 123
+
+    comment = double 'Comment'
+    comment.stub(:save).and_return(true, false)
+    comment.should_receive(:persisted?).and_return true
+    comment.stub(:move_to_child_of)
+
+    Comment.should_receive(:build_from).and_return comment
+    Comment.should_receive(:find).and_return parent_comment
+
+    post :create, { post_id: @post.id, spoke_id: @post.spoke_id, parent_type: 'comment',
+      comment: { body: 'stuff' } }
+
+    assert_redirected_to spoke_post_path(@post.spoke, @post)
+    assert_equal 'Unable to make comment a child comment', flash[:error]
+  end
+
   test 'does not provide an edit page if not logged in as comment owner' do
     sign_in users(:ricky)
     get :edit, spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id

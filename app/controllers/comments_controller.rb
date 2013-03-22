@@ -11,14 +11,17 @@ class CommentsController < ApplicationController
       if params[:parent_type] == 'comment' && @comment.persisted?
         parent_comment = Comment.find(params[:parent_id])
         @comment.move_to_child_of(parent_comment)
-        @comment.save
-      end
 
-      redirect_to spoke_post_path(@post.spoke, @post)
+        unless @comment.save
+          logger.info "ERROR! Unable to make comment a child comment to ID #{parent_comment.id}"
+          flash[:error] = 'Unable to make comment a child comment'
+        end
+      end
     else
       flash[:error] = 'Unable to post comment'
-      redirect_to spoke_post_path(@post.spoke, @post)
     end
+
+    redirect_to spoke_post_path(@post.spoke, @post)
   end
 
   def edit
