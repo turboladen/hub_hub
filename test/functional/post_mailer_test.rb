@@ -88,6 +88,23 @@ Hi everyone.
     end
   end
 
+  test 'email with no subject' do
+    @mail.body = @content
+    @mail.subject = ''
+
+    assert_no_difference('Post.count') do
+      PostMailer.receive(@mail.to_s)
+    end
+
+    assert_nothing_raised do
+      PostMailer.receive(@mail.to_s)
+    end
+
+    assert_difference('ActionMailer::Base.deliveries.size') do
+      PostMailer.receive(@mail.to_s)
+    end
+  end
+
   test 'email fails to save' do
     Post.any_instance.stub(:save).and_return(false)
     @mail.body = @content
@@ -103,6 +120,7 @@ Hi everyone.
     assert_difference('ActionMailer::Base.deliveries.size') do
       PostMailer.receive(@mail.to_s)
     end
+
     Post.any_instance.unstub(:save)
   end
 end

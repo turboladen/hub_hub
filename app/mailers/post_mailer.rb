@@ -12,6 +12,12 @@ class PostMailer < ActionMailer::Base
       return
     end
 
+    if email.subject.nil?
+      logger.info "Received email with empty subject; can't do anything with this!"
+      email_no_subject(user, email.body)
+      return
+    end
+
     logger.info "Received email from user: #{email.from}"
     match_data = email.subject.match(/(?<spoke_name>[^:]+)\s*:\s*(?<post_title>.+)/)
 
@@ -80,6 +86,19 @@ class PostMailer < ActionMailer::Base
       to: "#{@user.name} <#{@user.email}>",
       cc: User.admin_emails,
       template_name: 'unexpected_error'
+    ).deliver
+  end
+
+  # @param [User] user
+  # @param [String] body
+  def email_no_subject(user, body)
+    @user = user
+    @body = body
+
+    mail(
+      subject: 'Hmm... Looks like there was a problem posting your post...',
+      to: "#{@user.name} <#{@user.email}>",
+      template_name: 'no_subject'
     ).deliver
   end
 end

@@ -38,6 +38,19 @@ CCing the site Admins so they can look into what happened.<br>
 <br>
 We're sorry this happened and will try to fix this ASAP!  In the meantime, here's
 what you tried posting:
+
+  def no_email
+    <<-MSG
+Hi #{@user.first_name},
+
+We got an email from you, trying to post to MindHub, but the subject of your email
+was empty.  We'd love to post it for you, but can't without the subject line,
+as that's what becomes your post's title on the website.  Can you please resend
+the email, but with a subject line that represents your post?  You can take a
+look at the rules for posting via email over at the #{link_to('FAQ', faq_url)}.
+
+Here's the body of your email, in case you want to copy that and paste it into a
+new email:
     MSG
   end
 end
