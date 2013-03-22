@@ -6,15 +6,19 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @current_user = current_user
     @comment = Comment.build_from(@post, @current_user.id, params[:comment][:body])
-    @comment.save
 
-    if params[:parent_type] == "comment" && @comment.persisted?
-      parent_comment = Comment.find(params[:parent_id])
-      @comment.move_to_child_of(parent_comment)
-      @comment.save
+    if @comment.save
+      if params[:parent_type] == 'comment' && @comment.persisted?
+        parent_comment = Comment.find(params[:parent_id])
+        @comment.move_to_child_of(parent_comment)
+        @comment.save
+      end
+
+      redirect_to spoke_post_path(@post.spoke, @post)
+    else
+      flash[:error] = 'Unable to post comment'
+      redirect_to spoke_post_path(@post.spoke, @post)
     end
-
-    redirect_to spoke_post_path(@post.spoke, @post)
   end
 
   def edit
@@ -29,7 +33,7 @@ class CommentsController < ApplicationController
         format.html {
           redirect_to spoke_post_comment_url(@comment.post.spoke,
             @comment.post, @comment),
-            notice: "You must have created the comment to be able to edit it."
+            notice: 'You must have created the comment to be able to edit it.'
         }
       end
     end
@@ -42,7 +46,7 @@ class CommentsController < ApplicationController
       respond_to do |format|
         format.html {
           redirect_to spoke_post_url(@comment.post.spoke, @comment.post),
-            notice: "You must have created the comment to be able to update it."
+            notice: 'You must have created the comment to be able to update it.'
         }
 
       end
@@ -56,7 +60,7 @@ class CommentsController < ApplicationController
             notice: 'Comment was successfully updated.'
         }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
       end
     end
   end

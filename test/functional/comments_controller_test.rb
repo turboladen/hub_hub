@@ -58,6 +58,20 @@ class CommentsControllerTest < ActionController::TestCase
     assert_redirected_to spoke_post_path(@post.spoke, @post)
   end
 
+  test 'redirects back to the post if failed to save' do
+    sign_in @bob
+
+    comment = mock 'Comment'
+    comment.stubs(:save).returns false
+    Comment.expects(:build_from).returns comment
+
+    post :create, { post_id: @post.id, spoke_id: @post.spoke_id,
+      comment: { body: 'stuff' } }
+
+    assert_redirected_to spoke_post_path(@post.spoke, @post)
+    assert_equal 'Unable to post comment', flash[:error]
+  end
+
   test 'does not provide an edit page if not logged in as comment owner' do
     sign_in users(:ricky)
     get :edit, spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id
