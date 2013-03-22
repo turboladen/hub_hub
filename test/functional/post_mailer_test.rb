@@ -54,8 +54,9 @@ Hi everyone.
   end
 
   test 'email with unknown spoke posts to the Chat spoke' do
-    Spoke.create(name: 'Chat')
-    @mail.subject = 'Some Spoke: This is a test email'
+    spokes(:chat)
+    subject = 'Some Spoke: This is a test email'
+    @mail.subject = subject
     @mail.body = 'Some stuff'
 
     chat_change = lambda do
@@ -67,7 +68,7 @@ Hi everyone.
       PostMailer.receive(@mail.to_s)
     end
 
-    assert_equal @mail.subject, Post.last.title
+    assert_equal @mail.subject, Post.find_by_title(subject).title
   end
 
   test 'email from unknown user does not post and does not raise' do
@@ -102,5 +103,6 @@ Hi everyone.
     assert_difference('ActionMailer::Base.deliveries.size') do
       PostMailer.receive(@mail.to_s)
     end
+    Post.any_instance.unstub(:save)
   end
 end

@@ -14,17 +14,25 @@ class PostMailer < ActionMailer::Base
 
     logger.info "Received email from user: #{email.from}"
     match_data = email.subject.match(/(?<spoke_name>[^:]+)\s*:\s*(?<post_title>.+)/)
-    post_title = match_data[:post_title]
 
-    spoke = Spoke.find_by_name(match_data[:spoke_name])
+    if match_data.nil?
+      logger.info 'Received email posting to no known spoke'
+      post_title = email.subject
+      spoke = Spoke.find_by_name('Chat')
+    else
+      post_title = match_data[:post_title]
+      spoke = Spoke.find_by_name(match_data[:spoke_name])
+    end
 
     if spoke.nil?
+      logger.info 'Received email posting to no known spoke'
       spoke = Spoke.find_by_name('Chat')
       post_title = email.subject
     end
 
     logger.debug "Spoke name: #{spoke.name}"
     content = if email.multipart?
+      logger.debug 'Got multipart email'
       if email.html_part
         email.html_part.body.decoded
       else
@@ -40,7 +48,7 @@ class PostMailer < ActionMailer::Base
     if post.save
       post.tweet(spoke_post_url(spoke.id, post))
     else
-      logger.debug post.errors.full_messages
+      logger.debug "Error saving post from email: #{post.errors.full_messages}"
       email_unexpected_error(user, post)
     end
   end
