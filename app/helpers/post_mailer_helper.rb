@@ -25,25 +25,6 @@ part in the MindHub community, please sign up
     msg
   end
 
-  # Builds the message/body to send back to the user that tried posting to a
-  # spoke that doesn't exist.
-  #
-  # @return [String] The message.
-  def unknown_spoke_message
-    <<-MSG
-Hi #{@user.first_name},<br>
-<br>
-It looks like you tried emailing a post to a MindHub spoke called '#{@spoke_name}'
---MindHub doesn't have a spoke for that right now, but perhaps you meant to post
-to a different spoke?  Or maybe you mistyped?  The subject of your email should
-look like this:<br>
-<br>
-  [spoke name]: [post title]<br>
-<br>
-The spokes MindHub has available right now are:
-    MSG
-  end
-
   # Message for when an unexpected error occurs.
   #
   # @return [String] The first part of the message.
