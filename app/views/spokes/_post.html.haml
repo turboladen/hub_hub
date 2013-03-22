@@ -23,10 +23,10 @@
                     = truncate(raw(Sanitize.clean(auto_link(post.content), Sanitize::Config::BASIC)), length: 140)
 
                   %small
-                    - if post.user.first_name
-                      = "#{post.user.name},"
+                    - if post.user_first_name
+                      = "#{post.user_name},"
                     - else
-                      = "#{post.user.email},"
+                      = "#{post.user_email},"
                     = time_tag post.updated_at
                     in spoke
 

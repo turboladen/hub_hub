@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  layout "admin"
+  layout 'admin'
   before_filter :ensure_admin
 
   def index
@@ -8,14 +8,14 @@ class AdminController < ApplicationController
 
   def inappropriate_items
     flagged =
-      MakeFlaggable::Flagging.where(flaggable_type: "Post", flag: "inappropriate")
+      MakeFlaggable::Flagging.where(flaggable_type: 'Post', flag: 'inappropriate')
 
     @flags_and_posts = flagged.map do |flag|
       post = Post.find(flag.flaggable_id)
       {
         flag_date: flag.created_at,
         flagger: User.find(flag.flagger_id).email,
-        poster: post.user.email,
+        poster: post.user_email,
         title: post.title
       }
     end

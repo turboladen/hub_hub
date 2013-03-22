@@ -25,7 +25,7 @@
       Posted on
       %code= time_tag @post.created_at
       by
-      %code= @post.user.name
+      %code= @post.user_name
 
       - if @post.user == current_user
         = link_to 'Edit', edit_spoke_post_path(@post.spoke, @post),

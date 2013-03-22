@@ -7,6 +7,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :spoke
   belongs_to :user
+  delegate :name, :first_name, :last_name, :email, to: :user, prefix: true
 
   validates :title, presence: true
   validates :content, presence: true
@@ -57,7 +58,7 @@ class Post < ActiveRecord::Base
   end
 
   def tweet(url)
-    msg = %Q{#{self.spoke.name}: #{truncate(self.title, length: 121, omission: "...")} }
+    msg = %Q{#{self.spoke.name}: #{truncate(self.title, length: 121, omission: '...')} }
     msg << url
     Twitter.update(msg) if Rails.env == 'production'
   end

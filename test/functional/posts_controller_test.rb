@@ -57,7 +57,7 @@ class PostsControllerTest < ActionController::TestCase
     assert_select '.breadcrumb li', @post.spoke.name
     assert_select 'h1', @post.title
     assert_select '.span9 div p time'
-    assert_select '.span9 div p', /#{@post.user.name}/
+    assert_select '.span9 div p', /#{@post.user_name}/
     assert_select '.span9 .well p', @post.content
     assert_select 'td.comment', @post.comment_threads.count
 
