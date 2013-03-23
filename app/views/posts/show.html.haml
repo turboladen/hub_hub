@@ -5,7 +5,7 @@
       = link_to 'Home', home_index_path
       %span.divider> /
     %li.active
-      = link_to @post.spoke.name, spoke_path(@post.spoke)
+      = link_to @post.spoke_name, spoke_path(@post.spoke)
 
 .pull-left.votable-item-area
   = render partial: 'shared/votable_item', locals: { votable_item: @post }

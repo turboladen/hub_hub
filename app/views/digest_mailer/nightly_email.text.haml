@@ -10,7 +10,7 @@
 
 - else
   - @posts_from_yesterday.each do |post|
-    = "* #{post.title}, #{spoke_post_url(post.spoke.id, post.id)}:"
+    = "* #{post.title}, #{spoke_post_url(post.spoke_id, post.id)}:"
     - body = post.content ? post.content[0..450] : '<Post body was empty.>'
     = raw body
     = "\n"
@@ -25,7 +25,7 @@
 
 - else
   - @comments_from_yesterday.each do |comment|
-    = "* From post #{comment.post.title}, #{spoke_post_url(comment.post.spoke.id, comment.post.id)}:"
+    = "* From post #{comment.post.title}, #{spoke_post_url(comment.post.spoke_id, comment.post.id)}:"
     - body = comment.body ? comment.body[0..450] : '<Response body was empty.>'
     = raw body
     = "\n"

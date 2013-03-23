@@ -17,7 +17,7 @@
           %th
             Title:
           %td
-            = link_to post.title, spoke_post_url(post.spoke.id, post.id)
+            = link_to post.title, spoke_post_url(post.spoke_id, post.id)
 
         %tr
           %th
@@ -46,7 +46,7 @@
               \:
 
           %td
-            = link_to spoke_post_url(comment.post.spoke.id, comment.post.id,
+            = link_to spoke_post_url(comment.post.spoke_id, comment.post.id,
               anchor: "comment-#{comment.id}") do
               %i.icon-magnet
 

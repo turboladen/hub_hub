@@ -14,7 +14,7 @@
                 - if post.link?
                   = link_to post.title, post.content
                 - else
-                  = link_to post.title, spoke_post_path(post.spoke.id, post)
+                  = link_to post.title, spoke_post_path(post.spoke_id, post)
 
             %tr
               %td
@@ -35,15 +35,15 @@
                       $("#spoke-link-#{post.id}").popover();
                       });
 
-                    = link_to(post.spoke.name, post.spoke,
+                    = link_to(post.spoke_name, post.spoke,
                       class: 'label', rel: 'popover', id: "spoke-link-#{post.id}",
-                      'data-content' => "Description: #{post.spoke.description}",
-                      'data-original-title' => "Spoke: #{post.spoke.name}")
+                      'data-content' => "Description: #{post.spoke_description}",
+                      'data-original-title' => "Spoke: #{post.spoke_name}")
 
             %tr
               %td
                 .pull-right
-                  = link_to 'read &raquo;'.html_safe, spoke_post_path(post.spoke.id, post)
+                  = link_to 'read &raquo;'.html_safe, spoke_post_path(post.spoke_id, post)
 
         .vote-counts.pull-left
           = render partial: 'shared/votable_item_counts',

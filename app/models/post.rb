@@ -6,6 +6,8 @@ class Post < ActiveRecord::Base
   attr_accessible :content, :name, :title
 
   belongs_to :spoke
+  delegate :name, :description, to: :spoke, prefix: true
+
   belongs_to :user
   delegate :name, :first_name, :last_name, :email, to: :user, prefix: true
 
