@@ -3,12 +3,5 @@
     .container
       .offset1.span3
         %ul.unstyled
-          %li
-            A project of
-            = link_to 'Creative Fresno', 'http://creativefresno.ning.com/'
-          %li
-            = link_to 'Terms of Service', tos_path
-          %li
-            = link_to 'FAQ', faq_path
-          %li
-            = mail_to 'admin@chat.mindhub.org', 'Email Us'
+          - footer_items.each do |footer_item|
+            %li= footer_item

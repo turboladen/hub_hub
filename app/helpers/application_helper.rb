@@ -70,4 +70,14 @@ to banning from the site.
 
     haml_tag :i, class: icon_class
   end
+
+  # @return [Array] The list of items to put in the footer.
+  def footer_items
+    [
+      link_to('Creative Fresno', 'http://creativefresno.ning.com'),
+      link_to('Terms of Service', tos_path),
+      link_to('FAQ', faq_path),
+      mail_to('admin@chat.mindhub.org', 'Email Us')
+    ]
+  end
 end
