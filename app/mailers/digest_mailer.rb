@@ -1,4 +1,7 @@
 class DigestMailer < ActionMailer::Base
+  add_template_helper ApplicationHelper
+
+  layout 'email_poster'
   default from: 'MindHub Digester <digest@chat.mindhub.org>'
 
   # Emails the nightly email to each digest subscriber.
@@ -24,6 +27,7 @@ class DigestMailer < ActionMailer::Base
     @user = user
     @posts_from_yesterday = posts
     @comments_from_yesterday = comments
+    @admin_spoke = Spoke.find_by_name('Admin')
     logger.info "Sending digest mail to #{@user.email}..."
 
     mail(to: "#{@user.name} <#{@user.email}>",

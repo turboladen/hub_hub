@@ -47,9 +47,9 @@ class AdminMailerTest < ActionMailer::TestCase
     assert_equal ['bob@bobo.com'], ActionMailer::Base.deliveries.first.from
     assert_equal [@admin1.email, @admin2.email],
       ActionMailer::Base.deliveries.first.to
-    assert_equal '<p>I like you</p>',
+    assert_match %r[<p>I like you</p>],
       ActionMailer::Base.deliveries.first.html_part.body.decoded
-    assert_equal 'I like you',
+    assert_match %r[I like you],
       ActionMailer::Base.deliveries.first.text_part.body.decoded
   end
 end

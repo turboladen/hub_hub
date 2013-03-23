@@ -33,38 +33,11 @@
                               %table{:border => "0", :cellpadding => "20", :cellspacing => "0", :width => "100%"}
                                 %tr
                                   %td{:valign => "top"}
-                                    %div{"mc:edit" => "std_content00"}
+                                    %div
                                       = yield
                               / // End Module: Standard Content \\
-                      / // Begin Sidebar \\
-                      %td#templateSidebar{:valign => "top", :width => "200"}
-                        %table{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "200"}
-                          %tr
-                            %td.sidebarContent{:valign => "top"}
-                              / // Begin Module: Top Image with Content \\
-                              %table{:border => "0", :cellpadding => "20", :cellspacing => "0", :width => "100%"}
-                                %tr{"mc:repeatable" => ""}
-                                  %td{:valign => "top"}
-                                    = image_tag 'mindhub_logo.png', "mc:edit" => "tiwc200_image00",
-                                      "mc:label" => "image", :style => "max-width:160px;"
-                                    %div{"mc:edit" => "tiwc200_content00"}
-                                      .well.well-small
-                                        %h4 Need Help?
-                                        %hr
-                                        %p
-                                          The
-                                          = link_to 'FAQ', faq_url
-                                          is a resource for you to hopefully get your questions
-                                          answered.  If you don't find the answers you're looking
-                                          for, check out the
-                                          = link_to 'Admin spoke,', spoke_url(Spoke.find_by_name('Admin'))
-                                          where the site admins post updates about the site. If
-                                          you're still stuck,
-                                          = mail_to 'admin@chat.mindhub.org', 'Email Us'
-                                          and get back to you as soon as we can.
-
-                              / // End Module: Top Image with Content \\
-                      / // End Sidebar \\
+                      - if content_for? :sidebar
+                        = render partial: 'post_mailer/sidebar'
                   / // End Template Body \\
               %tr
                 %td{:align => "center", :valign => "top"}
@@ -76,7 +49,7 @@
                         %table{:border => "0", :cellpadding => "10", :cellspacing => "0", :width => "100%"}
                           %tr
                             %td#utility{:colspan => "2", :valign => "middle"}
-                              %div{"mc:edit" => "std_utility"}
+                              %div
                                 = render 'layouts/footer'
                         / // End Module: Standard Footer \\
                   / // End Template Footer \\

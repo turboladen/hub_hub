@@ -9,6 +9,7 @@
 @import "bootstrap/labels-badges";
 @import "bootstrap/hero-unit";
 @import "bootstrap/wells";
+@import "bootstrap/alerts";
 
 #templateContainer {
   position: relative;
@@ -50,4 +51,8 @@
 // Override bootstrap
 .well {
   border:  $mindhubWhite;
+}
+
+#unsubscribe {
+  font-size: 12px !important;
 }

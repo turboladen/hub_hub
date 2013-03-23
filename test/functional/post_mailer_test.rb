@@ -4,6 +4,7 @@ require 'test_helper'
 class PostMailerTest < ActionMailer::TestCase
   setup do
     spokes(:fresno)
+    spokes(:admin)
     users(:bob)
     Post.any_instance.stub(:tweet).and_return(true)
 

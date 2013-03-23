@@ -75,8 +75,8 @@ to banning from the site.
   def footer_items
     [
       link_to('Creative Fresno', 'http://creativefresno.ning.com'),
-      link_to('Terms of Service', tos_path),
-      link_to('FAQ', faq_path),
+      link_to('Terms of Service', tos_url),
+      link_to('FAQ', faq_url),
       mail_to('admin@chat.mindhub.org', 'Email Us')
     ]
   end

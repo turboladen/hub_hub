@@ -8,3 +8,6 @@ clovis:
 
 chat:
   name: Chat
+
+admin:
+  name: Admin
