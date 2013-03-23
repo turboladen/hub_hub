@@ -102,7 +102,7 @@ html, body {
 }
 
 .description-bottom {
-  background-color: #fff;
+  background-color: $mindhubWhite;
   padding: 10px;
   spacing: 10px;
   margin: 15px -20px -5px; /* negative indent the amount of the padding to maintain the grid system */
@@ -119,7 +119,20 @@ html, body {
 }
 
 #footer {
- .container {
-   margin-bottom: 0 !important;
- }
+  .container {
+    margin-bottom: 0 !important;
+  }
+}
+
+.horizontal-list li {
+  display: inline-block;
+  list-style-type: none;
+  padding-right: 20px;
+  padding-left: 10px;
+  margin-right: 20px;
+  width:  90px;
+
+  a {
+    color: $mindhubWhite;
+  }
 }

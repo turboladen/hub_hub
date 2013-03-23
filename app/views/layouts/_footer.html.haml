@@ -1,7 +1,9 @@
 .container
   %footer.description-bottom
     .container
-      .offset1.span3
-        %ul.unstyled
+      .offset1
+        %ul.horizontal-list
           - footer_items.each do |footer_item|
-            %li= footer_item
+            %li.label
+              &raquo
+              = footer_item
