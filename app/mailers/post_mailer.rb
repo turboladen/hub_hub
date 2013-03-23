@@ -1,5 +1,8 @@
 class PostMailer < ActionMailer::Base
   include ActionView::Helpers::TextHelper
+  add_template_helper ApplicationHelper
+
+  layout 'email_poster'
 
   default from: 'MindHub Poster <poster@chat.mindhub.org>'
 

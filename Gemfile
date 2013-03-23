@@ -41,6 +41,8 @@ gem 'kaminari', '~> 0.14.1'
 gem 'kaminari-bootstrap'
 gem 'sanitize'
 gem 'rails_autolink', '~> 1.0.9'
+gem 'nokogiri'
+gem 'premailer-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
