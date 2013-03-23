@@ -93,8 +93,8 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
     xhr :put, :update, id: @bob.id, "#{@bob.id}-is-banned" => 'true'
 
-    assert assigns(:ban_user)
     assert_response 200
+    assert assigns(:ban_user)
     updated_bob = User.find(@bob.id)
     assert updated_bob.banned?
   end
@@ -106,8 +106,8 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
     xhr :put, :update, id: @bob.id, "#{@bob.id}-is-banned" => 'false'
 
-    assert !assigns(:ban_user)
     assert_response 200
+    assert !assigns(:ban_user)
     updated_bob = User.find(@bob.id)
     assert !updated_bob.banned?
   end

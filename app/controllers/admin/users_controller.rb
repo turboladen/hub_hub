@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  layout "admin"
+  layout 'admin'
   before_filter :ensure_admin
 
   def index
@@ -14,7 +14,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if @user.email == "admin@mindhub.org"
+    if @user.super_user?
       redirect_to admin_url, notice: "Can't update super-user."
       return
     end

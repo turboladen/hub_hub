@@ -62,4 +62,11 @@ class UserTest < ActiveSupport::TestCase
     assert User.digest_list.none? { |u| u.email == users(:karl).email }
     assert User.digest_list.any? { |u| u.email == @bob.email }
   end
+
+  test 'can tell is user is super_user' do
+    su = users(:super_user)
+    assert_equal su, User.super_user
+    assert !@bob.super_user?
+    assert su.super_user?
+  end
 end

@@ -33,10 +33,22 @@ class User < ActiveRecord::Base
     where(admin: true).pluck(:email)
   end
 
+  # @return [User]
+  def self.super_user
+    find_by_email 'admin@mindhub.org'
+  end
+
   # The full name of the user.
   #
   # @return [String] The full name like 'Joe Blow'.
   def name
     "#{self.first_name} #{self.last_name}"
+  end
+
+  # Is the user the super user?
+  #
+  # @return [Boolean]
+  def super_user?
+    self == User.super_user
   end
 end

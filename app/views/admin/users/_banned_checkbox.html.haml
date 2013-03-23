@@ -1,4 +1,4 @@
-- if user.email == 'admin@mindhub.org'
+- if user.super_user?
   = check_box_tag 'is_banned', !user.banned?, user.banned?, disabled: true
 
 - else
