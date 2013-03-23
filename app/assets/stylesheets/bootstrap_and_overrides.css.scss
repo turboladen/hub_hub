@@ -1,13 +1,7 @@
 //@import "bootstrap";
 //@import "bootstrap-responsive";
 
-
-$mindhubGreen: #99cc33;
-$mindhubHoverGreen: #dbf5a6;
-$mindhubPurple: #92058e;
-$linkColor: #005fbf;
-$postBackgroundGreen: #faf8eb;
-$postBackgroundBlue: #ebecfa;
+@import "colors.css.scss";
 
 html, body {
   background-color: $mindhubGreen;
@@ -29,7 +23,7 @@ a:hover {
 }
 
 .content {
-  background-color: #fff;
+  background-color: $mindhubWhite;
   padding: 20px;
   margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
   -webkit-border-radius: 0 0 6px 6px;
