@@ -47,8 +47,7 @@
   %tbody
     = render partial: 'post', collection: @spoke.posts.send(@sorter)
 
-#page_navigation
-  = paginate @posts
+= render partial: 'shared/pager'
 
 = content_for(:right_sidebar) do
   = render partial: 'shared/spoke_list'

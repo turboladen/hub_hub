@@ -10,8 +10,7 @@
   %tbody
     = render partial: 'spokes/post', collection: @posts
 
-#page_navigation
-  = paginate @posts
+= render partial: 'shared/pager'
 
 = content_for :right_sidebar do
   = render partial: 'shared/spoke_list'
