@@ -23,6 +23,8 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+
+  gem 'turbo-sprockets-rails3'
 end
 
 gem 'haml-rails', '~> 0.3.4'
