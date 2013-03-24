@@ -19,13 +19,15 @@ class Admin::UsersController < ApplicationController
       return
     end
 
-    if params["#{@user.id}-is-admin"]
-      @make_admin = params["#{@user.id}-is-admin"] == "true" ? true : false
+    user_id = @user.id
+    make_admin = boolean(params["#{user_id}-is-admin"])
+    ban_user = boolean(params["#{user_id}-is-banned"])
+    logger.debug "make admin: #{make_admin}"
+    logger.debug "ban user: #{ban_user}"
 
-      if @user.update_attribute :admin, @make_admin
-        respond_to do |format|
-          format.js { render 'admin/users/update_admin' }
-        end
+    unless make_admin.nil?
+      if @user.update_attribute :admin, make_admin
+        respond_to { |format| format.js { render 'admin/users/update_admin' } }
       else
         respond_to do |format|
           format.js { render nothing: true, status: :inprocessable_entity }
@@ -35,13 +37,9 @@ class Admin::UsersController < ApplicationController
       return
     end
 
-    if params["#{@user.id}-is-banned"]
-      @ban_user = params["#{@user.id}-is-banned"] == "true" ? true : false
-
-      if @user.update_attribute :banned, @ban_user
-        respond_to do |format|
-          format.js { render 'update_ban' }
-        end
+    unless ban_user.nil?
+      if @user.update_attribute :banned, ban_user
+        respond_to { |format| format.js { render 'update_ban' } }
       else
         respond_to do |format|
           format.js { render nothing: true, status: :inprocessable_entity }
@@ -52,5 +50,15 @@ class Admin::UsersController < ApplicationController
     end
 
     render nothing: true
+  end
+
+  protected
+
+  def boolean(param)
+    case param
+    when 'true' then true
+    when 'false' then false
+    else nil
+    end
   end
 end

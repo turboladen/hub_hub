@@ -67,7 +67,6 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
     xhr :put, :update, id: @bob.id, "#{@bob.id}-is-admin" => 'true'
 
-    assert assigns(:make_admin)
     assert_response 200
     assert_template 'admin/users/update_admin'
     updated_bob = User.find(@bob.id)
@@ -81,7 +80,6 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
     xhr :put, :update, id: @bob.id, "#{@bob.id}-is-admin" => 'false'
 
-    assert !assigns(:make_admin)
     assert_response 200
     updated_bob = User.find(@bob.id)
     assert !updated_bob.admin?
@@ -94,7 +92,6 @@ class Admin::UsersControllerTest < ActionController::TestCase
     xhr :put, :update, id: @bob.id, "#{@bob.id}-is-banned" => 'true'
 
     assert_response 200
-    assert assigns(:ban_user)
     updated_bob = User.find(@bob.id)
     assert updated_bob.banned?
   end
@@ -107,7 +104,6 @@ class Admin::UsersControllerTest < ActionController::TestCase
     xhr :put, :update, id: @bob.id, "#{@bob.id}-is-banned" => 'false'
 
     assert_response 200
-    assert !assigns(:ban_user)
     updated_bob = User.find(@bob.id)
     assert !updated_bob.banned?
   end

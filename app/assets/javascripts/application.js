@@ -15,5 +15,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
-//= require admin/users
-//= require admin/settings
+//= require admin/admin_users
+//= require admin/admin_settings
