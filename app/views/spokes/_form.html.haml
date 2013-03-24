@@ -1,11 +1,11 @@
-= form_for(@spoke, html: { class: 'form-horizontal' }) do |f|
-  - if @spoke.errors.any?
+= form_for(spoke, html: { class: 'form-horizontal' }) do |f|
+  - if spoke.errors.any?
     #error_explanation
       %h2
-        = pluralize(@spoke.errors.count, 'error')
+        = pluralize(spoke.errors.count, 'error')
         prohibited this spoke from being saved:
       %ul
-        - @spoke.errors.full_messages.each do |msg|
+        - spoke.errors.full_messages.each do |msg|
           %li= msg
 
   .control-group
