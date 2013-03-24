@@ -5,7 +5,7 @@
 
   %td.comment
     .pull-right
-      = link_to spoke_post_path(comment.post.spoke_id, comment.post.id,
+      = link_to spoke_post_url(comment.post.spoke_id, comment.post.id,
         anchor: "comment-#{comment.id}") do
         %i.icon-magnet
     %p
