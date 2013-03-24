@@ -19,13 +19,13 @@
           style: 'color: white; ', 'data-toggle' => 'modal',
           'role' => 'button' } Create Post
 
-        = render partial: 'post_text_modal'
+        = render 'post_text_modal', spoke: @spoke, post: Post.new
 
         %a.btn.btn-large.btn-new-post.span2{ href: '#linkModal',
           style: 'color: white; ', 'data-toggle' => 'modal',
           'role' => 'button' } Add Link
 
-        = render :partial => 'post_link_modal'
+        = render 'post_link_modal', spoke: @spoke, post: Post.new
 
   - else
     .row

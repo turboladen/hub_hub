@@ -1,26 +1,25 @@
 .modal.hide.fade#postModal{ tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'myModalLabel',
   'aria-hidden' => true, style: 'display: none;' }
 
-  - @post = Post.new
-  = form_for([@spoke, @post]) do |f|
+  = form_for([spoke, post]) do |f|
     .modal-header
       %button.close{ type: 'button', 'data-dismiss' => 'modal', 'aria-hidden' => true } x
       %h3 Add your post
 
     .modal-body
-      - if @post.errors.any?
+      - if post.errors.any?
         #error_explanation
           %h2
-            = pluralize(@post.errors.count, 'error')
+            = pluralize(post.errors.count, 'error')
             prohibited this post from being saved:
 
           %ul
-            - @post.errors.full_messages.each do |msg|
+            - post.errors.full_messages.each do |msg|
               %li= msg
 
-      = f.text_field :title, placeholder: 'Post title', class: 'span6'
+      = f.text_field :title, placeholder: 'Post title', class: 'span5'
       %br
-      = f.text_area :content, class: 'span6', placeholder: 'Post content'
+      = f.text_area :content, class: 'span5', placeholder: 'Post content'
       %script
         $(function () {
         $("#post-help").popover();
