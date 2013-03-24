@@ -8,7 +8,7 @@
 
 %table.table.table-condensed
   %tbody
-    = render partial: 'spokes/post', collection: @posts
+    = render @posts
 
 = render 'shared/pager', items: @posts
 

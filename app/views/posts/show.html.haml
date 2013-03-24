@@ -8,15 +8,14 @@
       = link_to @post.spoke_name, spoke_path(@post.spoke)
 
 .pull-left.votable-item-area
-  = render partial: 'shared/votable_item', locals: { votable_item: @post }
-  = render partial: 'favorite_post', locals: { favorite_post: @post }
-  = render partial: 'inappropriate_post', locals: { inappropriate_post: @post }
+  = render 'shared/votable_item', votable_item: @post
+  = render 'favorite_post', favorite_post: @post
+  = render 'inappropriate_post', inappropriate_post: @post
 
 %div{ style: 'padding-left: 50px; padding-bottom: 10px;' }
   %div{ class: @post.link? ? 'post-type-link' : 'post-type-text' }
     .pull-right
-      = render partial: 'shared/votable_item_counts',
-        locals: { votable_item: @post }
+      = render 'shared/votable_item_counts', votable_item: @post
 
     %h1.post-title
       = @post.title
@@ -52,4 +51,4 @@
 
 = content_for(:right_sidebar) do
   = render 'shared/spoke_list'
-  = render partial: 'spokes/spoke_info', locals: { spoke: @post.spoke }
+  = render 'spokes/spoke_info', spoke: @post.spoke

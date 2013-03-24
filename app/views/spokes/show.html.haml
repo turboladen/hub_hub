@@ -41,14 +41,14 @@
           'data-original-title' => 'Log in!' } Create Post
 
 %ul.nav.nav-tabs
-  = render partial: 'spokes/sort_options', locals: { sorter: @sorter }
+  = render 'spokes/sort_options', sorter: @sorter
 
 %table.table.table-condensed
   %tbody
-    = render partial: 'post', collection: @spoke.posts.send(@sorter)
+    = render @posts
 
 = render 'shared/pager', items: @posts
 
 = content_for(:right_sidebar) do
   = render 'shared/spoke_list'
-  = render partial: 'spoke_info', locals: { spoke: @spoke }
+  = render 'spoke_info', spoke: @spoke
