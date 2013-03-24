@@ -1,12 +1,12 @@
-= form_for(@comment, url: spoke_post_comment_path, html: { class: 'form-horizontal' }) do |f|
-  - if @comment.errors.any?
+= form_for(comment, url: spoke_post_comment_path, html: { class: 'form-horizontal' }) do |f|
+  - if comment.errors.any?
     #error_explanation
       %h2
-        = pluralize(@comment.errors.count, 'error')
+        = pluralize(comment.errors.count, 'error')
         prohibited this response from being saved:
 
       %ul
-        - @comment.errors.full_messages.each do |msg|
+        - comment.errors.full_messages.each do |msg|
           %li= msg
 
   %fieldset
@@ -17,6 +17,6 @@
 
   .form-actions
     = f.submit 'Update', class: 'btn btn-primary'
-    = link_to 'Cancel', spoke_post_path(@comment.post.spoke_id, @comment.post.id),
+    = link_to 'Cancel', spoke_post_path(comment.post.spoke_id, comment.post.id),
       class: 'btn btn-danger'
 
