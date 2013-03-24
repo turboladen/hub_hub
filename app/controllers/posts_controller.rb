@@ -31,18 +31,18 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
 
-    unless current_user == @post.user
+    unless @post
       flash[:notice] = 'You must have created the post to be able to edit it.'
       redirect_to spoke_post_url(@post.spoke, @post)
     end
   end
 
   def update
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
 
-    unless current_user == @post.user
+    unless @post
       flash[:notice] = 'You must have created the post to be able to update it.'
       redirect_to spoke_post_url(@comment.post.spoke, @comment.post)
 

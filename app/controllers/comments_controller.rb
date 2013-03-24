@@ -24,19 +24,19 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @comment = Comment.find(params[:id])
+    @comment = current_user.comments.find(params[:id])
 
-    unless current_user == @comment.user
+    unless @comment
       flash[:notice] = 'You must have created the comment to be able to edit it.'
       redirect_to spoke_post_comment_url(@comment.post.spoke, @comment.post, @comment)
     end
   end
 
   def update
-    @comment = Comment.find(params[:id])
+    @comment = current_user.comments.find(params[:id])
     post = @comment.post
 
-    unless current_user == @comment.user
+    unless @comment
       flash[:notice] = 'You must have created the comment to be able to update it.'
       redirect_to spoke_post_url(post.spoke, post)
 
