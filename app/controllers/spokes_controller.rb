@@ -34,7 +34,7 @@ class SpokesController < ApplicationController
     if @spoke.save
       redirect_to @spoke, notice: 'Spoke was successfully created.'
     else
-      render action: 'new'
+      render 'new'
     end
   end
 
@@ -45,7 +45,7 @@ class SpokesController < ApplicationController
     if @spoke.update_attributes(params[:spoke])
       redirect_to @spoke, notice: 'Spoke was successfully updated.'
     else
-      render action: 'edit'
+      render 'edit'
     end
   end
 

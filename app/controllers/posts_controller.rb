@@ -53,7 +53,7 @@ class PostsController < ApplicationController
       flash[:notice] = 'Post was successfully updated.'
       redirect_to spoke_post_path(@post.spoke, @post)
     else
-      render action: 'edit'
+      render 'edit'
     end
   end
 

@@ -47,7 +47,7 @@ class CommentsController < ApplicationController
       flash[:notice] = 'Comment was successfully updated.'
       redirect_to spoke_post_path(post.spoke, post)
     else
-      render action: 'edit'
+      render 'edit'
     end
   end
 
