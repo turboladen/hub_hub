@@ -10,7 +10,6 @@ class SpokesController < ApplicationController
     @spokes = Spoke.all
     @spoke = Spoke.find(params[:id])
     @posts = @spoke.posts.send(@sorter).page(params[:page]).per(20)
-    @sort_options = Post.sort_options
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,10 +20,6 @@ class SpokesController < ApplicationController
   # GET /spokes/new
   def new
     @spoke = Spoke.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-    end
   end
 
   # GET /spokes/1/edit
@@ -36,12 +31,10 @@ class SpokesController < ApplicationController
   def create
     @spoke = Spoke.new(params[:spoke])
 
-    respond_to do |format|
-      if @spoke.save
-        format.html { redirect_to @spoke, notice: 'Spoke was successfully created.' }
-      else
-        format.html { render action: "new" }
-      end
+    if @spoke.save
+      redirect_to @spoke, notice: 'Spoke was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
@@ -49,12 +42,10 @@ class SpokesController < ApplicationController
   def update
     @spoke = Spoke.find(params[:id])
 
-    respond_to do |format|
-      if @spoke.update_attributes(params[:spoke])
-        format.html { redirect_to @spoke, notice: 'Spoke was successfully updated.' }
-      else
-        format.html { render action: "edit" }
-      end
+    if @spoke.update_attributes(params[:spoke])
+      redirect_to @spoke, notice: 'Spoke was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
@@ -63,8 +54,6 @@ class SpokesController < ApplicationController
     @spoke = Spoke.find(params[:id])
     @spoke.destroy
 
-    respond_to do |format|
-      format.html { redirect_to spokes_url }
-    end
+    redirect_to spokes_url
   end
 end
