@@ -26,18 +26,9 @@ class CommentsController < ApplicationController
   def edit
     @comment = Comment.find(params[:id])
 
-    if current_user == @comment.user
-      respond_to do |format|
-        format.html
-      end
-    else
-      respond_to do |format|
-        format.html {
-          redirect_to spoke_post_comment_url(@comment.post.spoke,
-            @comment.post, @comment),
-            notice: 'You must have created the comment to be able to edit it.'
-        }
-      end
+    unless current_user == @comment.user
+      flash[:notice] = 'You must have created the comment to be able to edit it.'
+      redirect_to spoke_post_comment_url(@comment.post.spoke, @comment.post, @comment)
     end
   end
 
@@ -45,25 +36,17 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
 
     unless current_user == @comment.user
-      respond_to do |format|
-        format.html {
-          redirect_to spoke_post_url(@comment.post.spoke, @comment.post),
-            notice: 'You must have created the comment to be able to update it.'
-        }
+      flash[:notice] = 'You must have created the comment to be able to update it.'
+      redirect_to spoke_post_url(@comment.post.spoke, @comment.post)
 
-      end
       return
     end
 
-    respond_to do |format|
-      if @comment.update_attributes(params[:comment])
-        format.html {
-          redirect_to spoke_post_path(@comment.post.spoke, @comment.post),
-            notice: 'Comment was successfully updated.'
-        }
-      else
-        format.html { render action: 'edit' }
-      end
+    if @comment.update_attributes(params[:comment])
+      flash[:notice] = 'Comment was successfully updated.'
+      redirect_to spoke_post_path(@comment.post.spoke, @comment.post)
+    else
+      render action: 'edit'
     end
   end
 
