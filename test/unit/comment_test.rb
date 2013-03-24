@@ -78,7 +78,18 @@ class CommentTest < ActiveSupport::TestCase
   end
 
   test 'get comments from last 24 hours' do
-    assert_equal 2, Comment.last_24_hours.all.count
+    assert_equal 12, Comment.last_24_hours.all.count
     assert_not_include Comment.last_24_hours.all, @comment
+  end
+
+  test 'can make a comment a child of another comment' do
+    post = posts(:post_one)
+    parent_comment = Comment.build_from(post, users(:ricky).id, 'a parent comment')
+    parent_comment.save
+
+    new_comment = Comment.build_from(parent_comment.post, users(:bob).id, 'hi!')
+    new_comment.save
+
+    assert new_comment.make_child_of(parent_comment.id)
   end
 end

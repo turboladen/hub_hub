@@ -79,14 +79,14 @@ class CommentsControllerTest < ActionController::TestCase
 
     comment = double 'Comment'
     comment.stub(:save).and_return(true, false)
-    comment.should_receive(:persisted?).and_return true
     comment.stub(:move_to_child_of)
+    comment.should_receive(:make_child_of).with('123').and_return false
 
     Comment.should_receive(:build_from).and_return comment
     Comment.should_receive(:find).and_return parent_comment
 
     post :create, { post_id: @post.id, spoke_id: @post.spoke_id, parent_type: 'comment',
-      comment: { body: 'stuff' } }
+      parent_id: 123, comment: { body: 'stuff' } }
 
     assert_redirected_to spoke_post_path(@post.spoke, @post)
     assert_equal 'Unable to make comment a child comment', flash[:error]

@@ -8,12 +8,11 @@ class CommentsController < ApplicationController
     @comment = Comment.build_from(@post, @current_user.id, params[:comment][:body])
 
     if @comment.save
-      if params[:parent_type] == 'comment' && @comment.persisted?
-        parent_comment = Comment.find(params[:parent_id])
-        @comment.move_to_child_of(parent_comment)
+      if params[:parent_type] == 'comment'
+        parent_id = params[:parent_id]
 
-        unless @comment.save
-          logger.info "ERROR! Unable to make comment a child comment to ID #{parent_comment.id}"
+        unless @comment.make_child_of(parent_id)
+          logger.info "ERROR! Unable to make comment a child comment to ID #{parent_id}"
           flash[:error] = 'Unable to make comment a child comment'
         end
       end

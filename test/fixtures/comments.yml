@@ -7,7 +7,7 @@ comment_one:
   created_at: <%= Time.now - 123456 %>
 
 <% 10.times do |i| %>
-comment_two_#{i}:
+comment_two_<%= i %>:
   user: bob
   body: More text.
   commentable: post_two (Post)
@@ -15,7 +15,7 @@ comment_two_#{i}:
 <% end %>
 
 <% 2.times do |i| %>
-comment_three_#{i}:
+comment_three_<%= i %>:
   user: ricky
   body: MyText
   commentable: post_three (Post)

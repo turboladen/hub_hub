@@ -59,4 +59,11 @@ class Comment < ActiveRecord::Base
   def item_type
     self.class.to_s.downcase
   end
+
+  def make_child_of(comment_id)
+    parent_comment = Comment.find(comment_id.to_i)
+    self.move_to_child_of(parent_comment)
+
+    save
+  end
 end
