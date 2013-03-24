@@ -34,17 +34,18 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
+    post = @comment.post
 
     unless current_user == @comment.user
       flash[:notice] = 'You must have created the comment to be able to update it.'
-      redirect_to spoke_post_url(@comment.post.spoke, @comment.post)
+      redirect_to spoke_post_url(post.spoke, post)
 
       return
     end
 
     if @comment.update_attributes(params[:comment])
       flash[:notice] = 'Comment was successfully updated.'
-      redirect_to spoke_post_path(@comment.post.spoke, @comment.post)
+      redirect_to spoke_post_path(post.spoke, post)
     else
       render action: 'edit'
     end
