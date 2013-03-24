@@ -12,7 +12,7 @@ class ActsAsCommentableWithThreadingMigration < ActiveRecord::Migration
     add_index :comments, :user_id
     add_index :comments, :commentable_id
   end
-  
+
   def self.down
     drop_table :comments
   end
