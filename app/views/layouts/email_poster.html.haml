@@ -37,7 +37,7 @@
                                       = yield
                               / // End Module: Standard Content \\
                       - if content_for? :sidebar
-                        = render partial: 'post_mailer/sidebar'
+                        = render partial: 'post_mailer/sidebar', locals: { admin_spoke: @admin_spoke }
                   / // End Template Body \\
               %tr
                 %td{:align => "center", :valign => "top"}
