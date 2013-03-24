@@ -49,7 +49,7 @@ class PostsController < ApplicationController
       return
     end
 
-    if @post.update_attributes(params[:content])
+    if @post.update_attributes(params[:post])
       flash[:notice] = 'Post was successfully updated.'
       redirect_to spoke_post_path(@post.spoke, @post)
     else

@@ -2,6 +2,11 @@ require 'uri'
 
 class Post < ActiveRecord::Base
   include ActionView::Helpers::TextHelper
+  include Rails.application.routes.url_helpers
+
+  after_create do
+    self.tweet
+  end
 
   attr_accessible :content, :name, :title
 
@@ -43,14 +48,6 @@ class Post < ActiveRecord::Base
     ]
   end
 
-  # Calls regular #save, then Tweets the result if #save returned true.
-  def save
-    success = super
-    tweet if success
-
-    success
-  end
-
   # Indicates whether or not this post is a link to other content or not.
   #
   # @return [Boolean]
@@ -69,7 +66,7 @@ class Post < ActiveRecord::Base
 
   def tweet
     msg = %Q{#{self.spoke.name}: #{truncate(self.title, length: 121, omission: '...')} }
-    msg << Rails.application.routes.url_helpers.spoke_post_url(spoke_id, self)
+    msg << spoke_post_url(spoke_id, self)
     Twitter.update(msg) if Rails.env == 'production'
   end
 end
