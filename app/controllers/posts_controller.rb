@@ -8,11 +8,10 @@ class PostsController < ApplicationController
     @post.user = current_user
 
     if @post.save
-      @post.tweet(spoke_post_url(@spoke.id, @post))
-      redirect_to @spoke, notice: "Your post was created."
+      redirect_to @spoke, notice: 'Your post was created.'
     else
       logger.debug @post.errors.inspect
-      redirect_to @spoke, alert: @post.errors.full_messages.join("; ")
+      redirect_to @spoke, alert: @post.errors.full_messages.join('; ')
     end
   end
 
@@ -30,17 +29,9 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
 
-    if current_user == @post.user
-      respond_to do |format|
-        format.html
-      end
-    else
-      respond_to do |format|
-        format.html {
-          redirect_to spoke_post_url(@post.spoke, @post),
-            notice: "You must have created the post to be able to edit it."
-        }
-      end
+    unless current_user == @post.user
+      flash[:notice] = 'You must have created the post to be able to edit it.'
+      redirect_to spoke_post_url(@post.spoke, @post)
     end
   end
 
@@ -48,25 +39,17 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     unless current_user == @post.user
-      respond_to do |format|
-        format.html {
-          redirect_to spoke_post_url(@comment.post.spoke, @comment.post),
-            notice: "You must have created the post to be able to update it."
-        }
-      end
+      flash[:notice] = 'You must have created the post to be able to update it.'
+      redirect_to spoke_post_url(@comment.post.spoke, @comment.post)
 
       return
     end
 
-    respond_to do |format|
-      if @post.update_attributes(params[:content])
-        format.html {
-          redirect_to spoke_post_path(@post.spoke, @post),
-            notice: 'Post was successfully updated.'
-        }
-      else
-        format.html { render action: "edit" }
-      end
+    if @post.update_attributes(params[:content])
+      flash[:notice] = 'Post was successfully updated.'
+      redirect_to spoke_post_path(@post.spoke, @post)
+    else
+      render action: 'edit'
     end
   end
 

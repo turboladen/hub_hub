@@ -43,6 +43,14 @@ class Post < ActiveRecord::Base
     ]
   end
 
+  # Calls regular #save, then Tweets the result if #save returned true.
+  def save
+    success = super
+    tweet if success
+
+    success
+  end
+
   # Indicates whether or not this post is a link to other content or not.
   #
   # @return [Boolean]
@@ -59,9 +67,9 @@ class Post < ActiveRecord::Base
     self.class.to_s.downcase
   end
 
-  def tweet(url)
+  def tweet
     msg = %Q{#{self.spoke.name}: #{truncate(self.title, length: 121, omission: '...')} }
-    msg << url
+    msg << Rails.application.routes.url_helpers.spoke_post_url(spoke_id, self)
     Twitter.update(msg) if Rails.env == 'production'
   end
 end

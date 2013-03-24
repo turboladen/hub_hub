@@ -10,6 +10,7 @@ class PostTest < ActiveSupport::TestCase
     @five = posts(:post_five)
     @link_post_one = posts(:link_post_one)
     @fresno_spoke = spokes(:fresno)
+    Post.any_instance.stub(:tweet)
   end
 
   test 'post attributes must not be empty' do
@@ -114,7 +115,7 @@ class PostTest < ActiveSupport::TestCase
   test 'allows tweeting post' do
     Rails.should_receive(:env).and_return 'production'
     Twitter.should_receive(:update).with %Q{#{@one.spoke.name}: #{@one.title} test_url}
-    @one.tweet('test_url')
+    @one.tweet
   end
 
   test 'allows sorting by newest' do

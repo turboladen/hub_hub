@@ -55,7 +55,7 @@ class PostMailer < ActionMailer::Base
     post.user = user
 
     if post.save
-      post.tweet(spoke_post_url(spoke.id, post))
+      true
     else
       logger.debug "Error saving post from email: #{post.errors.full_messages}"
       email_unexpected_error(user, post)
