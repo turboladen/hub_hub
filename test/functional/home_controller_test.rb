@@ -21,7 +21,6 @@ class HomeControllerTest < ActionController::TestCase
     get :index
 
     assert_not_nil assigns(:posts)
-    assert_not_nil assigns(:spokes)
 
     assert_response :success
     assert_select 'td .post-title', 6

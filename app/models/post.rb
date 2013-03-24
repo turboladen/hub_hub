@@ -65,8 +65,10 @@ class Post < ActiveRecord::Base
   end
 
   def tweet
-    msg = %Q{#{self.spoke.name}: #{truncate(self.title, length: 121, omission: '...')} }
-    msg << spoke_post_url(spoke_id, self)
-    Twitter.update(msg) if Rails.env == 'production'
+    if Rails.env == 'production'
+      msg = %Q{#{self.spoke.name}: #{truncate(self.title, length: 121, omission: '...')} }
+      msg << spoke_post_url(spoke_id, self)
+      Twitter.update(msg)
+    end
   end
 end

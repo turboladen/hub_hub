@@ -50,5 +50,5 @@
 = render 'shared/pager', items: @posts
 
 = content_for(:right_sidebar) do
-  = render partial: 'shared/spoke_list'
+  = render 'shared/spoke_list'
   = render partial: 'spoke_info', locals: { spoke: @spoke }

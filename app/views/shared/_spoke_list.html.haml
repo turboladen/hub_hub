@@ -14,7 +14,7 @@
         %i.icon-home
         Home
 
-  - @spokes.sort.each do |spoke|
+  - Spoke.all.sort.each do |spoke|
     - if request.fullpath =~ %r[/spokes/#{spoke.id}]
       %li.active.spoke
         = link_to spoke do
