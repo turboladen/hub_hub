@@ -13,6 +13,11 @@
     .controls
       = f.text_field :name
 
+  .control-group
+    = f.label :description, class: 'control-label'
+    .controls
+      = f.text_area :description
+
   .form-actions
     = f.submit class: 'btn btn-primary'
     = link_to :back do
