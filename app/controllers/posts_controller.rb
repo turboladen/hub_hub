@@ -8,10 +8,14 @@ class PostsController < ApplicationController
     @post.user = current_user
 
     if @post.save
-      redirect_to @spoke, notice: 'Your post was created.'
+      flash[:notice] = 'Your post was created.'
+
+      redirect_to @spoke
     else
       logger.debug @post.errors.inspect
-      redirect_to @spoke, alert: @post.errors.full_messages.join('; ')
+      flash[:error] = @post.errors.full_messages.join('; ')
+
+      redirect_to @spoke
     end
   end
 
