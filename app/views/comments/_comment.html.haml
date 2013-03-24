@@ -24,7 +24,8 @@
           title: 'Reply to response', 'data-toggle' => 'collapse' }
           reply
         .collapse{ id: "comment-reply-#{comment.id}" }
-          = render 'comments/new', parent_type: 'comment', parent_id: comment.id
+          = render 'comments/new', parent_type: 'comment', parent_id: comment.id,
+            post: comment.post, comment: comment
 
       - else
         %a.btn.btn-mini.disabled{ href: '#', title: 'Reply to response' }

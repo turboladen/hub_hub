@@ -38,7 +38,8 @@
 %hr
 
 %h2 Responses
-= render 'comments/new', parent_type: :post, parent_id: @post.id
+= render 'comments/new', parent_type: :post, parent_id: @post.id,
+  comment: Comment.new, post: @post
 
 %table.table.table-condensed.table-striped
   %tbody

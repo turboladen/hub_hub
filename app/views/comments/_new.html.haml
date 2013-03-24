@@ -1,13 +1,12 @@
-- @comment = Comment.new
-= form_for([@post.spoke, @post, @comment], html: { class: 'well' }) do |f|
-  - if @comment.errors.any?
+= form_for([post.spoke, post, comment], html: { class: 'well' }) do |f|
+  - if comment.errors.any?
     #error_explanation
       %h2
-        = pluralize(@comment.errors.count, 'error')
+        = pluralize(comment.errors.count, 'error')
         prohibited this comment from being saved:
 
       %ul
-        - @comment.errors.full_messages.each do |msg|
+        - comment.errors.full_messages.each do |msg|
           %li= msg
 
   %fieldset
