@@ -4,7 +4,7 @@
     %p Connecting California's Central Valley
 
 %ul.nav.nav-tabs
-  = render partial: 'home/sort_options'
+  = render partial: 'home/sort_options', locals: { sorter: @sorter }
 
 %table.table.table-condensed
   %tbody

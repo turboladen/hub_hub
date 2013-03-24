@@ -1,4 +1,4 @@
-- @sort_options.each do |option|
-  %li{ class: active_li? { option == @sorter } }
+- Post.sort_options.each do |option|
+  %li{ class: active_li? { option == sorter } }
     = link_to option.to_s.humanize, spoke_path(sort: option)
 

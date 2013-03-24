@@ -7,7 +7,6 @@ class HomeController < ApplicationController
     end
 
     @posts = Post.send(@sorter).page(params[:page]).per(20)
-    @sort_options = Post.sort_options
     @spokes = Spoke.all
 
     respond_to do |format|

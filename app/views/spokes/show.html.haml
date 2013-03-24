@@ -41,7 +41,7 @@
           'data-original-title' => 'Log in!' } Create Post
 
 %ul.nav.nav-tabs
-  = render partial: 'spokes/sort_options'
+  = render partial: 'spokes/sort_options', locals: { sorter: @sorter }
 
 %table.table.table-condensed
   %tbody
