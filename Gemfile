@@ -69,7 +69,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'mailcatcher'
   gem 'rails_best_practices'
-  gem 'rspec-mocks'
+  gem 'rspec-rails', '~> 2.0'
   gem 'simplecov', require: false, group: :test
   gem 'sqlite3'
   gem 'tailor'
