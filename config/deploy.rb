@@ -61,13 +61,16 @@ namespace :deploy do
   end
 
   task :database_file_to_shared do
-    database_file = "#{shared_path}/database.yml"
+    target_db_file = "#{shared_path}/database.yml"
+    source_db_file = "#{release_path}/config/database.yml"
 
-    if remote_file_exists? database_file
-      run "ln -s #{database_file} #{current_path}/config/database.yml"
+    if remote_file_exists? target_db_file
+      unless remote_file_exists? source_db_file
+        run "ln -s #{target_db_file} #{source_db_file}"
+      end
     else
-      run "cp #{current_path}/config/database.yml.sample #{database_file}"
-      run "ln -s #{database_file} #{current_path}/config/database.yml"
+      run "cp #{current_path}/config/database.yml.sample #{target_db_file}"
+      run "ln -s #{target_db_file} #{source_db_file}"
     end
   end
 
@@ -76,6 +79,7 @@ namespace :deploy do
   end
 end
 
+before 'deploy:migrate', 'deploy:database_file_to_shared'
 after 'deploy', 'deploy:set_log_permissions'
 after 'deploy', 'deploy:database_file_to_shared'
 after 'deploy', 'deploy:seed_defaults'
