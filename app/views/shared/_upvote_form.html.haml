@@ -1,0 +1,12 @@
+= form_tag(votes_upvote_path(item_id: votable_item.id, item_type: votable_item.item_type),
+  class: 'form-horizontal', remote: true) do
+
+  - if current_user.voted_up_on?(votable_item)
+    = button_tag type: 'submit', class: 'btn btn-mini btn-success',
+      id: "#{votable_item.item_type}-up-#{votable_item.id}" do
+      %i.icon-chevron-up
+
+  - else
+    = button_tag type: 'submit', class: 'btn btn-mini',
+      id: "#{votable_item.item_type}-up-#{votable_item.id}" do
+      %i.icon-chevron-up

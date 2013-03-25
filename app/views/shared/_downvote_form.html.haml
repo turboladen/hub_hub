@@ -1,0 +1,12 @@
+= form_tag(votes_downvote_path(item_id: votable_item.id, item_type: votable_item.item_type),
+  class: "form-horizontal", remote: true) do
+
+  - if current_user.voted_down_on?(votable_item)
+    = button_tag type: 'submit', class: 'btn btn-mini btn-danger',
+      id: "#{votable_item.item_type}-down-#{votable_item.id}" do
+      %i.icon-chevron-down.pull-left
+
+  - else
+    = button_tag type: 'submit', class: 'btn btn-mini down-arrow',
+      id: "#{votable_item.item_type}-down-#{votable_item.id}" do
+      %i.icon-chevron-down.pull-left
