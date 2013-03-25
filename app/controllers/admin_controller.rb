@@ -7,19 +7,25 @@ class AdminController < ApplicationController
   end
 
   def inappropriate_items
-    flagged =
-      MakeFlaggable::Flagging.where(flaggable_type: 'Post', flag: 'inappropriate')
+    @flags_and_posts = case params[:flaggable_type]
+    when 'posts'
+      flagged(flag: 'inappropriate', flaggable_type: 'Post')
+    when 'comments'
+      flagged(flag: 'inappropriate', flaggable_type: 'Comment')
+    else
+      flagged(flag: 'inappropriate')
+    end.page(params[:page])
 
-    @flags_and_posts = flagged.map do |flag|
-      post = Post.find(flag.flaggable_id)
-      {
-        flag_date: flag.created_at,
-        flagger: User.find(flag.flagger_id).email,
-        poster: post.user_email,
-        title: post.title
-      }
+    render 'admin/flaggings/index'
+  end
+
+  private
+
+  def flagged(flag: nil, flaggable_type: nil)
+    if flaggable_type
+      MakeFlaggable::Flagging.where(flaggable_type: flaggable_type, flag: flag)
+    else
+      MakeFlaggable::Flagging.where(flag: flag)
     end
-
-    render 'flaggings/index'
   end
 end

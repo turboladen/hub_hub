@@ -1,5 +1,5 @@
 - if user_signed_in?
-  = form_tag(spoke_post_comment_path(inappropriate_comment.post.spoke_id,
+  = form_tag(spoke_post_comment_flag_path(inappropriate_comment.post.spoke_id,
     inappropriate_comment.post.id, inappropriate_comment.id),
     class: 'form-horizontal', method: :put, remote: true) do
     = hidden_field_tag :id, inappropriate_comment.id

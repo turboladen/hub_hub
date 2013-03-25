@@ -1,0 +1,25 @@
+%table.table.table-condensed.table-striped
+  %thead
+    %caption
+      %h3 Flagged posts and responses
+    %tr
+      %th Type
+      %th Post
+      %th Creator
+      %th Flagger
+      %th Flagged On
+  %tbody
+  - @flags_and_posts.each do |fp|
+    %tr
+      %td
+        = fp.flaggable_type
+      %td
+        = url_for_flagged_item(fp.flaggable_type, fp.flaggable_id)
+      %td
+        = url_for_flagged_content_creator(fp.flaggable_type, fp.flaggable_id)
+      %td
+        = url_for_flagger(fp.flagger_id)
+      %td
+        = time_tag fp.created_at
+
+= render 'shared/pager', items: @flags_and_posts

@@ -10,6 +10,15 @@
         %i.icon-warning-sign
         Inappropriate Items
 
+      - if current_page? admin_inappropriate_items_path
+        %ul
+          %li
+            = link_to('All', admin_inappropriate_items_path)
+          %li
+            = link_to('Posts', admin_inappropriate_items_path(flaggable_type: 'posts'))
+          %li
+            = link_to('Comments', admin_inappropriate_items_path(flaggable_type: 'comments'))
+
     %li{ class: active_li? { current_page?(admin_settings_path) } }
       = link_to admin_settings_path do
         %i.icon-envelope
