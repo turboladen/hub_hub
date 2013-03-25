@@ -1,24 +1,24 @@
 <% if @flag_type == 'inappropriate' %>
     <% if current_user.flagged?(@post, :inappropriate) %>
-    $('#inappropriate-post-<%= @post.id %>').addClass('btn-danger')
-    $('#inappropriate-post-<%= @post.id %>').removeClass('btn-warning')
-    $('#inappropriateFlag').modal('show')
+    $('#inappropriate-post-<%= @post.id %>').addClass('btn-danger');
+    $('#inappropriate-post-<%= @post.id %>').removeClass('btn-warning');
+    $('#inappropriateFlag').modal('show');
     <% elsif @post.flagged?(:inappropriate) %>
-    $('#inappropriate-post-<%= @post.id %>').removeClass('btn-danger')
-    $('#inappropriate-post-<%= @post.id %>').addClass('btn-warning')
+    $('#inappropriate-post-<%= @post.id %>').removeClass('btn-danger');
+    $('#inappropriate-post-<%= @post.id %>').addClass('btn-warning');
     <% else %>
-    $('#inappropriate-post-<%= @post.id %>').removeClass('btn-danger')
-    $('#inappropriate-post-<%= @post.id %>').removeClass('btn-warning')
+    $('#inappropriate-post-<%= @post.id %>').removeClass('btn-danger');
+    $('#inappropriate-post-<%= @post.id %>').removeClass('btn-warning');
     <% end %>
 <% end %>
 
 <% if @flag_type == 'favorite' %>
     <% if current_user.flagged?(@post, :favorite) %>
-    $('#favorite-<%= @post.id %>').addClass('btn-success')
-    $('#favorite-<%= @post.id %>').attr('title', '<%= favorited_title %>')
+    $('#favorite-<%= @post.id %>').addClass('btn-success');
+    $('#favorite-<%= @post.id %>').attr('title', '<%= favorited_title %>');
     <% else %>
-    $('#favorite-<%= @post.id %>').removeClass('btn-success')
-    $('#favorite-<%= @post.id %>').attr('title', '<%= unfavorited_title %>')
+    $('#favorite-<%= @post.id %>').removeClass('btn-success');
+    $('#favorite-<%= @post.id %>').attr('title', '<%= unfavorited_title %>');
     <% end %>
 <% end %>
 
