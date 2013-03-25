@@ -15,7 +15,8 @@ Rake::Task['db:seed'].invoke
     last_name: Faker::Name.last_name,
     password: 'password',
     password_confirmation: 'password',
-    remember_me: false
+    remember_me: false,
+    digest_email: [true, false].sample
   })
 end
 
