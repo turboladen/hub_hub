@@ -161,6 +161,8 @@ GEM
       fastthread (>= 1.0.1)
       rack
       rake (>= 0.8.1)
+    permanent_records (3.0.3)
+      activerecord
     polyglot (0.3.3)
     premailer (1.7.3)
       css_parser (>= 1.1.9)
@@ -315,6 +317,7 @@ DEPENDENCIES
   mysql2
   nokogiri
   passenger
+  permanent_records
   premailer-rails
   rails (= 3.2.13)
   rails_autolink (~> 1.0.9)

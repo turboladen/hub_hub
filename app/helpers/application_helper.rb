@@ -80,4 +80,12 @@ to banning from the site.
       mail_to('admin@chat.mindhub.org', 'Email Us')
     ]
   end
+
+  def disabled_item_message(item_type)
+    "This #{item_type} has been disabled by the Admins."
+  end
+
+  def disabled_item_message_for_owner(item_type)
+    "This #{item_type} has been disabled by the Admins.  You are still seeing it though, because you own it."
+  end
 end

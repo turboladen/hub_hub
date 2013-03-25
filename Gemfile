@@ -35,6 +35,7 @@ gem 'devise'
 gem 'acts_as_commentable_with_threading', '~> 1.1.2'
 gem 'acts_as_votable', '~> 0.4.0'
 gem 'make_flaggable', git: 'git://github.com/cavneb/make_flaggable.git'
+gem 'permanent_records'
 
 # Other Plugins
 gem 'twitter', '~> 4.2.0'

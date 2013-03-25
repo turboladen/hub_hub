@@ -1,0 +1,5 @@
+<% if @comment.deleted? %>
+$('#disable-comment-<%= @comment.id %>').addClass('btn-danger');
+<% else %>
+$('#disable-comment-<%= @comment.id %>').removeClass('btn-danger');
+<% end %>

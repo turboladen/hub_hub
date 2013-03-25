@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   # Devise filter
   before_filter :authenticate_user!
+  before_filter :ensure_admin, only: :destroy
 
   def create
     @post = Post.find(params[:post_id])
@@ -50,6 +51,22 @@ class CommentsController < ApplicationController
       redirect_to spoke_post_path(post.spoke, post)
     else
       render 'edit'
+    end
+  end
+
+  def destroy
+    @comment = current_user.comments.find(params[:id])
+
+    if params[:disable] == 'true'
+      flash[:notice] = "Disabled comment #{@comment.id}"
+      @comment.destroy
+    else
+      flash[:notice] = "Revived comment #{@comment.id}"
+      @comment.revive
+    end
+
+    respond_to do |format|
+      format.js
     end
   end
 

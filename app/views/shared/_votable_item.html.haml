@@ -1,4 +1,4 @@
-- if user_signed_in?
+- if user_signed_in? && !votable_item.deleted?
   = render 'shared/upvote_form', votable_item: votable_item
 
 - else
@@ -9,7 +9,7 @@
 %p.votable-item-count{ id: "#{votable_item.item_type}-count-#{votable_item.id}" }
   = votable_item.likes.size - votable_item.dislikes.size
 
-- if user_signed_in?
+- if user_signed_in? && !votable_item.deleted?
   = render 'shared/downvote_form', votable_item: votable_item
 
 - else
