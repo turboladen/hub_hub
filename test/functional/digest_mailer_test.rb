@@ -26,8 +26,8 @@ class DigestMailerTest < ActionMailer::TestCase
 
   test 'nightly email with no posts or comments' do
     # Not sure why posts and comments are loaded...
-    Post.all.each(&:destroy)
-    Comment.all.each(&:destroy)
+    Post.delete_all
+    Comment.delete_all
     assert_equal 0, Post.count
     assert_equal 0, Comment.count
 

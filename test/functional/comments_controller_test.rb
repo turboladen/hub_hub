@@ -97,7 +97,7 @@ class CommentsControllerTest < ActionController::TestCase
     get :edit, spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id
 
     assert_response 302
-    assert_redirected_to spoke_post_comment_path(@comment.post.spoke, @comment.post, @comment)
+    assert_redirected_to spoke_post_comment_path(@post.spoke, @post)
     assert_equal 'You must have created the comment to be able to edit it.',
       flash[:notice]
   end
@@ -115,7 +115,7 @@ class CommentsControllerTest < ActionController::TestCase
     put :update, spoke_id: @post.spoke_id, post_id: @post.id, id: @comment.id,
       comment: { body: 'some new stuff' }
 
-    assert_redirected_to spoke_post_path(@comment.post.spoke, @comment.post)
+    assert_redirected_to spoke_post_path(@post.spoke, @post)
   end
 
   test 'allows updating if logged in as comment owner' do

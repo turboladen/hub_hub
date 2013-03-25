@@ -31,11 +31,12 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = current_user.posts.find(params[:id])
-
-    unless @post
+    begin
+      @post = current_user.posts.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      post = Post.find(params[:id])
       flash[:notice] = 'You must have created the post to be able to edit it.'
-      redirect_to spoke_post_url(@post.spoke, @post)
+      redirect_to spoke_post_url(post.spoke, post)
     end
   end
 
