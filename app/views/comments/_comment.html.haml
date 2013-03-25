@@ -2,7 +2,7 @@
   %td
     = render partial: 'shared/votable_item', locals: { votable_item: comment }
     = render partial: 'comments/inappropriate_comment', locals: { inappropriate_comment: comment }
-    - if current_user.admin?
+    - if user_signed_in? && current_user.admin?
       = render 'comments/disable_comment', disable_comment: comment
 
   %td.comment
@@ -34,7 +34,7 @@
           reply
 
     - if comment.deleted?
-      - if current_user == comment.user || current_user.admin?
+      - if user_signed_in? && current_user == comment.user || current_user.admin?
         %strong= disabled_item_message_for_owner('comment')
         %p= Sanitize.clean(comment.body, Sanitize::Config::BASIC)
 
