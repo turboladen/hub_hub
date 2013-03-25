@@ -212,6 +212,8 @@ describe Post do
     let(:post) { posts(:post_one) }
 
     it 'can be upvoted/downvoted' do
+      Post.should be_votable
+
       expect {
         post.upvote_from users(:bob)
       }.to change { post.votes.up.size }.by 1
@@ -238,7 +240,7 @@ describe Post do
       end
     end
 
-    context 'inappropriate' do
+    context 'favorite' do
       it 'can be flagged/unflagged' do
         expect {
           user.flag(post, :favorite)
