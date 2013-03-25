@@ -143,9 +143,9 @@ class CommentsControllerTest < ActionController::TestCase
     assert_response :success
 
     assert_equal response.body, <<-BODY
-$('#inappropriate-comment-369018563').addClass('btn-danger')
-$('#inappropriate-comment-369018563').removeClass('btn-warning')
-$('#inappropriateFlag').modal('show')
+$('#inappropriate-comment-369018563').addClass('btn-danger');
+$('#inappropriate-comment-369018563').removeClass('btn-warning');
+$('#inappropriateFlag').modal('show');
     BODY
 
     xhr :put, :flag, {
@@ -159,8 +159,8 @@ $('#inappropriateFlag').modal('show')
     assert_response :success
 
     assert_equal response.body, <<-BODY
-$('#inappropriate-comment-369018563').removeClass('btn-danger')
-$('#inappropriate-comment-369018563').removeClass('btn-warning')
+$('#inappropriate-comment-369018563').removeClass('btn-danger');
+$('#inappropriate-comment-369018563').removeClass('btn-warning');
     BODY
   end
 
@@ -184,9 +184,9 @@ $('#inappropriate-comment-369018563').removeClass('btn-warning')
     assert_response :success
 
     assert_equal response.body, <<-BODY
-$('#inappropriate-comment-369018563').addClass('btn-danger')
-$('#inappropriate-comment-369018563').removeClass('btn-warning')
-$('#inappropriateFlag').modal('show')
+$('#inappropriate-comment-369018563').addClass('btn-danger');
+$('#inappropriate-comment-369018563').removeClass('btn-warning');
+$('#inappropriateFlag').modal('show');
     BODY
 
     xhr :put, :flag, {
@@ -199,8 +199,8 @@ $('#inappropriateFlag').modal('show')
     assert_response :success
 
     assert_equal response.body, <<-BODY
-$('#inappropriate-comment-369018563').removeClass('btn-danger')
-$('#inappropriate-comment-369018563').addClass('btn-warning')
+$('#inappropriate-comment-369018563').removeClass('btn-danger');
+$('#inappropriate-comment-369018563').addClass('btn-warning');
     BODY
   end
 end
