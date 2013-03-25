@@ -1,5 +1,6 @@
 require 'uri'
 
+
 class Post < ActiveRecord::Base
   include ActionView::Helpers::TextHelper
   include Rails.application.routes.url_helpers
@@ -8,7 +9,7 @@ class Post < ActiveRecord::Base
     self.tweet
   end
 
-  attr_accessible :content, :name, :title
+  attr_accessible :content, :title
 
   belongs_to :spoke
   delegate :name, :description, to: :spoke, prefix: true
@@ -65,10 +66,12 @@ class Post < ActiveRecord::Base
   end
 
   def tweet
-    if Rails.env == 'production'
+    if Rails.env.production? && self.persisted?
       msg = %Q{#{self.spoke.name}: #{truncate(self.title, length: 121, omission: '...')} }
       msg << spoke_post_url(spoke_id, self)
       Twitter.update(msg)
+    else
+      false
     end
   end
 end
