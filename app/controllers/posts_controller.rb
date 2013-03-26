@@ -34,11 +34,12 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = current_user.posts.find(params[:id])
-
-    unless @post
+    begin
+      @post = current_user.posts.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      post = Post.find(params[:id])
       flash[:notice] = 'You must have created the post to be able to update it.'
-      redirect_to spoke_post_url(@comment.post.spoke, @comment.post)
+      redirect_to spoke_post_url(post.spoke, post)
 
       return
     end

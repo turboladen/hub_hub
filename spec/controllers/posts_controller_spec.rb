@@ -121,4 +121,40 @@ describe PostsController do
 
     end
   end
+
+  describe '#update' do
+    context 'user not signed in' do
+      it 'redirects the user to sign in' do
+        put :update, spoke_id: posts(:post_one).spoke_id, id: posts(:post_one).id,
+          post: { title: 'update stuff', content: 'i updated this!' }
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+
+    context 'user signed in but not owner of post' do
+      before do
+        sign_in users(:ricky)
+      end
+
+      it 'redirects back to the post and flashes an error' do
+        put :update, spoke_id: posts(:post_one).spoke_id, id: posts(:post_one).id,
+          post: { title: 'update stuff', content: 'i updated this!' }
+        expect(response).to redirect_to spoke_post_url(posts(:post_one).spoke, posts(:post_one))
+      end
+    end
+
+    context 'user signed in and owner of post' do
+      before do
+        sign_in users(:bob)
+      end
+
+      it 'renders the edit page' do
+        put :update, spoke_id: posts(:post_one).spoke_id, id: posts(:post_one).id,
+          post: { title: 'update stuff', content: 'i updated this!' }
+        flash[:notice].should == 'Post was successfully updated.'
+        expect(response).
+          to redirect_to spoke_post_path(posts(:post_one).spoke, posts(:post_one))
+      end
+    end
+  end
 end
