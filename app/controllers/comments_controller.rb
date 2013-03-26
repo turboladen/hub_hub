@@ -4,9 +4,14 @@ class CommentsController < ApplicationController
   before_filter :ensure_admin, only: :destroy
 
   def create
+    body = if params[:comment] && params[:comment][:body]
+      params[:comment][:body]
+    else ''
+    end
+
     @post = Post.find(params[:post_id])
     @current_user = current_user
-    @comment = Comment.build_from(@post, @current_user.id, params[:comment][:body])
+    @comment = Comment.build_from(@post, @current_user.id, body)
 
     if @comment.save
       flash[:notice] = 'Your response was added.'

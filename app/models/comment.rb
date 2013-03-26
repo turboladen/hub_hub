@@ -51,6 +51,10 @@ class Comment < ActiveRecord::Base
     Post.find(self.commentable_id)
   end
 
+  def post_id
+    Post.find(self.commentable_id).id
+  end
+
   #helper method to check if a comment has children
   def has_children?
     self.children.size > 0
