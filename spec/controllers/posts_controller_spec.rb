@@ -8,7 +8,7 @@ describe PostsController do
 
   describe '#create' do
     context 'user not logged in' do
-      it 'returns a RoutingError' do
+      it 'redirects the user to sign in' do
         post :create, spoke_id: spokes(:fresno),
           post: { title: 'test', content: 'stuff' }
 
@@ -20,7 +20,7 @@ describe PostsController do
       before { sign_in users(:bob) }
 
       context 'bad spoke ID given' do
-        it 'creates a new post' do
+        it 'raises' do
           expect {
             post :create, spoke_id: 1231231231231231231,
               post: { title: 'test', content: 'stuff' }
@@ -63,7 +63,7 @@ describe PostsController do
 
   describe '#show' do
     context 'invalid post id' do
-      it 'raises' do
+      it 'redirects the user to sign in' do
         get :show, spoke_id: spokes(:fresno).id, id: 123123123123
         flash[:error].should == "Couldn't find a Post with ID #{123123123123}"
         expect(response).to redirect_to spoke_url(spokes(:fresno))
