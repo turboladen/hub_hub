@@ -7,13 +7,13 @@ describe CommentsController do
   fixtures :comments
   fixtures :users
 
-  let(:post) { posts(:post_one) }
+  let(:post_one) { posts(:post_one) }
   let(:comment) { comments(:comment_one) }
 
   describe '#create' do
     context 'user not logged in' do
       it 'redirects the user to sign in' do
-        post :create, spoke_id: post.spoke_id, post_id: post,
+        post :create, spoke_id: post_one.spoke_id, post_id: post_one,
           comment: { body: 'stuff' }
 
         expect(response).to redirect_to new_user_session_path
@@ -26,19 +26,19 @@ describe CommentsController do
       context 'no comment info given' do
         it 'redirects back to the spoke and flashes the errors' do
           expect {
-            post :create, spoke_id: post.spoke_id, post_id: post
+            post :create, spoke_id: post_one.spoke_id, post_id: post_one
           }.to_not change { Comment.count }.by 1
 
           flash[:error].should == "Body can't be blank"
           expect(response).
-            to redirect_to spoke_post_path(post.spoke_id, post)
+            to redirect_to spoke_post_path(post_one.spoke_id, post_one)
         end
       end
 
       context 'comment body provided' do
         it 'creates a new post' do
           expect {
-            post :create, spoke_id: post.spoke_id, post_id: post,
+            post :create, spoke_id: post_one.spoke_id, post_id: post_one,
               comment: { body: 'stuff' }
           }.to change { Comment.count }.by 1
 
@@ -47,10 +47,10 @@ describe CommentsController do
 
           flash[:notice].should == 'Your response was added.'
           expect(response).
-            to redirect_to(spoke_post_path(post.spoke_id, post))
+            to redirect_to(spoke_post_path(post_one.spoke_id, post_one))
 
           comment.body.should == 'stuff'
-          comment.post_id.should == post.id
+          comment.post_id.should == post_one.id
         end
       end
     end
@@ -75,7 +75,7 @@ describe CommentsController do
           id: comment.id, comment: { body: 'STUFF!' }
         flash[:error].should ==
           'You must have created the response to be able to edit it.'
-        expect(response).to redirect_to spoke_post_path(post.spoke, post)
+        expect(response).to redirect_to spoke_post_path(post_one.spoke, post_one)
       end
     end
 
@@ -135,12 +135,13 @@ describe CommentsController do
 
   describe '#destroy' do
     context 'user not signed in' do
-      it 'redirects the user to sign in' do
+      it 'returns a 401' do
         expect {
           delete :destroy, spoke_id: comment.post.spoke_id, post_id: comment.post_id,
             id: comment.id, format: :js
         }.to_not change { Comment.count }
-        expect(response).to redirect_to new_user_session_path
+
+        response.code.should eq '401'
       end
     end
 
@@ -178,6 +179,42 @@ describe CommentsController do
 
         flash[:notice].should == "Revived response #{comment.id}"
         expect(response).to render_template 'comments/destroy'
+      end
+    end
+  end
+
+  describe '#flag' do
+    context 'user not signed in' do
+      it 'redirects the user to sign in' do
+        put :flag, spoke_id: comment.post.spoke_id, post_id: comment.post.id, comment_id: comment.id,
+          flag_type: :inappropriate, format: :js
+        response.code.should == '401'
+      end
+    end
+
+    context 'user signed in but not owner of post' do
+      before do
+        sign_in users(:ricky)
+      end
+
+      it 'flags the item' do
+        put :flag, spoke_id: comment.post.spoke_id, post_id: comment.post.id, comment_id: comment.id,
+          flag_type: :inappropriate, format: :js
+        assigns(:comment).should == comment
+        response.should render_template 'comments/flag'
+      end
+    end
+
+    context 'user signed in and owner of post' do
+      before do
+        sign_in users(:bob)
+      end
+
+      it 'flags the item' do
+        put :flag, spoke_id: comment.post.spoke_id, post_id: comment.post.id, comment_id: comment.id,
+          flag_type: :inappropriate, format: :js
+        assigns(:comment).should == comment
+        response.should render_template 'comments/flag'
       end
     end
   end

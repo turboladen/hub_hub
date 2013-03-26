@@ -163,7 +163,7 @@ describe PostsController do
 
   describe '#flag' do
     context 'user not signed in' do
-      it 'redirects the user to sign in' do
+      it 'returns a 401' do
         put :flag, spoke_id: posts(:post_one).spoke_id, post_id: posts(:post_one).id,
           flag_type: :inappropriate, format: :js
         response.code.should == '401'
