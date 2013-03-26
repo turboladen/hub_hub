@@ -6,48 +6,6 @@ class PostsControllerTest < ActionController::TestCase
     @post = posts(:post_one)
   end
 
-  test 'does not create post when not logged in' do
-    assert_no_difference('Post.count') do
-      post :create, spoke_id: @post.spoke.id, post: {
-        title: "I'm not logged in",
-        content: "So this shouldn't work."
-      }
-    end
-
-    assert_response 302
-    assert_redirected_to new_user_session_url
-  end
-
-  test 'creates post when logged in' do
-    sign_in users(:ricky)
-    Post.any_instance.should_receive(:tweet)
-
-    assert_difference('Post.count') do
-      post :create, spoke_id: @post.spoke.id, post: {
-        title: "I'm logged in",
-        content: 'So this should work.'
-      }
-    end
-
-    assert_equal assigns(:spoke), @post.spoke
-    assert_not_nil assigns(:post)
-    assert_equal assigns(:post).user, users(:ricky)
-    assert_response 302
-    assert_redirected_to spoke_path(@post.spoke)
-  end
-
-  test 'tweets after successfully creating post' do
-    Post.any_instance.should_receive(:tweet)
-    sign_in users(:ricky)
-
-    post :create, spoke_id: @post.spoke.id, post: {
-      title: "I'm logged in",
-      content: 'So this should work.'
-    }
-
-    assert_equal 'Your post was created.', flash[:notice]
-  end
-
   test 'shows post' do
     get :show, id: @post, spoke_id: @post.spoke.id
 

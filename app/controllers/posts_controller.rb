@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     if @post.save
       flash[:notice] = 'Your post was created.'
 
-      render 'show'
+      redirect_to spoke_post_url(@spoke, @post)
     else
       logger.debug @post.errors.inspect
       flash[:error] = @post.errors.full_messages.join('; ')
@@ -21,13 +21,6 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @current_user = current_user
-    @spokes = Spoke.all
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @post }
-    end
   end
 
   def edit
