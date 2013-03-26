@@ -33,15 +33,21 @@
         %script
           $(function () {
           $("#disabled-post-button").popover();
+          $("#disabled-link-button").popover();
           });
 
-        %a.btn.btn-large.btn-new-post.disabled.span4#disabled-post-button{ href: '#',
+        %a.btn.btn-large.btn-new-post.disabled.span2#disabled-post-button{ href: '#',
           style: 'color: white; ', rel: 'popover',
           'data-content' => 'Login to start posting in this spoke.',
           'data-original-title' => 'Log in!' } Create Post
 
+        %a.btn.btn-large.btn-new-post.disabled.span2#disabled-link-button{ href: '#',
+          style: 'color: white; ', rel: 'popover',
+          'data-content' => 'Login to start posting in this spoke.',
+          'data-original-title' => 'Log in!' } Add Link
+
 %ul.nav.nav-tabs
-  = render 'spokes/sort_options', sorter: @sorter
+  = render 'spokes/sort_options', spoke_id: @spoke.id, sorter: @sorter
 
 %table.table.table-condensed
   %tbody

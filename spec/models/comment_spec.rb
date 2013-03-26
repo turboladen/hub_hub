@@ -50,9 +50,9 @@ describe Comment do
     end
   end
 
-  describe '.find_comments_by_commentable' do
+  describe '.find_comments_for_commentable' do
     it 'finds all comments for by an item that was commented on' do
-      comments = Comment.find_comments_by_commentable('Post', posts(:post_one).id)
+      comments = Comment.find_comments_for_commentable('Post', posts(:post_one).id)
       comments.should == [comments(:comment_one)]
     end
   end
@@ -60,7 +60,7 @@ describe Comment do
   describe '.find_commentable' do
     it 'finds all comments for by an item that was commented on' do
       post = Comment.find_commentable('Post', posts(:post_one).id)
-      post.should == [posts(:post_one)]
+      post.should == posts(:post_one)
     end
   end
 

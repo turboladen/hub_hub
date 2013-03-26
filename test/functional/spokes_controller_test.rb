@@ -19,13 +19,6 @@ class SpokesControllerTest < ActionController::TestCase
     assert_redirected_to spoke_path(assigns(:spoke))
   end
 
-  test 'should show spoke' do
-    get :show, id: @spoke
-    assert_response :success
-    assert_select 'title', "MindHub Spoke: #{@spoke.name}"
-    assert_select 'td .post-title', 5
-  end
-
   test 'shows a spoke with a post with http:// reference and linkifies it' do
     post = posts(:post_three)
     get :show, id: post.spoke.id

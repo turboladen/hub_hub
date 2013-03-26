@@ -46,5 +46,4 @@
                   = link_to 'read &raquo;'.html_safe, spoke_post_path(post.spoke_id, post)
 
         .vote-counts.pull-left
-          = render partial: 'shared/votable_item_counts',
-            locals: { votable_item: post }
+          = render partial: 'shared/votable_item_counts', locals: { votable_item: post }

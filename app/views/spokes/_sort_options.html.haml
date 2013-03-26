@@ -1,4 +1,9 @@
 - Post.sort_options.each do |option|
   %li{ class: active_li? { option == sorter } }
-    = link_to option.to_s.humanize, spoke_path(sort: option)
+
+    - if defined?(spoke_id) && spoke_id
+      = link_to option.to_s.humanize, spoke_path(id: spoke_id, sort: option)
+
+    - else
+      = link_to option.to_s.humanize, home_path(sort: option)
 
