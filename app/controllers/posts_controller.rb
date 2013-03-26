@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     if @post.save
       flash[:notice] = 'Your post was created.'
 
-      redirect_to @spoke
+      render 'show'
     else
       logger.debug @post.errors.inspect
       flash[:error] = @post.errors.full_messages.join('; ')
