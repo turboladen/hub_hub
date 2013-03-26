@@ -35,12 +35,14 @@
 
     - if comment.deleted?
       - if user_signed_in? && current_user == comment.user || current_user.admin?
-        %strong= disabled_item_message_for_owner('comment')
+        %strong
+          .label.label-important= disabled_item_message_for_owner('comment')
         %p= Sanitize.clean(comment.body, Sanitize::Config::BASIC)
 
       - else
         %p
-          %strong= disabled_item_message('comment')
+          %strong
+            .label.label-warning= disabled_item_message('comment')
 
     - else
       %p= Sanitize.clean(comment.body, Sanitize::Config::BASIC)
