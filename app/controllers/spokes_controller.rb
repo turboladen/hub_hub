@@ -1,4 +1,6 @@
 class SpokesController < ApplicationController
+  before_filter :ensure_admin, except: [:show]
+
   # GET /spokes/1
   def show
     @sorter = if params[:sort] && Post.sort_options.include?(params[:sort].to_sym)
@@ -34,6 +36,7 @@ class SpokesController < ApplicationController
     if @spoke.save
       redirect_to @spoke, notice: 'Spoke was successfully created.'
     else
+      flash[:error] = @spoke.errors.full_messages.join('; ')
       render 'new'
     end
   end
@@ -45,15 +48,8 @@ class SpokesController < ApplicationController
     if @spoke.update_attributes(params[:spoke])
       redirect_to @spoke, notice: 'Spoke was successfully updated.'
     else
+      flash[:error] = @spoke.errors.full_messages.join('; ')
       render 'edit'
     end
-  end
-
-  # DELETE /spokes/1
-  def destroy
-    @spoke = Spoke.find(params[:id])
-    @spoke.destroy
-
-    redirect_to spokes_url
   end
 end
