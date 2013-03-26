@@ -1,15 +1,15 @@
 @import "site_and_mailer.css.scss";
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
+@import "bootstrap/_variables";
+@import "bootstrap/_mixins";
 @import "email_mailchimp.css.scss";
 
-@import "bootstrap/scaffolding";
-@import "bootstrap/layouts";
-@import "bootstrap/type";
-@import "bootstrap/labels-badges";
-@import "bootstrap/hero-unit";
-@import "bootstrap/wells";
-@import "bootstrap/alerts";
+@import "bootstrap/_scaffolding";
+@import "bootstrap/_layouts";
+@import "bootstrap/_type";
+@import "bootstrap/_labels-badges";
+@import "bootstrap/_hero-unit";
+@import "bootstrap/_wells";
+@import "bootstrap/_alerts";
 
 #templateContainer {
   position: relative;
