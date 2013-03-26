@@ -3,6 +3,11 @@ require_relative '../config/boot'
 require_relative '../config/application'
 require_relative '../config/environment'
 
+ENV['RAILS_ENV'] ||= 'development'
+
+if ENV['RAILS_ENV'] == 'production'
+  abort 'Disable tweeting!'
+end
 
 #Rake::Task["db:reset"].invoke
 Rake::Task['db:setup'].invoke
