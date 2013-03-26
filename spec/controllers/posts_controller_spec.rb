@@ -48,6 +48,7 @@ describe PostsController do
           }.to change { Post.count }.by 1
 
           post = Post.last
+          assigns(:post).should == post
 
           flash[:notice].should == 'Your post was created.'
           expect(response).to redirect_to(spoke_post_path(spokes(:fresno), post))
@@ -63,9 +64,9 @@ describe PostsController do
   describe '#show' do
     context 'invalid post id' do
       it 'raises' do
-        expect {
-          get :show, spoke_id: spokes(:fresno).id, id: 123123123123
-        }.to raise_error ActiveRecord::RecordNotFound
+        get :show, spoke_id: spokes(:fresno).id, id: 123123123123
+        flash[:error].should == "Couldn't find a Post with ID #{123123123123}"
+        expect(response).to redirect_to spoke_url(spokes(:fresno))
       end
     end
 
@@ -116,9 +117,9 @@ describe PostsController do
 
       it 'renders the edit page' do
         get :edit, spoke_id: posts(:post_one).spoke_id, id: posts(:post_one).id
+        assigns(:post).should == posts(:post_one)
         response.should render_template 'edit'
       end
-
     end
   end
 
@@ -151,9 +152,47 @@ describe PostsController do
       it 'renders the edit page' do
         put :update, spoke_id: posts(:post_one).spoke_id, id: posts(:post_one).id,
           post: { title: 'update stuff', content: 'i updated this!' }
+
+        assigns(:post).should == posts(:post_one)
         flash[:notice].should == 'Post was successfully updated.'
         expect(response).
           to redirect_to spoke_post_path(posts(:post_one).spoke, posts(:post_one))
+      end
+    end
+  end
+
+  describe '#flag' do
+    context 'user not signed in' do
+      it 'redirects the user to sign in' do
+        put :flag, spoke_id: posts(:post_one).spoke_id, post_id: posts(:post_one).id,
+          flag_type: :inappropriate, format: :js
+        response.code.should == '401'
+      end
+    end
+
+    context 'user signed in but not owner of post' do
+      before do
+        sign_in users(:ricky)
+      end
+
+      it 'flags the item' do
+        put :flag, spoke_id: posts(:post_one).spoke_id, post_id: posts(:post_one).id,
+          flag_type: :inappropriate, format: :js
+        assigns(:post).should == posts(:post_one)
+        response.should render_template 'posts/flag'
+      end
+    end
+
+    context 'user signed in and owner of post' do
+      before do
+        sign_in users(:bob)
+      end
+
+      it 'flags the item' do
+        put :flag, spoke_id: posts(:post_one).spoke_id, post_id: posts(:post_one).id,
+          flag_type: :inappropriate, format: :js
+        assigns(:post).should == posts(:post_one)
+        response.should render_template 'posts/flag'
       end
     end
   end

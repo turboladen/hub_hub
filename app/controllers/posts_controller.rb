@@ -20,7 +20,13 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    begin
+      @post = Post.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      spoke = Spoke.find(params[:spoke_id])
+      flash[:error] = "Couldn't find a Post with ID #{params[:id]}"
+      redirect_to spoke_url(spoke)
+    end
   end
 
   def edit
@@ -28,7 +34,7 @@ class PostsController < ApplicationController
       @post = current_user.posts.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       post = Post.find(params[:id])
-      flash[:notice] = 'You must have created the post to be able to edit it.'
+      flash[:error] = 'You must have created the post to be able to edit it.'
       redirect_to spoke_post_url(post.spoke, post)
     end
   end
@@ -38,7 +44,7 @@ class PostsController < ApplicationController
       @post = current_user.posts.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       post = Post.find(params[:id])
-      flash[:notice] = 'You must have created the post to be able to update it.'
+      flash[:error] = 'You must have created the post to be able to update it.'
       redirect_to spoke_post_url(post.spoke, post)
 
       return
