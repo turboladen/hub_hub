@@ -89,4 +89,36 @@ describe PostsController do
       end
     end
   end
+
+  describe '#edit' do
+    context 'user not signed in' do
+      it 'redirects the user to sign in' do
+        get :edit, spoke_id: posts(:post_one).spoke_id, id: posts(:post_one).id
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+
+    context 'user signed in but not owner of post' do
+      before do
+        sign_in users(:ricky)
+      end
+
+      it 'redirects back to the post and flashes an error' do
+        get :edit, spoke_id: posts(:post_one).spoke_id, id: posts(:post_one).id
+        expect(response).to redirect_to spoke_post_url(posts(:post_one).spoke, posts(:post_one))
+      end
+    end
+
+    context 'user signed in and owner of post' do
+      before do
+        sign_in users(:bob)
+      end
+
+      it 'renders the edit page' do
+        get :edit, spoke_id: posts(:post_one).spoke_id, id: posts(:post_one).id
+        response.should render_template 'edit'
+      end
+
+    end
+  end
 end
