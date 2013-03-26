@@ -8,7 +8,7 @@ describe 'spokes/show.html.haml' do
 
   before do
     stub_template 'spokes/_sort_options' => 'newest'
-    stub_template 'posts/_post' => 'post list'
+    stub_template 'posts/_post' => 'post-in-list '
     stub_template 'shared/_pager' => 'pagination stuff'
     stub_template 'spokes/_spoke_info' => 'spoke list'
 
@@ -25,11 +25,11 @@ describe 'spokes/show.html.haml' do
     it 'includes data-content to login to start posting' do
       render
 
-      expect(rendered).to match /Login to start posting in this spoke./
-      expect(rendered).to match /Create Post/
-      expect(rendered).to match /Add Link/
-      expect(rendered).to match /post list/
-      expect(rendered).to match /pagination stuff/
+      expect(rendered).to include 'Login to start posting in this spoke.'
+      expect(rendered).to include 'Create Post'
+      expect(rendered).to include 'Add Link'
+      expect(rendered).to include('post-in-list ' * spoke.posts.count)
+      expect(rendered).to include 'pagination stuff'
     end
   end
 
@@ -41,11 +41,11 @@ describe 'spokes/show.html.haml' do
     it 'includes data-content to login to start posting' do
       render
 
-      expect(rendered).to_not match /Login to start posting in this spoke./
-      expect(rendered).to match /Create Post/
-      expect(rendered).to match /Add Link/
-      expect(rendered).to match /post list/
-      expect(rendered).to match /pagination stuff/
+      expect(rendered).to_not include 'Login to start posting in this spoke.'
+      expect(rendered).to include 'Create Post'
+      expect(rendered).to include 'Add Link'
+      expect(rendered).to include('post-in-list ' * spoke.posts.count)
+      expect(rendered).to include 'pagination stuff'
     end
   end
 end
