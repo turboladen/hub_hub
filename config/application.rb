@@ -61,7 +61,5 @@ module HubHub
 
     # For heroku...
     config.assets.initialize_on_precompile = false
-
-    config.assets.precompile += %w[email.css]
   end
 end
