@@ -29,12 +29,7 @@ module AdminHelper
   private
 
   def url_for_flagged_post(id, truncate_options)
-    begin
-      post = Post.find id
-    rescue ActiveRecord::RecordNotFound
-      url_for_flagged_comment(id, truncate_options)
-      return
-    end
+    post = Post.find id
 
     link_to(truncate(post.title, truncate_options),
       spoke_post_path(post.spoke_id, post))
