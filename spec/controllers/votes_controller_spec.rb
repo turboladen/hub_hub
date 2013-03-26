@@ -89,7 +89,7 @@ describe VotesController do
         end
       end
 
-      context 'comment already voted on' do
+      context 'post already voted on' do
         before do
           post_one.liked_by users(:bob)
         end
@@ -101,6 +101,111 @@ describe VotesController do
               item_id: post_one.id
             }
           }.to change { post_one.likes.size }.by -1
+
+          assigns(:item_type).should == 'post'
+          assigns(:item).should == post_one
+          assigns(:upvote_count).should == '0'
+          assigns(:downvote_count).should == '0'
+          assigns(:total_vote_count).should == '0'
+
+          response.code.should eq '200'
+        end
+      end
+    end
+  end
+
+  describe '#downvote' do
+    context 'user not logged in' do
+      it 'returns a 401' do
+        expect {
+          xhr :post, :downvote, {
+            item_type: :comment,
+            item_id: comment.id
+          }
+        }.to_not change { comment.votes.size }
+
+        response.code.should eq '401'
+      end
+    end
+
+    context 'user logged in' do
+      before do
+        sign_in users(:bob)
+      end
+
+      context 'comment not already voted on' do
+        it 'adds a vote' do
+          expect {
+            xhr :post, :downvote, {
+              item_type: :comment,
+              item_id: comment.id
+            }
+          }.to change { comment.dislikes.size }.by 1
+
+          assigns(:item_type).should == 'comment'
+          assigns(:item).should == comment
+          assigns(:upvote_count).should == '0'
+          assigns(:downvote_count).should == '1'
+          assigns(:total_vote_count).should == '-1'
+
+          response.code.should eq '200'
+        end
+      end
+
+      context 'comment already voted on' do
+        before do
+          comment.disliked_by users(:bob)
+        end
+
+        it 'removes a vote' do
+          expect {
+            xhr :post, :downvote, {
+              item_type: :comment,
+              item_id: comment.id
+            }
+          }.to change { comment.dislikes.size }.by -1
+
+          assigns(:item_type).should == 'comment'
+          assigns(:item).should == comment
+          assigns(:upvote_count).should == '0'
+          assigns(:downvote_count).should == '0'
+          assigns(:total_vote_count).should == '0'
+
+          response.code.should eq '200'
+        end
+      end
+
+      context 'post not already voted on' do
+        it 'adds a vote' do
+          expect {
+            xhr :post, :downvote, {
+              item_type: :post,
+              item_id: post_one.id
+            }
+          }.to change { post_one.dislikes.size }.by 1
+
+          assigns(:item_type).should == 'post'
+          assigns(:item).should == post_one
+          assigns(:upvote_count).should == '0'
+          assigns(:downvote_count).should == '1'
+          assigns(:total_vote_count).should == '-1'
+
+          response.code.should eq '200'
+        end
+      end
+
+      context 'post already voted on' do
+        before do
+          post_one.disliked_by users(:bob)
+        end
+
+        it 'removes a vote' do
+          expect {
+            xhr :post, :downvote, {
+              item_type: :post,
+              item_id: post_one.id
+            }
+          }.to change { post_one.dislikes.size }.by -1
 
           assigns(:item_type).should == 'post'
           assigns(:item).should == post_one
