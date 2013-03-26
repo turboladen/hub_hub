@@ -132,4 +132,53 @@ describe CommentsController do
       end
     end
   end
+
+  describe '#destroy' do
+    context 'user not signed in' do
+      it 'redirects the user to sign in' do
+        expect {
+          delete :destroy, spoke_id: comment.post.spoke_id, post_id: comment.post_id,
+            id: comment.id, format: :js
+        }.to_not change { Comment.count }
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+
+    context 'user signed in, owns comment, but not an admin' do
+      before { sign_in users(:bob) }
+
+      it 'raises' do
+        expect {
+          delete :destroy, spoke_id: comment.post.spoke_id, post_id: comment.post_id,
+            id: comment.id, format: :js
+        }.to raise_error ActionController::RoutingError
+      end
+    end
+
+    context 'admin signed in' do
+      before { sign_in users(:admin) }
+
+      it 'disables the comment when :disable is true' do
+        expect {
+          delete :destroy, spoke_id: comment.post.spoke_id, post_id: comment.post_id,
+            id: comment.id, format: :js, disable: 'true'
+        }.to change { Comment.deleted.count }.by 1
+
+        flash[:notice].should == "Disabled response #{comment.id}"
+        expect(response).to render_template 'comments/destroy'
+      end
+
+      it 'enables the comment when :disable is false' do
+        comment.destroy
+
+        expect {
+          delete :destroy, spoke_id: comment.post.spoke_id, post_id: comment.post_id,
+            id: comment.id, format: :js, disable: 'false'
+        }.to change { Comment.not_deleted.count }.by 1
+
+        flash[:notice].should == "Revived response #{comment.id}"
+        expect(response).to render_template 'comments/destroy'
+      end
+    end
+  end
 end

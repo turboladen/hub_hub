@@ -62,12 +62,12 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = current_user.comments.find(params[:id])
+    @comment = Comment.find(params[:id])
 
     if params[:disable] == 'true'
       flash[:notice] = "Disabled response #{@comment.id}"
       @comment.destroy
-    else
+    elsif params[:disable] == 'false'
       flash[:notice] = "Revived response #{@comment.id}"
       @comment.revive
     end
