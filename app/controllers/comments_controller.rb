@@ -36,8 +36,8 @@ class CommentsController < ApplicationController
       @comment = current_user.comments.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       post = Post.find(params[:post_id])
-      flash[:notice] = 'You must have created the response to be able to edit it.'
-      redirect_to spoke_post_comment_url(post.spoke, post)
+      flash[:error] = 'You must have created the response to be able to edit it.'
+      redirect_to spoke_post_path(post.spoke, post)
     end
   end
 
@@ -46,7 +46,7 @@ class CommentsController < ApplicationController
       @comment = current_user.comments.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       post = Post.find(params[:post_id])
-      flash[:notice] = 'You must have created the response to be able to edit it.'
+      flash[:error] = 'You must have created the response to be able to edit it.'
       redirect_to spoke_post_url(post.spoke, post)
 
       return
