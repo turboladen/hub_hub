@@ -9,16 +9,18 @@ class CommentsController < ApplicationController
     @comment = Comment.build_from(@post, @current_user.id, params[:comment][:body])
 
     if @comment.save
+      flash[:notice] = 'Your response was added.'
+
       if params[:parent_type] == 'comment'
         parent_id = params[:parent_id]
 
         unless @comment.make_child_of(parent_id)
           logger.info "ERROR! Unable to make comment a child comment to ID #{parent_id}"
-          flash[:error] = 'Unable to make comment a child comment'
+          flash[:error] = 'Unable to make response a child response.'
         end
       end
     else
-      flash[:error] = 'Unable to post comment'
+      flash[:error] = @comment.errors.full_messages.join('; ')
     end
 
     redirect_to spoke_post_path(@post.spoke, @post)
@@ -29,7 +31,7 @@ class CommentsController < ApplicationController
       @comment = current_user.comments.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       post = Post.find(params[:post_id])
-      flash[:notice] = 'You must have created the comment to be able to edit it.'
+      flash[:notice] = 'You must have created the response to be able to edit it.'
       redirect_to spoke_post_comment_url(post.spoke, post)
     end
   end
@@ -39,7 +41,7 @@ class CommentsController < ApplicationController
       @comment = current_user.comments.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       post = Post.find(params[:post_id])
-      flash[:notice] = 'You must have created the comment to be able to edit it.'
+      flash[:notice] = 'You must have created the response to be able to edit it.'
       redirect_to spoke_post_url(post.spoke, post)
 
       return
@@ -47,7 +49,7 @@ class CommentsController < ApplicationController
 
     if @comment.update_attributes(params[:comment])
       post = @comment.post
-      flash[:notice] = 'Comment was successfully updated.'
+      flash[:notice] = 'Response was successfully updated.'
       redirect_to spoke_post_path(post.spoke, post)
     else
       render 'edit'
@@ -58,10 +60,10 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.find(params[:id])
 
     if params[:disable] == 'true'
-      flash[:notice] = "Disabled comment #{@comment.id}"
+      flash[:notice] = "Disabled response #{@comment.id}"
       @comment.destroy
     else
-      flash[:notice] = "Revived comment #{@comment.id}"
+      flash[:notice] = "Revived response #{@comment.id}"
       @comment.revive
     end
 
