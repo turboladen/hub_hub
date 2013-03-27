@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 
-describe 'Admin user flows' do
+describe 'Admin user flows', type: :response do
   fixtures :all
 
   it 'lets and admin make another user an admin' do

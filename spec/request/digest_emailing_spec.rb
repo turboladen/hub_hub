@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 
-describe 'Signing up for and opting out of digest emails' do
+describe 'Signing up for and opting out of digest emails', type: :response do
   fixtures :all
 
   it 'lets a user sign up for and receive digest mail' do

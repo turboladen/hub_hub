@@ -18,7 +18,6 @@ module RequestHelpers
   end
 end
 
-include RequestHelpers
 
 RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
