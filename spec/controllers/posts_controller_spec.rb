@@ -107,6 +107,7 @@ describe PostsController do
       it 'redirects back to the post and flashes an error' do
         get :edit, spoke_id: posts(:post_one).spoke_id, id: posts(:post_one).id
         expect(response).to redirect_to spoke_post_url(posts(:post_one).spoke, posts(:post_one))
+        flash[:error].should == 'You must have created the post to be able to edit it.'
       end
     end
 
@@ -119,6 +120,7 @@ describe PostsController do
         get :edit, spoke_id: posts(:post_one).spoke_id, id: posts(:post_one).id
         assigns(:post).should == posts(:post_one)
         response.should render_template 'edit'
+        response.code.should eq '200'
       end
     end
   end
@@ -163,10 +165,20 @@ describe PostsController do
 
   describe '#flag' do
     context 'user not signed in' do
-      it 'returns a 401' do
-        put :flag, spoke_id: posts(:post_one).spoke_id, post_id: posts(:post_one).id,
-          flag_type: :inappropriate, format: :js
-        response.code.should == '401'
+      context 'js' do
+        it 'returns a 401' do
+          put :flag, spoke_id: posts(:post_one).spoke_id, post_id: posts(:post_one).id,
+            flag_type: :inappropriate, format: :js
+          response.code.should == '401'
+        end
+      end
+
+      context 'html' do
+        it 'returns a 401' do
+          put :flag, spoke_id: posts(:post_one).spoke_id, post_id: posts(:post_one).id,
+            flag_type: :inappropriate, format: :html
+          expect(response).to redirect_to new_user_session_url
+        end
       end
     end
 
@@ -180,6 +192,7 @@ describe PostsController do
           flag_type: :inappropriate, format: :js
         assigns(:post).should == posts(:post_one)
         response.should render_template 'posts/flag'
+        response.code.should eq '200'
       end
     end
 
@@ -193,6 +206,7 @@ describe PostsController do
           flag_type: :inappropriate, format: :js
         assigns(:post).should == posts(:post_one)
         response.should render_template 'posts/flag'
+        response.code.should eq '200'
       end
     end
   end
