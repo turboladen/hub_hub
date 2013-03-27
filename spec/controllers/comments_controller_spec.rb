@@ -9,6 +9,7 @@ describe CommentsController do
 
   let(:post_one) { posts(:post_one) }
   let(:comment) { comments(:comment_one) }
+  let(:bob) { users(:bob) }
 
   describe '#create' do
     context 'user not logged in' do
@@ -21,7 +22,7 @@ describe CommentsController do
     end
 
     context 'user logged in' do
-      before { sign_in users(:bob) }
+      before { sign_in bob }
 
       context 'no comment info given' do
         it 'redirects back to the spoke and flashes the errors' do
@@ -36,7 +37,7 @@ describe CommentsController do
       end
 
       context 'comment body provided' do
-        it 'creates a new post' do
+        it 'creates a new comment' do
           expect {
             post :create, spoke_id: post_one.spoke_id, post_id: post_one,
               comment: { body: 'stuff' }
@@ -51,6 +52,80 @@ describe CommentsController do
 
           comment.body.should == 'stuff'
           comment.post_id.should == post_one.id
+        end
+      end
+
+      context 'comment on a comment' do
+        let(:parent_comment) do
+          c = Comment.build_from(post_one, bob.id, 'sup')
+          c.save!
+
+          c
+        end
+
+        it 'creates a new comment on the comment' do
+          expect {
+            post :create, {
+              post_id: post_one.id,
+              spoke_id: post_one.spoke_id,
+              comment: { body: 'stuff' },
+              parent_type: :comment,
+              parent_id: parent_comment.id
+            }
+          }.to change { Comment.count }.by 1
+
+          assigns(:post).should == post_one
+          assigns(:current_user).should == bob
+          assigns(:comment).should == Comment.last
+        end
+      end
+
+      context 'comment fails to save' do
+        before { sign_in bob }
+
+        let(:comment) do
+          c = double 'Comment'
+          c.stub(:save).and_return false
+          c.stub_chain(:errors, :full_messages, :join).and_return 'Some errors!'
+
+          c
+        end
+
+        it 'redirects back to the post' do
+          Comment.should_receive(:build_from).and_return comment
+
+          post :create, { post_id: post_one.id, spoke_id: post_one.spoke_id,
+            comment: { body: 'stuff' } }
+
+          expect(response).to redirect_to spoke_post_path(post_one.spoke, post_one)
+          flash[:error].should == 'Some errors!'
+        end
+      end
+
+      context 'comment fails to be made a child of another comment' do
+        before { sign_in bob }
+
+        let(:comment) do
+          c = double 'Comment'
+          c.stub(:save).and_return(true, false)
+          c.stub(:move_to_child_of)
+          c.should_receive(:make_child_of).with('123').and_return false
+
+          c
+        end
+
+        let(:parent_comment) do
+          double 'Comment', id: 123
+        end
+
+        it 'redirects back to the post' do
+          Comment.should_receive(:build_from).and_return comment
+
+          post :create, { post_id: post_one.id, spoke_id: post_one.spoke_id,
+            parent_type: 'comment', parent_id: 123, comment: { body: 'stuff' } }
+
+          expect(response).to redirect_to spoke_post_path(post_one.spoke, post_one)
+          flash[:error].should == 'Unable to make response a child response.'
         end
       end
     end
@@ -81,7 +156,7 @@ describe CommentsController do
 
     context 'user signed in and owner of post' do
       before do
-        sign_in users(:bob)
+        sign_in bob
       end
 
       it 'renders the edit page' do
@@ -118,7 +193,7 @@ describe CommentsController do
 
     context 'user signed in and owner of post' do
       before do
-        sign_in users(:bob)
+        sign_in bob
       end
 
       it 'renders the edit page' do
@@ -146,7 +221,7 @@ describe CommentsController do
     end
 
     context 'user signed in, owns comment, but not an admin' do
-      before { sign_in users(:bob) }
+      before { sign_in bob }
 
       it 'raises' do
         expect {
@@ -202,12 +277,13 @@ describe CommentsController do
           flag_type: :inappropriate, format: :js
         assigns(:comment).should == comment
         response.should render_template 'comments/flag'
+        response.code.should eq '200'
       end
     end
 
     context 'user signed in and owner of post' do
       before do
-        sign_in users(:bob)
+        sign_in bob
       end
 
       it 'flags the item' do
@@ -215,6 +291,7 @@ describe CommentsController do
           flag_type: :inappropriate, format: :js
         assigns(:comment).should == comment
         response.should render_template 'comments/flag'
+        response.code.should eq '200'
       end
     end
   end
