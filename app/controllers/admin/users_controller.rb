@@ -15,7 +15,8 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.super_user?
-      redirect_to admin_url, notice: "Can't update super-user."
+      flash[:error] = "Can't update super-user."
+      redirect_to admin_url
       return
     end
 
