@@ -46,6 +46,6 @@ defined subjects},
 end
 
 create_default_admin unless User.find_by_email('admin@mindhub.org')
-create_default_admin unless User.find_by_email('mindhub-list-bounces@list.mindhub.org')
+create_listserv_user unless User.find_by_email('mindhub-list-bounces@list.mindhub.org')
 create_default_spokes
 
