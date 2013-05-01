@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130325003818) do
+ActiveRecord::Schema.define(:version => 20130501031358) do
 
   create_table "comments", :force => true do |t|
     t.integer  "commentable_id",    :default => 0
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(:version => 20130325003818) do
   add_index "flaggings", ["flaggable_type", "flaggable_id"], :name => "index_flaggings_on_flaggable_type_and_flaggable_id"
   add_index "flaggings", ["flagger_type", "flagger_id", "flaggable_type", "flaggable_id"], :name => "access_flaggings"
 
+  create_table "friendly_id_slugs", :force => true do |t|
+    t.string   "slug",                         :null => false
+    t.integer  "sluggable_id",                 :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
+  add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
+
   create_table "posts", :force => true do |t|
     t.string   "title"
     t.text     "content"
@@ -58,11 +69,13 @@ ActiveRecord::Schema.define(:version => 20130325003818) do
     t.integer  "cached_votes_down",  :default => 0
     t.integer  "commentable_count",  :default => 0
     t.datetime "deleted_at"
+    t.string   "slug"
   end
 
   add_index "posts", ["cached_votes_down"], :name => "index_posts_on_cached_votes_down"
   add_index "posts", ["cached_votes_total"], :name => "index_posts_on_cached_votes_total"
   add_index "posts", ["cached_votes_up"], :name => "index_posts_on_cached_votes_up"
+  add_index "posts", ["slug"], :name => "index_posts_on_slug"
   add_index "posts", ["spoke_id"], :name => "index_posts_on_spoke_id"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
@@ -82,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20130325003818) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.text     "description"
+    t.string   "slug"
   end
 
   create_table "users", :force => true do |t|

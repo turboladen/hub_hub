@@ -14,7 +14,7 @@
                 - if post.link?
                   = link_to post.title, post.content
                 - else
-                  = link_to post.title, spoke_post_path(post.spoke_id, post)
+                  = link_to post.title, spoke_post_path(post.spoke.slug, post)
 
             %tr
               %td

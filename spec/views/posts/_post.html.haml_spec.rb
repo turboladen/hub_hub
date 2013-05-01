@@ -47,7 +47,7 @@ describe 'posts/_post.html.haml' do
 
     it 'has a link to the target of the link' do
       expect(rendered).to include link_to(text_post.title,
-        spoke_post_path(text_post.spoke_id, text_post))
+        spoke_post_path(text_post.spoke.slug, text_post))
     end
 
     it 'makes a link in the content into a link' do

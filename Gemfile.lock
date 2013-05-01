@@ -103,6 +103,7 @@ GEM
     ffaker (1.15.0)
     ffi (1.6.0)
     ffi (1.6.0-x86-mingw32)
+    friendly_id (4.0.9)
     haml (3.1.8)
     haml-rails (0.3.5)
       actionpack (>= 3.1, < 4.1)
@@ -318,6 +319,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   ffaker
+  friendly_id (~> 4.0.9)
   haml-rails (~> 0.3.4)
   jquery-rails
   kaminari (~> 0.14.1)
