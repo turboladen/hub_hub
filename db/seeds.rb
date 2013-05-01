@@ -11,6 +11,17 @@ def create_default_admin
   admin_user.update_attribute :admin, true
 end
 
+def create_listserv_user
+  User.create!({
+    email: 'mindhub-list-bounces@list.mindhub.org',
+    first_name: 'list',
+    last_name: '.mindhub.org',
+    password: 'creativefresno',
+    password_confirmation: 'creativefresno',
+    remember_me: false
+  })
+end
+
 def create_default_spokes
   default_spokes = {
     'Chat' => %{for anything that doesn't fit elsewhere.},
@@ -35,5 +46,6 @@ defined subjects},
 end
 
 create_default_admin unless User.find_by_email('admin@mindhub.org')
+create_default_admin unless User.find_by_email('mindhub-list-bounces@list.mindhub.org')
 create_default_spokes
 

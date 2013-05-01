@@ -120,5 +120,23 @@ Hi everyone.
         }.to change { ActionMailer::Base.deliveries.size }.by 1
       end
     end
+
+    context 'email from old list server' do
+      before do
+        mail.header = 'Sender: "Mindhub-list" <mindhub-list-bounces@list.mindhub.org>'
+        mail.body = content
+        mail.subject = 'Some stuff!'
+      end
+
+      it 'posts to Chat as the list user' do
+        expect {
+          PostMailer.receive(mail.to_s)
+        }.to change { Spoke.find_by_name('Chat').posts.count }.by 1
+
+        post = Post.last
+        post.title.should == mail.subject
+        post.user.should == User.find_by_email('mindhub-list-bounces@list.mindhub.org')
+      end
+    end
   end
 end
