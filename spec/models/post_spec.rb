@@ -188,7 +188,7 @@ describe Post do
 
     context 'post is not persisted' do
       it 'tweets a link to the post' do
-        url = "http://example.com/spokes/#{post.spoke.id}/posts/#{post.id}"
+        url = "http://chat.mindhub.org/spokes/#{post.spoke.id}/posts/#{post.id}"
 
         Twitter.should_receive(:update).
           with %Q{#{post.spoke.name}: #{post.title} #{url}}

@@ -56,7 +56,7 @@ describe CommentsController do
       end
 
       context 'comment on a comment' do
-        let(:parent_comment) do
+        let!(:parent_comment) do
           c = Comment.build_from(post_one, bob.id, 'sup')
           c.save!
 

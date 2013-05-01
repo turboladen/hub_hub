@@ -65,10 +65,11 @@ class Post < ActiveRecord::Base
     self.class.to_s.downcase
   end
 
+  # @todo Figure out how to not pass +host+ into the URLHelper.
   def tweet
     if Rails.env.production? && self.persisted?
       msg = %Q{#{self.spoke.name}: #{truncate(self.title, length: 121, omission: '...')} }
-      msg << spoke_post_url(spoke_id, self)
+      msg << spoke_post_url(self.spoke_id, self, host: 'chat.mindhub.org')
       Twitter.update(msg)
     else
       false
