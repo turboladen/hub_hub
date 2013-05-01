@@ -1,11 +1,15 @@
 fresno:
   name: Fresno
+  slug: fresno
 
 clovis:
   name: Clovis
+  slug: clovis
 
 chat:
   name: Chat
+  slug: chat
 
 admin:
   name: Admin
+  slug: admin

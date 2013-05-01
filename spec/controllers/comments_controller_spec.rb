@@ -32,7 +32,7 @@ describe CommentsController do
 
           flash[:error].should == "Body can't be blank"
           expect(response).
-            to redirect_to spoke_post_path(post_one.spoke_id, post_one)
+            to redirect_to spoke_post_path(post_one.spoke.slug, post_one)
         end
       end
 
@@ -48,7 +48,7 @@ describe CommentsController do
 
           flash[:notice].should == 'Your response was added.'
           expect(response).
-            to redirect_to(spoke_post_path(post_one.spoke_id, post_one))
+            to redirect_to(spoke_post_path(post_one.spoke.slug, post_one))
 
           comment.body.should == 'stuff'
           comment.post_id.should == post_one.id
@@ -67,7 +67,7 @@ describe CommentsController do
           expect {
             post :create, {
               post_id: post_one.id,
-              spoke_id: post_one.spoke_id,
+              spoke_id: post_one.spoke.slug,
               comment: { body: 'stuff' },
               parent_type: :comment,
               parent_id: parent_comment.id
