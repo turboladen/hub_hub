@@ -28,11 +28,13 @@ class DigestMailer < ActionMailer::Base
     @posts_from_yesterday = posts
     @comments_from_yesterday = comments
     @admin_spoke = Spoke.find_by_name('Admin')
-    logger.info "Sending digest mail to #{@user.email}..."
+    logger.info "[#{Time.now}] Sending digest mail to #{@user.email}..."
 
     mail(to: "#{@user.name} <#{@user.email}>",
       subject: subject,
       template_name: 'nightly_email'
     ).deliver
+
+    logger.info "[#{Time.now}] Finished sending mail to #{@user.email}."
   end
 end
