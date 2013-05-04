@@ -1,6 +1,9 @@
 class VotesController < ApplicationController
   before_filter :authenticate_user!
 
+  # Classes/models that can be voted on.
+  VOTABLE_CLASSES = [Post, Comment]
+
   def upvote
     @item_type = item_class(params[:item_type])
     @item = @item_type.find params[:item_id]
@@ -41,11 +44,20 @@ class VotesController < ApplicationController
 
   private
 
+  # Gets the class of the +param+ type.  Allows for voting on any objects that
+  # are votable.
+  #
+  # @param [String] param The :item_type param.
+  #
+  # @return [Class,nil] Returns the class of the votable type or nil.
   def item_class(param)
     begin
-      param.capitalize.constantize
+      klass = param.capitalize.constantize
+
+      VOTABLE_CLASSES.include?(klass) ? klass : nil
     rescue NameError
       logger.info "WARNING: Someone tried voting on a object of type '#{param}'.  Possible hack attempt?"
+
       nil
     end
   end
