@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @sorter = if params[:sort] && Post.sort_options.include?(params[:sort].to_sym)
+    @sorter = if params[:sort] && Post.sort_options.include?(params[:sort])
       params[:sort].to_sym
     else
       :newest

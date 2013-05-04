@@ -3,7 +3,7 @@ class SpokesController < ApplicationController
 
   # GET /spokes/1
   def show
-    @sorter = if params[:sort] && Post.sort_options.include?(params[:sort].to_sym)
+    @sorter = if params[:sort] && Post.sort_options.include?(params[:sort])
       params[:sort].to_sym
     else
       :newest

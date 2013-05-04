@@ -1,4 +1,4 @@
 - Post.sort_options.each do |option|
   %li{ class: active_li? { option == sorter } }
-    = link_to option.to_s.humanize, home_index_path(sort: option)
+    = link_to option.humanize, home_index_path(sort: option)
 

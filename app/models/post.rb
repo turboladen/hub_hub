@@ -40,13 +40,7 @@ class Post < ActiveRecord::Base
 
   # List of possible ways to sort posts.
   def self.sort_options
-    [
-      :newest,
-      :most_active,
-      :most_positive,
-      :most_negative,
-      :most_voted
-    ]
+    %w[newest most_active most_positive most_negative most_voted]
   end
 
   # Indicates whether or not this post is a link to other content or not.

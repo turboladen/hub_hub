@@ -123,8 +123,8 @@ describe Post do
 
   describe '.sort_options' do
     specify do
-      Post.sort_options.should == [
-        :newest, :most_active, :most_positive, :most_negative, :most_voted
+      Post.sort_options.should == %w[
+        newest most_active most_positive most_negative most_voted
       ]
     end
   end
