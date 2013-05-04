@@ -7,11 +7,11 @@ HubHub::Application.routes.draw do
   post 'votes/upvote'
   post 'votes/downvote'
 
-  resources :spokes, except: [:index, :destroy] do
-    resources :posts, except: [:index, :new] do
+  resources :spokes, only: [:show, :new, :edit, :create, :update] do
+    resources :posts, only: [:create, :show, :edit, :update, :flag] do
       put :flag
 
-      resources :comments, except: [:index, :new] do
+      resources :comments, only: [:create, :edit, :update, :destroy, :flag] do
         put :flag
       end
     end
