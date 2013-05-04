@@ -2,8 +2,8 @@ class VotesController < ApplicationController
   before_filter :authenticate_user!
 
   def upvote
-    @item_type = params[:item_type]
-    @item = @item_type.capitalize.constantize.find params[:item_id]
+    @item_type = item_class(params[:item_type])
+    @item = @item_type.find params[:item_id]
 
     if current_user.voted_up_on? @item
       current_user.unvote_for @item
@@ -21,8 +21,8 @@ class VotesController < ApplicationController
   end
 
   def downvote
-    @item_type = params[:item_type]
-    @item = @item_type.capitalize.constantize.find params[:item_id]
+    @item_type = item_class(params[:item_type])
+    @item = @item_type.find params[:item_id]
 
     if current_user.voted_down_on? @item
       current_user.unvote_for @item
@@ -36,6 +36,17 @@ class VotesController < ApplicationController
 
     respond_to do |format|
       format.js
+    end
+  end
+
+  private
+
+  def item_class(param)
+    begin
+      param.capitalize.constantize
+    rescue NameError
+      logger.info "WARNING: Someone tried voting on a object of type '#{param}'.  Possible hack attempt?"
+      nil
     end
   end
 end

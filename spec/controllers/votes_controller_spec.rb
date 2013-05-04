@@ -37,7 +37,7 @@ describe VotesController do
             }
           }.to change { comment.likes.size }.by 1
 
-          assigns(:item_type).should == 'comment'
+          assigns(:item_type).should == Comment
           assigns(:item).should == comment
           assigns(:upvote_count).should == '1'
           assigns(:downvote_count).should == '0'
@@ -60,7 +60,7 @@ describe VotesController do
             }
           }.to change { comment.likes.size }.by -1
 
-          assigns(:item_type).should == 'comment'
+          assigns(:item_type).should == Comment
           assigns(:item).should == comment
           assigns(:upvote_count).should == '0'
           assigns(:downvote_count).should == '0'
@@ -79,7 +79,7 @@ describe VotesController do
             }
           }.to change { post_one.likes.size }.by 1
 
-          assigns(:item_type).should == 'post'
+          assigns(:item_type).should == Post
           assigns(:item).should == post_one
           assigns(:upvote_count).should == '1'
           assigns(:downvote_count).should == '0'
@@ -102,7 +102,7 @@ describe VotesController do
             }
           }.to change { post_one.likes.size }.by -1
 
-          assigns(:item_type).should == 'post'
+          assigns(:item_type).should == Post
           assigns(:item).should == post_one
           assigns(:upvote_count).should == '0'
           assigns(:downvote_count).should == '0'
@@ -142,7 +142,7 @@ describe VotesController do
             }
           }.to change { comment.dislikes.size }.by 1
 
-          assigns(:item_type).should == 'comment'
+          assigns(:item_type).should == Comment
           assigns(:item).should == comment
           assigns(:upvote_count).should == '0'
           assigns(:downvote_count).should == '1'
@@ -165,7 +165,7 @@ describe VotesController do
             }
           }.to change { comment.dislikes.size }.by -1
 
-          assigns(:item_type).should == 'comment'
+          assigns(:item_type).should == Comment
           assigns(:item).should == comment
           assigns(:upvote_count).should == '0'
           assigns(:downvote_count).should == '0'
@@ -184,7 +184,7 @@ describe VotesController do
             }
           }.to change { post_one.dislikes.size }.by 1
 
-          assigns(:item_type).should == 'post'
+          assigns(:item_type).should == Post
           assigns(:item).should == post_one
           assigns(:upvote_count).should == '0'
           assigns(:downvote_count).should == '1'
@@ -207,7 +207,7 @@ describe VotesController do
             }
           }.to change { post_one.dislikes.size }.by -1
 
-          assigns(:item_type).should == 'post'
+          assigns(:item_type).should == Post
           assigns(:item).should == post_one
           assigns(:upvote_count).should == '0'
           assigns(:downvote_count).should == '0'
@@ -215,6 +215,26 @@ describe VotesController do
 
           response.code.should eq '200'
         end
+      end
+    end
+  end
+
+  describe '#item_class' do
+    context 'invalid votable type' do
+      it 'returns nil' do
+        subject.send(:item_class, 'bobo').should be_nil
+      end
+    end
+
+    context 'post' do
+      it 'returns the Post class' do
+        subject.send(:item_class, 'post').should eq Post
+      end
+    end
+
+    context 'comment' do
+      it 'returns the Comment class' do
+        subject.send(:item_class, 'comment').should eq Comment
       end
     end
   end
