@@ -6,7 +6,7 @@ class DigestMailer < ActionMailer::Base
 
   # Emails the nightly email to each digest subscriber.
   def self.nightly_email_everyone
-    logger.info 'Starting nightly email to digest users...'
+    logger.info "[#{Time.now}] Starting nightly email to digest users..."
 
     subject = "Your mindhub.org digest for #{Date.today.to_formatted_s(:long)}"
     posts = Post.last_24_hours.all
@@ -16,7 +16,7 @@ class DigestMailer < ActionMailer::Base
       nightly_email(user, subject, posts, comments)
     end
 
-    logger.info 'Done sending nightly email to digest users.'
+    logger.info "[#{Time.now}] Done sending nightly email to digest users."
   end
 
   # @param [User] user The user to email to.
