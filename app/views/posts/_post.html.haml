@@ -27,8 +27,8 @@
                       = "#{post.user_name},"
                     - else
                       = "#{post.user_email},"
-                    = time_tag post.updated_at
-                    in spoke
+                    = time_tag(post.created_at)
+                    in
 
                     %script
                       $(function () {
