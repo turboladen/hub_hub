@@ -25,6 +25,7 @@ atlassian-ide-plugin.xml
 # Project test generated files
 coverage
 .vagrant
+rails_best_practices_output.html
 
 # Ignore SublimeText project files
 *.sublime-project
