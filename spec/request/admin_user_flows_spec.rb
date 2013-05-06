@@ -52,7 +52,7 @@ describe 'Admin user flows', type: :response do
       "#{users(:bob).id}-is-banned" => 'true'
     admin.response.code.should eq '200'
 
-    bob.get '/home/index'
+    bob.get '/'
     bob.flash[:alert].should == 'You are banned from this site.'
   end
 
@@ -68,7 +68,7 @@ describe 'Admin user flows', type: :response do
     admin.response.code.should eq '200'
 
     bob = login :bob
-    bob.get '/home/index'
+    bob.get '/'
     bob.response.code.should eq '200'
     bob.flash[:alert].should be_nil
   end
