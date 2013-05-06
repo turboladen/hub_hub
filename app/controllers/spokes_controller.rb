@@ -4,7 +4,7 @@ class SpokesController < ApplicationController
   # GET /spokes
   def index
     @sorter = if params[:sort] && Post.sort_options.include?(params[:sort])
-      params[:sort].to_sym
+      params[:sort]
     else
       :newest
     end
@@ -20,7 +20,7 @@ class SpokesController < ApplicationController
   # GET /spokes/1
   def show
     @sorter = if params[:sort] && Post.sort_options.include?(params[:sort])
-      params[:sort].to_sym
+      params[:sort]
     else
       :newest
     end
