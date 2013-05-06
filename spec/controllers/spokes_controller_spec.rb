@@ -20,7 +20,7 @@ describe SpokesController do
       it 'uses :newest' do
         get :index, sort: 'sdkfljsdk'
 
-        assigns(:sorter).should == :newest
+        assigns(:sorter).should == 'newest'
         expect(response.code).to eq '200'
       end
     end
@@ -29,7 +29,7 @@ describe SpokesController do
       it 'uses the param value' do
         get :index, sort: :most_active
 
-        assigns(:sorter).should == :most_active
+        assigns(:sorter).should == 'most_active'
         expect(response.code).to eq '200'
       end
     end
@@ -38,7 +38,7 @@ describe SpokesController do
       it 'uses :newest' do
         get :index
 
-        assigns(:sorter).should == :newest
+        assigns(:sorter).should == 'newest'
         expect(response.code).to eq '200'
       end
     end
@@ -60,7 +60,7 @@ describe SpokesController do
         it 'uses :newest' do
           get :show, id: spokes(:fresno), sort: 'sdkfljsdk'
 
-          assigns(:sorter).should == :newest
+          assigns(:sorter).should == 'newest'
         end
       end
 
@@ -68,7 +68,7 @@ describe SpokesController do
         it 'uses the param value' do
           get :show, id: spokes(:fresno), sort: :most_active
 
-          assigns(:sorter).should == :most_active
+          assigns(:sorter).should == 'most_active'
         end
       end
 
@@ -76,7 +76,7 @@ describe SpokesController do
         it 'uses :newest' do
           get :show, id: spokes(:fresno)
 
-          assigns(:sorter).should == :newest
+          assigns(:sorter).should == 'newest'
         end
       end
     end

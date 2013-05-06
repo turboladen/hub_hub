@@ -3,12 +3,7 @@ class SpokesController < ApplicationController
 
   # GET /spokes
   def index
-    @sorter = if params[:sort] && Post.sort_options.include?(params[:sort])
-      params[:sort]
-    else
-      :newest
-    end
-
+    @sorter = sorter
     @posts = Post.send(@sorter).page(params[:page]).per(20)
 
     respond_to do |format|
@@ -19,12 +14,7 @@ class SpokesController < ApplicationController
 
   # GET /spokes/1
   def show
-    @sorter = if params[:sort] && Post.sort_options.include?(params[:sort])
-      params[:sort]
-    else
-      :newest
-    end
-
+    @sorter = sorter
     @spokes = Spoke.all
     @spoke = Spoke.find(params[:id])
     @posts = @spoke.posts.send(@sorter).page(params[:page]).per(20)
@@ -66,6 +56,21 @@ class SpokesController < ApplicationController
     else
       flash[:error] = @spoke.errors.full_messages.join('; ')
       render 'edit'
+    end
+  end
+
+  private
+
+  # Figures out the sort method for posts based on whether the :sort param was
+  # given or not.
+  #
+  # @return [String] The :sort param if given and is one of Post.sort_options,
+  #   otherwise 'newest'.
+  def sorter
+    if params[:sort] && Post.sort_options.include?(params[:sort])
+      params[:sort]
+    else
+      'newest'
     end
   end
 end
