@@ -1,19 +1,4 @@
 class HomeController < ApplicationController
-  def index
-    @sorter = if params[:sort] && Post.sort_options.include?(params[:sort])
-      params[:sort].to_sym
-    else
-      :newest
-    end
-
-    @posts = Post.send(@sorter).page(params[:page]).per(20)
-
-    respond_to do |format|
-      format.html
-      format.rss { render layout: false }
-    end
-  end
-
   def tos
     #
   end

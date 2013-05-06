@@ -1,5 +1,21 @@
 class SpokesController < ApplicationController
-  before_filter :ensure_admin, except: [:show]
+  before_filter :ensure_admin, except: [:index, :show]
+
+  # GET /spokes
+  def index
+    @sorter = if params[:sort] && Post.sort_options.include?(params[:sort])
+      params[:sort].to_sym
+    else
+      :newest
+    end
+
+    @posts = Post.send(@sorter).page(params[:page]).per(20)
+
+    respond_to do |format|
+      format.html
+      format.rss { render layout: false }
+    end
+  end
 
   # GET /spokes/1
   def show

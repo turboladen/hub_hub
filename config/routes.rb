@@ -1,13 +1,12 @@
 HubHub::Application.routes.draw do
-  root :to => 'home#index', as: 'home'
+  root :to => 'spokes#index', as: 'home'
 
   devise_for :users, :controllers => { :registrations => 'registrations' }
-  get 'home/index'
 
   post 'votes/upvote'
   post 'votes/downvote'
 
-  resources :spokes, only: [:show, :new, :edit, :create, :update] do
+  resources :spokes, only: [:index, :show, :new, :edit, :create, :update] do
     resources :posts, only: [:create, :show, :edit, :update, :flag] do
       put :flag
 
