@@ -39,6 +39,13 @@ class User < ActiveRecord::Base
     find_by_email 'admin@mindhub.org'
   end
 
+  # The user that posts Posts from the old list server.
+  #
+  # @return [User]
+  def self.list_recipient
+    find_by_email 'list-recipient@chat.mindhub.org'
+  end
+
   # The full name of the user.
   #
   # @return [String] The full name like 'Joe Blow'.

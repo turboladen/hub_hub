@@ -13,9 +13,9 @@ end
 
 def create_listserv_user
   User.create!({
-    email: 'mindhub-list-bounces@list.mindhub.org',
-    first_name: 'list',
-    last_name: '.mindhub.org',
+    email: 'list-recipient@chat.mindhub.org',
+    first_name: 'list-recipient',
+    last_name: 'chat.mindhub.org',
     password: 'creativefresno',
     password_confirmation: 'creativefresno',
     remember_me: false
@@ -45,7 +45,11 @@ defined subjects},
   end
 end
 
-create_default_admin unless User.find_by_email('admin@mindhub.org')
-create_listserv_user unless User.find_by_email('mindhub-list-bounces@list.mindhub.org')
+if old_list_user = User.find_by_email('mindhub-list-bounces@list.mindhub.org')
+  old_list_user.delete
+end
+
+create_default_admin unless User.super_user
+create_listserv_user unless User.list_recipient
 create_default_spokes
 

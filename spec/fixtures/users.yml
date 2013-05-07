@@ -59,10 +59,10 @@ super_user:
   digest_email: false
 
 list:
-  email: mindhub-list-bounces@list.mindhub.org
+  email: list-recipient@chat.mindhub.org
   encrypted_password: <%= User.new.send(:password_digest, "password") %>
-  first_name: list
-  last_name: .mindhub.org
+  first_name: list-recipient
+  last_name: chat.mindhub.org
   banned: false
   admin: false
   digest_email: false

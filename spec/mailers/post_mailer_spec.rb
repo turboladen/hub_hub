@@ -135,7 +135,7 @@ Hi everyone.
 
         post = Post.last
         post.title.should == mail.subject
-        post.user.should == User.find_by_email('mindhub-list-bounces@list.mindhub.org')
+        post.user.should == User.list_recipient
       end
     end
   end
