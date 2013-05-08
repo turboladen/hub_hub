@@ -66,6 +66,8 @@ gem 'capistrano'
 # gem 'debugger'
 
 group :deploy do
+  gem 'screenplay', path: '../screenplay2'
+  gem 'rosh', path: '../rosh'
 end
 
 group :development, :test do

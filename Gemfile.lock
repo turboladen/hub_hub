@@ -5,6 +5,25 @@ GIT
     make_flaggable (0.1.0)
       activerecord (>= 3.0.0)
 
+PATH
+  remote: ../rosh
+  specs:
+    rosh (0.1.0)
+      awesome_print
+      colorize
+      highline
+      log_switch
+      plist
+      sys-proctable
+
+PATH
+  remote: ../screenplay2
+  specs:
+    screenplay (0.1.0)
+      colorize
+      gli
+      log_switch
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -81,6 +100,7 @@ GEM
       execjs
     coffee-script-source (1.6.2)
     colored (1.2)
+    colorize (0.5.8)
     css_parser (1.3.4)
       addressable
     daemon_controller (1.1.4)
@@ -103,6 +123,7 @@ GEM
     ffi (1.8.1)
     ffi (1.8.1-x86-mingw32)
     friendly_id (4.0.9)
+    gli (2.5.6)
     haml (3.1.8)
     haml-rails (0.3.5)
       actionpack (>= 3.1, < 4.1)
@@ -163,6 +184,7 @@ GEM
       rake (>= 0.8.1)
     permanent_records (3.1.3)
       activerecord
+    plist (3.1.0)
     polyglot (0.3.3)
     premailer (1.7.3)
       css_parser (>= 1.1.9)
@@ -255,6 +277,7 @@ GEM
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
     sqlite3 (1.3.7-x86-mingw32)
+    sys-proctable (0.9.3)
     tailor (1.2.1)
       log_switch (>= 0.3.0)
       term-ansicolor (>= 1.0.5)
@@ -284,7 +307,7 @@ GEM
       multi_json (~> 1.3)
       simple_oauth (~> 0.1.6)
     tzinfo (0.3.37)
-    uglifier (2.0.1)
+    uglifier (2.1.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     vagrant (1.0.7)
@@ -333,9 +356,11 @@ DEPENDENCIES
   rails (= 3.2.13)
   rails_autolink (~> 1.0.9)
   rails_best_practices
+  rosh!
   rspec-rails (~> 2.0)
   sanitize
   sass-rails (~> 3.2.3)
+  screenplay!
   simplecov
   sqlite3
   tailor
