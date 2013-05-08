@@ -24,7 +24,7 @@ end
 
 def create_default_spokes
   default_spokes = {
-    'Chat' => %{for anything that doesn't fit elsewhere.},
+    'Chat' => %{For anything that doesn't fit elsewhere.},
     'Admin' => 'For announcements and questions pertaining to the site.
 Please always read messages from the admins!  ...and feel free to post
 questions and/or give feedback about the site.',
