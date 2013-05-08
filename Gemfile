@@ -30,6 +30,9 @@ end
 gem 'haml-rails', '~> 0.3.4'
 gem 'jquery-rails'
 
+# For CSS in HTML emails
+gem 'premailer-rails'
+
 # Model Plugins
 gem 'devise'
 gem 'acts_as_commentable_with_threading', '~> 1.1.2'

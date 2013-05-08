@@ -1,9 +1,15 @@
-/*
-*= require _bootstrap
-*/
 @import "site_and_mailer.css.scss";
-/*@import "bootstrap";*/
+@import "bootstrap/_variables";
+@import "bootstrap/_mixins";
 @import "email_mailchimp.css.scss";
+
+@import "bootstrap/_scaffolding";
+@import "bootstrap/_layouts";
+@import "bootstrap/_type";
+@import "bootstrap/_labels-badges";
+@import "bootstrap/_hero-unit";
+@import "bootstrap/_wells";
+@import "bootstrap/_alerts";
 
 #templateContainer {
   position: relative;
