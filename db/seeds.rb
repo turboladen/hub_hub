@@ -1,3 +1,5 @@
+# Creates the super user for the site.  Ensures that there's always this admin
+# user to get started with (in the case of an empty/new site).
 def create_default_admin
   admin_user = User.create!({
     email: 'admin@mindhub.org',
@@ -11,6 +13,8 @@ def create_default_admin
   admin_user.update_attribute :admin, true
 end
 
+# Creates the user that should receives emails from the old list serv.  Used
+# for posting that content to the site.
 def create_listserv_user
   User.create!({
     email: 'list-recipient@chat.mindhub.org',
@@ -22,6 +26,8 @@ def create_listserv_user
   })
 end
 
+# Creates the default spokes and their descriptions.  Updates the spoke's
+# description if that differs from the existing one.
 def create_default_spokes
   default_spokes = {
     'Chat' => %{For anything that doesn't fit elsewhere.},
