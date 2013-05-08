@@ -15,6 +15,7 @@ Screenplay.sketch(hosts, cmd_history_file: cmd_history) do |host|
       contents: lambda { |file|
         file.from_template(postfix_aliases_source)
       }
+    host.shell.exec 'newaliases'
   end
 end
 
