@@ -25,21 +25,23 @@ end
 def create_default_spokes
   default_spokes = {
     'Chat' => %{for anything that doesn't fit elsewhere.},
-    'Admin' => %{used by administrators only
-for announcements pertaining to MindHub administration. Please always read
-these messages.},
-    'Events' => %{for making any announcement of activities or events in the
+    'Admin' => 'For announcements and questions pertaining to the site.
+Please always read messages from the admins!  ...and feel free to post
+questions and/or give feedback about the site.',
+    'Events' => 'Make an announcement of activities or events in the
 community. Please include just the announcement with no lengthy discussion
-attached.},
-    'Intros' => %{for self-introductions to the newsgroup.},
-    'Jobs' =>  %{for job postings},
-    'OT' => %{for miscellaneous subjects that are not related to any of the
-defined subjects},
-    'Politics' => %{Political discussions of various sorts.}
+attached.',
+    'Intros' => 'Introduce yourself to the site.',
+    'Jobs' =>  'Job postings.',
+    'OT' => 'for miscellaneous subjects that are not related to any of the
+defined subjects',
+    'Politics' => 'for political discussions of various sorts.'
   }
 
   default_spokes.each do |name, description|
-    unless Spoke.find_by_name(name)
+    if spoke = Spoke.find_by_name(name)
+      spoke.update_attributes!(description: description)
+    else
       Spoke.create!(name: name, description: description)
     end
   end
