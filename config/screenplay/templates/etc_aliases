@@ -97,12 +97,12 @@ decode:		root
 root:   	robert@inreachtech.net
 
 # MindHub site mail receiver
-poster: 	"| RAILS_ENV=production /var/www/chat.mindhub.org/current/script/rails runner 'PostMailer.receive(STDIN.read)'"
+poster: 	"| cd /var/www/chat.mindhub.org/current && RAILS_ENV=production /usr/local/rbenv/shims/bundle exec script/rails runner 'PostMailer.receive(STDIN.read)'"
 
 # MindHub admin
-admin: 		"| RAILS_ENV=production /var/www/chat.mindhub.org/current/script/rails runner 'AdminMailer.receive(STDIN.read)'"
+admin: 	"| cd /var/www/chat.mindhub.org/current && RAILS_ENV=production /usr/local/rbenv/shims/bundle exec script/rails runner 'AdminMailer.receive(STDIN.read)'"
 
 # Listserv receiver
-list-recipient: 	"| RAILS_ENV=production /var/www/chat.mindhub.org/current/script/rails runner 'PostMailer.receive(STDIN.read)'"
+list-recipient: 	"| cd /var/www/chat.mindhub.org/current && RAILS_ENV=production /usr/local/rbenv/shims/bundle exec script/rails runner 'PostMailer.receive(STDIN.read)'"
 
 test:       robert@inreachtech.net, steve.loveless@gmail.com
