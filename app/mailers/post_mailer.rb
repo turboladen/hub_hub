@@ -8,7 +8,7 @@ class PostMailer < ActionMailer::Base
 
   def receive(email)
     user = if email.sender && email.sender == 'mindhub-list-bounces@list.mindhub.org'
-      log "Got listserv email from '#{email.from}'; sender: '#{email.sender}'"
+      logger.info "Got listserv email from '#{email.from}'; sender: '#{email.sender}'"
       User.list_recipient
     else
       User.find_by_email(email.from)
