@@ -68,6 +68,8 @@ gem 'capistrano'
 group :deploy do
   gem 'screenplay', git: 'git@github.com:turboladen/screenplay.git'
   gem 'rosh', git: 'git@github.com:turboladen/rosh.git'
+  #gem 'screenplay', path: '../screenplay2'
+  #gem 'rosh', path: '../rosh'
 end
 
 group :development, :test do
@@ -83,5 +85,3 @@ group :development, :test do
   gem 'vagrant', '>= 1.0.0'
   gem 'vagrant-ansible'
 end
-
-gem 'bundler'
