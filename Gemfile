@@ -83,3 +83,5 @@ group :development, :test do
   gem 'vagrant', '>= 1.0.0'
   gem 'vagrant-ansible'
 end
+
+gem 'bundler'

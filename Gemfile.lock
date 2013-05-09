@@ -346,6 +346,7 @@ DEPENDENCIES
   acts_as_votable (~> 0.4.0)
   bootstrap-sass (~> 2.0.4.2)
   brakeman
+  bundler
   capistrano
   coffee-rails (~> 3.2.1)
   devise
