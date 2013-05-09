@@ -16,6 +16,7 @@ Screenplay.sketch(hosts, cmd_history_file: cmd_history) do |host|
         file.from_template(postfix_aliases_source)
       }
     host.shell.exec 'newaliases'
+    host.packages.upgrade_packages
   end
 end
 
