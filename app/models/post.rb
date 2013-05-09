@@ -35,8 +35,13 @@ class Post < ActiveRecord::Base
     where('cached_votes_down > 0').order('cached_votes_down DESC')
   scope :most_positive, where('cached_votes_up > 0').order('cached_votes_up DESC')
   scope :most_voted, where('cached_votes_total > 0').order('cached_votes_total DESC')
-  scope :last_24_hours, where('created_at >= :twenty_four_hours_ago AND created_at < :now',
-    twenty_four_hours_ago: (Time.now - 86400), now: Time.now)
+
+  # All Posts from the last 24 hours.
+  def self.last_24_hours
+    now = Time.now
+    where('created_at >= :twenty_four_hours_ago AND created_at < :now',
+      twenty_four_hours_ago: (now - 86400), now: now)
+  end
 
   # List of possible ways to sort posts.
   def self.sort_options
