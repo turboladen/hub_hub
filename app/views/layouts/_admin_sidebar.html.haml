@@ -19,8 +19,13 @@
           %li
             = link_to('Comments', admin_inappropriate_items_path(flaggable_type: 'comments'))
 
-    %li{ class: active_li? { current_page?(admin_settings_path) } }
+    -#%li{ class: active_li? { current_page?(admin_settings_path) } }
       = link_to admin_settings_path do
         %i.icon-envelope
         Settings
+
+    %li{ class: active_li? { current_page?(admin_message_path) } }
+      = link_to admin_message_path do
+        %i.icon-envelope
+        Email Users
 
