@@ -1,4 +1,8 @@
+# Mailer for Admins to send out email to regular users.
 class NotificationsMailer < ActionMailer::Base
+  add_template_helper ApplicationHelper
+
+  layout 'email_poster'
   default from: 'admin@mindhub.org'
 
   # @param [Message] message
