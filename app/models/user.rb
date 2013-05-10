@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 
   # Gets email addresses for all non-admin users.
   def self.regular_emails
-    where(admin: false).pluck(:email)
+    where(admin: [false, nil]).pluck(:email)
   end
 
   # @return [Array]
