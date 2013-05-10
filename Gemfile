@@ -66,8 +66,8 @@ gem 'capistrano'
 # gem 'debugger'
 
 group :deploy do
-  gem 'screenplay', git: 'git@github.com:turboladen/screenplay.git'
-  gem 'rosh', git: 'git@github.com:turboladen/rosh.git'
+  #gem 'screenplay', git: 'git@github.com:turboladen/screenplay.git'
+  #gem 'rosh', git: 'git@github.com:turboladen/rosh.git'
   #gem 'screenplay', path: '../screenplay2'
   #gem 'rosh', path: '../rosh'
 end
