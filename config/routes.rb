@@ -25,5 +25,10 @@ HubHub::Application.routes.draw do
     resources :settings, only: [:index, :create]
 
     get :inappropriate_items
+
+    namespace :message do
+      get '/', action: :new
+      post '/', action: :create
+    end
   end
 end
