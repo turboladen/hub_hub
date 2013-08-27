@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
   attr_accessible :content, :title
 
   belongs_to :spoke
-  delegate :name, :description, to: :spoke, prefix: true
+  delegate :name, :description, :slug, to: :spoke, prefix: true
 
   belongs_to :user
   delegate :name, :first_name, :last_name, :email, to: :user, prefix: true
@@ -35,18 +35,17 @@ class Post < ActiveRecord::Base
     where('cached_votes_down > 0').order('cached_votes_down DESC')
   scope :most_positive, where('cached_votes_up > 0').order('cached_votes_up DESC')
   scope :most_voted, where('cached_votes_total > 0').order('cached_votes_total DESC')
-  scope :last_24_hours, where('created_at >= :twenty_four_hours_ago AND created_at < :now',
-    twenty_four_hours_ago: (Time.now - 86400), now: Time.now)
+
+  # All Posts from the last 24 hours.
+  def self.last_24_hours
+    now = Time.now
+    where('created_at >= :twenty_four_hours_ago AND created_at < :now',
+      twenty_four_hours_ago: (now - 86400), now: now)
+  end
 
   # List of possible ways to sort posts.
   def self.sort_options
-    [
-      :newest,
-      :most_active,
-      :most_positive,
-      :most_negative,
-      :most_voted
-    ]
+    %w[newest most_active most_positive most_negative most_voted]
   end
 
   # Indicates whether or not this post is a link to other content or not.
@@ -65,10 +64,11 @@ class Post < ActiveRecord::Base
     self.class.to_s.downcase
   end
 
+  # @todo Figure out how to not pass +host+ into the URLHelper.
   def tweet
     if Rails.env.production? && self.persisted?
       msg = %Q{#{self.spoke.name}: #{truncate(self.title, length: 121, omission: '...')} }
-      msg << spoke_post_url(spoke_id, self)
+      msg << spoke_post_url(self.spoke_id, self, host: 'chat.mindhub.org')
       Twitter.update(msg)
     else
       false

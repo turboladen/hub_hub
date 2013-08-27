@@ -2,8 +2,9 @@
   %li{ class: active_li? { option == sorter } }
 
     - if defined?(spoke_id) && spoke_id
-      = link_to option.to_s.humanize, spoke_path(id: spoke_id, sort: option)
+      = link_to option.humanize, spoke_path(id: spoke_id, sort: option)
 
     - else
-      = link_to option.to_s.humanize, home_path(sort: option)
+      = link_to option.humanize, home_path(sort: option)
+
 

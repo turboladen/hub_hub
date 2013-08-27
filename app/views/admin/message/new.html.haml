@@ -1,0 +1,15 @@
+= form_for @message, url: admin_message_path do |form|
+  %fieldset.fields
+    .control-group
+      = form.label :subject, class: 'control-label'
+      .controls
+        = form.text_field :subject
+
+    .control-group
+      = form.label :body, class: 'control-label'
+      .controls
+        = form.text_area :body, class: 'span7'
+
+  %fieldset.actions
+    .form-actions
+      = form.submit 'Send', class:'btn btn-primary'

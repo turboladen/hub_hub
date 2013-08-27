@@ -56,6 +56,18 @@ describe User do
     end
   end
 
+  describe '.regular_emails' do
+    it 'gets a list of all emails for all non-admin users' do
+      User.regular_emails.should == %w[
+        list-recipient@chat.mindhub.org
+        karl.winslow@winslow.com
+        ricky.ricardo@gmail.com
+        john.jacob.jingleheimer-schmidt@gmail.com
+        bob@bobo.com
+      ]
+    end
+  end
+
   describe '.admin_emails' do
     let(:admin) { users(:admin) }
     let(:su) { users(:super_user) }

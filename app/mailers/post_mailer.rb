@@ -7,7 +7,12 @@ class PostMailer < ActionMailer::Base
   default from: 'MindHub Poster <poster@chat.mindhub.org>'
 
   def receive(email)
-    user = User.find_by_email(email.from)
+    user = if email.sender && email.sender == 'mindhub-list-bounces@list.mindhub.org'
+      logger.info "Got listserv email from '#{email.from}'; sender: '#{email.sender}'"
+      User.list_recipient
+    else
+      User.find_by_email(email.from)
+    end
 
     if user.nil?
       logger.info "Received email from an unknown address: #{email.from}"

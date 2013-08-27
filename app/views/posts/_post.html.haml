@@ -14,7 +14,7 @@
                 - if post.link?
                   = link_to post.title, post.content
                 - else
-                  = link_to post.title, spoke_post_path(post.spoke.slug, post)
+                  = link_to post.title, spoke_post_path(post.spoke_slug, post)
 
             %tr
               %td
@@ -27,8 +27,8 @@
                       = "#{post.user_name},"
                     - else
                       = "#{post.user_email},"
-                    = time_tag post.updated_at
-                    in spoke
+                    = time_tag(post.created_at)
+                    in
 
                     %script
                       $(function () {

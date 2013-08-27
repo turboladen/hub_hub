@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable
+    :recoverable, :rememberable, :trackable, :validatable,
+    :timeoutable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
@@ -28,6 +29,11 @@ class User < ActiveRecord::Base
       :last_name])
   end
 
+  # Gets email addresses for all non-admin users.
+  def self.regular_emails
+    where(admin: [false, nil]).pluck(:email)
+  end
+
   # @return [Array]
   def self.admin_emails
     where(admin: true).pluck(:email)
@@ -36,6 +42,13 @@ class User < ActiveRecord::Base
   # @return [User]
   def self.super_user
     find_by_email 'admin@mindhub.org'
+  end
+
+  # The user that posts Posts from the old list server.
+  #
+  # @return [User]
+  def self.list_recipient
+    find_by_email 'list-recipient@chat.mindhub.org'
   end
 
   # The full name of the user.

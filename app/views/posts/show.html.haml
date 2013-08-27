@@ -2,7 +2,7 @@
 = content_for(:page_heading) do
   %ul.breadcrumb
     %li
-      = link_to 'Home', home_index_path
+      = link_to 'Home', home_path
       %span.divider> /
     %li.active
       = link_to @post.spoke_name, spoke_path(@post.spoke)
