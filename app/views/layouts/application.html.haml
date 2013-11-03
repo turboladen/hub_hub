@@ -22,6 +22,9 @@
 
     #main
       .container
+        .row
+          = render 'layouts/flashes'
+
         .row.row-offcanvas.row-offcanvas-right
           .content.col-xs-12.col-sm-9
             = yield

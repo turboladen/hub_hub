@@ -28,6 +28,7 @@ GEM
     arel (4.0.1)
     atomic (1.1.14)
     awesome_print (1.2.0)
+    bcrypt-ruby (3.1.2)
     bootstrap-sass-rails (3.0.1.0)
       railties (>= 3.1.0)
       sass-rails (>= 3.1.0)
@@ -53,6 +54,12 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     colored (1.2)
+    devise (3.1.1)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -87,6 +94,7 @@ GEM
     minitest (4.7.5)
     multi_json (1.8.2)
     mysql2 (0.3.13)
+    orm_adapter (0.4.0)
     polyglot (0.3.3)
     puma (2.6.0)
       rack (>= 1.1, < 2.0)
@@ -177,6 +185,8 @@ GEM
     uglifier (2.3.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    warden (1.2.3)
+      rack (>= 1.0)
 
 PLATFORMS
   ruby
@@ -185,6 +195,7 @@ DEPENDENCIES
   bootstrap-sass-rails (~> 3.0.1.0)
   brakeman
   coffee-rails (~> 4.0.0)
+  devise (~> 3.1.1)
   factory_girl_rails
   ffaker
   haml-rails
