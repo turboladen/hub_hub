@@ -28,6 +28,9 @@ GEM
     arel (4.0.1)
     atomic (1.1.14)
     awesome_print (1.2.0)
+    bootstrap-sass-rails (3.0.1.0)
+      railties (>= 3.1.0)
+      sass-rails (>= 3.1.0)
     brakeman (2.2.0)
       erubis (~> 2.6)
       fastercsv (~> 1.5)
@@ -53,6 +56,11 @@ GEM
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (2.0.2)
+    factory_girl (4.2.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.2.1)
+      factory_girl (~> 4.2.0)
+      railties (>= 3.0.0)
     fastercsv (1.5.5)
     ffaker (1.20.0)
     haml (4.0.3)
@@ -174,8 +182,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass-rails (~> 3.0.1.0)
   brakeman
   coffee-rails (~> 4.0.0)
+  factory_girl_rails
   ffaker
   haml-rails
   jbuilder (~> 1.2)
