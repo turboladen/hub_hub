@@ -30,5 +30,7 @@ module HubHub
       g.integration_tool :rspec
       g.fixture_replacement :factory_girl, dir: 'spec/support/factories'
     end
+
+    # config.quiet_assets = false
   end
 end

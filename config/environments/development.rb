@@ -28,4 +28,26 @@ HubHub::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.growl = true
+    #Bullet.xmpp = { :account  => 'bullets_account@jabber.org',
+    #  :password => 'bullets_password_for_jabber',
+    #  :receiver => 'your_account@jabber.org',
+    #  :show_online_status => true }
+    Bullet.rails_logger = true
+    #Bullet.airbrake = true
+
+    # Have Mini Profiler show up on the right
+    Rack::MiniProfiler.config.position = 'right'
+    # Have Mini Profiler start in hidden mode - display with short cut (defaulted to 'Alt+P')
+    Rack::MiniProfiler.config.start_hidden = true
+    # Don't collect backtraces on SQL queries that take less than 5 ms to execute
+    # (necessary on Rubies earlier than 2.0)
+    # Rack::MiniProfiler.config.backtrace_threshold_ms = 5
+  end
 end
