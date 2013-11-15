@@ -50,8 +50,12 @@ group :development, :test do
   gem 'sqlite3'
 end
 
-group :test do
+group :development do
   gem 'rails_best_practices'
+end
+
+group :test do
+  gem 'database_cleaner', '>= 1.1.1'
   gem 'rspec-rails'
   gem 'simplecov', require: false
 end
