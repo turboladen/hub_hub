@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @spoke.name
+%p
+  %b Description:
+  = @spoke.description
+
+= link_to 'Edit', edit_spoke_path(@spoke)
+\|
+= link_to 'Back', spokes_path
