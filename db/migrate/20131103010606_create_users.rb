@@ -4,8 +4,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email, null: false
       t.string :first_name
       t.string :last_name
-      t.boolean :admin
       t.boolean :banned
+      t.boolean :admin
 
       t.timestamps
     end
