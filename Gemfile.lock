@@ -76,6 +76,7 @@ GEM
       activesupport
       uniform_notifier (>= 1.4.0)
     callsite (0.0.11)
+    cancan (1.6.10)
     code_analyzer (0.4.3)
       sexp_processor
     coderay (1.1.0)
@@ -117,6 +118,9 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
+    has_scope (0.6.0.rc)
+      actionpack (>= 3.2, < 5)
+      activesupport (>= 3.2, < 5)
     highline (1.6.20)
     hike (1.2.3)
     i18n (0.6.5)
@@ -268,6 +272,7 @@ DEPENDENCIES
   bootstrap-sass-rails (~> 3.0.1.0)
   brakeman
   bullet
+  cancan (~> 1.6.10)
   coffee-rails (~> 4.0.0)
   database_cleaner (>= 1.1.1)
   devise (~> 3.1.1)

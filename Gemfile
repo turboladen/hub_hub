@@ -34,6 +34,7 @@ gem 'puma', '~> 2.6.0'
 # gem 'debugger', group: [:development, :test]
 
 gem 'devise', '~> 3.1.1'
+gem 'cancan', '~> 1.6.10'
 gem 'activeadmin', github: 'gregbell/active_admin'
 
 group :doc do
