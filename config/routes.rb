@@ -1,7 +1,9 @@
 HubHub::Application.routes.draw do
   root 'home#tos'
 
-  resources :spokes, only: %i[index show]
+  resources :spokes, only: %i[index show] do
+    resources :posts, except: %i[index]
+  end
 
   devise_for :users
   #devise_for :users, ActiveAdmin::Devise.config
