@@ -28,7 +28,7 @@ module ApplicationHelper
 
       Array(message).each do |msg|
         text = content_tag(:div,
-          content_tag(:button, raw("&times;"), 'type' => 'button', :class => "close", "data-dismiss" => "alert", 'aria-hidden' => 'true') +
+          content_tag(:button, raw('&times;'), 'type' => 'button', :class => 'close', 'data-dismiss' => 'alert', 'aria-hidden' => 'true') +
             msg.html_safe, :class => "alert alert-#{type} alert-dismissable")
         flash_messages << text if msg
       end
