@@ -13,9 +13,4 @@
       %td= spoke.name
       %td= spoke.description
       %td= link_to 'Show', spoke
-      %td= link_to 'Edit', edit_spoke_path(spoke)
-      %td= link_to 'Destroy', spoke, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-%br
-
-= link_to 'New Spoke', new_spoke_path

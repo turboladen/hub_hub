@@ -1,11 +1,13 @@
 HubHub::Application.routes.draw do
-  devise_for :users
-  #devise_for :users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
   root 'home#tos'
 
-  resources :spokes
+  devise_for :users
+  #devise_for :users, ActiveAdmin::Devise.config
+
+  resources :spokes, only: %i[index show]
 
   get 'tos' => 'home#tos'
   get 'faq' => 'home#faq'
+
+  ActiveAdmin.routes(self)
 end
