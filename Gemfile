@@ -49,6 +49,7 @@ end
 
 group :development, :test do
   gem 'brakeman'
+  gem 'bullet'
   gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'sqlite3'
@@ -57,7 +58,6 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'bullet'
   gem 'meta_request'
   gem 'quiet_assets'
   gem 'rack-mini-profiler'

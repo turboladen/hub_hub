@@ -47,11 +47,11 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
-  before(:each) do
+  config.before(:each) do
     Bullet.start_request if Bullet.enable?
   end
 
-  after(:each) do
+  config.after(:each) do
     Bullet.perform_out_of_channel_notifications if Bullet.enable? && Bullet.notification?
     Bullet.end_request if Bullet.enable?
   end

@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: 341230d2a2687b5a78e35fd72614bbc1434c8670
+  revision: 08ec4928a3061eea4df816f2a48fafad2430a8af
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0)
@@ -106,7 +106,7 @@ GEM
       factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
     fastercsv (1.5.5)
-    ffaker (1.20.0)
+    ffaker (1.21.0)
     font-awesome-rails (4.0.3.0)
       railties (>= 3.2, < 5.0)
     formtastic (2.3.0.rc2)
