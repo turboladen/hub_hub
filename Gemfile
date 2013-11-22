@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
 ruby '2.0.0'
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 
-
+#-------------------------------------------------------------------------------
+# View Stuff
+#-------------------------------------------------------------------------------
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -23,21 +23,31 @@ gem 'haml-rails'
 gem 'rails_autolink', '~> 1.1.5'
 gem 'kaminari-bootstrap', github: 'mcasimir/kaminari-bootstrap'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
 
-# Use puma as the app server
+#-------------------------------------------------------------------------------
+# Web Server Stuff
+#-------------------------------------------------------------------------------
 gem 'puma', '~> 2.6.0'
 
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
+#-------------------------------------------------------------------------------
+# Authentication & Authorization
+#-------------------------------------------------------------------------------
 gem 'devise', '~> 3.1.1'
 gem 'cancan', '~> 1.6.10'
+
+
+#-------------------------------------------------------------------------------
+# Administration
+#-------------------------------------------------------------------------------
 gem 'activeadmin', github: 'gregbell/active_admin'
+
+
+#-------------------------------------------------------------------------------
+# Deployment
+#-------------------------------------------------------------------------------
+# gem 'capistrano', group: :development
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -55,6 +65,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'sqlite3'
+  # Use debugger
+  # gem 'debugger', group: [:development, :test]
 end
 
 group :development do
