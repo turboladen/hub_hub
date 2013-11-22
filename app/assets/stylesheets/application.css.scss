@@ -46,6 +46,10 @@ html, body {
   background-position: 80% 30px;
 }
 
+div.row.even {
+  background-color: $postBackgroundGreen;
+}
+
 #footer {
   .footer-content {
     background-color: $mindhubWhite;

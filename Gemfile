@@ -20,6 +20,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'haml-rails'
+gem 'rails_autolink', '~> 1.1.5'
+gem 'kaminari-bootstrap', github: 'mcasimir/kaminari-bootstrap'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

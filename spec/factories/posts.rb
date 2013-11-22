@@ -11,7 +11,11 @@ FactoryGirl.define do
     end
 
     trait :with_spoke do
-      spoke { Spoke.last || FactoryGirl.create(:spoke) }
+      spoke { Spoke.take! || FactoryGirl.create(:spoke) }
+    end
+
+    trait :with_user do
+      spoke { User.take! || FactoryGirl.create(:user) }
     end
   end
 end

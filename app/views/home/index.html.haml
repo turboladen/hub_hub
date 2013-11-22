@@ -5,11 +5,8 @@
 %ul.nav.nav-tabs
   = #render partial: 'sort_options', locals: { sorter: @sorter }
 
-%table.table.table-condensed
-  %tbody
-    = #render @posts
-
-= #render 'shared/pager', items: @posts
+= render @posts
+= render 'shared/pager', items: @posts
 
 = content_for :right_sidebar do
   = #render 'shared/spoke_list'
