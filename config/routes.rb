@@ -1,5 +1,5 @@
 HubHub::Application.routes.draw do
-  root 'home#tos'
+  root 'home#index'
 
   resources :spokes, only: %i[index show] do
     resources :posts, except: %i[index]
