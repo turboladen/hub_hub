@@ -1,10 +1,11 @@
 class SpokesController < ApplicationController
+  respond_to :json
   before_action :set_spoke, only: %i[show]
-  respond_to :html
 
   # GET /spokes
   def index
     @spokes = Spoke.all
+    respond_with @spokes
   end
 
   # GET /spokes/1

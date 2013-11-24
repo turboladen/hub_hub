@@ -1,3 +1,5 @@
 # For more information see: http://emberjs.com/guides/routing/
 
-class HubHub.SpokeRoute extends Ember.Route
+HubHub.Router.map ()->
+  @resource('spokes')
+
