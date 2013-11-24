@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/ghempton/ember-script-rails.git
-  revision: 3de2aedfec18ce745266f12f3cf42827aa3da3bd
-  specs:
-    ember_script-rails (0.0.3)
-      ember_script (>= 0.0.4)
-      rails
-
-GIT
   remote: git://github.com/gregbell/active_admin.git
   revision: 56e93bbad5e93caa94cb9dcae900338390bc1e48
   specs:
@@ -120,7 +112,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.0)
-    ember-data-source (0.14)
+    ember-data-source (1.0.0.beta.3)
       ember-source
     ember-rails (0.14.0)
       active_model_serializers
@@ -131,13 +123,8 @@ GEM
       handlebars-source
       jquery-rails (>= 1.0.17)
       railties (>= 3.1)
-    ember-source (1.1.2)
-      handlebars-source (= 1.0.12)
-    ember_script (0.0.5)
-      ember_script-source (>= 0.0.2)
-      execjs
-      tilt
-    ember_script-source (0.0.8)
+    ember-source (1.2.0)
+      handlebars-source (= 1.1.1)
     erubis (2.7.0)
     execjs (2.0.2)
     factory_girl (4.3.0)
@@ -158,7 +145,7 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
-    handlebars-source (1.0.12)
+    handlebars-source (1.1.1)
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -271,7 +258,7 @@ GEM
     slim (2.0.2)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
-    sprockets (2.10.0)
+    sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -313,9 +300,9 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   database_cleaner (>= 1.1.1)
   devise (~> 3.1.1)
-  ember-rails
-  ember-source
-  ember_script-rails!
+  ember-data-source (>= 1.0.0.beta.3)
+  ember-rails (~> 0.14.0)
+  ember-source (~> 1.2.0)
   factory_girl_rails
   ffaker
   font-awesome-rails

@@ -12,9 +12,9 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'bootstrap-sass-rails', '~> 3.0.1.0'
 gem 'font-awesome-rails'
-gem 'ember-rails'
-gem 'ember-source'
-gem 'ember_script-rails', github: 'ghempton/ember-script-rails'
+gem 'ember-rails', '~> 0.14.0'
+gem 'ember-data-source', '>= 1.0.0.beta.3'
+gem 'ember-source', '~> 1.2.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
