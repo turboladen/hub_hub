@@ -1,0 +1,70 @@
+<div class="page-header">
+    <h1>MindHub FAQ</h1>
+    <br/>
+    <p>
+        We aim to lend a hand, here, so if you have a question that you think should be
+        answered here, please
+        <a href="mailto:admin@chat.mindhub.org">let the admins know</a>.
+    </p>
+</div>
+
+<div id="email-posting">
+    <h2>Can I post to MindHub via sending an email?</h2>
+    <p>
+        Yes!  ...but you have to follow some rules:
+    <ol>
+        <li>You must be MindHub member.</li>
+        <li>
+            You must send the email from the address that's tied to your MindHub
+            account.
+        </li>
+        <li>No attachments.  If you send one, it will be discarded.</li>
+        <li>
+            You must follow
+            <a {{action 'jumpToEmailSubjectGuidelines'}}>the subject line guidelines</a>
+            below.
+        </li>
+    </ol>
+    If you send an email, then don't see it on the site, it may be because you
+    didn't follow the rules.
+    </p>
+
+    <div id="email-subject-guidelines">
+        <p>
+            <strong>Email Subject Line Guidelines</strong>
+        </p>
+        <p>
+            In order to tell MindHub which spoke you want to post your post in, you need
+            to format the subject of your email like this:
+            <code>[Spoke name]: [Post title]</code>.  For example:
+            <code>Events: Farmer's Market</code>
+            <br />
+        </p>
+        <p>
+            If MindHub doesn't recognize the spoke from your subject line (i.e. if you
+            don't include one), your post will be posted in the
+            <code>Chat</code>
+            spoke.
+        </p>
+        <p>
+            As an extra precaution, you should add <code>poster@chat.mindhub.org</code>
+            to your "allow" list in your e-mail Spam filter.  If you make a mistake
+            posting (well, one that disallows you from actually submitting the post),
+            MindHub will email you from this address to let you know what went wrong.
+        </p>
+    </div>
+</div>
+
+<div id="check-spam">
+    <h2>How come I don't get emails from MindHub?</h2>
+    <p>
+        If you've signed up for digest emails from MindHub and you're not getting
+        emails, be sure to check your Spam folder and add a rule to your e-mail
+        client to allow for emails from <code>digest@chat.mindhub.org</code>.
+    </p>
+    <p>
+        If you'd like to receive digest emails from MindHub, just enable the setting
+        in your user preferences,
+        <%= link_to 'here.', edit_user_registration_path(current_user) %>
+    </p>
+</div>

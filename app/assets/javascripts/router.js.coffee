@@ -3,4 +3,5 @@
 HubHub.Router.map ()->
   @resource('spokes')
   @route 'tos'
+  @route 'faq'
 
