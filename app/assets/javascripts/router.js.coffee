@@ -2,4 +2,5 @@
 
 HubHub.Router.map ()->
   @resource('spokes')
+  @route 'tos'
 
