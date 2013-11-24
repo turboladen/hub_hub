@@ -8,10 +8,19 @@ namespace :db do
       end
     end
 
-    Post.transaction do
-      (300 - Post.count).times do
-        FactoryGirl.create(:post, user: User.take!)
+    Spoke.transaction do
+      (10 - Spoke.count).times do
+        spoke = FactoryGirl.create(:spoke, :full)
+        puts "Created spoke: #{spoke.name}"
       end
     end
+
+=begin
+    Post.transaction do
+      (300 - Post.count).times do
+        FactoryGirl.create(:post, spoke: Spoke.take!, user: User.take!)
+      end
+    end
+=end
   end
 end
