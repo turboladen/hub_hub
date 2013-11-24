@@ -1,9 +1,13 @@
 <ul class="spokes-listing list-group">
     {{#each controller}}
         <li class="list-group-item">
-            Name: {{name}}
+            {{#link-to 'spoke' this}}{{name}}{{/link-to}}
         </li>
     {{else}}
         <li>no spokes… :-(</li>
     {{/each}}
 </ul>
+
+<div id="spoke-show">
+    {{outlet}}
+</div>

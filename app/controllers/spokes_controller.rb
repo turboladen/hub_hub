@@ -10,6 +10,7 @@ class SpokesController < ApplicationController
 
   # GET /spokes/1
   def show
+    respond_with @spoke
   end
 
   private
