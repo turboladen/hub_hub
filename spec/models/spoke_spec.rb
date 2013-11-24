@@ -7,9 +7,18 @@ describe Spoke do
   it { should respond_to :updated_at }
 
   describe 'name' do
+    subject { Spoke.new }
+
     it 'must not be empty' do
-      expect(Spoke.new).to have(1).error_on(:name)
-      expect(Spoke.new.errors_on(:name)).to include "can't be blank"
+      expect(subject).to have(1).error_on(:name)
+      expect(subject.errors_on(:name)).to include "can't be blank"
+    end
+
+    it 'must be unique' do
+      FactoryGirl.create :spoke, name: 'test'
+      subject.update(name: 'test')
+      expect(subject).to have(1).error_on(:name)
+      expect(subject.errors_on(:name)).to include 'has already been taken'
     end
   end
 end

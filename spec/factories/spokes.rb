@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :spoke do
-    name { Faker::BaconIpsum.word }
+    sequence(:name) do
+      "Spoke #{Spoke.count + 1}"
+    end
 
     trait :full do
       description { Faker::BaconIpsum.paragraphs.join("\n") }
