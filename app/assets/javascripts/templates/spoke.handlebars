@@ -3,4 +3,13 @@
 <h2>Description</h2>
 <p>{{description}}</p>
 
-{{outlet}}
+<h2>Posts</h2>
+<ul>
+    {{#each posts}}
+        <li>{{title}}</li>
+    {{/each}}
+</ul>
+
+<div id="posts-outlet">
+    {{!outlet}}
+</div>

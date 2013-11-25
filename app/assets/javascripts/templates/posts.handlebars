@@ -1,0 +1,14 @@
+<ul class="posts-listing">
+    {{#each controller}}
+        <li>
+            Title: {{title}}
+        </li>
+        <li>
+            Body: {{body}}
+        </li>
+    {{/each}}
+</ul>
+
+<div id="post-show">
+    {{outlet}}
+</div>

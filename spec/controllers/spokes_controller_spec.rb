@@ -28,7 +28,7 @@ describe SpokesController do
   describe 'GET index' do
     it 'assigns all spokes as @spokes' do
       spoke = Spoke.create! valid_attributes
-      get :index
+      get :index, format: :json
       assigns(:spokes).should eq([spoke])
     end
   end
@@ -36,7 +36,7 @@ describe SpokesController do
   describe 'GET show' do
     it 'assigns the requested spoke as @spoke' do
       spoke = Spoke.create! valid_attributes
-      get :show, id: spoke.to_param
+      get :show, id: spoke.to_param, format: :json
       assigns(:spoke).should eq(spoke)
     end
   end

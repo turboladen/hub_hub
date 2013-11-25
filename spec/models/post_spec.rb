@@ -6,7 +6,7 @@ describe Post do
   it { should respond_to :created_at }
   it { should respond_to :updated_at }
 
-  it { should respond_to :user }
+  #it { should respond_to :user }
   it { should respond_to :spoke }
 
   describe 'title' do

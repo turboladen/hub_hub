@@ -3,7 +3,8 @@
 HubHub.Router.map ()->
   @resource 'spokes', ->
     @resource 'spoke',
-      path: '/:spoke_id'
+      path: '/:spoke_id', ->
+        @resource 'posts'
   @route 'tos'
   @route 'faq'
 

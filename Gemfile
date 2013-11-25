@@ -91,6 +91,7 @@ end
 
 group :test do
   gem 'database_cleaner', '>= 1.1.1'
+  gem 'json_spec'
   gem 'rspec-rails'
   gem 'simplecov', require: false
 end
