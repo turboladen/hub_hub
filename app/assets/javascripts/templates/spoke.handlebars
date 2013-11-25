@@ -1,15 +1,21 @@
-<h1>{{name}}</h1>
+<div class="page-header">
+    <h1>Spoke: {{name}}</h1>
 
-<h2>Description</h2>
-<p>{{description}}</p>
+    <h2>Description</h2>
+    <p>{{description}}</p>
+</div>
 
-<h2>Posts</h2>
-<ul>
-    {{#each posts}}
-        <li>{{title}}</li>
-    {{/each}}
-</ul>
+<div class="row">
+    <div class="col-md-3 sidebar" role="navigation">
+        <h2>Posts</h2>
+        <div class="list-group">
+            {{#each posts}}
+                {{#link-to 'post' this classNames="list-group-item"}}{{title}}{{/link-to}}
+            {{/each}}
+        </div>
+    </div>
 
-<div id="posts-outlet">
-    {{!outlet}}
+    <div id="post-outlet" class="col-md-9">
+        {{outlet}}
+    </div>
 </div>
