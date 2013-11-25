@@ -4,9 +4,9 @@ class PostsController < ApplicationController
 
   def index
     @posts = if params[:ids]
-      Post.includes(:spoke).find(params[:ids])
+      Post.includes(:spoke, :user).find(params[:ids])
     else
-      Post.includes(:spoke).all
+      Post.includes(:spoke, :user).all
     end
 
     respond_with @posts
