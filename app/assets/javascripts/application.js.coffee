@@ -20,3 +20,12 @@ window.HubHub = Ember.Application.create({
 # To be able to do <a data-toggle="something">
 Ember.LinkView.reopen
   attributeBindings: ['data-toggle']
+
+# Logger shortcut
+window.log = Em.Logger
+
+# Settings
+HubHub.urls ||= {}
+HubHub.urls.login = "/users/sign_in.json"
+HubHub.urls.register = "/users.json"
+HubHub.urls.logout = "/users/sign_out.json"

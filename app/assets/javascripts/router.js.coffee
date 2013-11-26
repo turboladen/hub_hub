@@ -1,6 +1,7 @@
 # For more information see: http://emberjs.com/guides/routing/
 
 HubHub.Router.map ()->
+  @route 'home'
   @resource 'spokes'
 
   @resource 'spoke',
@@ -10,6 +11,8 @@ HubHub.Router.map ()->
       @resource 'post',
         path: 'posts/:post_id'
 
+  @route 'login'
+  @route 'registration'
   @route 'tos'
   @route 'faq'
 

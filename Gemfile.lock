@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: 3a8934afb08a586099374975f210f95b43ac9e50
+  revision: 779ef3f972c06149689446538ca1c5edfefa06b8
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0)
@@ -123,8 +123,8 @@ GEM
       handlebars-source
       jquery-rails (>= 1.0.17)
       railties (>= 3.1)
-    ember-source (1.2.0)
-      handlebars-source (= 1.1.1)
+    ember-source (1.2.0.1)
+      handlebars-source (~> 1.1.2)
     erubis (2.7.0)
     execjs (2.0.2)
     factory_girl (4.3.0)
@@ -145,7 +145,7 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
-    handlebars-source (1.1.1)
+    handlebars-source (1.1.2)
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)

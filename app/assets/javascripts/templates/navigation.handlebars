@@ -1,0 +1,33 @@
+<div id="navigation">
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                {{#link-to 'home' classNames="navbar-brand"}}
+                    <img src="assets/mindhub_logo.png" width="24px">
+                    MindHub
+                {{/link-to}}
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <div class="btn-group navbar-right">
+                    {{#if isAuthenticated}}
+                        <button type="button" class="btn btn-default dropdown-toggle">
+                            UserName
+                            <span class="caret"></span>
+                        </button>
+
+                        <ul class="dropdown-menu">
+                            <li><a href="#" {{action logout}}>Logout</a></li>
+                            <li>Edit account</li>
+                            <li class="divider"></li>
+                            <li>Site Administration</li>
+                        </ul>
+                    {{else}}
+                        {{view HubHub.MenuItemView href="#/login" label="Login" classNames="btn btn-primary"}}
+                        {{view HubHub.MenuItemView href="#/registration" label="Register" classNames="btn btn-default"}}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
