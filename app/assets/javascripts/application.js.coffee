@@ -3,6 +3,7 @@
 #= require handlebars
 #= require ember
 #= require ember-data
+#= require twitter/bootstrap
 #= require_self
 #= require hub_hub
 
@@ -16,4 +17,6 @@ window.HubHub = Ember.Application.create({
   debugMode: true
 })
 
-#= require twitter/bootstrap
+# To be able to do <a data-toggle="something">
+Ember.LinkView.reopen
+  attributeBindings: ['data-toggle']

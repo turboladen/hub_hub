@@ -1,5 +1,17 @@
 {{partial "navigation"}}
 
+<div id="spokes-list">
+    <div class="container">
+        <div class="row">
+            <ul class="nav nav-tabs">
+                {{#each spoke in spokes}}
+                    <li>{{#link-to "spoke.index" spoke data-toggle="tab"}}{{spoke.name}}{{/link-to}}</li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
+
 <div id="main">
     <div class="container">
         <div class="row row-offcanvas row-offcanvas-right">
