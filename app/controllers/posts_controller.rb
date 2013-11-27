@@ -4,9 +4,9 @@ class PostsController < ApplicationController
 
   def index
     @posts = if params[:ids]
-      Post.includes(:spoke, :user).find(params[:ids])
+      Post.includes(:spoke, :owner).find(params[:ids])
     else
-      Post.includes(:spoke, :user).all
+      Post.includes(:spoke, :owner)
     end
 
     respond_with @posts
@@ -19,6 +19,7 @@ class PostsController < ApplicationController
   def create
     spoke = Spoke.find(params[:spoke_id])
     @post = spoke.posts.new(post_params)
+    @post.owner = current_user
 
     if @post.save
       respond_with @post, location: @post, status: :created

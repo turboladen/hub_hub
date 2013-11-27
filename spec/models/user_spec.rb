@@ -17,4 +17,6 @@ describe User do
   it { should respond_to :last_sign_in_at }
   it { should respond_to :current_sign_in_ip }
   it { should respond_to :last_sign_in_ip }
+
+  it { should respond_to :posts }
 end

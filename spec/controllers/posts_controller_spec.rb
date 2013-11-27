@@ -8,7 +8,7 @@ describe PostsController do
     let(:relation) { double 'Post relation' }
 
     before do
-      expect(Post).to receive(:includes).with(:spoke) { relation }
+      expect(Post).to receive(:includes).with(:spoke, :owner) { relation }
     end
 
     context 'with ids' do
@@ -21,7 +21,6 @@ describe PostsController do
 
     context 'without ids' do
       it 'assigns all posts as @posts' do
-        expect(relation).to receive(:all) { relation }
         get :index, format: :json
         assigns(:posts).should eq(relation)
       end
@@ -36,7 +35,12 @@ describe PostsController do
   end
 
   describe 'POST create' do
-    let(:spoke) { FactoryGirl.create :spoke }
+    let!(:spoke) { FactoryGirl.create :spoke }
+    let(:user) { FactoryGirl.create :user }
+
+    before do
+      sign_in user
+    end
 
     describe 'with valid params' do
       it 'creates a new Post' do
@@ -56,7 +60,8 @@ describe PostsController do
 
         expect(response.status).to eq 201
         expect(response.headers).to include 'Location'
-        body = valid_attributes.merge('id' => 1, 'spoke_id' => spoke.id)
+        body = valid_attributes.merge 'id' => 1,
+          'spoke_id' => spoke.id, 'owner_id' => user.id
         expect(response.body).to be_json_eql(JSON(post: body))
       end
     end

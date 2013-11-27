@@ -5,7 +5,7 @@ FactoryGirl.define do
 
     after :build do |post|
       post.spoke = FactoryGirl.build :spoke unless post.spoke
-      #post.user = FactoryGirl.build :user unless post.user
+      post.owner = FactoryGirl.build :user unless post.owner
     end
   end
 end

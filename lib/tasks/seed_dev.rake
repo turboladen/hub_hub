@@ -29,7 +29,7 @@ namespace :db do
         user = User.find(user_ids.sample)
         puts "user: #{user.email}"
 
-        post = FactoryGirl.create(:post, spoke: spoke, user: user)
+        post = FactoryGirl.create(:post, spoke: spoke, owner: user)
         puts "created post: #{post.title}"
       end
     end

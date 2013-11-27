@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable,
     :timeoutable
 
+  has_many :posts, foreign_key: 'owner_id'
+
   # The full name of the user.
   #
   # @return [String] The full name like 'Joe Blow'.

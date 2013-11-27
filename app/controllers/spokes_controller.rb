@@ -4,7 +4,7 @@ class SpokesController < ApplicationController
 
   # GET /spokes
   def index
-    @spokes = Spoke.includes(:posts).all
+    @spokes = Spoke.includes(:posts)
     respond_with @spokes
   end
 

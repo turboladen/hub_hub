@@ -5,4 +5,4 @@ HubHub.Post = DS.Model.extend
   updatedAt: DS.attr 'date'
 
   spoke: DS.belongsTo 'spoke'
-  user: DS.belongsTo 'user'
+  owner: DS.belongsTo 'user'

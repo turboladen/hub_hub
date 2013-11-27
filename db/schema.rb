@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120071255) do
+ActiveRecord::Schema.define(version: 20131127050458) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -31,17 +31,17 @@ ActiveRecord::Schema.define(version: 20131120071255) do
   create_table "posts", force: true do |t|
     t.string   "title"
     t.text     "body"
-    t.integer  "user_id"
     t.integer  "spoke_id"
     t.integer  "cached_votes_total", default: 0
     t.integer  "cached_votes_up",    default: 0
     t.integer  "cached_votes_down",  default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "owner_id"
   end
 
+  add_index "posts", ["owner_id"], name: "index_posts_on_owner_id"
   add_index "posts", ["spoke_id"], name: "index_posts_on_spoke_id"
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "spokes", force: true do |t|
     t.string   "name"
