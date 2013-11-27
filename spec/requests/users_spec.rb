@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe 'Users' do
-  describe 'GET /users/:id' do
+  describe 'GET /api/users/:id' do
     let!(:user) { FactoryGirl.create :user }
 
     it 'retrieves the user' do
-      get "/users/#{user.to_param}.json"
+      get "/api/users/#{user.to_param}.json"
 
       expect(response.status).to eq 200
       expect(response.body).to eq JSON(

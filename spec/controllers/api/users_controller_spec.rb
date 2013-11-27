@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UsersController do
+describe Api::UsersController do
   let(:valid_attributes) { FactoryGirl.attributes_for :user }
   let(:user) { FactoryGirl.create :user }
 

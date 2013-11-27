@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Posts' do
-  describe 'GET /posts' do
+  describe 'GET /api/posts' do
     context 'with an array of existent IDs' do
       let(:post_ids) do
         posts.map { |post| post.id }
@@ -15,7 +15,7 @@ describe 'Posts' do
       end
 
       it 'gets all of the posts' do
-        get '/posts', ids: post_ids
+        get '/api/posts', ids: post_ids
 
         expect(response.status).to eq 200
         expect(response.body).to eq JSON(
@@ -50,7 +50,7 @@ describe 'Posts' do
       after { Bullet.unstub(:enable?) }
 
       it 'returns a 404 with an error message' do
-        get '/posts', ids: post_ids
+        get '/api/posts', ids: post_ids
 
         expect(response.status).to eq 404
         expect(response.body).to eq JSON(
@@ -60,10 +60,10 @@ describe 'Posts' do
     end
   end
 
-  describe 'GET /posts/:id' do
+  describe 'GET /api/posts/:id' do
     context 'non-existent post' do
       it 'returns an error as JSON' do
-        get '/posts/123456789.json'
+        get '/api/posts/123456789.json'
 
         expect(response.status).to eq 404
         expect(response.body).to eq JSON(
@@ -76,7 +76,7 @@ describe 'Posts' do
       let!(:post) { FactoryGirl.create :post }
 
       it 'retrieves the post' do
-        get "/posts/#{post.to_param}.json"
+        get "/api/posts/#{post.to_param}.json"
 
         expect(response.status).to eq 200
         expect(response.body).to eq JSON(

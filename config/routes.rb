@@ -1,9 +1,11 @@
 HubHub::Application.routes.draw do
   root 'home#index'
 
-  resources :spokes, only: %i[index show], defaults: { format: 'json' }
-  resources :posts, except: %i[new edit], defaults: { format: 'json' }
-  resources :users, only: %i[show], defaults: { format: 'json' }
+  namespace :api, defaults: { format: 'json' } do
+    resources :spokes, only: %i[index show]
+    resources :posts, except: %i[new edit]
+    resources :users, only: %i[show]
+  end
 
   devise_for :users
   #devise_for :users, ActiveAdmin::Devise.config

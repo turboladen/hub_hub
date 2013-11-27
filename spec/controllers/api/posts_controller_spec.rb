@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PostsController do
+describe Api::PostsController do
   let(:valid_attributes) { FactoryGirl.attributes_for :post }
   let(:new_post) { FactoryGirl.create :post }
 
