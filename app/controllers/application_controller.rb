@@ -6,6 +6,14 @@ class ApplicationController < ActionController::Base
   before_filter :update_sanitized_params, if: :devise_controller?
   respond_to :json
 
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+
+  protected
+
+  def not_found(exception)
+    render json: { errors: [exception.message] }, status: :not_found
+  end
+
   private
 
   def access_denied(exception)

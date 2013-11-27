@@ -1,11 +1,24 @@
 require 'spec_helper'
 
-describe "Users" do
-  describe "GET /users" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get users_path
-      response.status.should be(200)
+describe 'Users' do
+  describe 'GET /users/:id' do
+    let!(:user) { FactoryGirl.create :user }
+
+    it 'retrieves the user' do
+      get "/users/#{user.to_param}.json"
+
+      expect(response.status).to eq 200
+      expect(response.body).to eq JSON(
+        user: {
+          id: user.id,
+          email: user.email,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          admin: user.admin?,
+          banned: user.banned?,
+          post_ids: []
+        }
+      )
     end
   end
 end
