@@ -1,6 +1,5 @@
 module Api
-  class SpokesController < ApplicationController
-    respond_to :json
+  class SpokesController < ApiController
     before_action :set_spoke, only: %i[show]
 
     # GET /spokes

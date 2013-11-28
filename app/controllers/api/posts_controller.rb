@@ -1,6 +1,5 @@
 module Api
-  class PostsController < ApplicationController
-    respond_to :json
+  class PostsController < ApiController
     before_action :set_post, except: %i[create index]
 
     def index
