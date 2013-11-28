@@ -37,10 +37,7 @@ describe Api::PostsController do
   describe 'POST create' do
     let!(:spoke) { FactoryGirl.create :spoke }
     let(:user) { FactoryGirl.create :user }
-
-    before do
-      sign_in user
-    end
+    before { login_user user }
 
     describe 'with valid params' do
       it 'creates a new Post' do

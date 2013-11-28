@@ -55,7 +55,7 @@ describe 'Posts' do
         expect(response.status).to eq 404
         expect(response.body).to eq JSON(
           errors: {
-            'ids' => "Couldn't find all Posts with IDs (1, 99999) (found 1 results, but was looking for 2)"
+            'ids' => "Couldn't find all Posts with IDs (#{post.id}, 99999) (found 1 results, but was looking for 2)"
           }
         )
       end

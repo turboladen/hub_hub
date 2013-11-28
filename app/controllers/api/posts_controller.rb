@@ -19,7 +19,7 @@ module Api
     def create
       spoke = Spoke.find(params[:spoke_id])
       @post = spoke.posts.new(post_params)
-      @post.owner = current_user
+      @post.owner = current_user || nil
 
       if @post.save
         respond_with @post, location: api_post_url(@post), status: :created

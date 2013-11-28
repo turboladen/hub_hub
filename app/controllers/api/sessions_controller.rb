@@ -1,12 +1,29 @@
 module Api
-  class SessionsController < Devise::SessionsController
-    def destroy
-      signed_out = Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+  class SessionsController < ApiController
 
-      render json: {
-        'csrf-param' => request_forgery_protection_token,
-        'csrf-token' => form_authenticity_token
-      }
+    # POST /api/sessions.json
+    def create
+      @user = login(session_params[:username], session_params[:password],
+        session_params[:remember_me])
+
+      if @user
+        head :created
+      else
+        render json: { errors: { 'session' => 'Unauthorized.'} },
+          status: :unauthorized
+      end
+    end
+
+    # DELETE /api/sessions/1.json
+    def destroy
+      logout
+      head :no_content
+    end
+
+    private
+
+    def session_params
+      params.require(:session).permit(:username, :password, :remember_me)
     end
   end
 end

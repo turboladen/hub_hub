@@ -47,6 +47,7 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 
+  config.include Sorcery::TestHelpers::Rails
   config.include JsonSpec::Helpers
 
   config.before(:each) do
