@@ -142,11 +142,6 @@ GEM
       actionpack (>= 3.0)
     haml (4.0.4)
       tilt
-    haml-rails (0.4)
-      actionpack (>= 3.1, < 4.1)
-      activesupport (>= 3.1, < 4.1)
-      haml (>= 3.1, < 4.1)
-      railties (>= 3.1, < 4.1)
     handlebars-source (1.1.2)
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
@@ -324,19 +319,18 @@ DEPENDENCIES
   cancan (~> 1.6.10)
   coffee-rails (~> 4.0.0)
   database_cleaner (>= 1.1.1)
-  devise (~> 3.1.1)
   ember-data-source (>= 1.0.0.beta.3)
-  ember-rails (~> 0.14.0)
+  ember-rails (~> 0.14.1)
   ember-source (~> 1.2.0)
   factory_girl_rails
   ffaker
   font-awesome-rails
-  haml-rails
   jquery-rails
   json_spec
   kaminari-bootstrap!
   meta_request
   mysql2
+  pg
   puma (~> 2.6.0)
   quiet_assets
   rack-mini-profiler

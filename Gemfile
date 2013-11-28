@@ -27,7 +27,6 @@ gem 'ember-source', '~> 1.2.0'
 #-------------------------------------------------------------------------------
 # View Stuff
 #-------------------------------------------------------------------------------
-gem 'haml-rails'
 gem 'rails_autolink', '~> 1.1.5'
 gem 'kaminari-bootstrap', github: 'mcasimir/kaminari-bootstrap'
 
