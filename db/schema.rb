@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131127050458) do
+ActiveRecord::Schema.define(version: 20131128015910) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -24,9 +27,9 @@ ActiveRecord::Schema.define(version: 20131127050458) do
     t.datetime "updated_at"
   end
 
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "posts", force: true do |t|
     t.string   "title"
@@ -40,8 +43,8 @@ ActiveRecord::Schema.define(version: 20131127050458) do
     t.integer  "owner_id"
   end
 
-  add_index "posts", ["owner_id"], name: "index_posts_on_owner_id"
-  add_index "posts", ["spoke_id"], name: "index_posts_on_spoke_id"
+  add_index "posts", ["owner_id"], name: "index_posts_on_owner_id", using: :btree
+  add_index "posts", ["spoke_id"], name: "index_posts_on_spoke_id", using: :btree
 
   create_table "spokes", force: true do |t|
     t.string   "name"
@@ -51,25 +54,31 @@ ActiveRecord::Schema.define(version: 20131127050458) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                               null: false
+    t.string   "email",                                           null: false
     t.string   "first_name"
     t.string   "last_name"
-    t.boolean  "banned"
-    t.boolean  "admin"
+    t.boolean  "banned",                          default: false
+    t.boolean  "admin",                           default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "username",                                        null: false
+    t.string   "crypted_password"
+    t.string   "salt"
     t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
+    t.string   "remember_me_token"
+    t.datetime "remember_me_token_expires_at"
+    t.datetime "last_login_at"
+    t.datetime "last_logout_at"
+    t.datetime "last_activity_at"
+    t.string   "last_login_from_ip_address"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at", using: :btree
+  add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
 end
