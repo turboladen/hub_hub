@@ -7,7 +7,8 @@ class ApiController < ApplicationController
   protected
 
   def not_found(exception)
-    render json: { errors: [exception.message] }, status: :not_found
+    render json: { errors: { id: exception.message } },
+      status: :not_found
   end
 
   def current_user_json
