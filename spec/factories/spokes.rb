@@ -5,7 +5,7 @@ FactoryGirl.define do
     end
 
     trait :full do
-      description { Faker::BaconIpsum.paragraphs.join("\n") }
+      description { Faker::BaconIpsum.sentence }
     end
   end
 end

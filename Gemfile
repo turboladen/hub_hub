@@ -78,6 +78,7 @@ group :development, :test do
   gem 'bullet'
   gem 'factory_girl_rails'
   gem 'ffaker'
+  gem 'qunit-rails'
   gem 'sqlite3'
   # Use debugger
   # gem 'debugger', group: [:development, :test]
