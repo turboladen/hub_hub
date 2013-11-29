@@ -52,4 +52,7 @@ HubHub::Application.configure do
     # (necessary on Rubies earlier than 2.0)
     # Rack::MiniProfiler.config.backtrace_threshold_ms = 5
   end
+
+  require_relative '../../lib/snoop'
+  config.middleware.insert_before ActionDispatch::ShowExceptions, Rack::Snoop
 end
