@@ -11,7 +11,7 @@ HubHub.Router.map ()->
       @resource 'post',
         path: 'posts/:post_id'
 
-  @route 'login'
+  @route 'sign-in'
   @route 'registration'
   @route 'tos'
   @route 'faq'

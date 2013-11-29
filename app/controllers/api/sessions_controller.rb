@@ -7,7 +7,7 @@ module Api
         session_params[:remember_me])
 
       if @user
-        head :created
+        render json: { auth_token: @user.remember_me_token }, status: :created
       else
         render json: { errors: { 'session' => 'Unauthorized.'} },
           status: :unauthorized

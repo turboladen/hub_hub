@@ -10,7 +10,7 @@ describe 'Sessions' do
           remember_me: true }
 
         expect(response.status).to eq 201
-        expect(response.body.strip).to be_empty
+        expect(response.body).to eq JSON(auth_token: user.reload.remember_me_token)
       end
     end
 

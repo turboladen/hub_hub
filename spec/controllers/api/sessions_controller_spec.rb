@@ -16,17 +16,19 @@ describe Api::SessionsController do
       end
 
       it 'assigns the found user as @user' do
+        expect(user).to receive(:remember_me_token) { 12345 }
         expect(subject).to receive(:login) { user }
         post :create, session: valid_attributes
         expect(assigns(:user)).to eq user
       end
 
       it 'returns 201 with an empty body' do
+        expect(user).to receive(:remember_me_token) { 12345 }
         expect(subject).to receive(:login) { user }
         post :create, session: valid_attributes
 
         expect(response.status).to eq 201
-        expect(response.body.strip).to be_empty
+        expect(response.body).to have_json_path 'auth_token'
       end
     end
 

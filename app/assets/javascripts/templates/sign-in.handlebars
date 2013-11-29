@@ -1,0 +1,22 @@
+<h2>Sign in</h2>
+
+<form {{action signIn}} role="form">
+    <div class="form-group">
+        <label for="username">Username</label>
+        {{input value=username classNames="form-control"}}
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        {{input type="password" value=password classNames="form-control"}}
+    </div>
+
+    <div class="form-group">
+        {{input type="checkbox" checked=rememberMe classNames="checkbox"}}
+        <label for="">Remember Me</label>
+    </div>
+
+    <div>
+        <button class="btn btn-default">Sign in</button>
+    </div>
+</form>

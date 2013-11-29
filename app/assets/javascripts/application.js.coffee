@@ -3,6 +3,12 @@
 #= require handlebars
 #= require ember
 #= require ember-data
+#= require ember-auth
+#= require ember-auth-module-ember-data
+#= require ember-auth-request-jquery
+#= require ember-auth-response-json
+#= require ember-auth-strategy-token
+#= require ember-auth-session-cookie
 #= require twitter/bootstrap
 #= require_self
 #= require hub_hub
@@ -23,9 +29,3 @@ Ember.LinkView.reopen
 
 # Logger shortcut
 window.log = Em.Logger
-
-# Settings
-HubHub.urls ||= {}
-HubHub.urls.login = "/users/sign_in.json"
-HubHub.urls.register = "/users.json"
-HubHub.urls.logout = "/users/sign_out.json"

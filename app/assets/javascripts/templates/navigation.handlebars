@@ -8,22 +8,24 @@
                 {{/link-to}}
             </div>
 
+            <li><a href="#" {{action signOut}}>Logout</a></li>
+
             <div class="navbar-collapse collapse">
                 <div class="btn-group navbar-right">
-                    {{#if isAuthenticated}}
+                    {{#if auth.signedIn}}
                         <button type="button" class="btn btn-default dropdown-toggle">
                             UserName
                             <span class="caret"></span>
                         </button>
 
                         <ul class="dropdown-menu">
-                            <li><a href="#" {{action logout}}>Logout</a></li>
+                            <li><a href="#" {{action signOut}}>Logout</a></li>
                             <li>Edit account</li>
                             <li class="divider"></li>
                             <li>Site Administration</li>
                         </ul>
                     {{else}}
-                        {{view HubHub.MenuItemView href="#/login" label="Login" classNames="btn btn-primary"}}
+                        {{#link-to 'sign-in' classNames="btn btn-primary"}}Sign in{{/link-to}}
                         {{view HubHub.MenuItemView href="#/registration" label="Register" classNames="btn btn-default"}}
                     {{/if}}
                 </div>

@@ -18,11 +18,13 @@ describe 'Users' do
         expect(response.body).to eq JSON(
           user: {
             id: user.id,
+            username: 'test',
             email: 'test@example.com',
             first_name: 'FirstName',
             last_name: 'LastName',
             admin: false,
             banned: false,
+            remember_me_token: nil,
             post_ids: []
           }
         )
@@ -58,11 +60,13 @@ describe 'Users' do
         expect(response.body).to eq JSON(
           user: {
             id: user.id,
+            username: user.username,
             email: user.email,
             first_name: user.first_name,
             last_name: user.last_name,
             admin: user.admin?,
             banned: user.banned?,
+            remember_me_token: user.remember_me_token,
             post_ids: []
           }
         )
