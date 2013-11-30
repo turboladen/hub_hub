@@ -4,6 +4,7 @@
 #= require ember
 #= require ember-data
 #= require ember-auth
+#= require ember-auth-module-action-redirectable
 #= require ember-auth-module-ember-data
 #= require ember-auth-module-rememberable
 #= require ember-auth-request-jquery

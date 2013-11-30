@@ -23,7 +23,7 @@ HubHub.Auth = Em.Auth.extend
   # Server responses return the user's ID as:
   tokenIdKey: 'user_id'
 
-  modules: ['emberData', 'rememberable']
+  modules: ['emberData', 'rememberable', 'actionRedirectable']
 
   # We're using ember-data and the ED user model is called 'user'.
   emberData:
@@ -34,3 +34,7 @@ HubHub.Auth = Em.Auth.extend
     period: 7
     autoRecall: true
     endPoint: '/api/remember'
+
+  actionRedirectable:
+    signInRoute: 'home.index'
+    signOutRoute: 'home'

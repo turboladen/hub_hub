@@ -112,6 +112,12 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.1)
+    ember-auth-module-action_redirectable-rails (1.0.0)
+      ember-auth-module-action_redirectable-source
+      rails
+    ember-auth-module-action_redirectable-source (1.0.2)
+      ember-auth-source (~> 9.0)
+      ember-source (~> 1.0)
     ember-auth-module-ember_data-rails (1.0.0)
       ember-auth-module-ember_data-source
       rails
@@ -347,6 +353,8 @@ DEPENDENCIES
   cancan (~> 1.6.10)
   coffee-rails (~> 4.0.0)
   database_cleaner (>= 1.1.1)
+  ember-auth-module-action_redirectable-rails
+  ember-auth-module-action_redirectable-source (~> 1.0.2)
   ember-auth-module-ember_data-rails
   ember-auth-module-ember_data-source (~> 1.0.2)
   ember-auth-module-rememberable-rails
