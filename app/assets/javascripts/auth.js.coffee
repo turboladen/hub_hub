@@ -36,5 +36,5 @@ HubHub.Auth = Em.Auth.extend
     endPoint: '/api/remember'
 
   actionRedirectable:
-    signInRoute: 'home.index'
+    signInRoute: 'index'
     signOutRoute: 'home'

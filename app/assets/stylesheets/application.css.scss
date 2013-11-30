@@ -10,10 +10,10 @@
  *
  *= require_self
  *= require_tree .
+ *= require font-awesome
  */
 
 @import "bootstrap_and_overrides.css.scss";
-@import "font-awesome";
 @import "site_and_mailer.css.scss";
 
 html, body {

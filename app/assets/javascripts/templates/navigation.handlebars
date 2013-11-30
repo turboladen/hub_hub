@@ -7,21 +7,28 @@
             {{/link-to}}
         </div>
 
-        <li><a href="#" {{action signOut}}>Logout</a></li>
-
         <div class="navbar-collapse collapse" data-toggle>
             <div class="btn-group navbar-right">
                 {{#if auth.signedIn}}
-                    <button type="button" class="btn btn-default dropdown-toggle">
-                        {{auth.user.email}}
-                        <span class="caret"></span>
-                    </button>
-
-                    <ul class="dropdown-menu">
-                        <li><a href="#" {{action signOut}}>Logout</a></li>
-                        <li>Edit account</li>
-                        <li class="divider"></li>
-                        <li>Site Administration</li>
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#" {{action signOut}}>
+                                <i class="fa fa-sign-out fa-lg fa-inverse"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-edit fa-lg fa-inverse"></i>
+                            </a>
+                        </li>
+                        {{#if auth.user.isAdmin}}
+                            <i class="fa fa-users fa-lg fa-inverse"></i>
+                        {{/if}}
+                        <li>
+                            <a href="#">
+                                <label class="label label-default">{{auth.user.email}}</label>
+                            </a>
+                        </li>
                     </ul>
                 {{else}}
                     {{#link-to 'sign-in' classNames="btn btn-primary"}}Sign in{{/link-to}}
