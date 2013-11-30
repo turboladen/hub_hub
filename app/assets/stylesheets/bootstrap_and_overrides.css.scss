@@ -1,22 +1,17 @@
 @import "twitter/bootstrap";
-
 @import "variables.css.scss";
 
-html, body {
-  background-color: $mindhubGreen;
-}
 
-body { padding-top: 40px; }
+html, body {
+  background-color: $mindhubGreenWhite;
+}
 
 .container > footer ul {
   text-align: center;   // center align it with the container *//*
 }
 
 
-/*body {
-  padding-top: 40px;
-}
-
+/*
 a:link {
   color: $linkColor;
 }

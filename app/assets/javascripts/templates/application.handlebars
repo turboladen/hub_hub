@@ -1,20 +1,14 @@
-{{render navigation}}
-{{render welcome_msg}}
-
-<div id="spokes-list">
-    <div class="container">
-        <div class="row">
-            <ul class="nav nav-tabs">
-                {{#each spoke in spokes}}
-                    <li>{{#link-to "spoke.index" spoke data-toggle="tab"}}{{spoke.name}}{{/link-to}}</li>
-                {{/each}}
-            </ul>
-        </div>
-    </div>
-</div>
-
 <div id="main">
+    {{render navigation}}
+    {{!render welcome_msg}}
+
     <div class="container">
+        <ul class="nav nav-tabs">
+            {{#each spoke in spokes}}
+                <li>{{#link-to "spoke.index" spoke data-toggle="tab"}}{{spoke.name}}{{/link-to}}</li>
+            {{/each}}
+        </ul>
+
         <div class="row row-offcanvas row-offcanvas-right">
             <div class="content col-md-12">
                 (flash area)
@@ -24,4 +18,4 @@
     </div>
 </div>
 
-{{partial "footer"}}
+{{partial "application/footer"}}

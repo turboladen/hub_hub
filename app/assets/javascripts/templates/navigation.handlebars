@@ -1,34 +1,32 @@
-<div id="navigation">
-    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                {{#link-to 'home' classNames="navbar-brand"}}
-                    <img src="assets/mindhub_logo.png" width="24px">
-                    MindHub
-                {{/link-to}}
-            </div>
+<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            {{#link-to 'home' classNames="navbar-brand"}}
+                <img src="assets/mindhub_logo.png" width="24px">
+                MindHub
+            {{/link-to}}
+        </div>
 
-            <li><a href="#" {{action signOut}}>Logout</a></li>
+        <li><a href="#" {{action signOut}}>Logout</a></li>
 
-            <div class="navbar-collapse collapse">
-                <div class="btn-group navbar-right">
-                    {{#if auth.signedIn}}
-                        <button type="button" class="btn btn-default dropdown-toggle">
-                            {{auth.user.email}}
-                            <span class="caret"></span>
-                        </button>
+        <div class="navbar-collapse collapse" data-toggle>
+            <div class="btn-group navbar-right">
+                {{#if auth.signedIn}}
+                    <button type="button" class="btn btn-default dropdown-toggle">
+                        {{auth.user.email}}
+                        <span class="caret"></span>
+                    </button>
 
-                        <ul class="dropdown-menu">
-                            <li><a href="#" {{action signOut}}>Logout</a></li>
-                            <li>Edit account</li>
-                            <li class="divider"></li>
-                            <li>Site Administration</li>
-                        </ul>
-                    {{else}}
-                        {{#link-to 'sign-in' classNames="btn btn-primary"}}Sign in{{/link-to}}
-                        {{view HubHub.MenuItemView href="#/registration" label="Register" classNames="btn btn-default"}}
-                    {{/if}}
-                </div>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" {{action signOut}}>Logout</a></li>
+                        <li>Edit account</li>
+                        <li class="divider"></li>
+                        <li>Site Administration</li>
+                    </ul>
+                {{else}}
+                    {{#link-to 'sign-in' classNames="btn btn-primary"}}Sign in{{/link-to}}
+                    {{view HubHub.MenuItemView href="#/registration" label="Register" classNames="btn btn-default"}}
+                {{/if}}
             </div>
         </div>
     </div>
