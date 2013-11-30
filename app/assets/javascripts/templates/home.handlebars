@@ -1,4 +1,6 @@
 {{#if auth.signedIn}}
+    stuff
+{{else}}
     <div class="jumbotron background-image">
         <h1>MindHub</h1>
         <p>Connecting California's Central Valley</p>
@@ -21,7 +23,8 @@
             If you have any
             questions about MindHub, please email <a href="mailto:admin@chat.mindhub.org">admin@chat.mindhub.org</a>.
         </p>
+        <p class="sign-up">
+            <a class="btn btn-primary btn-lg sign-up" href="#">Sign Up »</a>
+        </p>
     </div>
-{{else}}
-    stuff
 {{/if}}

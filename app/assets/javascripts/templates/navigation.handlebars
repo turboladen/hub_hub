@@ -9,8 +9,8 @@
 
         <div class="navbar-collapse collapse" data-toggle>
             <div class="btn-group navbar-right">
-                {{#if auth.signedIn}}
-                    <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">
+                    {{#if auth.signedIn}}
                         <li>
                             <a href="#" {{action signOut}}>
                                 <i class="fa fa-sign-out fa-lg fa-inverse"></i>
@@ -29,11 +29,20 @@
                                 <label class="label label-default">{{auth.user.email}}</label>
                             </a>
                         </li>
-                    </ul>
-                {{else}}
-                    {{#link-to 'sign-in' classNames="btn btn-primary"}}Sign in{{/link-to}}
-                    {{view HubHub.MenuItemView href="#/registration" label="Register" classNames="btn btn-default"}}
-                {{/if}}
+                    {{else}}
+                        <li>
+                            {{#link-to 'sign-in'}}
+                                <i class="fa fa-sign-in fa-lg fa-inverse"></i>
+                            {{/link-to}}
+                        </li>
+                        <li>
+                            {{!view HubHub.MenuItemView href="#/registration" label="Register"}}
+                            <a href="#">
+                                <i class="fa fa-check fa-lg fa-inverse"></i>
+                            </a>
+                        </li>
+                    {{/if}}
+                </ul>
             </div>
         </div>
     </div>
