@@ -37,4 +37,4 @@ HubHub.Auth = Em.Auth.extend
 
   actionRedirectable:
     signInRoute: 'index'
-    signOutRoute: 'home'
+    signOutRoute: 'index'

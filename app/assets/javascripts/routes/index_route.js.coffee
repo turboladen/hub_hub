@@ -1,5 +1,4 @@
-# For more information see: http://emberjs.com/guides/routing/
-
 HubHub.IndexRoute = Ember.Route.extend
-  beforeModel: (transition) ->
-    @transitionTo 'home'
+  afterModel: (spokes, transition)->
+    if @auth.get('signedIn')
+      @transitionTo('spokes')

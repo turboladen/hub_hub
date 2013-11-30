@@ -8,5 +8,5 @@ HubHub.RegistrationRoute = Ember.Route.extend({
       @controllerFor("auth").register this
     cancel: ->
       log.info "cancelling registration"
-      @transitionTo 'home'
+      @transitionTo 'index'
 })
