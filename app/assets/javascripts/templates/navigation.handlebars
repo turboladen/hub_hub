@@ -14,7 +14,7 @@
                 <div class="btn-group navbar-right">
                     {{#if auth.signedIn}}
                         <button type="button" class="btn btn-default dropdown-toggle">
-                            UserName
+                            {{auth.user.email}}
                             <span class="caret"></span>
                         </button>
 

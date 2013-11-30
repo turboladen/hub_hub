@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: 4818b5b63449008330870fac5df4e37bafaf00a6
+  revision: f59be4d5c55e802354df679a35d738876540d7b2
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0)
@@ -62,7 +62,7 @@ GEM
       ember-source
       execjs
       handlebars-source
-    bcrypt-ruby (3.0.1)
+    bcrypt-ruby (3.1.2)
     better_errors (1.0.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -119,6 +119,12 @@ GEM
       ember-auth-source (~> 9.0)
       ember-data-source (>= 1.0.0.beta.1, < 2.0)
       ember-source (~> 1.0)
+    ember-auth-module-rememberable-rails (1.0.0)
+      ember-auth-module-rememberable-source
+      rails
+    ember-auth-module-rememberable-source (1.0.3)
+      ember-auth-source (~> 9.0)
+      ember-source (~> 1.0)
     ember-auth-rails (5.0.1)
       ember-auth-source (>= 8.0.0)
       rails
@@ -168,8 +174,6 @@ GEM
     factory_girl_rails (4.3.0)
       factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
-    faraday (0.8.8)
-      multipart-post (~> 1.2.0)
     fastercsv (1.5.5)
     ffaker (1.22.1)
     font-awesome-rails (4.0.3.0)
@@ -184,7 +188,6 @@ GEM
       activesupport (>= 3.2, < 5)
     highline (1.6.20)
     hike (1.2.3)
-    httpauth (0.2.0)
     i18n (0.6.5)
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
@@ -198,8 +201,6 @@ GEM
     json_spec (1.1.1)
       multi_json (~> 1.0)
       rspec (~> 2.0)
-    jwt (0.1.8)
-      multi_json (>= 1.5)
     kaminari (0.15.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -213,15 +214,7 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.8.2)
-    multipart-post (1.2.0)
     mysql2 (0.3.14)
-    oauth (0.4.7)
-    oauth2 (0.8.1)
-      faraday (~> 0.8)
-      httpauth (~> 0.1)
-      jwt (~> 0.1.4)
-      multi_json (~> 1.0)
-      rack (~> 1.2)
     orm_adapter (0.5.0)
     pg (0.17.0)
     polyamorous (0.6.4)
@@ -312,10 +305,6 @@ GEM
     slim (2.0.2)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
-    sorcery (0.8.4)
-      bcrypt-ruby (~> 3.0.0)
-      oauth (~> 0.4.4)
-      oauth2 (~> 0.8.0)
     sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -349,6 +338,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   activeadmin!
+  bcrypt-ruby (~> 3.1.2)
   better_errors
   binding_of_caller
   bootstrap-sass-rails (~> 3.0.1.0)
@@ -359,6 +349,8 @@ DEPENDENCIES
   database_cleaner (>= 1.1.1)
   ember-auth-module-ember_data-rails
   ember-auth-module-ember_data-source (~> 1.0.2)
+  ember-auth-module-rememberable-rails
+  ember-auth-module-rememberable-source (~> 1.0.3)
   ember-auth-rails
   ember-auth-request-jquery-rails
   ember-auth-request-jquery-source (~> 1.0.3)
@@ -392,6 +384,5 @@ DEPENDENCIES
   sass-rails (~> 4.0.0)
   sdoc
   simplecov
-  sorcery (~> 0.8.4)
   sqlite3
   uglifier (>= 1.3.0)

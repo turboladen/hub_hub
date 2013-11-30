@@ -5,6 +5,7 @@
 #= require ember-data
 #= require ember-auth
 #= require ember-auth-module-ember-data
+#= require ember-auth-module-rememberable
 #= require ember-auth-request-jquery
 #= require ember-auth-response-json
 #= require ember-auth-strategy-token
@@ -15,6 +16,7 @@
 
 # for more details see: http://emberjs.com/guides/application/
 window.HubHub = Ember.Application.create({
+  LOG_ACTIVE_GENERATION: true,
   LOG_TRANSITIONS: true,
   LOG_BINDINGS: true,
   LOG_VIEW_LOOKUPS: true,

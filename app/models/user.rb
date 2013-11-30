@@ -1,16 +1,31 @@
 class User < ActiveRecord::Base
-  authenticates_with_sorcery!
-  has_many :posts, foreign_key: 'owner_id'
+  has_secure_password
 
-  validates_confirmation_of :password
+  has_many :posts, foreign_key: 'owner_id'
+  before_save { self.email = email.downcase }
+  before_create do
+    generate_token(:auth_token)
+    generate_token(:remember_token)
+  end
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true,
+    format: { with: VALID_EMAIL_REGEX },
+    uniqueness: { case_sensitive: false }
+
+  validates :password, length: { minimum: 6 }
   validates_presence_of :password, on: :create
-  validates_presence_of :email, :username
-  validates_uniqueness_of :email, :username
 
   # The full name of the user.
   #
   # @return [String] The full name like 'Joe Blow'.
   def name
     "#{self.first_name} #{self.last_name}"
+  end
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
   end
 end

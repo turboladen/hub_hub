@@ -4,7 +4,9 @@ HubHub.SignOutController = Em.Controller.extend
       log.info "SignOutController handling signOut event..."
 
       @auth.signOut(
+        # This doesn't seem to be doing anything now... is that a bug on ember-auth?
         data:
           session:
-            username: @get 'username'
+            auth_token: @auth.get 'authToken'
+            email: @get 'email'
       ).then -> window.location.reload true

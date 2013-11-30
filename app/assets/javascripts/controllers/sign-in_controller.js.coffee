@@ -1,5 +1,5 @@
 HubHub.SignInController = Em.Controller.extend
-  username: null
+  email: null
   password: null
   rememberMe: false
 
@@ -9,8 +9,13 @@ HubHub.SignInController = Em.Controller.extend
       @auth.signIn(
         data:
           session:
-            username: @get 'username'
+            email: @get 'email'
             password: @get 'password'
             remember_me: @get 'rememberMe'
-      ).then( -> sayHello() )
-      .fail( -> logError() )
+      ).then( -> sayHello(
+        log.info "Saying hi after login..."
+      ) )
+      .fail( -> logError(
+          unless @auth.signedIn
+            log.error "Login error!"
+        ) )

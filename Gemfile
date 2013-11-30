@@ -27,6 +27,8 @@ gem 'ember-auth-rails'
 gem 'ember-auth-source', '~> 9.0.7'
 gem 'ember-auth-module-ember_data-rails'
 gem 'ember-auth-module-ember_data-source', '~> 1.0.2'
+gem 'ember-auth-module-rememberable-rails'
+gem 'ember-auth-module-rememberable-source', '~> 1.0.3'
 gem 'ember-auth-request-jquery-rails'
 gem 'ember-auth-request-jquery-source', '~> 1.0.3'
 gem 'ember-auth-response-json-rails'
@@ -60,7 +62,7 @@ gem 'active_model_serializers'
 #-------------------------------------------------------------------------------
 # Authentication & Authorization
 #-------------------------------------------------------------------------------
-gem 'sorcery', '~> 0.8.4'
+gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'cancan', '~> 1.6.10'
 
 

@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe User do
   context 'core attributes' do
-    it { should respond_to :username }
     it { should respond_to :email }
     it { should respond_to :first_name }
     it { should respond_to :last_name }
@@ -12,39 +11,16 @@ describe User do
     it { should respond_to :updated_at }
   end
 
-  context 'sorcery attributes' do
+  context 'auth attributes' do
+    it { should respond_to :password_digest }
     it { should respond_to :password }
-    it { should respond_to :password= }
     it { should respond_to :password_confirmation }
-    it { should respond_to :password_confirmation= }
-    it { should respond_to :crypted_password }
-    it { should respond_to :salt }
-    it { should respond_to :reset_password_token }
-    it { should respond_to :reset_password_token_expires_at }
-    it { should respond_to :reset_password_email_sent_at }
-    it { should respond_to :remember_me_token }
-    it { should respond_to :remember_me_token_expires_at }
-    it { should respond_to :last_login_at }
-    it { should respond_to :last_logout_at }
-    it { should respond_to :last_activity_at }
-    it { should respond_to :last_login_from_ip_address }
+    it { should respond_to :authenticate }
+    it { should respond_to :remember_token }
   end
 
   context 'associations' do
     it { should respond_to :posts }
-  end
-
-  describe '#username' do
-    it 'must be present' do
-      expect(User.new.errors_on(:username)).to include "can't be blank"
-    end
-
-    it 'must be unique' do
-      FactoryGirl.create :user, username: 'test_user'
-      subject.update(username: 'test_user')
-      expect(subject).to have(1).error_on(:username)
-      expect(subject.errors_on(:username)).to include 'has already been taken'
-    end
   end
 
   describe '#email' do
@@ -63,6 +39,39 @@ describe User do
   describe '#password' do
     it 'must be present on create' do
       expect(User.new.errors_on(:password)).to include "can't be blank"
+    end
+
+    it 'must match the confirmation' do
+      user = FactoryGirl.build :user, password_confirmation: 'bad password'
+      expect(user).to_not be_valid
+    end
+
+    it 'must be at least 6 characters long' do
+      user = FactoryGirl.build :user, password: '12345', password_confirmation: '12345'
+      expect(user.errors_on(:password)).to include 'is too short (minimum is 6 characters)'
+    end
+  end
+
+  describe '#remember_token' do
+    it 'must not be blank' do
+      expect(subject.errors_on(:remember_token)).to include "can't be blank"
+    end
+  end
+
+  describe '#authenticate' do
+    let!(:user) { FactoryGirl.create :user }
+    let(:found_user) { User.find_by email: user.email }
+
+    context 'with valid password' do
+      it 'returns the User object' do
+        expect(found_user.authenticate('password')).to eq user
+      end
+    end
+
+    context 'with ivalid password' do
+      it 'returns false' do
+        expect(found_user.authenticate('bad password')).to eq false
+      end
     end
   end
 

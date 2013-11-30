@@ -1,4 +1,6 @@
 class ApiController < ApplicationController
+  include Api::SessionsHelper
+
   respond_to :json
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found

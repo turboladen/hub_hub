@@ -2,7 +2,6 @@
 
 HubHub.User = DS.Model.extend
   # Core properties
-  username: DS.attr 'string'
   email: DS.attr 'string'
   firstName: DS.attr 'string'
   lastName: DS.attr 'string'
