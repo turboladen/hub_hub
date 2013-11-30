@@ -1,1 +1,27 @@
-<p>This is home.</p>
+{{#if auth.signedIn}}
+    <div class="jumbotron background-image">
+        <h1>MindHub</h1>
+        <p>Connecting California's Central Valley</p>
+    </div>
+
+    <div>
+        <h4>Welcome!</h4>
+        <p>
+            The mission of MindHub is to create an (online) community that encourages and
+            supports creative professionals in the Central Valley.
+        </p>
+        <p>
+            The goal is to have
+            subscribers of the MindHub email list, creative professionals in the Fresno and
+            surrounding areas, share information and help each other to find jobs, find
+            employees, compare notes on their respective trades, and learn from each other
+            in an unintimidating environment.
+        </p>
+        <p>
+            If you have any
+            questions about MindHub, please email <a href="mailto:admin@chat.mindhub.org">admin@chat.mindhub.org</a>.
+        </p>
+    </div>
+{{else}}
+    stuff
+{{/if}}
