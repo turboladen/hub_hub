@@ -2,3 +2,4 @@
 
 HubHub.PostsView = Ember.View.extend
   templateName: 'posts'
+

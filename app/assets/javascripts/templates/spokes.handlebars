@@ -1,0 +1,7 @@
+<ul class="nav nav-tabs">
+    {{#each}}
+        <li>{{#link-to "spoke.index" this data-toggle="tab"}}{{name}}{{/link-to}}</li>
+    {{/each}}
+</ul>
+
+{{outlet}}
