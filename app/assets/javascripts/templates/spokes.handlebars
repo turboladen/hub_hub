@@ -1,7 +1,20 @@
-<ul class="nav nav-tabs">
-    {{#each}}
-        <li>{{#link-to "spoke.index" this data-toggle="tab"}}{{name}}{{/link-to}}</li>
-    {{/each}}
-</ul>
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        Spokes
+        <span class="caret"></span>
+    </button>
+
+    <hr/>
+
+    <ul class="dropdown-menu">
+        {{#each}}
+            <li>
+                {{#link-to "spoke.index" this data-toggle="tab"}}
+                    {{name}}
+                {{/link-to}}
+            </li>
+        {{/each}}
+    </ul>
+</div>
 
 {{outlet}}
