@@ -86,7 +86,6 @@ group :doc do
 end
 
 group :production do
-  gem 'mysql2'
   #gem 'rails_12factor'
 end
 
@@ -96,7 +95,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'qunit-rails'
-  gem 'sqlite3'
   # Use debugger
   # gem 'debugger', group: [:development, :test]
 end
