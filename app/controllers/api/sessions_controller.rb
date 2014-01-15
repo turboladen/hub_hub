@@ -51,6 +51,7 @@ module Api
       if user
         user.generate_token(:auth_token)
         user.generate_token(:remember_token)
+        user.save
         render json: { user_id: user.id }
       else
         render json: { errors: { session: 'Not logged in.' } },
