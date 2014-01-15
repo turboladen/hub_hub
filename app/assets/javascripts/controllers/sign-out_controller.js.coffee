@@ -8,5 +8,4 @@ HubHub.SignOutController = Em.Controller.extend
         data:
           session:
             auth_token: @auth.get 'authToken'
-            email: @get 'email'
       ).then -> window.location.reload true
