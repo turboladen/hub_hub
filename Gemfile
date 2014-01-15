@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 ruby '2.0.0'
 gem 'rails', '4.0.1'
@@ -12,6 +13,8 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'bootstrap-sass-rails', '~> 3.0.1.0'
 gem 'font-awesome-sass'
+
+#gem 'rails-assets-ember-addons.bs_for_ember'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
