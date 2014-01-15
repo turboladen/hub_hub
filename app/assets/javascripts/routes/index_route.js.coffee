@@ -1,4 +1,4 @@
 HubHub.IndexRoute = Ember.Route.extend
-  afterModel: (spokes, transition)->
+  afterModel: (posts, transition)->
     if @auth.get('signedIn')
-      @transitionTo('spokes')
+      @transitionTo('posts')
