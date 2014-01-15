@@ -8,9 +8,9 @@ HubHub.Router.map ()->
   @resource 'post',
     path: 'posts/:post_id'
 
-  #@resource 'spokes', ->
-  #  @resource 'spoke',
-  #    path: '/:spoke_id'
+  @resource 'spokes', ->
+    @resource 'spoke',
+      path: '/:spoke_id'
 
   @route 'sign-in'
   @route 'registration'

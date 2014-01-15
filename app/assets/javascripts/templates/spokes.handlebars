@@ -9,10 +9,12 @@
     <ul class="dropdown-menu">
         {{#each}}
             <li>
-                {{#link-to "spoke.index" this data-toggle="tab"}}
+                {{#link-to 'spoke' this data-toggle="tab"}}
                     {{name}}
                 {{/link-to}}
             </li>
+        {{else}}
+            <li>No spokes.  Hmm...</li>
         {{/each}}
     </ul>
 </div>

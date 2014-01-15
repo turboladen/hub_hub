@@ -3,3 +3,8 @@
 HubHub.PostsRoute = Ember.Route.extend
   model: ->
     @store.find 'post'
+
+  renderTemplate: (controller, model)->
+    @render 'posts',
+      into: 'application',
+      outlet: 'posts'

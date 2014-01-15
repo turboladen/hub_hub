@@ -3,18 +3,3 @@
     <p class="lead small">{{description}}</p>
 </div>
 
-
-<div class="row">
-    <div class="col-md-4 sidebar-offcanvas" role="navigation">
-        <div class="list-group">
-            <legend>Posts</legend>
-            {{#each posts}}
-                {{#link-to 'post' this classNames="list-group-item"}}{{title}}{{/link-to}}
-            {{/each}}
-        </div>
-    </div>
-
-    <div id="post-outlet" class="col-md-8">
-        {{outlet}}
-    </div>
-</div>
