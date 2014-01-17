@@ -1,4 +1,25 @@
-<h2 class="post-title">{{title}}</h2>
-<p>Posted on <code>{{createdAt}}</code> by {{owner.fullName}}</p>
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {{partial "item_counts"}}
+                <h2 class="post-title">{{title}}</h2>
 
-<p>{{body}}</p>
+            </div>
+
+            <div class="panel-body">
+                <p>{{body}}</p>
+            </div>
+
+            <div class="panel-footer">
+                <p>Posted on <code>{{createdAt}}</code> by {{owner.fullName}}</p>
+            </div>
+        </div>
+        <hr/>
+
+        <h3>Responses</h3>
+
+    </div>
+</div>
+
+
