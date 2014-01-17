@@ -7,6 +7,8 @@
     <hr/>
 
     <ul class="dropdown-menu">
+        <li>{{#link-to 'posts'}}All Spokes{{/link-to}}</li>
+        <li class="divider"></li>
         {{#each}}
             <li>
                 {{#link-to 'spoke' this data-toggle="tab"}}
