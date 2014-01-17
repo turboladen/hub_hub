@@ -12,9 +12,9 @@
                 <ul class="nav navbar-nav">
                     {{#if auth.signedIn}}
                         <li>
-                            <a href="#" title="Sign out" {{action signOut}}>
+                            {{#link-to 'sign-out' title="Sign out"}}
                                 <i class="fa fa-sign-out fa-lg fa-inverse"></i>
-                            </a>
+                            {{/link-to}}
                         </li>
                         <li>
                             <a href="#" title="Edit my preferences">

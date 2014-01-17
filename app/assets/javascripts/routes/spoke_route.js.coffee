@@ -7,7 +7,9 @@ HubHub.SpokeRoute = Ember.Route.extend
     @controllerFor('posts').set('model', model.get('posts'))
 
   renderTemplate: (controller, model)->
-    @render()
+    @render 'spoke',
+      into: 'application',
+      outlet: 'spoke'
 
     @render 'posts',
       into: 'application',

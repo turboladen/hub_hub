@@ -1,14 +1,20 @@
 <div id="main">
-    {{render navigation}}
+    {{partial "application/navigation"}}
     {{!render welcome_msg}}
 
+    {{partial "application/spokebar"}}
+
     <div class="container">
-        <div class="row row-offcanvas row-offcanvas-right">
+        <div class="row row-offcanvas">
             <div class="content col-md-12">
                 (flash area)
-                {{outlet 'spokes'}}
-                {{outlet}}
+            </div>
+        </div>
+
+        <div class="row row-offcanvas">
+            <div class="content col-md-12">
                 {{outlet 'posts'}}
+                {{outlet}}
             </div>
         </div>
     </div>
