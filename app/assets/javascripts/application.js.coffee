@@ -13,7 +13,6 @@
 #= require ember-auth-session-cookie
 #= require twitter/bootstrap
 #= require_self
-#= require hub_hub
 
 # Ember.FEATURES["query-params"] = true
 

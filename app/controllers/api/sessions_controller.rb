@@ -6,6 +6,8 @@ module Api
       user = User.find_by email: session_params[:email].downcase
 
       if user && user.authenticate(session_params[:password])
+        @current_user = user
+
         data = {
           user_id: user.id,
           auth_token: user.auth_token

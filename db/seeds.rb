@@ -15,7 +15,8 @@ def create_default_admin
     first_name: 'Admin',
     last_name: 'the Administrator',
     password: 'creativefresno',
-    password_confirmation: 'creativefresno'
+    password_confirmation: 'creativefresno',
+    admin: true
   })
 end
 
