@@ -17,4 +17,3 @@ HubHub.Router.map ()->
   @route 'registration'
   @route 'tos'
   @route 'faq'
-
