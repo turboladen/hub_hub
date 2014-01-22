@@ -14,7 +14,10 @@ gem 'jquery-rails'
 gem 'bootstrap-sass-rails', '~> 3.0.1.0'
 gem 'font-awesome-sass'
 
-#gem 'rails-assets-ember-addons.bs_for_ember'
+# gem 'rails-assets-ember-addons.bs_for_ember'
+# gem 'rails-assets-ember-admin'
+# gem 'rails-assets-epf'
+
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

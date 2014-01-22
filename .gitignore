@@ -18,3 +18,5 @@
 
 .idea/
 coverage/
+
+bower_components/
