@@ -28,7 +28,7 @@ gem 'font-awesome-sass'
 #-------------------------------------------------------------------------------
 gem 'ember-rails', '~> 0.14.1'
 gem 'ember-data-source', '>= 1.0.0.beta.3'
-gem 'ember-source', '~> 1.2.0'
+gem 'ember-source', '~> 1.3.0'
 gem 'ember-auth-rails'
 gem 'ember-auth-source', '~> 9.0.7'
 gem 'ember-auth-module-action_redirectable-rails'
