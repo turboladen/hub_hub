@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: aa10436f207d6a90989c417f59dfa13d782a76e9
+  revision: 159c8cc631f74b8db1717d66b0e33ee635ef9693
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0)
@@ -69,7 +69,7 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass-rails (3.0.1.0)
+    bootstrap-sass-rails (3.0.3.0)
       railties (>= 3.1.0)
       sass-rails (>= 3.1.0)
     bourbon (3.1.8)
@@ -226,7 +226,7 @@ GEM
     polyamorous (0.6.4)
       activerecord (>= 3.0)
     polyglot (0.3.3)
-    puma (2.6.0)
+    puma (2.7.1)
       rack (>= 1.1, < 2.0)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
@@ -289,7 +289,7 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    ruby-progressbar (1.4.0)
+    ruby-progressbar (1.4.1)
     ruby2ruby (2.0.7)
       ruby_parser (~> 3.1)
       sexp_processor (~> 4.0)
@@ -347,7 +347,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.1.2)
   better_errors
   binding_of_caller
-  bootstrap-sass-rails (~> 3.0.1.0)
+  bootstrap-sass-rails (~> 3.0.1)
   brakeman
   bullet
   cancan (~> 1.6.10)
@@ -380,7 +380,7 @@ DEPENDENCIES
   kaminari-bootstrap!
   meta_request
   pg
-  puma (~> 2.6.0)
+  puma (~> 2.7.0)
   quiet_assets
   qunit-rails
   rack-mini-profiler

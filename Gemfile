@@ -11,7 +11,7 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
-gem 'bootstrap-sass-rails', '~> 3.0.1.0'
+gem 'bootstrap-sass-rails', '~> 3.0.1'
 gem 'font-awesome-sass'
 
 # gem 'rails-assets-ember-addons.bs_for_ember'
@@ -57,7 +57,7 @@ gem 'kaminari-bootstrap', github: 'mcasimir/kaminari-bootstrap'
 #-------------------------------------------------------------------------------
 # Web Server Stuff
 #-------------------------------------------------------------------------------
-gem 'puma', '~> 2.6.0'
+gem 'puma', '~> 2.7.0'
 
 
 #-------------------------------------------------------------------------------
