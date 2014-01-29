@@ -3,7 +3,8 @@ module Api
 
     # POST /api/sessions.json
     def create
-      user = User.find_by email: session_params[:email].downcase
+      email = session_params.fetch(:email, '')
+      user = User.find_by email: email
 
       if user && user.authenticate(session_params[:password])
         @current_user = user
