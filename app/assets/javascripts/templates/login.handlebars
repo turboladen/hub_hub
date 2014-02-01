@@ -1,0 +1,23 @@
+<h2>Sign in</h2>
+
+<form class="form-horizontal" role="form" {{action authenticate on="submit"}}>
+    <div class="form-group">
+        <label for="identification" class="col-md-2 control-label">Email</label>
+        <div class="col-md-6">
+            {{input value=identification classNames="form-control" placeholder="Email"}}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="password" class="col-md-2 control-label">Password</label>
+        <div class="col-md-6">
+            {{input type="password" value=password classNames="form-control" placeholder="Password"}}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-6">
+            <button class="btn btn-default" type="submit">Sign in</button>
+        </div>
+    </div>
+</form>

@@ -113,54 +113,6 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.2)
-    ember-auth-module-action_redirectable-rails (1.0.0)
-      ember-auth-module-action_redirectable-source
-      rails
-    ember-auth-module-action_redirectable-source (1.0.2)
-      ember-auth-source (~> 9.0)
-      ember-source (~> 1.0)
-    ember-auth-module-ember_data-rails (1.0.0)
-      ember-auth-module-ember_data-source
-      rails
-    ember-auth-module-ember_data-source (1.0.2)
-      ember-auth-source (~> 9.0)
-      ember-data-source (>= 1.0.0.beta.1, < 2.0)
-      ember-source (~> 1.0)
-    ember-auth-module-rememberable-rails (1.0.0)
-      ember-auth-module-rememberable-source
-      rails
-    ember-auth-module-rememberable-source (1.0.3)
-      ember-auth-source (~> 9.0)
-      ember-source (~> 1.0)
-    ember-auth-rails (5.0.1)
-      ember-auth-source (>= 8.0.0)
-      rails
-    ember-auth-request-jquery-rails (1.0.0)
-      ember-auth-request-jquery-source
-      rails
-    ember-auth-request-jquery-source (1.0.3)
-      ember-auth-source (~> 9.0)
-      ember-source (~> 1.0)
-    ember-auth-response-json-rails (1.0.0)
-      ember-auth-response-json-source
-      rails
-    ember-auth-response-json-source (1.0.2)
-      ember-auth-source (~> 9.0)
-      ember-source (~> 1.0)
-    ember-auth-session-cookie-rails (1.0.0)
-      ember-auth-session-cookie-source
-      rails
-    ember-auth-session-cookie-source (1.0.1)
-      ember-auth-source (~> 9.0)
-      ember-source (~> 1.0)
-    ember-auth-source (9.0.7)
-      ember-source (>= 1.0.0.rc6.2)
-    ember-auth-strategy-token-rails (1.0.0)
-      ember-auth-strategy-token-source
-      rails
-    ember-auth-strategy-token-source (1.0.2)
-      ember-auth-source (~> 9.0)
-      ember-source (~> 1.0)
     ember-data-source (1.0.0.beta.6)
       ember-source
     ember-rails (0.14.1)
@@ -247,6 +199,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.2)
       sprockets-rails (~> 2.0.0)
+    rails-assets-ember-simple-auth (0.1.0)
     rails_autolink (1.1.5)
       rails (> 3.1)
     rails_best_practices (1.14.4)
@@ -353,22 +306,6 @@ DEPENDENCIES
   cancan (~> 1.6.10)
   coffee-rails (~> 4.0.0)
   database_cleaner (>= 1.1.1)
-  ember-auth-module-action_redirectable-rails
-  ember-auth-module-action_redirectable-source (~> 1.0.2)
-  ember-auth-module-ember_data-rails
-  ember-auth-module-ember_data-source (~> 1.0.2)
-  ember-auth-module-rememberable-rails
-  ember-auth-module-rememberable-source (~> 1.0.3)
-  ember-auth-rails
-  ember-auth-request-jquery-rails
-  ember-auth-request-jquery-source (~> 1.0.3)
-  ember-auth-response-json-rails
-  ember-auth-response-json-source (~> 1.0.2)
-  ember-auth-session-cookie-rails
-  ember-auth-session-cookie-source (~> 1.0.1)
-  ember-auth-source (~> 9.0.7)
-  ember-auth-strategy-token-rails
-  ember-auth-strategy-token-source (~> 1.0.2)
   ember-data-source (>= 1.0.0.beta.3)
   ember-rails (~> 0.14.1)
   ember-source (~> 1.3.0)
@@ -385,6 +322,7 @@ DEPENDENCIES
   qunit-rails
   rack-mini-profiler
   rails (= 4.0.2)
+  rails-assets-ember-simple-auth (~> 0.1.0)
   rails_autolink (~> 1.1.5)
   rails_best_practices
   rspec-rails

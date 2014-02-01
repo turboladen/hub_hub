@@ -10,30 +10,30 @@
         <div class="navbar-collapse collapse" data-toggle>
             <div class="btn-group navbar-right">
                 <ul class="nav navbar-nav">
-                    {{#if auth.signedIn}}
+                    {{#if session.isAuthenticated}}
                         <li>
-                            {{#link-to 'sign-out' title="Sign out"}}
+                            <a {{ action 'invalidateSession' }} title="Sign out">
                                 <i class="fa fa-sign-out fa-lg fa-inverse"></i>
-                            {{/link-to}}
+                            </a>
                         </li>
                         <li>
                             <a href="#" title="Edit my preferences">
                                 <i class="fa fa-edit fa-lg fa-inverse"></i>
                             </a>
                         </li>
-                        {{#if auth.user.isAdmin}}
+                        {{#if session.user.isAdmin}}
                             <a href="/admin" title="Administration Console">
                                 <i class="fa fa-users fa-lg fa-inverse"></i>
                             </a>
                         {{/if}}
                         <li>
                             <a href="#" title="My email address">
-                                <label class="label label-default">{{auth.user.email}}</label>
+                                <label class="label label-default">{{session.user.email}}</label>
                             </a>
                         </li>
                     {{else}}
                         <li>
-                            {{#link-to 'sign-in' title="Sign in"}}
+                            {{#link-to 'login' title="Sign in"}}
                                 <i class="fa fa-sign-in fa-lg fa-inverse"></i>
                             {{/link-to}}
                         </li>

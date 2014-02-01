@@ -1,4 +1,5 @@
-#= require ./auth
+#= require simple_auth_customized
+#= require_tree ./initializers
 #= require ./store
 #= require_tree ./models
 #= require_tree ./controllers
@@ -9,3 +10,4 @@
 #= require_tree ./routes
 #= require ./router
 #= require_self
+

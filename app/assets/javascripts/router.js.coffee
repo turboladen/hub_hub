@@ -12,7 +12,7 @@ HubHub.Router.map ()->
     @resource 'spoke',
       path: '/:spoke_id'
 
-  @route 'sign-in'
+  @route 'login'
   @route 'sign-out'
   @route 'registration'
   @route 'tos'
