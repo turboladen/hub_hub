@@ -3,9 +3,9 @@
 HubHub.Store = DS.Store.extend({
   # Override the default adapter with the `DS.ActiveModelAdapter` which
   # is built to work nicely with the ActiveModel::Serializers gem.
-  adapter: '_ams'
+  adapter: 'adapter:-active-model'
 })
 
 # Tell Ember to prepend /api to calls to the JSON API.
-DS.ActiveModelAdapter.reopen
+HubHub.ApplicationAdapter = DS.ActiveModelAdapter.reopen
   namespace: 'api'
