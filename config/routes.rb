@@ -13,7 +13,6 @@ HubHub::Application.routes.draw do
 
     post '/sessions', to: 'sessions#create'
     delete '/sessions', to: 'sessions#destroy'
-    post '/remember', to: 'sessions#remember'
 
     resources :users, only: %i[create show update destroy]
   end
