@@ -43,6 +43,9 @@ ActiveRecord::Schema.define(version: 20140205071317) do
     t.integer  "owner_id"
   end
 
+  add_index "posts", ["cached_votes_down"], name: "index_posts_on_cached_votes_down", using: :btree
+  add_index "posts", ["cached_votes_total"], name: "index_posts_on_cached_votes_total", using: :btree
+  add_index "posts", ["cached_votes_up"], name: "index_posts_on_cached_votes_up", using: :btree
   add_index "posts", ["owner_id"], name: "index_posts_on_owner_id", using: :btree
   add_index "posts", ["spoke_id"], name: "index_posts_on_spoke_id", using: :btree
 
