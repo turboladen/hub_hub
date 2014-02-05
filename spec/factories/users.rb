@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :user do
+  factory :user, aliases: %i[owner] do
     sequence :username do
       "user#{User.count + 1}"
     end

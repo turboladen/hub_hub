@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
   belongs_to :spoke
+  has_many :responses, as: :respondable, dependent: :destroy
 
   # Commenting out until Users are hooked up on front end.
   validates_presence_of :title, :body, :spoke, :owner

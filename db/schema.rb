@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131130005031) do
+ActiveRecord::Schema.define(version: 20140205071317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,22 @@ ActiveRecord::Schema.define(version: 20131130005031) do
   add_index "posts", ["owner_id"], name: "index_posts_on_owner_id", using: :btree
   add_index "posts", ["spoke_id"], name: "index_posts_on_spoke_id", using: :btree
 
+  create_table "responses", force: true do |t|
+    t.text     "body",               default: "", null: false
+    t.integer  "owner_id"
+    t.integer  "respondable_id"
+    t.string   "respondable_type"
+    t.integer  "respondable_count",  default: 0
+    t.integer  "cached_votes_total", default: 0
+    t.integer  "cached_votes_up",    default: 0
+    t.integer  "cached_votes_down",  default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "responses", ["owner_id"], name: "index_responses_on_owner_id", using: :btree
+  add_index "responses", ["respondable_id", "respondable_type"], name: "index_responses_on_respondable_id_and_respondable_type", using: :btree
+
   create_table "spokes", force: true do |t|
     t.string   "name"
     t.string   "description"
@@ -54,7 +70,6 @@ ActiveRecord::Schema.define(version: 20131130005031) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "username",                        null: false
     t.string   "email",                           null: false
     t.string   "first_name"
     t.string   "last_name"
@@ -70,6 +85,5 @@ ActiveRecord::Schema.define(version: 20131130005031) do
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
-  add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
 end

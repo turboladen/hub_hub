@@ -10,7 +10,6 @@
 # user to get started with (in the case of an empty/new site).
 def create_default_admin
   User.create!({
-    username: 'admin',
     email: 'admin@mindhub.org',
     first_name: 'Admin',
     last_name: 'the Administrator',

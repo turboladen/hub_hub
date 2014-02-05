@@ -21,6 +21,7 @@ describe User do
 
   context 'associations' do
     it { should respond_to :posts }
+    it { should respond_to :responses }
   end
 
   describe '#email' do
@@ -49,12 +50,6 @@ describe User do
     it 'must be at least 6 characters long' do
       user = FactoryGirl.build :user, password: '12345', password_confirmation: '12345'
       expect(user.errors_on(:password)).to include 'is too short (minimum is 6 characters)'
-    end
-  end
-
-  describe '#remember_token' do
-    it 'must not be blank' do
-      expect(subject.errors_on(:remember_token)).to include "can't be blank"
     end
   end
 

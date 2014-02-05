@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :posts, foreign_key: 'owner_id'
+  has_many :responses, as: :respondable, foreign_key: 'owner_id'
+
   before_save { self.email = email.downcase }
   before_create do
     generate_token(:auth_token)

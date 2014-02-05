@@ -8,6 +8,7 @@ describe Post do
 
   it { should respond_to :owner }
   it { should respond_to :spoke }
+  it { should respond_to :responses }
 
   describe 'title' do
     it 'must not be empty' do
