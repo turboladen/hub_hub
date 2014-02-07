@@ -61,10 +61,10 @@ describe Api::UsersController do
         # specifies that the User created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        User.any_instance.should_receive(:update).with({ 'username' => 'MyString' })
+        User.any_instance.should_receive(:update).with({ 'email' => 'MyString@domain.com' })
         put :update,
           id: new_user.to_param,
-          user: { 'username' => 'MyString' },
+          user: { 'email' => 'MyString@domain.com' },
           format: :json
       end
 

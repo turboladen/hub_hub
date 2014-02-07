@@ -47,7 +47,7 @@ module Api
     end
 
     def logout(user)
-      user.generate_token(:access_token)
+      user.generate_token(:auth_token)
       user.save
       @current_user = nil
     end

@@ -6,21 +6,25 @@ describe 'Sessions' do
   describe 'POST /api/sessions' do
     context 'valid user' do
       it 'logs a user in' do
-        post '/api/sessions', session: { username: user.username, password: 'password',
-          remember_me: true }
+        post '/api/sessions', session: { email: user.email, password: 'password' }
 
         expect(response.status).to eq 201
-        expect(response.body).to eq JSON(auth_token: user.reload.remember_me_token)
+        expect(response.body).to be_json_eql JSON(
+          {
+            user_id: user.id,
+            access_token: user.auth_token,
+            expires_in: 7200
+          }
+        )
       end
     end
 
     context 'bad password' do
       it 'returns a 401 with JSON error' do
-        post '/api/sessions', session: { username: user.username,
-          password: 'word', remember_me: true }
+        post '/api/sessions', session: { email: user.email, password: 'word' }
 
         expect(response.status).to eq 401
-        expect(response.body).to eq JSON(errors: { session: 'Unauthorized.' })
+        expect(response.body).to be_json_eql JSON(errors: { session: 'Unauthorized.' })
       end
     end
 
@@ -35,11 +39,10 @@ describe 'Sessions' do
   end
 
   describe 'DELETE /api/sessions' do
-    it 'logs the user out' do
-      post '/api/sessions', session: { username: user.username, password: 'password',
-        remember_me: true }
+    before { login user }
 
-      delete '/api/sessions'
+    it 'logs the user out' do
+      delete '/api/sessions', {}, with_headers(auth: true)
       expect(response.status).to eq 204
       expect(response.body).to be_empty
     end

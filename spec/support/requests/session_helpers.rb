@@ -1,17 +1,27 @@
 module Requests
   module SessionHelpers
     def login(user = nil)
-      user ||= FactoryGirl.create(user)
+      @user = user || FactoryGirl.create(user)
       post api_sessions_path,
-        session: { email: user.email, password: user.password },
+        session: { email: @user.email, password: @user.password },
         format: :json
 
-      user
+      @user
     end
 
-    # @param [String] token The auth_token to use for authenticating.
-    def add_auth_header(token)
-      request.headers['Authorization'] = "AUTH-TOKEN #{token}"
+    def json_headers
+      {
+        'Content-Type' => 'application/json',
+        'Accept' => 'application/json'
+      }
+    end
+
+    def with_headers(auth: false)
+      if auth
+        json_headers.merge!('HTTP_AUTHORIZATION' => "AUTH-TOKEN #{@user.auth_token}")
+      else
+        json_headers
+      end
     end
   end
 end
