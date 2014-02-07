@@ -46,9 +46,22 @@ describe Api::SessionsController do
   end
 
   describe 'DELETE destroy' do
-    it 'destroys the requested session' do
-      expect(subject).to receive(:logout)
-      delete :destroy, format: :json
+    context 'user exists with the access token' do
+      before { login }
+
+      it 'destroys the requested session' do
+        expect(subject).to receive(:logout)
+        delete :destroy, format: :json
+      end
+    end
+
+    context 'user does not exist with the access token' do
+      it 'returns a 401' do
+        delete :destroy, format: :json
+
+        expect(response.status).to eq 401
+        expect(response.body).to be_json_eql %[{"errors":{"session":"Not logged in."}}]
+      end
     end
   end
 end

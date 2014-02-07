@@ -30,15 +30,13 @@ module Api
 
     # DELETE /api/sessions/1.json
     def destroy
-      user = User.find_by auth_token: session_params[:access_token]
+      if current_user
+        logout(current_user)
 
-      if user
-        logout(user)
-
-        render json: { user_id: user.id }
+        head :no_content
       else
         render json: { errors: { session: 'Not logged in.' } },
-          status: :unprocessable_entity
+          status: :unauthorized
       end
     end
 
