@@ -22,7 +22,7 @@ module Api
       @post.owner = current_user || nil
 
       if @post.save
-        respond_with @post, location: api_post_url(@post), status: :created
+        respond_with :api, @post
       else
         render json: { errors: @post.errors }, status: :unprocessable_entity
       end
@@ -30,7 +30,7 @@ module Api
 
     def update
       if @post.update(post_params)
-        respond_with '', status: :no_content
+        head :no_content
       else
         render json: { errors: @post.errors }, status: :unprocessable_entity
       end
@@ -38,7 +38,7 @@ module Api
 
     def destroy
       @post.destroy
-      respond_with '', status: :no_content
+      head :no_content
     end
 
     private

@@ -5,24 +5,19 @@ describe Api::PostsController do
   let(:new_post) { FactoryGirl.create :post }
 
   describe 'GET index' do
-    let(:relation) { double 'Post relation' }
-
-    before do
-      expect(Post).to receive(:includes).with(:spoke, :owner) { relation }
-    end
+    let!(:posts) { FactoryGirl.create_list :post, 2 }
 
     context 'with ids' do
       it 'assigns posts with the given ids as @posts' do
-        expect(relation).to receive(:find).with(%w[1 2]) { relation }
-        get :index, ids: %w[1 2], format: :json
-        assigns(:posts).should eq(relation)
+        get :index, ids: posts.map(&:id), format: :json
+        assigns(:posts).should eq(posts)
       end
     end
 
     context 'without ids' do
       it 'assigns all posts as @posts' do
         get :index, format: :json
-        assigns(:posts).should eq(relation)
+        assigns(:posts).should eq(posts)
       end
     end
   end
@@ -37,7 +32,10 @@ describe Api::PostsController do
   describe 'POST create' do
     let!(:spoke) { FactoryGirl.create :spoke }
     let(:user) { FactoryGirl.create :user }
-    before { login_user user }
+
+    before do
+      login user
+    end
 
     describe 'with valid params' do
       it 'creates a new Post' do
@@ -85,6 +83,8 @@ describe Api::PostsController do
   end
 
   describe 'PUT update' do
+    before { login }
+
     describe 'with valid params' do
       it 'updates the requested post' do
         # Assuming there are no other posts in the database, this
