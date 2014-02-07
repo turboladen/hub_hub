@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Post do
+  subject { FactoryGirl.build :post }
+
   it { should respond_to :title }
   it { should respond_to :body }
   it { should respond_to :created_at }
