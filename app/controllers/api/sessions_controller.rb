@@ -33,8 +33,8 @@ module Api
       user = User.find_by auth_token: session_params[:access_token]
 
       if user
-        user.generate_token(:access_token)
-        user.save
+        logout(user)
+
         render json: { user_id: user.id }
       else
         render json: { errors: { session: 'Not logged in.' } },
@@ -46,6 +46,12 @@ module Api
 
     def session_params
       params.require(:session).permit(:email, :password, :remember_me, :access_token)
+    end
+
+    def logout(user)
+      user.generate_token(:access_token)
+      user.save
+      @current_user = nil
     end
   end
 end

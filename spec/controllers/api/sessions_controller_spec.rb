@@ -3,43 +3,39 @@ require 'spec_helper'
 
 describe Api::SessionsController do
   let(:valid_attributes) do
-    { username: 'test_user', password: 'passw0rd', remember_me: true }
+    {
+      email: 'test_user@test.com',
+      password: 'passw0rd'
+    }
   end
 
-  let(:user) { double 'User' }
+  let(:user) { FactoryGirl.create :user, valid_attributes }
 
   describe 'POST create' do
     describe 'with valid params' do
-      it 'creates a new Session' do
-        expect(subject).to receive(:login).with('test_user', 'passw0rd', true)
+      before do
+        user
         post :create, session: valid_attributes
       end
 
-      it 'assigns the found user as @user' do
-        expect(user).to receive(:remember_me_token) { 12345 }
-        expect(subject).to receive(:login) { user }
-        post :create, session: valid_attributes
-        expect(assigns(:user)).to eq user
+      it 'assigns the found user as @current_user' do
+        expect(assigns(:current_user)).to eq user
       end
 
       it 'returns 201 with an empty body' do
-        expect(user).to receive(:remember_me_token) { 12345 }
-        expect(subject).to receive(:login) { user }
-        post :create, session: valid_attributes
-
         expect(response.status).to eq 201
-        expect(response.body).to have_json_path 'auth_token'
+        expect(response.body).to have_json_path 'access_token'
       end
     end
 
     describe 'with invalid params' do
       before do
         allow(subject).to receive(:login) { false }
-        post :create, session: { username: 'blah' }
+        post :create, session: { email: 'blah@blh.com' }
       end
 
-      it 'assigns false to @user' do
-        expect(assigns(:user)).to eq false
+      it 'assigns nil to @user' do
+        expect(assigns(:user)).to eq nil
       end
 
       it 'returns a 401 with JSON body' do
