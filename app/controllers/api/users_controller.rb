@@ -21,7 +21,7 @@ module Api
     # PATCH /api/users/1.json
     def update
       if @user.update(user_params)
-        respond_with '', status: :no_content
+        head :no_content
       else
         render json: { errors: @user.errors }, status: :unprocessable_entity
       end

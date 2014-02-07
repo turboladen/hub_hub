@@ -15,16 +15,14 @@ describe 'Users' do
 
         user = User.last
         expect(response.status).to eq 201
-        expect(response.body).to eq JSON(
+        expect(response.body).to be_json_eql JSON(
           user: {
             id: user.id,
-            username: 'test',
             email: 'test@example.com',
             first_name: 'FirstName',
             last_name: 'LastName',
             admin: false,
             banned: false,
-            remember_me_token: nil,
             post_ids: []
           }
         )
@@ -34,7 +32,6 @@ describe 'Users' do
     context 'missing required params' do
       it 'returns a ' do
         post '/api/users.json', user: {
-          email: 'test@example.com',
           first_name: 'FirstName',
           last_name: 'LastName',
           password: 'passw0rd',
@@ -42,8 +39,8 @@ describe 'Users' do
         }
 
         expect(response.status).to eq 422
-        expect(response.body).to eq JSON(
-          errors: { username: ["can't be blank"] }
+        expect(response.body).to be_json_eql JSON(
+          errors: { email: ["can't be blank", 'is invalid'] }
         )
       end
     end
@@ -60,13 +57,11 @@ describe 'Users' do
         expect(response.body).to eq JSON(
           user: {
             id: user.id,
-            username: user.username,
             email: user.email,
             first_name: user.first_name,
             last_name: user.last_name,
             admin: user.admin?,
             banned: user.banned?,
-            remember_me_token: user.remember_me_token,
             post_ids: []
           }
         )
@@ -88,18 +83,19 @@ describe 'Users' do
   end
 
   describe 'PATCH /api/users/:id' do
-    context 'user with :id exists' do
-      let!(:user) { FactoryGirl.create :user }
+    let!(:user) { FactoryGirl.create :user }
+    before { login user }
 
+    context 'user with :id exists' do
       it 'updates the user' do
         patch "/api/users/#{user.to_param}.json", {
-          user: { username: '123456789' }
+          user: { first_name: '123456789' }
         }
 
         expect(response.status).to eq 204
         expect(response.body).to be_empty
         user = User.last
-        expect(user.username).to eq '123456789'
+        expect(user.first_name).to eq '123456789'
       end
     end
 
