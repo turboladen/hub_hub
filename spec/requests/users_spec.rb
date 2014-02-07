@@ -75,7 +75,7 @@ describe 'Users' do
 
     context 'user with :id does not exist' do
       it 'gets a 404 as JSON' do
-        get "/api/users/123456789.json"
+        get '/api/users/123456789.json'
 
         expect(response.status).to eq 404
         expect(response.body).to eq JSON(
@@ -105,7 +105,7 @@ describe 'Users' do
 
     context 'user with :id does not exist' do
       it 'gets a 404 as JSON' do
-        patch "/api/users/123456789.json", {
+        patch '/api/users/123456789.json', {
           user: { username: '123456789' }
         }
 
@@ -137,7 +137,7 @@ describe 'Users' do
 
     context 'user with :id does not exist' do
       it 'gets a 404 as JSON' do
-        delete "/api/users/123456789.json"
+        delete '/api/users/123456789.json'
 
         expect(response.status).to eq 404
         expect(response.body).to eq JSON(

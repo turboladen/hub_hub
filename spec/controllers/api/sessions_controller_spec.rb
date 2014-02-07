@@ -60,7 +60,7 @@ describe Api::SessionsController do
         delete :destroy, format: :json
 
         expect(response.status).to eq 401
-        expect(response.body).to be_json_eql %[{"errors":{"session":"Not logged in."}}]
+        expect(response.body).to be_json_eql '{"errors":{"session":"Not logged in."}}'
       end
     end
   end
