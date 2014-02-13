@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Api::PostsController do
-  let(:valid_attributes) { FactoryGirl.attributes_for :post }
   let(:new_post) { FactoryGirl.create :post }
 
   describe 'GET index' do
@@ -30,6 +29,7 @@ describe Api::PostsController do
   end
 
   describe 'POST create' do
+    let(:valid_attributes) { FactoryGirl.attributes_for :post, spoke_id: spoke.id }
     let!(:spoke) { FactoryGirl.create :spoke }
     let(:user) { FactoryGirl.create :user }
 
@@ -40,18 +40,18 @@ describe Api::PostsController do
     describe 'with valid params' do
       it 'creates a new Post' do
         expect {
-          post :create, spoke_id: spoke.id, post: valid_attributes, format: :json
+          post :create, post: valid_attributes, format: :json
         }.to change(Post, :count).by(1)
       end
 
       it 'assigns a newly created post as @post' do
-        post :create, spoke_id: spoke.id, post: valid_attributes, format: :json
+        post :create, post: valid_attributes, format: :json
         assigns(:post).should be_a(Post)
         assigns(:post).should be_persisted
       end
 
       it 'returns a 201 with Location header and the payload as JSON' do
-        post :create, spoke_id: spoke.id, post: valid_attributes, format: :json
+        post :create, post: valid_attributes, format: :json
 
         expect(response.status).to eq 201
         expect(response.headers).to include 'Location'
@@ -63,10 +63,7 @@ describe Api::PostsController do
 
     describe 'with invalid params' do
       before do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Post.any_instance.stub(:save).and_return(false)
         post :create,
-          spoke_id: spoke.id,
           post: { 'not acceptable' => 'invalid value' },
           format: :json
       end
@@ -77,13 +74,15 @@ describe Api::PostsController do
 
       it 'returns a 422 with errors as JSON' do
         expect(response.status).to eq 422
-        expect(response.body).to eq JSON(errors: {})
+        expect(response.body).to have_json_type(Hash).at_path('errors')
       end
     end
   end
 
   describe 'PUT update' do
     before { login }
+    let(:valid_attributes) { FactoryGirl.attributes_for :post, spoke_id: spoke.id }
+    let!(:spoke) { FactoryGirl.create :spoke }
 
     describe 'with valid params' do
       it 'updates the requested post' do
@@ -118,12 +117,16 @@ describe Api::PostsController do
 
     describe 'with invalid params' do
       before do
-        Post.any_instance.stub(:save).and_return(false)
-
         put :update,
           id: new_post.to_param,
-          post: { 'title' => 'invalid value' },
+          post: bad_attributes,
           format: :json
+      end
+
+      let(:bad_attributes) do
+        valid_attributes[:title] = ''
+
+        valid_attributes
       end
 
       it 'assigns the post as @post' do
@@ -132,7 +135,7 @@ describe Api::PostsController do
 
       it 'returns a 422 with errors as JSON' do
         expect(response.status).to eq 422
-        expect(response.body).to eq JSON(errors: {})
+        expect(response.body).to have_json_type(Hash).at_path('errors')
       end
     end
   end

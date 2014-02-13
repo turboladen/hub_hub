@@ -4,33 +4,27 @@ module Api
 
     # POST /api/users.json
     def create
-      @user = User.new(user_params)
+      @user = User.create(user_params)
 
-      if @user.save
-        respond_with @user, location: api_user_url(@user), status: :created
-      else
-        render json: { errors: @user.errors }, status: :unprocessable_entity
-      end
+      respond_with :api, @user
     end
 
     # GET /api/users/1.json
     def show
-      respond_with(@user)
+      respond_with :api, @user
     end
 
     # PATCH /api/users/1.json
     def update
-      if @user.update(user_params)
-        head :no_content
-      else
-        render json: { errors: @user.errors }, status: :unprocessable_entity
-      end
+      @user.update(user_params)
+
+      respond_with :api, @user
     end
 
     # DELETE /api/users/1.json
     def destroy
       @user.destroy
-      respond_with '', status: :no_content
+      head :no_content
     end
 
     private

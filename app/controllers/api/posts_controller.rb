@@ -9,31 +9,25 @@ module Api
         Post.includes(:spoke, :owner)
       end
 
-      respond_with @posts
+      respond_with :api, @posts
     end
 
     def show
-      respond_with @post
+      respond_with :api, @post
     end
 
     def create
-      spoke = Spoke.find(params[:spoke_id])
-      @post = spoke.posts.new(post_params)
-      @post.owner = current_user || nil
+      @post = Post.new(post_params)
+      @post.owner = current_user
+      @post.save
 
-      if @post.save
-        respond_with :api, @post
-      else
-        render json: { errors: @post.errors }, status: :unprocessable_entity
-      end
+      respond_with :api, @post
     end
 
     def update
-      if @post.update(post_params)
-        head :no_content
-      else
-        render json: { errors: @post.errors }, status: :unprocessable_entity
-      end
+      @post.update(post_params)
+
+      respond_with :api, @post
     end
 
     def destroy
@@ -48,7 +42,7 @@ module Api
     end
 
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, :spoke_id)
     end
   end
 end

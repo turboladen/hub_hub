@@ -5,12 +5,12 @@ module Api
     # GET /spokes
     def index
       @spokes = Spoke.includes(:posts)
-      respond_with @spokes
+      respond_with :api, @spokes
     end
 
     # GET /spokes/1
     def show
-      respond_with @spoke
+      respond_with :api, @spoke
     end
 
     private

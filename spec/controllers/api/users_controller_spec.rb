@@ -29,8 +29,6 @@ describe Api::UsersController do
 
     context 'with invalid params' do
       before do
-        # Trigger the behavior that occurs when invalid params are submitted
-        User.any_instance.stub(:save).and_return(false)
         post :create,
           user: { 'not acceptable' => 'invalid value' },
           format: :json
@@ -42,7 +40,7 @@ describe Api::UsersController do
 
       it 'returns a 422 with errors as JSON' do
         expect(response.status).to eq 422
-        expect(response.body).to eq JSON(errors: {})
+        expect(response.body).to have_json_type(Hash).at_path('errors')
       end
     end
   end
@@ -88,12 +86,16 @@ describe Api::UsersController do
 
     describe 'with invalid params' do
       before do
-        User.any_instance.stub(:save).and_return(false)
-
         put :update,
           id: new_user.to_param,
-          user: { 'username' => 'invalid value' },
+          user: bad_attributes,
           format: :json
+      end
+
+      let(:bad_attributes) do
+        valid_attributes[:email] = ''
+
+        valid_attributes
       end
 
       it 'assigns the user as @user' do
@@ -102,7 +104,7 @@ describe Api::UsersController do
 
       it 'returns a 422 with errors as JSON' do
         expect(response.status).to eq 422
-        expect(response.body).to eq JSON(errors: {})
+        expect(response.body).to have_json_type(Hash).at_path('errors')
       end
     end
   end
