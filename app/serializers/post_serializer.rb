@@ -3,4 +3,5 @@ class PostSerializer < ActiveModel::Serializer
   embed :ids
   has_one :spoke
   has_one :owner, serializer: UserSerializer
+  has_many :responses, embed: :ids, include: true
 end
