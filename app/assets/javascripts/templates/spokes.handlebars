@@ -1,22 +1,22 @@
-<div class="btn-group">
-    <button type="button" class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown">
-        Spokes
-        <span class="caret"></span>
-    </button>
+<ul class="nav navbar-nav">
+    <li class="dropdown">
+        <a href="#" id="spoke-menu" role="button" class="dropdown-toggle" data-toggle="dropdown">
+            Spokes
+            <b class="caret"></b>
+        </a>
 
-    <hr/>
-
-    <ul class="dropdown-menu">
-        <li>{{#link-to 'posts'}}All Spokes{{/link-to}}</li>
-        <li class="divider"></li>
-        {{#each}}
-            <li>
-                {{#link-to 'spoke' this data-toggle="tab"}}
-                    {{name}}
-                {{/link-to}}
-            </li>
-        {{else}}
-            <li>No spokes.  Hmm...</li>
-        {{/each}}
-    </ul>
-</div>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="spoke-menu">
+            <li role="presentation">{{#link-to 'posts'}}All Spokes{{/link-to}}</li>
+            <li class="divider"></li>
+            {{#each}}
+                <li role="presentation">
+                    {{#link-to 'spoke' this data-toggle="tab"}}
+                        {{name}}
+                    {{/link-to}}
+                </li>
+            {{else}}
+                <li role="presentation">No spokes.  Hmm...</li>
+            {{/each}}
+        </ul>
+    </li>
+</ul>

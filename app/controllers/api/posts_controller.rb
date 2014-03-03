@@ -1,6 +1,6 @@
 module Api
   class PostsController < ApiController
-    before_action :set_post, except: %i[create index]
+    before_action :set_post, except: %i[create index show]
 
     def index
       @posts = if params[:ids]
@@ -13,6 +13,7 @@ module Api
     end
 
     def show
+      @post = Post.includes(:responses, :owner).find(params[:id])
       respond_with :api, @post
     end
 
