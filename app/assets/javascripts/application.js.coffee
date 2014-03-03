@@ -4,7 +4,6 @@
 #= require ember
 #= require ember-data
 #= require ember-simple-auth
-#= require twitter/bootstrap
 #= require_self
 
 # Ember.FEATURES["query-params"] = true
