@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
 ruby '2.1.0'
-gem 'rails', '4.0.2'
+gem 'rails', '4.0.3'
 
 #-------------------------------------------------------------------------------
 # Asset Stuff
@@ -28,7 +28,7 @@ gem 'font-awesome-sass'
 #-------------------------------------------------------------------------------
 gem 'ember-rails', '~> 0.14.1'
 gem 'ember-data-source', '>= 1.0.0.beta.3'
-gem 'ember-source', '~> 1.3.0'
+gem 'ember-source', '~> 1.4.0'
 gem 'rails-assets-ember-simple-auth', '~> 0.1.0'
 
 
