@@ -1,8 +1,10 @@
-<nav class="navbar navbar-default" id="spokebar" role="navigation">
-    <div class="navbar-form navbar-left">
-        {{outlet 'spokes'}}
+<div class="navbar navbar-default" id="spokebar" role="navigation">
+    <div class="container">
+        <div class="navbar-form navbar-left">
+            {{outlet 'spokes'}}
+        </div>
+        <div class="navbar-form">
+            {{outlet 'spoke'}}
+        </div>
     </div>
-    <div class="navbar-form">
-        {{outlet 'spoke'}}
-    </div>
-</nav>
+</div>
