@@ -12,13 +12,16 @@
             </div>
 
             <div class="panel-footer">
-                <p>Posted on <code>{{createdAt}}</code> by {{owner.fullName}}</p>
+                <p>Posted on {{createdAtAgo}} by {{owner.email}}</p>
             </div>
         </div>
         <hr/>
 
         <h3>Responses</h3>
 
+        {{#each response in responses}}
+            {{render "response" response}}
+        {{/each}}
     </div>
 </div>
 

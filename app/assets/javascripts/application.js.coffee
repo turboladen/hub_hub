@@ -4,6 +4,8 @@
 #= require ember
 #= require ember-data
 #= require ember-simple-auth
+#= require bootstrap
+#= require moment
 #= require_self
 
 # Ember.FEATURES["query-params"] = true

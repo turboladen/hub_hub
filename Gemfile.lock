@@ -173,6 +173,8 @@ GEM
       railties
     mime-types (1.25.1)
     minitest (4.7.5)
+    momentjs-rails (2.5.1)
+      railties (>= 3.1)
     multi_json (1.8.4)
     orm_adapter (0.5.0)
     pg (0.17.1)
@@ -317,6 +319,7 @@ DEPENDENCIES
   json_spec
   kaminari-bootstrap!
   meta_request
+  momentjs-rails (~> 2.5.1)
   pg
   puma (~> 2.7.0)
   quiet_assets

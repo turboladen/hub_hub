@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+    <div class="panel-heading response">
+        <p>
+            {{response.owner.email}}
+            <i class="fa fa-toggle-right fa-xs"></i>
+            {{createdAtAgo}}
+        </p>
+    </div>
+
+    <div class="panel-body">
+        <p>{{response.body}}</p>
+    </div>
+
+    <ul class="list-group">
+        {{#each response in response.responses}}
+            <li class="list-group-item">
+                {{render "response" response}}
+            </li>
+        {{/each}}
+    </ul>
+</div>

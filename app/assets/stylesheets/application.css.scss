@@ -49,11 +49,15 @@ html, body {
 }
 
 .sign-up > a {
-  color: white !important;
+  color: $mindhubWhite !important;
 }
 
 div.row.even {
   background-color: $postBackgroundGreen;
+}
+
+#header-brand {
+  color: $mindhubGreenWhite;
 }
 
 /*

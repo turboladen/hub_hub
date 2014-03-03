@@ -14,6 +14,8 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'font-awesome-sass'
 
+gem 'momentjs-rails', '~> 2.5.1'
+
 # gem 'rails-assets-ember-addons.bs_for_ember'
 # gem 'rails-assets-ember-admin'
 # gem 'rails-assets-epf'

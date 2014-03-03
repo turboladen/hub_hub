@@ -1,15 +1,16 @@
-@import "bootstrap";
 @import "variables.css.scss";
+$body-bg: $mindhubGreenWhite;
+//$panel-default-heading-bg: #adb4d8;
+$panel-default-heading-bg: #e2daf2;
+$navbar-inverse-bg: $mindhubGreen;
+$text-color: $mindhubBlack;
 
-
-html, body {
-  background-color: $mindhubGreenWhite;
-}
+@import "bootstrap";
+@import "bootstrap/theme";
 
 .container > footer ul {
   text-align: center;   // center align it with the container *//*
 }
-
 
 /*
 a:link {
