@@ -16,14 +16,6 @@ GIT
       ransack (~> 1.0)
       sass-rails
 
-GIT
-  remote: git://github.com/mcasimir/kaminari-bootstrap.git
-  revision: 0dc098f544734afb73a254d56061ffb375a81431
-  specs:
-    kaminari-bootstrap (3.0.1)
-      kaminari (>= 0.13.0)
-      rails
-
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -181,7 +173,7 @@ GEM
     polyamorous (0.6.4)
       activerecord (>= 3.0)
     polyglot (0.3.4)
-    puma (2.7.1)
+    puma (2.8.0)
       rack (>= 1.1, < 2.0)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
@@ -317,11 +309,11 @@ DEPENDENCIES
   font-awesome-sass
   jquery-rails
   json_spec
-  kaminari-bootstrap!
+  kaminari (~> 0.15.1)
   meta_request
   momentjs-rails (~> 2.5.1)
   pg
-  puma (~> 2.7.0)
+  puma (~> 2.8.0)
   quiet_assets
   qunit-rails
   rack-mini-profiler

@@ -4,12 +4,17 @@ module Api
 
     def index
       @posts = if params[:ids]
-        Post.includes(:spoke, :owner).find(params[:ids])
+        Kaminari.paginate_array(Post.includes(:spoke, :owner).find(params[:ids])).
+          page(params[:page])
       else
-        Post.includes(:spoke, :owner)
+        Post.includes(:spoke, :owner).page(params[:page])
       end
 
-      respond_with :api, @posts
+      respond_with :api, @posts, meta: {
+        current_page: @posts.current_page,
+        total_pages: @posts.total_pages,
+        total_count: @posts.total_count
+      }
     end
 
     def show
