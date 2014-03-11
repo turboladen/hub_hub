@@ -3,11 +3,14 @@ module Api
     before_action :set_post, except: %i[create index show]
 
     def index
+      page = params[:page] || 1
+      per_page = params[:per_page] || 25
+
       @posts = if params[:ids]
-        Kaminari.paginate_array(Post.includes(:spoke, :owner).find(params[:ids])).
-          page(params[:page])
+        Kaminari.paginate_array(Post.includes(:spoke, :owner, :responses).find(params[:ids])).
+          page(page).per(per_page)
       else
-        Post.includes(:spoke, :owner).page(params[:page])
+        Post.includes(:spoke, :owner, :responses).page(page).per(per_page)
       end
 
       respond_with :api, @posts, meta: {

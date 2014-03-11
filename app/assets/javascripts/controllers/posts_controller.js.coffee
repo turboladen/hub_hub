@@ -1,6 +1,19 @@
-# for more details see: http://emberjs.com/guides/controllers/
+HubHub.PostsController = Ember.ArrayController.extend
+  currentPage: 1
+  perPage: 25
 
-HubHub.PostsController = Ember.ArrayController.extend({
+  totalPages: ( ->
+    @store.metadataFor('post').total_pages
+  ).property()
 
-})
+  totalCount: ( ->
+    @store.metadataFor('post').total_count
+  ).property()
 
+  actions:
+    nextPage: ->
+      @incrementProperty('currentPage')
+      newList = @store.find 'post',
+        page: @currentPage,
+        per_page: @perPage
+      @set('content', newList)
