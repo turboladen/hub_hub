@@ -29,7 +29,7 @@ gem 'momentjs-rails', '~> 2.5.1'
 # Ember-specific
 #-------------------------------------------------------------------------------
 gem 'ember-rails', '~> 0.14.1'
-gem 'ember-data-source', '>= 1.0.0.beta.3'
+gem 'ember-data-source', '>= 1.0.0.beta.7'
 gem 'ember-source', '~> 1.4.0'
 gem 'rails-assets-ember-simple-auth', '~> 0.1.0'
 

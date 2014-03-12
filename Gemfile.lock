@@ -301,7 +301,7 @@ DEPENDENCIES
   cancan (~> 1.6.10)
   coffee-rails (~> 4.0.0)
   database_cleaner (>= 1.1.1)
-  ember-data-source (>= 1.0.0.beta.3)
+  ember-data-source (>= 1.0.0.beta.7)
   ember-rails (~> 0.14.1)
   ember-source (~> 1.4.0)
   factory_girl_rails
