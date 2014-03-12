@@ -31,6 +31,13 @@
     No posts to display.
 {{/each}}
 
+<button {{action 'previousPage'}} {{bind-attr disabled=isFirstPage}}>
+    <i class="fa fa-angle-left"></i>
+</button>
+
 {{currentPage}} of {{totalPages}} ({{totalCount}})
-<button {{action 'nextPage'}}>Next</button>
+
+<button {{action 'nextPage'}} {{bind-attr disabled=isLastPage}}>
+    <i class="fa fa-angle-right"></i>
+</button>
 
