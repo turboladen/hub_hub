@@ -4,3 +4,5 @@
 require File.expand_path('../config/application', __FILE__)
 
 HubHub::Application.load_tasks
+
+task default: %i[spec teaspoon]

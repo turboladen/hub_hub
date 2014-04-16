@@ -87,10 +87,13 @@ group :development, :test do
   gem 'bullet'
   gem 'factory_girl_rails'
   gem 'ffaker'
+  gem 'guard-rspec'
+  gem 'guard-teaspoon'
   gem 'qunit-rails'
   # Use debugger
   # gem 'debugger', group: [:development, :test]
   gem 'rspec-rails'
+  gem 'teaspoon', '~> 0.7.9'
 end
 
 group :development do
@@ -101,6 +104,8 @@ group :development do
   gem 'rack-mini-profiler'
   gem 'rails_best_practices'
   gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'spring-commands-teaspoon'
 end
 
 group :test do

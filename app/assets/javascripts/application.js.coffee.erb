@@ -1,0 +1,39 @@
+#= require jquery
+#= require jquery_ujs
+#= require handlebars
+#= require ember
+#= require ember-data
+#= require ember-simple-auth
+#= require bootstrap
+#= require moment
+
+#= require_self
+
+#= require hub_hub
+#= require_tree .
+
+# Ember.FEATURES["query-params"] = true
+
+window.HubHub = Ember.Application.create()
+
+<% unless Rails.env.production? %>
+Ember.ENV.RAISE_ON_DEPRECATION = true
+Ember.run.backburner.DEBUG = true
+HubHub.LOG_ACTIVE_GENERATION = true
+HubHub.LOG_BINDINGS = true
+HubHub.LOG_CUSTOM = true
+HubHub.LOG_MODULE_RESOLVER = true
+HubHub.LOG_QUERIES = true
+HubHub.LOG_STACKTRACE_ON_DEPRECATION = true
+HubHub.LOG_TRANSITIONS = true
+HubHub.LOG_TRANSITIONS_INTERNAL = true
+HubHub.LOG_VERSION = true
+HubHub.LOG_VIEW_LOOKUPS = true
+<% end %>
+
+# To be able to do <a data-toggle="something">
+Ember.LinkView.reopen
+  attributeBindings: ['data-toggle']
+
+# Logger shortcut
+window.log = Em.Logger

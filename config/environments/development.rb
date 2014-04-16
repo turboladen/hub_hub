@@ -53,6 +53,8 @@ HubHub::Application.configure do
     # Rack::MiniProfiler.config.backtrace_threshold_ms = 5
   end
 
+  config.qunit.tests_path = 'spec'
+
   require_relative '../../lib/snoop'
   config.middleware.insert_before ActionDispatch::ShowExceptions, Rack::Snoop
 end
