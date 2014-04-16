@@ -55,9 +55,9 @@ describe Api::PostsController do
 
         expect(response.status).to eq 201
         expect(response.headers).to include 'Location'
-        body = valid_attributes.merge 'id' => 1,
-          'spoke_id' => spoke.id, 'owner_id' => user.id
-        expect(response.body).to be_json_eql(JSON(post: body))
+        expect(response.body).to be_json_eql(Post.last.id).at_path('post/id')
+        expect(response.body).to be_json_eql(spoke.id).at_path('post/spoke_id')
+        expect(response.body).to be_json_eql(user.id).at_path('post/owner_id')
       end
     end
 

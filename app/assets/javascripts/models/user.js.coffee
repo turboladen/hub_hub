@@ -1,5 +1,3 @@
-# for more details see: http://emberjs.com/guides/models/defining-models/
-
 HubHub.User = DS.Model.extend
   # Core properties
   email: DS.attr 'string'
@@ -19,3 +17,4 @@ HubHub.User = DS.Model.extend
     @get('firstName') + ' ' + @get('lastName')
   ).property('firstName', 'lastName')
 
+HubHub.Owner = HubHub.User.extend({})

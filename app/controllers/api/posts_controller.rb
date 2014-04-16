@@ -7,10 +7,10 @@ module Api
       per_page = params[:per_page] || 25
 
       @posts = if params[:ids]
-        Kaminari.paginate_array(Post.includes(:spoke, :owner, :responses).find(params[:ids])).
+        Kaminari.paginate_array(Post.includes(:spoke, { owner: :posts }, :responses).find(params[:ids])).
           page(page).per(per_page)
       else
-        Post.includes(:spoke, :owner, :responses).page(page).per(per_page)
+        Post.includes(:spoke, { owner: :posts }, :responses).page(page).per(per_page)
       end
 
       respond_with :api, @posts, meta: {

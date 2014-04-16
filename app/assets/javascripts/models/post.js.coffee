@@ -6,5 +6,5 @@ HubHub.Post = DS.Model.extend
 
   # Associations
   spoke: DS.belongsTo 'spoke'
-  owner: DS.belongsTo 'user'
-  responses: DS.hasMany 'response', async: true
+  owner: DS.belongsTo 'owner'
+  responses: DS.hasMany 'response'
