@@ -76,9 +76,9 @@ describe 'Posts' do
         get '/api/posts', ids: post_ids
 
         expect(response.status).to eq 404
-        expect(response.body).to eq JSON(
+        expect(response.body).to be_json_eql JSON(
           errors: {
-            'ids' => "Couldn't find all Posts with IDs (#{post.id}, 99999) (found 1 results, but was looking for 2)"
+            'ids' => "Couldn't find all Posts with 'id': (#{post.id}, 99999) (found 1 results, but was looking for 2)"
           }
         )
       end
@@ -91,7 +91,7 @@ describe 'Posts' do
         get '/api/posts/123456789.json'
 
         expect(response.status).to eq 404
-        expect(response.body).to eq JSON(
+        expect(response.body).to be_json_eql JSON(
           errors: { 'id' => "Couldn't find Post with id=123456789" }
         )
       end

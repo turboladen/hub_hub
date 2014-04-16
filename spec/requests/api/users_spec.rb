@@ -54,7 +54,7 @@ describe 'Users' do
         get "/api/users/#{user.to_param}.json"
 
         expect(response.status).to eq 200
-        expect(response.body).to eq JSON(
+        expect(response.body).to be_json_eql JSON(
           user: {
             id: user.id,
             email: user.email,
@@ -73,7 +73,7 @@ describe 'Users' do
         get '/api/users/123456789.json'
 
         expect(response.status).to eq 404
-        expect(response.body).to eq JSON(
+        expect(response.body).to be_json_eql JSON(
           errors: {
             'id' => "Couldn't find User with id=123456789"
           }
@@ -106,7 +106,7 @@ describe 'Users' do
         }
 
         expect(response.status).to eq 404
-        expect(response.body).to eq JSON(
+        expect(response.body).to be_json_eql JSON(
           errors: {
             'id' => "Couldn't find User with id=123456789"
           }
@@ -127,7 +127,7 @@ describe 'Users' do
         expect {
           User.find(user)
         }.to raise_exception ActiveRecord::RecordNotFound,
-          "Couldn't find User with id=#{user.id}"
+          "Couldn't find User with 'id'=#{user.id}"
       end
     end
 
@@ -136,7 +136,7 @@ describe 'Users' do
         delete '/api/users/123456789.json'
 
         expect(response.status).to eq 404
-        expect(response.body).to eq JSON(
+        expect(response.body).to be_json_eql JSON(
           errors: {
             'id' => "Couldn't find User with id=123456789"
           }

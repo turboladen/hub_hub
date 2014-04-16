@@ -40,7 +40,7 @@ describe Api::SessionsController do
 
       it 'returns a 401 with JSON body' do
         expect(response.status).to eq 401
-        expect(response.body).to eq JSON(errors: { 'session' => 'Unauthorized.' })
+        expect(response.body).to be_json_eql JSON(errors: { 'session' => 'Unauthorized.' })
       end
     end
   end

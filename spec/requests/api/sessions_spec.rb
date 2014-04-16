@@ -33,7 +33,7 @@ describe 'Sessions' do
         post '/api/sessions', session: { password: 'password', remember_me: true }
 
         expect(response.status).to eq 401
-        expect(response.body).to eq JSON(errors: { session: 'Unauthorized.' })
+        expect(response.body).to be_json_eql JSON(errors: { session: 'Unauthorized.' })
       end
     end
   end

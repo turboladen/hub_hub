@@ -160,7 +160,7 @@ describe Api::ResponsesController do
 
       it 'returns a 422 with errors as JSON' do
         expect(response.status).to eq 422
-        expect(response.body).to eq JSON(errors: { body: ["can't be blank"] })
+        expect(response.body).to be_json_eql JSON(errors: { body: ["can't be blank"] })
       end
     end
   end

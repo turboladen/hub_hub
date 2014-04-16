@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
 ruby '2.1.1'
-gem 'rails', '4.0.4'
+gem 'rails', '4.1.0'
 
 #-------------------------------------------------------------------------------
 # Asset Stuff
@@ -100,6 +100,7 @@ group :development do
   gem 'quiet_assets'
   gem 'rack-mini-profiler'
   gem 'rails_best_practices'
+  gem 'spring'
 end
 
 group :test do
