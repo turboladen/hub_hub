@@ -12,7 +12,7 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
-gem 'font-awesome-sass'
+gem 'font-awesome-rails'
 
 gem 'momentjs-rails', '~> 2.5.1'
 
@@ -30,8 +30,8 @@ gem 'momentjs-rails', '~> 2.5.1'
 #-------------------------------------------------------------------------------
 gem 'ember-rails', '~> 0.14.1'
 gem 'ember-data-source', '>= 1.0.0.beta.7'
-gem 'ember-source', '~> 1.4.0'
-gem 'rails-assets-ember-simple-auth', '~> 0.1.0'
+gem 'ember-source', '~> 1.5.0'
+gem 'rails-assets-ember-simple-auth', '~> 0.3.0'
 
 
 #-------------------------------------------------------------------------------
@@ -40,8 +40,8 @@ gem 'rails-assets-ember-simple-auth', '~> 0.1.0'
 gem 'rails_autolink', '~> 1.1.5'
 gem 'kaminari', '~> 0.15.1'
 gem 'active_model_serializers'
-gem 'oj', '~> 2.7.3'
-gem 'oj_mimic_json'
+#gem 'oj', '~> 2.7.3'
+#gem 'oj_mimic_json'
 
 
 #-------------------------------------------------------------------------------
@@ -100,12 +100,11 @@ end
 
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'meta_request'
-  gem 'coffee-rails-source-maps'
+  #gem 'coffee-rails-source-maps'
   gem 'quiet_assets'
   gem 'rack-mini-profiler'
   gem 'rails_best_practices'
+  #gem 'sass-rails-source-maps', '~> 0.0.4'
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-commands-teaspoon'

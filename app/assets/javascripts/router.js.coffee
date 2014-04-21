@@ -1,7 +1,4 @@
-# For more information see: http://emberjs.com/guides/routing/
-
-HubHub.Router.map ()->
-  enableLogging: true
+HubHub.Router.map ->
   @route 'home'
 
   @resource 'posts'
