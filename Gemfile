@@ -102,6 +102,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
+  gem 'coffee-rails-source-maps'
   gem 'quiet_assets'
   gem 'rack-mini-profiler'
   gem 'rails_best_practices'
