@@ -22,7 +22,9 @@ module Api
 
     def show
       @post = Post.includes(:responses, :owner).find(params[:id])
-      respond_with :api, @post
+      respond_with :api, @post, meta: {
+        total_nested_responses: @post.total_nested_responses
+      }
     end
 
     def create

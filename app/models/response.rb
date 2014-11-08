@@ -6,4 +6,15 @@ class Response < ActiveRecord::Base
   validates :body, presence: true, length: { maximum: 4000 }
   validates :owner, presence: true
   validates :respondable, presence: true
+
+  # @return [Fixnum]
+  def total_nested_responses
+    first_level = self.responses.count
+
+    total = responses.map do |response|
+      response.total_nested_responses
+    end.inject(:+) || 0
+
+    total + first_level
+  end
 end

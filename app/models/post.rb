@@ -16,4 +16,10 @@ class Post < ActiveRecord::Base
     #self.content.match /^https?:\/\/\w+\.\w\w\w?[^\s]+$/
     !!self.body.match(URI.regexp(%w[http https]))
   end
+
+  def total_nested_responses
+    first_level = self.responses.count
+    total = responses.map { |response| response.total_nested_responses }.inject(:+) || 0
+    total + first_level
+  end
 end

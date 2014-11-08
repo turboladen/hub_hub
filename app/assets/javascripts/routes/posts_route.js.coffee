@@ -3,9 +3,10 @@ HubHub.PostsRoute = Ember.Route.extend
     nextPage = @controllerFor('posts').get('currentPage')
     perPage = @controllerFor('posts').get('perPage')
 
-    @store.find 'post',
+    @store.find('post',
       page: nextPage,
-      per_page: perPage
+      per_page: perPage).then (post) ->
+      post.set('totalNestedResponses', post.get('content.meta.totalNestedResponses'))
 
   renderTemplate: (controller, model)->
     @render 'posts',

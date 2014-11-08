@@ -98,7 +98,13 @@ describe 'Posts' do
     end
 
     context 'existent post' do
-      let!(:post) { FactoryGirl.create :post }
+      let!(:post) do
+        FactoryGirl.create :post,
+          responses: [
+            FactoryGirl.create(:response,
+              responses: [FactoryGirl.create(:response)])
+          ]
+      end
 
       it 'retrieves the post' do
         get "/api/posts/#{post.to_param}.json"
@@ -109,13 +115,27 @@ describe 'Posts' do
             id: post.id,
             title: post.title,
             body: post.body,
-            response_ids: [],
+            response_ids: [post.responses.first.id],
             created_at: post.created_at.iso8601(3),
             updated_at: post.updated_at.iso8601(3),
             spoke_id: post.spoke.id,
             owner_id: post.owner.id
           },
-          responses: [],
+          responses: [{
+            id: post.responses.first.responses.first.id,
+            body: post.responses.first.responses.first.body,
+            owner_id: post.responses.first.responses.first.owner_id,
+            respondable_id: post.responses.first.id,
+            respondable_type: 'Response',
+            response_ids: []
+          }, {
+            id: post.responses.first.id,
+            body: post.responses.first.body,
+            owner_id: post.responses.first.owner_id,
+            respondable_id: post.id,
+            respondable_type: 'Post',
+            response_ids: [post.responses.first.responses.first.id]
+          }],
           owners: [{
             admin: post.owner.admin?,
             banned: post.owner.banned?,
@@ -123,7 +143,10 @@ describe 'Posts' do
             first_name: post.owner.first_name,
             last_name: post.owner.last_name,
             post_ids: [post.id]
-          }]
+          }],
+          meta: {
+            total_nested_responses: 2
+          }
         )
       end
     end
