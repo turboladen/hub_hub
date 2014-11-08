@@ -9,7 +9,7 @@ token was refreshed.
 @namespace HubHub
 @extends Ember.SimpleAuth.Authenticators.Base
 ###
-HubHub.CustomAuthenticator = Ember.SimpleAuth.Authenticators.Base.extend(
+HubHub.CustomAuthenticator = SimpleAuth.Authenticators.Base.extend
 
   ###
   The endpoint on the server the authenticator acquires the access token
@@ -20,7 +20,6 @@ HubHub.CustomAuthenticator = Ember.SimpleAuth.Authenticators.Base.extend(
   @default '/api/sessions'
   ###
   serverTokenEndpoint: "/api/sessions"
-
 
   ###
   Restores the session from a set of session properties; __will return a
@@ -67,8 +66,8 @@ HubHub.CustomAuthenticator = Ember.SimpleAuth.Authenticators.Base.extend(
         Ember.Logger.debug 'Making request'
 
         Ember.run ->
-          log.debug 'response user id: ' + response.user_id
-          @store.find('user', response.user_id)
+          #log.debug 'response user id: ' + response.user_id
+          #@store.find('user', response.user_id)
           resolve response
       ), (xhr, status, error) ->
         Ember.run ->
@@ -100,8 +99,6 @@ HubHub.CustomAuthenticator = Ember.SimpleAuth.Authenticators.Base.extend(
       dataType: "json"
       contentType: "application/json"
 
-)
-
 ###
 Authorizer that conforms to HubHub's method of authentication
 ([RFC 6749](http://tools.ietf.org/html/rfc6749)) by adding auth tokens
@@ -124,7 +121,7 @@ Authorization: AUTH-TOKEN <token>
 @param {jqXHR} jqXHR The XHR request to authorize (see http://api.jquery.com/jQuery.ajax/#jqXHR)
 @param {Object} requestOptions The options as provided to the `$.ajax` method (see http://api.jquery.com/jQuery.ajaxPrefilter/)
 ###
-HubHub.CustomAuthorizer = Ember.SimpleAuth.Authorizers.Base.extend
+HubHub.CustomAuthorizer = SimpleAuth.Authorizers.Base.extend
   authorize: (jqXHR, requestOptions) ->
     log.debug 'Authorizing...'
 
@@ -132,7 +129,7 @@ HubHub.CustomAuthorizer = Ember.SimpleAuth.Authorizers.Base.extend
     authId = @get('session.userId')
 
     if @get('session.isAuthenticated') and not Ember.isEmpty(authToken) and not Ember.isEmpty(authId)
-      unless Ember.SimpleAuth.Utils.isSecureUrl(requestOptions.url)
+      unless SimpleAuth.Utils.isSecureUrl(requestOptions.url)
         Ember.Logger.warn "Credentials are transmitted via an insecure connection - use HTTPS to keep them secure."
 
       jqXHR.setRequestHeader 'Authorization', 'AUTH-TOKEN' + authToken

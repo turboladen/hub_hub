@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
-ruby '2.1.1'
-gem 'rails', '4.1.0'
+ruby '2.1.4'
+gem 'rails', '4.1.7'
 
 #-------------------------------------------------------------------------------
 # Asset Stuff
@@ -28,17 +28,17 @@ gem 'momentjs-rails', '~> 2.5.1'
 #-------------------------------------------------------------------------------
 # Ember-specific
 #-------------------------------------------------------------------------------
-gem 'ember-rails', '~> 0.14.1'
+gem 'ember-rails', '~> 0.15.0'
 gem 'ember-data-source', '>= 1.0.0.beta.7'
 gem 'ember-source', '~> 1.5.0'
-gem 'rails-assets-ember-simple-auth', '~> 0.3.0'
+gem 'rails-assets-ember-simple-auth', '~> 0.7.0'
 
 
 #-------------------------------------------------------------------------------
 # View Stuff
 #-------------------------------------------------------------------------------
 gem 'rails_autolink', '~> 1.1.5'
-gem 'kaminari', '~> 0.15.1'
+gem 'kaminari', '~> 0.15'
 gem 'active_model_serializers'
 #gem 'oj', '~> 2.7.3'
 #gem 'oj_mimic_json'
@@ -66,7 +66,7 @@ gem 'cancan', '~> 1.6.10'
 #-------------------------------------------------------------------------------
 # Administration
 #-------------------------------------------------------------------------------
-gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin', github: 'activeadmin/activeadmin'
 
 
 #-------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+  # gem 'sdoc', require: false
 end
 
 group :production do
@@ -88,14 +88,12 @@ group :development, :test do
   gem 'brakeman'
   gem 'bullet'
   gem 'factory_girl_rails'
-  gem 'ffaker'
+  gem 'faker'
   gem 'guard-rspec'
-  gem 'guard-teaspoon'
   gem 'qunit-rails'
   # Use debugger
   # gem 'debugger', group: [:development, :test]
   gem 'rspec-rails'
-  gem 'teaspoon', '~> 0.7.9'
 end
 
 group :development do
@@ -107,11 +105,9 @@ group :development do
   #gem 'sass-rails-source-maps', '~> 0.0.4'
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'spring-commands-teaspoon'
 end
 
 group :test do
-  gem 'database_cleaner', '>= 1.1.1'
   gem 'json_spec'
   gem 'simplecov', require: false
 end

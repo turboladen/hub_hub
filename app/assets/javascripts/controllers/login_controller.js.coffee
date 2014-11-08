@@ -1,3 +1,3 @@
-HubHub.LoginController = Ember.Controller.extend(Ember.SimpleAuth.LoginControllerMixin,
+HubHub.LoginController = Ember.Controller.extend(SimpleAuth.LoginControllerMixin,
   authenticatorFactory: 'authenticator:hub_hub'
 )

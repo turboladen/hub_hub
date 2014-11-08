@@ -1,4 +1,4 @@
-HubHub.ApplicationRoute = Ember.Route.extend Ember.SimpleAuth.ApplicationRouteMixin,
+HubHub.ApplicationRoute = Ember.Route.extend SimpleAuth.ApplicationRouteMixin,
   model: ->
     @store.find('spoke')
 

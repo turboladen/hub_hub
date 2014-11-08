@@ -1,5 +1,6 @@
 HubHub.initializer
-  name: "authentication"
+  name: 'authentication'
+  before: 'simple-auth'
   after: 'store'
 
   initialize: (container, application) ->
@@ -7,8 +8,8 @@ HubHub.initializer
     application.register 'authorizer:hub_hub', HubHub.CustomAuthorizer
     application.inject 'authenticator:hub_hub', 'store', 'store:main'
 
-    Ember.SimpleAuth.setup container, application,
-      authorizerFactory: 'authorizer:hub_hub'
-
-    # This needs to come after the call to Ember.SimpleAuth.setup.
-    #application.inject 'authenticator:hub_hub', 'session', 'session:main'
+window.ENV ?= {}
+window.ENV['simple-auth'] =
+  authorizer: 'authorizer:hub_hub'
+  #authenticationRoute: 'login'
+  #routeAfterAuthentication: 'growers',
