@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 
 ruby '2.1.4'
 gem 'rails', '4.1.7'
@@ -7,12 +6,8 @@ gem 'rails', '4.1.7'
 #-------------------------------------------------------------------------------
 # Asset Stuff
 #-------------------------------------------------------------------------------
-gem 'sass-rails', '~> 4.0.0'
-gem 'bootstrap-sass', '~> 3.1.1'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'jquery-rails'
-gem 'font-awesome-rails'
 
 gem 'momentjs-rails', '~> 2.5.1'
 
@@ -24,15 +19,6 @@ gem 'momentjs-rails', '~> 2.5.1'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 # Let's use nodejs!
-
-#-------------------------------------------------------------------------------
-# Ember-specific
-#-------------------------------------------------------------------------------
-gem 'ember-rails', '~> 0.15.0'
-gem 'ember-data-source', '>= 1.0.0.beta.7'
-gem 'ember-source', '~> 1.5.0'
-gem 'rails-assets-ember-simple-auth', '~> 0.7.0'
-
 
 #-------------------------------------------------------------------------------
 # View Stuff
@@ -89,20 +75,14 @@ group :development, :test do
   gem 'bullet'
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'guard-rspec'
-  gem 'qunit-rails'
-  # Use debugger
-  # gem 'debugger', group: [:development, :test]
   gem 'rspec-rails'
 end
 
 group :development do
   gem 'better_errors'
-  #gem 'coffee-rails-source-maps'
+  gem 'guard-rspec'
   gem 'quiet_assets'
-  gem 'rack-mini-profiler'
   gem 'rails_best_practices'
-  #gem 'sass-rails-source-maps', '~> 0.0.4'
   gem 'spring'
   gem 'spring-commands-rspec'
 end
