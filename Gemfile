@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.22.5'
 
 # Database
 gem 'ledermann-rails-settings', '~> 1.2.1', require: 'rails-settings'
